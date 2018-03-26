@@ -3,6 +3,7 @@ package reader
 import (
 	"errors"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/GanEasy/html2article"
@@ -18,70 +19,106 @@ type BookSection struct {
 
 // BookInfo 链接
 type BookInfo struct {
-	URL     string        `json:"url"`
-	Title   string        `json:"title"`
-	Content []BookSection `json:"content"`
-	PubAt   string        `json:"pub_at"`
+	URL      string        `json:"url"`
+	Title    string        `json:"title"`
+	Content  []BookSection `json:"content"`
+	PubAt    string        `json:"pub_at"`
+	Previous Link          `json:"previous"`
+	Next     Link          `json:"next"`
 }
 
-// GetBookContent 获取小说正文，返回标题与段落内容
-func GetBookContent(url string) (info BookInfo, err error) {
-
-	// type Article struct {
-	// 	// Basic
-	// 	Title       string `json:"title"`
-	// 	Content     string `json:"content"`
-	// 	Publishtime int64  `json:"publish_time"`
-	// }
+// GetBookInfo 获取章节内容详细
+func GetBookInfo(url string) (info BookInfo, err error) {
 	if url == "" {
 		return info, errors.New("url不能为空")
 	}
-
-	ext, err := html2article.NewFromUrl(url)
+	html, err := GetHTML(url)
 	if err != nil {
 		return info, err
 	}
-	article, err := ext.ToArticle()
+	log.Println(html)
+	article, err := GetActicleByHTML(html)
 	if err != nil {
 		return info, err
 	}
-	// log.Println(article.Html)
 
-	//parse the article to be readability
 	article.Readable(url)
-
-	// fmt.Println(article.Title, article.Publishtime)
-	// md = html2md.Convert(article.ReadContent)
 
 	info.Title = article.Title
 	info.URL = url
 
-	md := html2md.Convert(article.ReadContent)
-	input := []byte(md)
-	unsafe := blackfriday.MarkdownCommon(input)
-	content := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	c := MarkDownFormatContent(article.ReadContent)
 
-	c := strings.TrimSpace(fmt.Sprintf(`%v`, string(content[:])))
 	c = BookContReplace(c)
-	// arr := strings.Split(c, "<p>")
-	arr := strings.Split(c, "</p>")
 
-	if len(arr) > 2 {
+	info.Content = GetSectionByContent(c)
+
+	links, _ := GetLinkByHTML(html)
+	info.Previous = GetPreviousLink(links)
+	info.Next = GetNextLink(links)
+	// info.PubAt = Publishtime
+	return info, nil
+}
+
+//GetPreviousLink 获取上一页或者上一章
+func GetPreviousLink(links []Link) Link {
+	for _, link := range links {
+		if strings.Contains(link.Title, `上一页`) || strings.Contains(link.Title, `上一章`) {
+			return Link{Title: "previous", URL: link.URL}
+		}
+	}
+	return Link{}
+}
+
+//GetNextLink 获取下一页或者下一章
+func GetNextLink(links []Link) Link {
+	for _, link := range links {
+		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下一章`) {
+			return Link{Title: "next", URL: link.URL}
+		}
+	}
+	return Link{}
+}
+
+//GetActicleByHTML 由Html返回*html2article.Article
+func GetActicleByHTML(html string) (article *html2article.Article, err error) {
+	ext, err := html2article.NewFromHtml(html)
+	if err != nil {
+		return
+	}
+	return ext.ToArticle()
+}
+
+// GetSectionByContent 通过正文获取段落拆分
+func GetSectionByContent(content string) (sec []BookSection) {
+	// 替换换行符
+	content = BookContReplace(content)
+	// 拆分换行符
+	arr := strings.Split(content, "</p>")
+	if len(arr) > 1 {
 		for _, v := range arr {
 			text := strings.TrimSpace(v)
 			if text != "" {
-				info.Content = append(info.Content, BookSection{
+				// 不为空时组装段落
+				sec = append(sec, BookSection{
 					Text: text,
 				})
 			}
 		}
 	}
-	// info.PubAt = Publishtime
-	return info, nil
-
+	return
 }
 
-// BookContReplace 小说内容正文替换
+//MarkDownFormatContent 通过markdown语法格式化内容
+func MarkDownFormatContent(content string) string {
+	md := html2md.Convert(content)
+	input := []byte(md)
+	unsafe := blackfriday.MarkdownCommon(input)
+	contentBytes := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	return strings.TrimSpace(fmt.Sprintf(`%v`, string(contentBytes[:])))
+}
+
+// BookContReplace 小说内容正文替换标签
 func BookContReplace(html string) string {
 	c := strings.Replace(html, `<p>`, ``, -1)
 	c = strings.Replace(c, `<code>`, ``, -1)

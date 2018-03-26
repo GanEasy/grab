@@ -19,6 +19,17 @@ func Test_GetList(t *testing.T) {
 
 }
 
+func Test_GetLinkByHTML(t *testing.T) {
+
+	// a1, _ := Read("http://www.76wx.com/book/1563/3212972.html")
+	// fmt.Println(a1)
+	html, _ := GetHTML("http://book.zongheng.com/showchapter/523438.html")
+	// t.Fatal(html)
+	a2, _ := GetLinkByHTML(html)
+	t.Fatal(a2)
+
+}
+
 func Test_GetList2(t *testing.T) {
 
 	a2, _ := GetContent("http://book.zongheng.com/showchapter/523438.html")

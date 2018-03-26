@@ -123,6 +123,44 @@ func GetList(urlStr string) (data Data, err error) {
 
 }
 
+//GetLinkByHTML 获取网页内容所有链接
+func GetLinkByHTML(html string) (links []Link, err error) {
+	// 没有 html标签 或者 body 标签可能出现文档解释异常
+	if !strings.Contains(html, `</html>`) || !strings.Contains(html, `</body>`) {
+		html = fmt.Sprintf(`
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+			<title>%v</title>
+			<body>
+			%v
+			</body>
+			</html>
+			`, `NONE TITLE`, html)
+	}
+
+	c := strings.NewReader(html)
+
+	g, err := goquery.NewDocumentFromReader(c)
+
+	if err != nil {
+		return
+	}
+
+	// fmt.Println(g.Text())
+	g.Find("a").Each(func(i int, content *goquery.Selection) {
+		n := strings.TrimSpace(content.Text())
+		u, _ := content.Attr("href")
+		if err := CheckStrIsLink(u); err == nil {
+			links = append(links, Link{
+				n,
+				u,
+			})
+		}
+	})
+	return
+}
+
 // GetListByContent 获取正文中的链接
 func GetListByContent(urlStr string) (data Data, err error) {
 	a2, _ := GetContent(urlStr)
