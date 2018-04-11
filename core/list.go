@@ -107,18 +107,18 @@ func GetList(urlStr string) (data Data, err error) {
 	// data.Links = links
 	data.Links = Cleaning(links)
 
-	if len(data.Links) < 20 { // 这里面是兼容处理，如果
-		exp = []string{
-			`?`,
-			`&`,
-			`#`,
-			`/`,
-			`=`,
-			`.`, // 不能把这个点去掉
-		}
-		// data.Links = Cleaning(links)
-	}
-	log.Fatal(data.Links)
+	// if len(data.Links) < 20 { // 这里面是兼容处理，如果
+	// 	exp = []string{
+	// 		`?`,
+	// 		`&`,
+	// 		`#`,
+	// 		`/`,
+	// 		`=`,
+	// 		`.`, // 不能把这个点去掉
+	// 	}
+	// 	// data.Links = Cleaning(links)
+	// }
+	// log.Fatal(data.Links)
 	return data, nil
 
 }
@@ -163,7 +163,7 @@ func GetLinkByHTML(html string) (links []Link, err error) {
 
 // GetListByContent 获取正文中的链接
 func GetListByContent(urlStr string) (data Data, err error) {
-	a2, _ := GetContent(urlStr)
+	a2, _ := GetArticle(urlStr)
 
 	data.Title = a2.Title
 	bh := fmt.Sprintf(`

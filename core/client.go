@@ -3,11 +3,12 @@ package reader
 import (
 	"io/ioutil"
 	"net/http"
+	"strings"
 
-	"github.com/GanEasy/html2article"
+	"golang.org/x/net/html/charset"
 )
 
-//GetHTML 获取html
+//GetHTML get请求 传入链接地址 获取utf-8格式的 html
 func GetHTML(urlStr string) (htmlStr string, err error) {
 	req, err := http.NewRequest("GET", urlStr, nil)
 	if err != nil {
@@ -19,9 +20,11 @@ func GetHTML(urlStr string) (htmlStr string, err error) {
 	if err != nil {
 		return
 	}
+
+	reader, err := charset.NewReader(resp.Body, strings.ToLower(resp.Header.Get("Content-Type")))
 	defer resp.Body.Close()
-	bs, _ := ioutil.ReadAll(resp.Body)
+	bs, _ := ioutil.ReadAll(reader)
 	htmlStr = string(bs)
-	htmlStr = html2article.DecodeHtml(resp.Header, htmlStr, htmlStr)
+	// htmlStr = html2article.DecodeHtml(resp.Header, htmlStr, htmlStr)
 	return htmlStr, err
 }

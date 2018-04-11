@@ -1,9 +1,7 @@
 package reader
 
 import (
-	"errors"
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/GanEasy/html2article"
@@ -29,14 +27,11 @@ type BookInfo struct {
 
 // GetBookInfo 获取章节内容详细
 func GetBookInfo(url string) (info BookInfo, err error) {
-	if url == "" {
-		return info, errors.New("url不能为空")
-	}
 	html, err := GetHTML(url)
 	if err != nil {
 		return info, err
 	}
-	log.Println(html)
+	// log.Println(html)
 	article, err := GetActicleByHTML(html)
 	if err != nil {
 		return info, err
