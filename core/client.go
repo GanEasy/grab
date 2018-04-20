@@ -1,4 +1,4 @@
-package reader
+package core
 
 import (
 	"io/ioutil"
@@ -25,6 +25,5 @@ func GetHTML(urlStr string) (htmlStr string, err error) {
 	defer resp.Body.Close()
 	bs, _ := ioutil.ReadAll(reader)
 	htmlStr = string(bs)
-	// htmlStr = html2article.DecodeHtml(resp.Header, htmlStr, htmlStr)
 	return htmlStr, err
 }
