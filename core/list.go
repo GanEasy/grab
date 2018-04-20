@@ -82,13 +82,18 @@ func GetList(urlStr string) (data Data, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	var links []Link
-	// fmt.Println(g.Text())
+	links := GetLinks(g, link)
+
+	data.Links = Cleaning(links)
+	return data, nil
+
+}
+
+//GetLinks 获取链接地址 参考链接
+func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 	g.Find("a").Each(func(i int, content *goquery.Selection) {
-		// 书名
 		n := strings.TrimSpace(content.Text())
 		u, _ := content.Attr("href")
-
 		if strings.Index(u, "java") != 0 {
 			if strings.Index(u, "//") == 0 {
 				u = fmt.Sprintf(`%v:%v`, link.Scheme, u)
@@ -103,24 +108,7 @@ func GetList(urlStr string) (data Data, err error) {
 			})
 		}
 	})
-	// fmt.Println(data)
-	// data.Links = links
-	data.Links = Cleaning(links)
-
-	// if len(data.Links) < 20 { // 这里面是兼容处理，如果
-	// 	exp = []string{
-	// 		`?`,
-	// 		`&`,
-	// 		`#`,
-	// 		`/`,
-	// 		`=`,
-	// 		`.`, // 不能把这个点去掉
-	// 	}
-	// 	// data.Links = Cleaning(links)
-	// }
-	// log.Fatal(data.Links)
-	return data, nil
-
+	return links
 }
 
 //GetLinkByHTML 获取网页内容所有链接
