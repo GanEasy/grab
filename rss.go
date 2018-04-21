@@ -1,11 +1,6 @@
 package grab
 
 import (
-	"bytes"
-	"crypto/sha1"
-	"fmt"
-	"io"
-
 	"github.com/GanEasy/grab/core"
 	"github.com/mmcdole/gofeed"
 )
@@ -31,23 +26,4 @@ func GetRssList(urlStr string) (list List, err error) {
 
 	list.Hash = GetListHash(list)
 	return
-}
-
-//GetHash 获取hash
-func GetHash(s string) string {
-	h := sha1.New()
-	io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-//GetListHash get
-func GetListHash(list List) string {
-	var buf bytes.Buffer
-	buf.WriteString(list.Title)
-	for _, link := range list.Links {
-		buf.WriteString(link.Title)
-		buf.WriteString(link.URL)
-	}
-	buf.WriteString(list.SourceURL)
-	return GetHash(buf.String())
 }

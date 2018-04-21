@@ -11,5 +11,6 @@ func Test_GetHTMLList(t *testing.T) {
 	if err != nil {
 
 	}
-	t.Fatal(list)
+	l := Cleaning(list.Links)
+	t.Fatal(l)
 }
