@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
+	"path/filepath"
 	"strings"
 
 	"github.com/GanEasy/html2article"
@@ -100,7 +100,9 @@ func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 			} else if strings.Index(u, "/") == 0 {
 				u = fmt.Sprintf(`%v://%v%v`, link.Scheme, link.Host, u)
 			} else if strings.Index(u, "#") != 0 && strings.Index(u, "http") != 0 {
-				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, link.Path, u)
+				//todo   link.Path 获取目录
+				p1, _ := filepath.Split(link.Path)
+				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, p1, u)
 			}
 			links = append(links, Link{
 				n,
@@ -248,7 +250,7 @@ func Cleaning(links []Link) (newlinks []Link) {
 		// wg[link.URL] = w
 	}
 
-	log.Fatal(links)
+	// log.Fatal(links)
 	var crp = map[string]int{}
 	for _, link := range links {
 		if _, ok := crp[link.URL]; !ok && link.Title != "" {

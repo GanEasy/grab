@@ -5,9 +5,11 @@ import (
 	"crypto/sha1"
 	"fmt"
 	"io"
-	"log"
 	"net/url"
+	"path/filepath"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 //Cleaning 清洗数据
@@ -29,7 +31,7 @@ func Cleaning(links []Link) (newlinks []Link) {
 	var mw = 0
 	var maxWeight = 0.0
 
-	log.Fatal(edu)
+	// log.Fatal(edu)
 	for _, v := range edu {
 		if v > 10 {
 			v = 10
@@ -51,7 +53,7 @@ func Cleaning(links []Link) (newlinks []Link) {
 		}
 		// wg[link.URL] = w
 	}
-	var pro = maxWeight * 0.80
+	var pro = maxWeight * 0.30
 	// 这个链接的重量
 	var wg = map[string]int{}
 	for _, link := range links {
@@ -68,7 +70,7 @@ func Cleaning(links []Link) (newlinks []Link) {
 		// wg[link.URL] = w
 	}
 
-	log.Fatal(links)
+	// log.Fatal(links)
 	var crp = map[string]int{}
 	for _, link := range links {
 		if _, ok := crp[link.URL]; !ok && link.Title != "" {
@@ -121,4 +123,28 @@ func GetListHash(list List) string {
 	}
 	buf.WriteString(list.SourceURL)
 	return GetHash(buf.String())
+}
+
+//GetLinks 获取链接地址 参考链接
+func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
+	g.Find("a").Each(func(i int, content *goquery.Selection) {
+		n := strings.TrimSpace(content.Text())
+		u, _ := content.Attr("href")
+		if strings.Index(u, "java") != 0 {
+			if strings.Index(u, "//") == 0 {
+				u = fmt.Sprintf(`%v:%v`, link.Scheme, u)
+			} else if strings.Index(u, "/") == 0 {
+				u = fmt.Sprintf(`%v://%v%v`, link.Scheme, link.Host, u)
+			} else if strings.Index(u, "#") != 0 && strings.Index(u, "http") != 0 {
+				//todo   link.Path 获取目录
+				p1, _ := filepath.Split(link.Path)
+				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, p1, u)
+			}
+			links = append(links, Link{
+				n,
+				u,
+			})
+		}
+	})
+	return links
 }

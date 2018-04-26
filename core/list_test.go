@@ -14,7 +14,9 @@ func Test_GetList(t *testing.T) {
 	// a1, _ := Read("http://www.76wx.com/book/1563/3212972.html")
 	// fmt.Println(a1)
 
-	a2, _ := GetList("http://book.zongheng.com/showchapter/523438.html")
+	// a2, _ := GetList("http://book.zongheng.com/showchapter/523438.html")
+	// a2, _ := GetList(`http://www.longfuxiaoshuo.com/`)
+	a2, _ := GetList(`http://www.longfu8.com/`)
 	t.Fatal(a2)
 
 }

@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/minappapi"
 	"github.com/labstack/echo"
 )
@@ -19,14 +20,19 @@ func CheckSubcribeUpdate() {
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "open.readfollow.com!")
+		return c.String(http.StatusOK, `open.readfollow.com!
+			/gethtml?url=&find= <br>
+			/getbookchapters?url= <br>
+			/getbookchapterinfo?url= <br>
+			`)
 	})
 
 	// 获取html gethtml
 	e.GET("/gethtml", func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		ret := cpi.GetPostByID(int64(id))
-		return c.JSON(http.StatusOK, ret)
+		urlStr := c.QueryParam("url")
+		find := c.QueryParam("find")
+		html, _ := grab.GetHTML(urlStr, find)
+		return c.JSON(http.StatusOK, html)
 	})
 
 	// 获取获取文章 getarticle
@@ -36,21 +42,27 @@ func main() {
 		return c.JSON(http.StatusOK, ret)
 	})
 
+	// 获取小说目录正文
+	e.GET("/getbookchapters", func(c echo.Context) error {
+		urlStr := c.QueryParam("url")
+		ret, _ := grab.GetBookChapters(urlStr)
+		return c.JSON(http.StatusOK, ret)
+	})
 	// 获取小说章节内容 getbookchapterinfo
 	e.GET("/getbookchapterinfo", func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		ret := cpi.GetPostByID(int64(id))
-		return c.JSON(http.StatusOK, ret)
+		urlStr := c.QueryParam("url")
+		info, _ := grab.GetBookInfo(urlStr)
+		return c.JSON(http.StatusOK, info)
 	})
 
 	// 获取Rss列表 getrsslist
 	e.GET("/getrsslist", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
-		if urlStr == "" {
-			return c.JSON(http.StatusOK, "0")
+		list, err := grab.GetRssList(urlStr)
+		if err == nil {
+			return c.JSON(http.StatusOK, list)
 		}
-		ret, _ := cpi.GetBookMenu(urlStr)
-		return c.JSON(http.StatusOK, ret)
+		return c.JSON(http.StatusFound, list)
 	})
 
 	// 获取列表
@@ -66,20 +78,8 @@ func main() {
 	// 获取正文
 	e.GET("/getcontent", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
-		if urlStr == "" {
-			return c.JSON(http.StatusOK, "0")
-		}
-		ret, _ := cpi.GetContent(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
 
-	// 获取小说目录正文
-	e.GET("/getbookchapters", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		if urlStr == "" {
-			return c.JSON(http.StatusOK, "0")
-		}
-		ret, _ := cpi.GetBookMenu(urlStr)
+		ret, _ := grab.GetContent(urlStr)
 		return c.JSON(http.StatusOK, ret)
 	})
 
