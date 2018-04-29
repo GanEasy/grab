@@ -72,7 +72,7 @@ func main() {
 
 	// 图标
 	e.File("favicon.ico", "images/favicon.ico")
-	e.Logger.Fatal(e.Start(":8004"))
+	e.Logger.Fatal(e.Start(":8041"))
 	// e.Logger.Fatal(e.StartAutoTLS(":443"))
 
 }
