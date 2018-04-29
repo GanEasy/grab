@@ -2,29 +2,23 @@ package main
 
 import (
 	"net/http"
-	"strconv"
-	"time"
 
 	"github.com/GanEasy/grab"
-	cpi "github.com/GanEasy/minappapi"
 	"github.com/labstack/echo"
 )
 
-//CheckSubcribeUpdate  每天处理订阅更新
-func CheckSubcribeUpdate() {
-	ticker := time.NewTicker(time.Hour * 6)
-	for _ = range ticker.C {
-		go cpi.RunSubcribePostUpdateCheck()
-	}
-}
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, `open.readfollow.com!
-			/gethtml?url=&find= <br>
-			/getbookchapters?url= <br>
-			/getbookchapterinfo?url= <br>
-			`)
+		return c.String(http.StatusOK,
+			`open.readfollow.com!
+/gethtml?url=&find=
+/getbookchapters?url=
+/getbookchapterinfo?url=
+/getarticle?url=
+/getrsslist?url=
+/gethtmllist?url=
+`)
 	})
 
 	// 获取html gethtml
@@ -37,8 +31,8 @@ func main() {
 
 	// 获取获取文章 getarticle
 	e.GET("/getarticle", func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		ret := cpi.GetPostByID(int64(id))
+		urlStr := c.QueryParam("url")
+		ret, _ := grab.GetContent(urlStr)
 		return c.JSON(http.StatusOK, ret)
 	})
 
@@ -65,32 +59,15 @@ func main() {
 		return c.JSON(http.StatusFound, list)
 	})
 
-	// 获取列表
-	e.GET("/getlist", func(c echo.Context) error {
+	// 获取html列表
+	e.GET("/gethtmllist", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
-		if urlStr == "" {
-			return c.JSON(http.StatusOK, "0")
+		find := c.QueryParam("find")
+		list, err := grab.GetHTMLList(urlStr, find)
+		if err == nil {
+			return c.JSON(http.StatusOK, list)
 		}
-		ret, _ := cpi.GetBookMenu(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
-
-	// 获取正文
-	e.GET("/getcontent", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-
-		ret, _ := grab.GetContent(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
-
-	// 获取小说章节正文
-	e.GET("/getbookcontent", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		if urlStr == "" {
-			return c.JSON(http.StatusOK, "0")
-		}
-		ret, _ := cpi.GetBookContent(urlStr)
-		return c.JSON(http.StatusOK, ret)
+		return c.JSON(http.StatusFound, list)
 	})
 
 	// 图标

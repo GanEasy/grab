@@ -140,6 +140,12 @@ func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 				p1, _ := filepath.Split(link.Path)
 				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, p1, u)
 			}
+			u = strings.Replace(u, " ", "", -1)
+			u = strings.Replace(u, "　", "", -1)
+			// 去除换行符
+			u = strings.Replace(u, "\n", "", -1)
+			u = strings.Replace(u, "\t", "", -1)
+
 			links = append(links, Link{
 				n,
 				u,
