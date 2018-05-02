@@ -174,7 +174,7 @@ func BookContReplace(html string) string {
 	c = strings.Replace(c, `<br/>`, `</p>`, -1)
 	c = strings.Replace(c, `<br />`, `</p>`, -1)
 	c = strings.Replace(c, `<br>`, `</p>`, -1)
-	c = strings.Replace(c, `\n`, `</p>`, -1)
+	c = strings.Replace(c, "\n", `</p>`, -1)
 	return c
 }
 
