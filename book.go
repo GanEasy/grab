@@ -6,7 +6,6 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GanEasy/grab/core"
 	"github.com/GanEasy/html2article"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/lunny/html2md"
@@ -15,10 +14,10 @@ import (
 )
 
 // GetHTML 获取rss链接地址中的链接
-func GetBookList(urlStr, find string) (html string, err error) {
-	html, err = core.GetHTML(urlStr)
-	return
-}
+// func GetBookList(urlStr, find string) (html string, err error) {
+// 	html, err = core.GetHTML(urlStr)
+// 	return
+// }
 
 // GetBookInfo 获取章节内容详细
 func GetBookInfo(urlStr string) (info Book, err error) {

@@ -4,13 +4,12 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GanEasy/grab/core"
 	"github.com/PuerkitoBio/goquery"
 )
 
 // GetHTMLList 获取指定URL指定元素里面的URL(所有)
 func GetHTMLList(urlStr, find string) (list List, err error) {
-	html, err := core.GetHTML(urlStr)
+	html, err := GetHTML(urlStr, find)
 	if err != nil {
 		return
 	}
@@ -35,7 +34,7 @@ func GetHTMLList(urlStr, find string) (list List, err error) {
 	// 	return
 	// }
 
-	links := core.GetLinks(g, link)
+	links := GetLinks(g, link)
 
 	for _, l := range links {
 		list.Links = append(list.Links, Link{

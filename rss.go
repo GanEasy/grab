@@ -1,13 +1,12 @@
 package grab
 
 import (
-	"github.com/GanEasy/grab/core"
 	"github.com/mmcdole/gofeed"
 )
 
 // GetRssList 获取rss链接地址中的链接
 func GetRssList(urlStr string) (list List, err error) {
-	html, err := core.GetHTML(urlStr)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
