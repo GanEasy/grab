@@ -1,34 +1,32 @@
-package core
+package grab
 
 import (
+	"errors"
 	"fmt"
-	"log"
+	"net/url"
 	"strings"
 
+	"github.com/GanEasy/grab/core"
 	"github.com/GanEasy/html2article"
+	"github.com/PuerkitoBio/goquery"
 	"github.com/lunny/html2md"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 )
 
-// BookSection 小说段落 字数
-type BookSection struct {
-	Text string `json:"text"`
-}
-
-// BookInfo 链接
-type BookInfo struct {
-	URL      string        `json:"url"`
-	Title    string        `json:"title"`
-	Content  []BookSection `json:"content"`
-	PubAt    string        `json:"pub_at"`
-	Previous Link          `json:"previous"`
-	Next     Link          `json:"next"`
+// GetHTML 获取rss链接地址中的链接
+func GetBookList(urlStr, find string) (html string, err error) {
+	html, err = core.GetHTML(urlStr)
+	return
 }
 
 // GetBookInfo 获取章节内容详细
-func GetBookInfo(url string) (info BookInfo, err error) {
-	html, err := GetHTML(url)
+func GetBookInfo(urlStr string) (info Book, err error) {
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return info, err
 	}
@@ -38,21 +36,73 @@ func GetBookInfo(url string) (info BookInfo, err error) {
 		return info, err
 	}
 
-	article.Readable(url)
+	article.Readable(urlStr)
 
 	info.Title = article.Title
-	info.URL = url
+	info.URL = urlStr
 
 	c := MarkDownFormatContent(article.ReadContent)
+
 	c = BookContReplace(c)
 
 	info.Content = GetSectionByContent(c)
 
-	links, _ := GetLinkByHTML(html)
+	// log.Println(article.Html)
+	links, _ := GetLinkByHTML(urlStr, html)
 	info.Previous = GetPreviousLink(links)
 	info.Next = GetNextLink(links)
 	// info.PubAt = Publishtime
 	return info, nil
+}
+
+//GetLinkByHTML 获取网页内容所有链接
+func GetLinkByHTML(urlStr, html string) (links []Link, err error) {
+	// 没有 html标签 或者 body 标签可能出现文档解释异常
+	if !strings.Contains(html, `</html>`) || !strings.Contains(html, `</body>`) {
+		html = fmt.Sprintf(`
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+			<title>%v</title>
+			<body>
+			%v
+			</body>
+			</html>
+			`, `NONE TITLE`, html)
+	}
+
+	c := strings.NewReader(html)
+
+	g, err := goquery.NewDocumentFromReader(c)
+
+	if err != nil {
+		return
+	}
+	link, err := url.Parse(urlStr)
+	if err != nil {
+		return
+	}
+	links = GetLinks(g, link)
+	return
+}
+
+//CheckStrIsLink 检查字符串是否支持的链接
+func CheckStrIsLink(urlStr string) error {
+
+	link, err := url.Parse(urlStr)
+
+	if err != nil {
+		return err
+	}
+
+	if link.Scheme == "" {
+		return errors.New("Scheme Fatal")
+	}
+
+	if link.Host == "" {
+		return errors.New("Host Fatal")
+	}
+	return nil
 }
 
 //GetPreviousLink 获取上一页或者上一章
@@ -81,6 +131,7 @@ func GetActicleByHTML(html string) (article *html2article.Article, err error) {
 	if err != nil {
 		return
 	}
+
 	return ext.ToArticle()
 }
 
@@ -89,7 +140,6 @@ func GetSectionByContent(content string) (sec []BookSection) {
 	// 替换换行符
 	content = BookContReplace(content)
 	// 拆分换行符
-	log.Println("content", content)
 	arr := strings.Split(content, "</p>")
 	if len(arr) > 1 {
 		for _, v := range arr {
@@ -107,8 +157,6 @@ func GetSectionByContent(content string) (sec []BookSection) {
 
 //MarkDownFormatContent 通过markdown语法格式化内容
 func MarkDownFormatContent(content string) string {
-	log.Println(content)
-
 	md := html2md.Convert(content)
 	input := []byte(md)
 	unsafe := blackfriday.MarkdownCommon(input)
@@ -127,11 +175,44 @@ func BookContReplace(html string) string {
 	c = strings.Replace(c, `<br/>`, `</p>`, -1)
 	c = strings.Replace(c, `<br />`, `</p>`, -1)
 	c = strings.Replace(c, `<br>`, `</p>`, -1)
-	c = strings.Replace(c, "\n", `</p>`, -1)
+	c = strings.Replace(c, `\n`, `</p>`, -1)
 	return c
 }
 
-// GetBookMenu 获取小说目录
-func GetBookMenu(urlStr string) (data Data, err error) {
-	return GetList(urlStr)
+// GetBookChapters 获取目录列表
+func GetBookChapters(urlStr string) (list List, err error) {
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = g.Find("title").Text()
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+	// log.Println(links)
+	list.Links = Cleaning(links)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetListHash(list)
+
+	return list, nil
+
 }
+
+// // GetBookMenu 获取小说目录
+// func GetBookMenu(urlStr string) (data Data, err error) {
+// 	return GetList(urlStr)
+// }

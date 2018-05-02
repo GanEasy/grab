@@ -1,4 +1,4 @@
-package reader
+package core
 
 import (
 	"github.com/GanEasy/html2article"

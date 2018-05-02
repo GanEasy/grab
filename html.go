@@ -1,4 +1,4 @@
-package core
+package grab
 
 import (
 	"io/ioutil"
@@ -8,8 +8,9 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-//GetHTML get请求 传入链接地址 获取utf-8格式的 html
-func GetHTML(urlStr string) (htmlStr string, err error) {
+// GetHTML 获取rss链接地址中的链接
+func GetHTML(urlStr, find string) (htmlStr string, err error) {
+
 	req, err := http.NewRequest("GET", urlStr, nil)
 	if err != nil {
 		return
