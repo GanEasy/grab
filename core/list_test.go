@@ -32,7 +32,7 @@ func Test_GetLinkByHTML(t *testing.T) {
 
 func Test_GetList2(t *testing.T) {
 
-	a2, _ := GetContent("http://book.zongheng.com/showchapter/523438.html")
+	a2, _ := GetArticle("http://book.zongheng.com/showchapter/523438.html")
 
 	bh := fmt.Sprintf(`
 			<html>

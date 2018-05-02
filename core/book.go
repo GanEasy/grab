@@ -2,6 +2,7 @@ package reader
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/GanEasy/html2article"
@@ -43,7 +44,6 @@ func GetBookInfo(url string) (info BookInfo, err error) {
 	info.URL = url
 
 	c := MarkDownFormatContent(article.ReadContent)
-
 	c = BookContReplace(c)
 
 	info.Content = GetSectionByContent(c)
@@ -89,6 +89,7 @@ func GetSectionByContent(content string) (sec []BookSection) {
 	// 替换换行符
 	content = BookContReplace(content)
 	// 拆分换行符
+	log.Println("content", content)
 	arr := strings.Split(content, "</p>")
 	if len(arr) > 1 {
 		for _, v := range arr {
@@ -106,6 +107,8 @@ func GetSectionByContent(content string) (sec []BookSection) {
 
 //MarkDownFormatContent 通过markdown语法格式化内容
 func MarkDownFormatContent(content string) string {
+	log.Println(content)
+
 	md := html2md.Convert(content)
 	input := []byte(md)
 	unsafe := blackfriday.MarkdownCommon(input)
@@ -124,7 +127,7 @@ func BookContReplace(html string) string {
 	c = strings.Replace(c, `<br/>`, `</p>`, -1)
 	c = strings.Replace(c, `<br />`, `</p>`, -1)
 	c = strings.Replace(c, `<br>`, `</p>`, -1)
-	c = strings.Replace(c, `\n`, `</p>`, -1)
+	c = strings.Replace(c, "\n", `</p>`, -1)
 	return c
 }
 

@@ -61,7 +61,7 @@ func Test_Content(t *testing.T) {
 func Test_SplitSection(t *testing.T) {
 
 	urlStr := `http://www.longfu8.com/417.html`
-	info, err := GetContent(urlStr)
+	info, err := GetArticle(urlStr)
 	if err != nil {
 
 	}
