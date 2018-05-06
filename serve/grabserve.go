@@ -11,13 +11,14 @@ func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK,
-			`open.readfollow.com!
+			`https://open.readfollow.com build by golang, author yizenghui. 
 /gethtml?url=&find=
+/gethtmllist?url=&find=
 /getbookchapters?url=
 /getbookchapterinfo?url=
-/getarticle?url=
 /getrsslist?url=
-/gethtmllist?url=
+/getarticlelist?url=
+/getarticle?url=
 `)
 	})
 
@@ -32,7 +33,14 @@ func main() {
 	// 获取获取文章 getarticle
 	e.GET("/getarticle", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
-		ret, _ := grab.GetContent(urlStr)
+		ret, _ := grab.GetArticle(urlStr)
+		return c.JSON(http.StatusOK, ret)
+	})
+
+	// 获取获取文章列表 getarticlelist
+	e.GET("/getarticlelist", func(c echo.Context) error {
+		urlStr := c.QueryParam("url")
+		ret, _ := grab.GetArticleList(urlStr)
 		return c.JSON(http.StatusOK, ret)
 	})
 

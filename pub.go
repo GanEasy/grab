@@ -31,12 +31,12 @@ type Book struct {
 	Next     Link          `json:"next"`
 }
 
-// Article 文章
-type Article struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-	PubAt   string `json:"pub_at"`
-}
+// // Article 文章
+// type Article struct {
+// 	Title   string `json:"title"`
+// 	Content string `json:"content"`
+// 	PubAt   string `json:"pub_at"`
+// }
 
 //RssList RssList
 func RssList(urlStr string) {

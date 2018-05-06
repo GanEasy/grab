@@ -6,12 +6,14 @@ import (
 
 // GetRssList 获取rss链接地址中的链接
 func GetRssList(urlStr string) (list List, err error) {
-	html, err := GetHTML(urlStr, ``)
-	if err != nil {
-		return
-	}
+	// html, err := GetHTML(urlStr, ``)
+	// if err != nil {
+	// 	return
+	// }
 	fp := gofeed.NewParser()
-	feed, err := fp.ParseString(html)
+
+	// feed, err := fp.ParseString(html)
+	feed, err := fp.ParseURL(urlStr)
 	if err != nil {
 		return
 	}

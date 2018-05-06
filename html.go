@@ -8,9 +8,12 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-// GetHTML 获取rss链接地址中的链接
+// GetHTML 获取html链接地址中的链接
 func GetHTML(urlStr, find string) (htmlStr string, err error) {
-
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
 	req, err := http.NewRequest("GET", urlStr, nil)
 	if err != nil {
 		return
