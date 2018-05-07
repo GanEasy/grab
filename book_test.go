@@ -22,6 +22,8 @@ func Test_GetBookInfo(t *testing.T) {
 
 func Test_GetBookChapters(t *testing.T) {
 	urlStr := `http://www.longfu8.com/`
+	urlStr = `http://www.xinshubao.net/18/18685/`
+
 	// urlStr := `http://www.longfuxiaoshuo.com/`
 	info, err := GetBookChapters(urlStr)
 	if err != nil {
