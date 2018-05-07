@@ -130,7 +130,7 @@ func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 	g.Find("a").Each(func(i int, content *goquery.Selection) {
 		n := strings.TrimSpace(content.Text())
 		u, _ := content.Attr("href")
-		if strings.Index(u, "java") != 0 {
+		if strings.Index(u, "java") != 0 && n != "" {
 			if strings.Index(u, "//") == 0 {
 				u = fmt.Sprintf(`%v:%v`, link.Scheme, u)
 			} else if strings.Index(u, "/") == 0 {
