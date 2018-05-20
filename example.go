@@ -21,7 +21,8 @@ func RssDemoList() []DemoItem {
 //ArticleDemoList 文章示例列表
 func ArticleDemoList() []DemoItem {
 	var list = []DemoItem{
-		DemoItem{`wechatRank.com`, `https://wechatrank.com/getlist`, `Article`},
+		DemoItem{`laravel5.6`, `http://laravelacademy.org/laravel-docs-5_6`, `Article`},
+		// DemoItem{`wechatRank.com`, `https://wechatrank.com/getlist`, `Article`},
 	}
 	return list
 }
