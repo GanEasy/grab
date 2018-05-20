@@ -78,6 +78,22 @@ func main() {
 		return c.JSON(http.StatusFound, list)
 	})
 
+	//  get rss demo
+	e.GET("/getrssdemo", func(c echo.Context) error {
+		list := grab.RssDemoList()
+		return c.JSON(http.StatusFound, list)
+	})
+	//  get article demo
+	e.GET("/getarticledemo", func(c echo.Context) error {
+		list := grab.ArticleDemoList()
+		return c.JSON(http.StatusFound, list)
+	})
+	//  get book demo
+	e.GET("/getbookdemo", func(c echo.Context) error {
+		list := grab.BookDemoList()
+		return c.JSON(http.StatusFound, list)
+	})
+
 	// 图标
 	e.File("favicon.ico", "images/favicon.ico")
 	e.Logger.Fatal(e.Start(":8041"))
