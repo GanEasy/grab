@@ -29,7 +29,8 @@ func ArticleDemoList() []DemoItem {
 //BookDemoList 小说示例列表
 func BookDemoList() []DemoItem {
 	var list = []DemoItem{
-		DemoItem{`点道为止`, `http://book.zongheng.com/showchapter/730066.html`, `Book`},
+		DemoItem{`laravel5.6`, `http://laravelacademy.org/laravel-docs-5_6`, `Book`},
+		// DemoItem{`点道为止`, `http://book.zongheng.com/showchapter/730066.html`, `Book`},
 		// DemoItem{`修罗武神`, `http://www.17k.com/list/493239.html`, `Book`},
 		// DemoItem{`万古仙穹`, `https://www.cangqionglongqi.com/wanguxianzuo/`, `Book`},
 		// DemoItem{`斗罗大陆`, `http://www.biquge.info/10_10218/`, `Book`},
