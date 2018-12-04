@@ -26,7 +26,7 @@ func main() {
 	e.GET("/gethtml", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
 		find := c.QueryParam("find")
-		html, _ := grab.GetHTML(urlStr, find)
+		html, _ := grab.GetHTMLContent(urlStr, find)
 		return c.JSON(http.StatusOK, html)
 	})
 
