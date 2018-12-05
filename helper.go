@@ -3,6 +3,7 @@ package grab
 import (
 	"bytes"
 	"crypto/sha1"
+	"encoding/base64"
 	"fmt"
 	"io"
 	"net/url"
@@ -149,8 +150,30 @@ func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 			links = append(links, Link{
 				n,
 				u,
+				"",
 			})
 		}
 	})
 	return links
+}
+
+//EncodeURL 把url encode
+func EncodeURL(str string) string {
+	// es := base64.URLEncoding.EncodeToString([]byte(str))
+	return url.QueryEscape(base64.URLEncoding.EncodeToString([]byte(str)))
+	// return encodeURIComponent(es)
+}
+
+//DecodeURL 把url decode
+func DecodeURL(str string) (string, error) {
+	es, err := url.QueryUnescape(str)
+	strByte, err := base64.URLEncoding.DecodeString(es)
+	return string(strByte), err
+}
+
+// 可以通过修改底层url.QueryEscape代码获得更高的效率，很简单
+func encodeURIComponent(str string) string {
+	r := url.QueryEscape(str)
+	r = strings.Replace(r, "+", "%20", -1)
+	return r
 }

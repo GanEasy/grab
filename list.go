@@ -40,6 +40,7 @@ func GetHTMLList(urlStr, find string) (list List, err error) {
 		list.Links = append(list.Links, Link{
 			l.Title,
 			l.URL,
+			"",
 		})
 	}
 

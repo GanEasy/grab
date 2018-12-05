@@ -19,7 +19,7 @@ func GetRssList(urlStr string) (list List, err error) {
 	}
 	list.Title = feed.Title
 	for _, item := range feed.Items {
-		list.Links = append(list.Links, Link{item.Title, item.Link})
+		list.Links = append(list.Links, Link{item.Title, item.Link, ""})
 	}
 	list.SourceURL = urlStr
 

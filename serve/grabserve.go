@@ -64,7 +64,7 @@ func main() {
 		if err == nil {
 			return c.JSON(http.StatusOK, list)
 		}
-		return c.JSON(http.StatusFound, list)
+		return c.JSON(http.StatusOK, list)
 	})
 
 	// 获取html列表
@@ -75,23 +75,68 @@ func main() {
 		if err == nil {
 			return c.JSON(http.StatusOK, list)
 		}
-		return c.JSON(http.StatusFound, list)
+		return c.JSON(http.StatusOK, list)
+	})
+
+	//  自定义分类
+	e.GET("/classify", func(c echo.Context) error {
+		list := grab.GetClassify()
+		return c.JSON(http.StatusOK, list)
+	})
+	//  自定义资源列表
+	e.GET("/resources", func(c echo.Context) error {
+		list := grab.GetResources()
+		return c.JSON(http.StatusOK, list)
+	})
+
+	//  获取自定义平台资源列表
+	e.GET("/resource/:url", func(c echo.Context) error {
+		url, _ := grab.DecodeURL(c.Param("url"))
+		list := grab.GetResource(string(url))
+		return c.JSON(http.StatusOK, list)
+	})
+	//  自定义专题列表
+	e.GET("/topics", func(c echo.Context) error {
+		list := grab.GetTopics()
+		return c.JSON(http.StatusOK, list)
+	})
+
+	//  获取小说资源列表
+	e.GET("/book/:url", func(c echo.Context) error {
+		url, _ := grab.DecodeURL(c.Param("url"))
+		list := grab.GetBooks(string(url))
+		return c.JSON(http.StatusOK, list)
+	})
+
+	// 获取章节列表
+	e.GET("/chapters/:url", func(c echo.Context) error {
+		urlStr, _ := grab.DecodeURL(c.Param("url"))
+		list, _ := grab.GetBookChapters(string(urlStr))
+		// list := grab.GetChapters(string(urlStr))
+		return c.JSON(http.StatusOK, list)
+	})
+
+	// 获取章节详细内容
+	e.GET("/chapter", func(c echo.Context) error {
+		urlStr := c.QueryParam("url")
+		info, _ := grab.GetBookInfo(urlStr)
+		return c.JSON(http.StatusOK, info)
 	})
 
 	//  get rss demo
 	e.GET("/getrssdemo", func(c echo.Context) error {
 		list := grab.RssDemoList()
-		return c.JSON(http.StatusFound, list)
+		return c.JSON(http.StatusOK, list)
 	})
 	//  get article demo
 	e.GET("/getarticledemo", func(c echo.Context) error {
 		list := grab.ArticleDemoList()
-		return c.JSON(http.StatusFound, list)
+		return c.JSON(http.StatusOK, list)
 	})
 	//  get book demo
 	e.GET("/getbookdemo", func(c echo.Context) error {
 		list := grab.BookDemoList()
-		return c.JSON(http.StatusFound, list)
+		return c.JSON(http.StatusOK, list)
 	})
 
 	// 图标
