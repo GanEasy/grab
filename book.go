@@ -107,7 +107,7 @@ func CheckStrIsLink(urlStr string) error {
 //GetPreviousLink 获取上一页或者上一章
 func GetPreviousLink(links []Link) Link {
 	for _, link := range links {
-		if strings.Contains(link.Title, `上一页`) || strings.Contains(link.Title, `上一章`) {
+		if strings.Contains(link.Title, `上一页`) || strings.Contains(link.Title, `上一章`) || strings.Contains(link.Title, `上一`) {
 			return Link{Title: "previous", URL: link.URL}
 		}
 	}
@@ -117,7 +117,7 @@ func GetPreviousLink(links []Link) Link {
 //GetNextLink 获取下一页或者下一章
 func GetNextLink(links []Link) Link {
 	for _, link := range links {
-		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下一章`) {
+		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下一章`) || strings.Contains(link.Title, `下一`) {
 			return Link{Title: "next", URL: link.URL}
 		}
 	}
@@ -288,7 +288,13 @@ func (r BookInfoReader) GetInfo(urlStr string) (ret TextContent, err error) {
 
 	links, _ := GetLinkByHTML(urlStr, html)
 	ret.Previous = GetPreviousLink(links)
+	if ret.Previous.URL != `` {
+		ret.Previous.URL = EncodeURL(ret.Previous.URL)
+	}
 	ret.Next = GetNextLink(links)
+	if ret.Next.URL != `` {
+		ret.Next.URL = EncodeURL(ret.Next.URL)
+	}
 	return ret, nil
 
 }
