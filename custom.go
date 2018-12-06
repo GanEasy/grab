@@ -1,15 +1,22 @@
 package grab
 
+/**
+* 完全开放自定义的数据匹配器 (todo)
+* 用于解决特殊网站数据转码服务
+* 现在未想清楚怎么用
+ */
 import (
+	"fmt"
+
 	"github.com/mmcdole/gofeed"
 )
 
-//RssListReader Rss列表匹配器
-type RssListReader struct {
+//CustomListReader Rss列表匹配器
+type CustomListReader struct {
 }
 
 // GetList 获取Rss订阅接口文章列表
-func (r RssListReader) GetList(urlStr string) (list Catalog, err error) {
+func (r CustomListReader) GetList(urlStr string) (list Catalog, err error) {
 	fp := gofeed.NewParser()
 
 	// feed, err := fp.ParseString(html)
@@ -34,4 +41,13 @@ func (r RssListReader) GetList(urlStr string) (list Catalog, err error) {
 
 	list.Hash = GetCatalogHash(list)
 	return
+}
+
+//CustomInfoReader 默认详细页匹配器
+type CustomInfoReader struct {
+}
+
+// GetInfo 获取详细内容
+func (r CustomInfoReader) GetInfo() {
+	fmt.Print(`a read`)
 }

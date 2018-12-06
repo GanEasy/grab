@@ -13,6 +13,16 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+//LinksToCards 链接组转换成卡片组
+func LinksToCards(links []Link, wxto, inter string) (cards []Card) {
+	for _, link := range links { //所有链接
+		// todo 合成链接
+		wxto = link.URL
+		cards = append(cards, Card{link.Title, wxto, ``, `link`, ``, nil})
+	}
+	return
+}
+
 //Cleaning 清洗数据
 func Cleaning(links []Link) (newlinks []Link) {
 	// 拆分链接字符占比重
@@ -107,11 +117,23 @@ func GetTag(urlStr string) string {
 	return link.Path
 }
 
-//GetHash 获取hash
+//GetHash 获取字符串hash
 func GetHash(s string) string {
 	h := sha1.New()
 	io.WriteString(h, s)
 	return fmt.Sprintf("%x", h.Sum(nil))
+}
+
+//GetCatalogHash get 获取目录hash
+func GetCatalogHash(list Catalog) string {
+	var buf bytes.Buffer
+	buf.WriteString(list.Title)
+	for _, card := range list.Cards {
+		buf.WriteString(card.Title)
+		buf.WriteString(card.WxTo)
+	}
+	buf.WriteString(list.SourceURL)
+	return GetHash(buf.String())
 }
 
 //GetListHash get

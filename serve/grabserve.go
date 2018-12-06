@@ -60,23 +60,25 @@ func main() {
 	// 获取Rss列表 getrsslist
 	e.GET("/getrsslist", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
-		list, err := grab.GetRssList(urlStr)
+
+		reader := grab.RssListReader{}
+		list, err := reader.GetList(urlStr)
 		if err == nil {
 			return c.JSON(http.StatusOK, list)
 		}
 		return c.JSON(http.StatusOK, list)
 	})
 
-	// 获取html列表
-	e.GET("/gethtmllist", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		find := c.QueryParam("find")
-		list, err := grab.GetHTMLList(urlStr, find)
-		if err == nil {
-			return c.JSON(http.StatusOK, list)
-		}
-		return c.JSON(http.StatusOK, list)
-	})
+	// // 获取html列表
+	// e.GET("/gethtmllist", func(c echo.Context) error {
+	// 	urlStr := c.QueryParam("url")
+	// 	find := c.QueryParam("find")
+	// 	list, err := grab.GetHTMLList(urlStr, find)
+	// 	if err == nil {
+	// 		return c.JSON(http.StatusOK, list)
+	// 	}
+	// 	return c.JSON(http.StatusOK, list)
+	// })
 
 	//  自定义分类
 	e.GET("/classify", func(c echo.Context) error {

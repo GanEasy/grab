@@ -75,3 +75,65 @@ func GetArticleList(urlStr string) (list List, err error) {
 	return list, nil
 
 }
+
+//ArticleListReader 默认列表匹配器
+type ArticleListReader struct {
+}
+
+// GetList 获取列表
+func (r ArticleListReader) GetList(urlStr string) (list Catalog, err error) {
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	article, err := GetActicleByHTML(html)
+	if err != nil {
+		return
+	}
+
+	article.Readable(urlStr)
+
+	list.Title = article.Title
+	links, err := GetLinkByHTML(urlStr, html)
+
+	list.Cards = LinksToCards(links, ``, `article`)
+
+	if err != nil {
+		return
+	}
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+	return
+}
+
+//ArticleInfoReader 默认详细页匹配器
+type ArticleInfoReader struct {
+}
+
+// GetInfo 获取详细内容
+func (r ArticleInfoReader) GetInfo(urlStr string) (ret NewsContent, err error) {
+
+	if CheckStrIsLink(urlStr) != nil {
+		return ret, errors.New(`url error`)
+	}
+
+	ext, err := html2article.NewFromUrl(urlStr)
+	if err != nil {
+		return
+	}
+	article, err := ext.ToArticle()
+	if err != nil {
+		return
+	}
+
+	article.Readable(urlStr)
+
+	ret.Title = article.Title
+	ret.Content = article.ReadContent
+	ret.PubAt = string(article.Publishtime)
+	ret.SourceURL = urlStr
+	return
+}

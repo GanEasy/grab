@@ -7,11 +7,12 @@ import (
 	"testing"
 )
 
-func Test_GetRssList(t *testing.T) {
+func Test_GetRssListReader(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
 	urlStr := "http://news.qq.com/newsgn/rss_newsgn.xml"
-	list, err := GetRssList(urlStr)
+	reader := RssListReader{}
+	list, err := reader.GetList(urlStr)
 	if err != nil {
 
 	}

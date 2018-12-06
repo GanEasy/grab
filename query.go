@@ -1,15 +1,22 @@
 package grab
 
+/**
+* 类似JQ用法的开放性转码器
+* 用于实现通过#id或.class获取特定数据服务
+* 未想好具体需要实现哪些属性和层级
+ */
 import (
+	"fmt"
+
 	"github.com/mmcdole/gofeed"
 )
 
-//RssListReader Rss列表匹配器
-type RssListReader struct {
+//QueryListReader Rss列表匹配器
+type QueryListReader struct {
 }
 
 // GetList 获取Rss订阅接口文章列表
-func (r RssListReader) GetList(urlStr string) (list Catalog, err error) {
+func (r QueryListReader) GetList(urlStr string) (list Catalog, err error) {
 	fp := gofeed.NewParser()
 
 	// feed, err := fp.ParseString(html)
@@ -34,4 +41,13 @@ func (r RssListReader) GetList(urlStr string) (list Catalog, err error) {
 
 	list.Hash = GetCatalogHash(list)
 	return
+}
+
+//QueryInfoReader 默认详细页匹配器
+type QueryInfoReader struct {
+}
+
+// GetInfo 获取详细内容
+func (r QueryInfoReader) GetInfo() {
+	fmt.Print(`a read`)
 }
