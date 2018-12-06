@@ -14,10 +14,10 @@ import (
 )
 
 //LinksToCards 链接组转换成卡片组
-func LinksToCards(links []Link, wxto, inter string) (cards []Card) {
+func LinksToCards(links []Link, page, drive string) (cards []Card) {
 	for _, link := range links { //所有链接
 		// todo 合成链接
-		wxto = link.URL
+		wxto := fmt.Sprintf(`%v?drive=%v&url=%v`, page, drive, EncodeURL(link.URL))
 		cards = append(cards, Card{link.Title, wxto, ``, `link`, ``, nil})
 	}
 	return

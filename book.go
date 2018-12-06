@@ -243,10 +243,8 @@ func (r BookListReader) GetList(urlStr string) (list Catalog, err error) {
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
-	// log.Println(links)
-	list.Links = Cleaning(links)
 
-	list.Cards = LinksToCards(Cleaning(links), ``, `book`)
+	list.Cards = LinksToCards(Cleaning(links), `/pages/chapter/info`, `book`)
 
 	list.SourceURL = urlStr
 

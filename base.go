@@ -6,7 +6,6 @@ package grab
 // Catalog 第三方资源目录(用户可任意订阅此目录)
 type Catalog struct {
 	Title     string `json:"title"`
-	Links     []Link //`json:"links"`
 	Cards     []Card //`json:"links"`
 	SourceURL string `json:"source_url"` // 数据抓取时，统一声明数据来源
 	Hash      string `json:"hash"`       // 当前目录 Hash

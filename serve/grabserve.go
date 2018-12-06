@@ -113,15 +113,21 @@ func main() {
 	// 获取章节列表
 	e.GET("/chapters/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		list, _ := grab.GetBookChapters(string(urlStr))
+		// list, _ := grab.GetBookChapters(string(urlStr))
+
+		reader := grab.BookListReader{}
+		list, _ := reader.GetList(urlStr)
 		// list := grab.GetChapters(string(urlStr))
 		return c.JSON(http.StatusOK, list)
 	})
 
 	// 获取章节详细内容
-	e.GET("/chapter", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		info, _ := grab.GetBookInfo(urlStr)
+	e.GET("/chapter/:url", func(c echo.Context) error {
+		// urlStr := c.QueryParam("url")
+		urlStr, _ := grab.DecodeURL(c.Param("url"))
+		reader := grab.BookInfoReader{}
+		info, _ := reader.GetInfo(urlStr)
+		// info, _ := grab.GetBookInfo(urlStr)
 		return c.JSON(http.StatusOK, info)
 	})
 
