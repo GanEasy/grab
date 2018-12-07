@@ -59,7 +59,7 @@ func Test_JaccardMateURL(t *testing.T) {
 
 func Test_JaccardMateGetURL(t *testing.T) {
 
-	t.Fatal(JaccardMateGetURL(`http://book.zongheng.com/chapter/769150/43278054.html`, `http://book.zongheng.com/chapter/628887/35043640.html`, `http://book.zongheng.com/chapter/617772/34682922.html`, ``))
+	t.Fatal(JaccardMateGetURL(`http://book.zongheng.com/chapter/628887/35043640.html`, `http://book.zongheng.com/chapter/628887/35043640.html`, `http://book.zongheng.com/chapter/617772/34682922.html`, ``))
 
 	t.Fatal(JaccardMateGetURL(`http://book.zongheng.com/book/book/658887.html`, `http://book.zongheng.com/book/769150.html`, `http://book.zongheng.com/book/316562.html`, `http://book.zongheng.com/showchapter/769150.html`))
 }

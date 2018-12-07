@@ -93,8 +93,10 @@ func main() {
 
 	//  获取自定义平台资源列表
 	e.GET("/resource/:url", func(c echo.Context) error {
-		url, _ := grab.DecodeURL(c.Param("url"))
-		list := grab.GetResource(string(url))
+		urlStr, _ := grab.DecodeURL(c.Param("url"))
+		// list := grab.GetResource(urlStr)
+		reader := grab.ZonghengReader{}
+		list, _ := reader.GetCategories(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
 	//  自定义专题列表
@@ -105,8 +107,12 @@ func main() {
 
 	//  获取小说资源列表
 	e.GET("/book/:url", func(c echo.Context) error {
-		url, _ := grab.DecodeURL(c.Param("url"))
-		list := grab.GetBooks(string(url))
+		urlStr, _ := grab.DecodeURL(c.Param("url"))
+		reader := grab.ZonghengReader{}
+		list, _ := reader.GetBooks(urlStr)
+
+		// url, _ := grab.DecodeURL(c.Param("url"))
+		// list := grab.GetBooks(string(url))
 		return c.JSON(http.StatusOK, list)
 	})
 
