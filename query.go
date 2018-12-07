@@ -6,8 +6,9 @@ package grab
 * 未想好具体需要实现哪些属性和层级
  */
 import (
-	"fmt"
+	"errors"
 
+	"github.com/GanEasy/html2article"
 	"github.com/mmcdole/gofeed"
 )
 
@@ -48,6 +49,62 @@ type QueryInfoReader struct {
 }
 
 // GetInfo 获取详细内容
-func (r QueryInfoReader) GetInfo() {
-	fmt.Print(`a read`)
+func (r QueryInfoReader) GetInfo(urlStr string) (ret NewsContent, err error) {
+
+	if CheckStrIsLink(urlStr) != nil {
+		return ret, errors.New(`url error`)
+	}
+
+	ext, err := html2article.NewFromUrl(urlStr)
+	if err != nil {
+		return
+	}
+	article, err := ext.ToArticle()
+	if err != nil {
+		return
+	}
+
+	article.Readable(urlStr)
+
+	ret.Title = article.Title
+	ret.Content = article.ReadContent
+	ret.PubAt = string(article.Publishtime)
+	ret.SourceURL = urlStr
+	return
+}
+
+//QueryReader JQ风格匹配器(返回News)
+type QueryReader struct {
+	Body        string
+	Loop        string
+	ClearRepeat bool
+	MatchingURL []string
+	Reference   []string
+	Next        bool
+	Previous    bool
+}
+
+// GetInfo 获取详细内容
+func (r QueryReader) GetInfo(urlStr string) (ret NewsContent, err error) {
+
+	if CheckStrIsLink(urlStr) != nil {
+		return ret, errors.New(`url error`)
+	}
+
+	ext, err := html2article.NewFromUrl(urlStr)
+	if err != nil {
+		return
+	}
+	article, err := ext.ToArticle()
+	if err != nil {
+		return
+	}
+
+	article.Readable(urlStr)
+
+	ret.Title = article.Title
+	ret.Content = article.ReadContent
+	ret.PubAt = string(article.Publishtime)
+	ret.SourceURL = urlStr
+	return
 }

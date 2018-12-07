@@ -114,7 +114,13 @@ func GetTag(urlStr string) string {
 		// u := fmt.Sprintf(`%v`, link.Path)
 		link.Path = strings.Replace(link.Path, t, ",", -1)
 	}
-	return link.Path
+
+	// 补丁，替换掉 .htm .html .shtml 静态后缀
+	link.Path = strings.Replace(link.Path, ".htm", ",htm", -1)
+	link.Path = strings.Replace(link.Path, ".sht", ",sht", -1)
+
+	return fmt.Sprintf(`%v,%v%v`, link.Scheme, link.Host, link.Path)
+	// return link.Path
 }
 
 //GetHash 获取字符串hash
@@ -198,4 +204,50 @@ func encodeURIComponent(str string) string {
 	r := url.QueryEscape(str)
 	r = strings.Replace(r, "+", "%20", -1)
 	return r
+}
+
+//SimilarText 函数来自 http://www.syyong.com/Go/Go-implements-the-string-similarity-calculation-function-Levenshtein-and-SimilarText.html
+// similar_text()
+func SimilarText(first, second string, percent *float64) int {
+	var similarText func(string, string, int, int) int
+	similarText = func(str1, str2 string, len1, len2 int) int {
+		var sum, max int
+		pos1, pos2 := 0, 0
+
+		// Find the longest segment of the same section in two strings
+		for i := 0; i < len1; i++ {
+			for j := 0; j < len2; j++ {
+				for l := 0; (i+l < len1) && (j+l < len2) && (str1[i+l] == str2[j+l]); l++ {
+					if l+1 > max {
+						max = l + 1
+						pos1 = i
+						pos2 = j
+					}
+				}
+			}
+		}
+
+		if sum = max; sum > 0 {
+			if pos1 > 0 && pos2 > 0 {
+				sum += similarText(str1, str2, pos1, pos2)
+			}
+			if (pos1+max < len1) && (pos2+max < len2) {
+				s1 := []byte(str1)
+				s2 := []byte(str2)
+				sum += similarText(string(s1[pos1+max:]), string(s2[pos2+max:]), len1-pos1-max, len2-pos2-max)
+			}
+		}
+
+		return sum
+	}
+
+	l1, l2 := len(first), len(second)
+	if l1+l2 == 0 {
+		return 0
+	}
+	sim := similarText(first, second, l1, l2)
+	if percent != nil {
+		*percent = float64(sim*200) / float64(l1+l2)
+	}
+	return sim
 }

@@ -1,12 +1,24 @@
 package grab
 
 // GetListReader 获取列表解释器
-func GetListReader(urlstr, interpreter string) ListReader {
+func GetListReader(urlstr, drive string) ListReader {
 	return &DefaultListReader{}
 }
 
 // GetInfoReader 获取内容解释器
-func GetInfoReader(urlstr, interpreter string) InfoReader {
-	// todo 根据 interpreter 返回不同的解释器
+func GetInfoReader(urlstr, drive string) InfoReader {
+	// todo 根据 drive 返回不同的解释器
+	return &DefaultInfoReader{}
+}
+
+// GetCategoryReader 在分类页获取小说目录列表
+func GetCategoryReader(urlstr, drive string) InfoReader {
+	// todo 根据 drive 返回不同的解释器
+	return &DefaultInfoReader{}
+}
+
+// GetResourceReader 自定义不同平台有哪些资源
+func GetResourceReader(urlstr, drive string) InfoReader {
+	// todo 根据 drive 返回不同的解释器
 	return &DefaultInfoReader{}
 }
