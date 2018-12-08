@@ -107,6 +107,10 @@ func JaccardMateGetURL(url, demo1, demo2, to1 string) (string, bool) {
 	// url的标签
 	urltag := strings.Split(GetTag(url), ",")
 
+	if len(demotag1) != len(urltag) {
+		return url, false
+	}
+
 	eduUn := Union(demotag1, demotag2)
 	eduIn := Intersection(demotag1, demotag2)
 

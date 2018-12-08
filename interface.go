@@ -10,3 +10,11 @@ type InfoReader interface {
 	GetInfo()
 	// GetNextURL() string
 }
+
+//BookReader 小说类网站阅读器
+type BookReader interface {
+	GetCategories(string) (Catalog, error)
+	GetBooks(string) (Catalog, error)
+	GetChapters(string) (Catalog, error)
+	GetChapter(string) (TextContent, error)
+}

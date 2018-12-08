@@ -22,3 +22,13 @@ func GetResourceReader(urlstr, drive string) InfoReader {
 	// todo 根据 drive 返回不同的解释器
 	return &DefaultInfoReader{}
 }
+
+// GetBookReader 小说资源平台
+func GetBookReader(drive string) BookReader {
+	//
+	if drive == `zongheng` {
+		return &ZonghengReader{}
+	}
+	// todo 根据 drive 返回不同的解释器
+	return &DefaultBookReader{}
+}

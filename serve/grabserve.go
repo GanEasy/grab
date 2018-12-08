@@ -94,8 +94,8 @@ func main() {
 	//  获取自定义平台资源列表
 	e.GET("/resource/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		// list := grab.GetResource(urlStr)
-		reader := grab.ZonghengReader{}
+		drive := c.QueryParam("drive")
+		reader := grab.GetBookReader(drive)
 		list, _ := reader.GetCategories(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
@@ -108,33 +108,28 @@ func main() {
 	//  获取小说资源列表
 	e.GET("/book/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		reader := grab.ZonghengReader{}
+		drive := c.QueryParam("drive")
+		reader := grab.GetBookReader(drive)
 		list, _ := reader.GetBooks(urlStr)
-
-		// url, _ := grab.DecodeURL(c.Param("url"))
-		// list := grab.GetBooks(string(url))
 		return c.JSON(http.StatusOK, list)
 	})
 
 	// 获取章节列表
 	e.GET("/chapters/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		// list, _ := grab.GetBookChapters(string(urlStr))
-
-		reader := grab.BookListReader{}
-		list, _ := reader.GetList(urlStr)
-		// list := grab.GetChapters(string(urlStr))
+		drive := c.QueryParam("drive")
+		reader := grab.GetBookReader(drive)
+		list, _ := reader.GetChapters(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
 
 	// 获取章节详细内容
 	e.GET("/chapter/:url", func(c echo.Context) error {
-		// urlStr := c.QueryParam("url")
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		reader := grab.BookInfoReader{}
-		info, _ := reader.GetInfo(urlStr)
-		// info, _ := grab.GetBookInfo(urlStr)
-		return c.JSON(http.StatusOK, info)
+		drive := c.QueryParam("drive")
+		reader := grab.GetBookReader(drive)
+		list, _ := reader.GetChapter(urlStr)
+		return c.JSON(http.StatusOK, list)
 	})
 
 	//  get rss demo

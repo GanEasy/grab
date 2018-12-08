@@ -44,9 +44,9 @@ func GetRanks() []Item {
 //GetResources 自定义资源列表(支持平台目录)
 func GetResources() []Item {
 	var list = []Item{
-		Item{`起点小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
-		Item{`纵横小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
-		Item{`17K文学`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
+		Item{`起点小说网`, `/pages/book/get?drive=book&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
+		Item{`纵横小说网`, `/pages/resources/get?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
+		Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}
 	return list
 }
