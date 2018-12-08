@@ -16,3 +16,17 @@ func Test_ZonghengGetBooks(t *testing.T) {
 	}
 	t.Fatal(list)
 }
+
+func Test_ZonghengGetChapters(t *testing.T) {
+	// urlStr := "http://feeds.twit.tv/twit.xml"
+	// urlStr := "http://feed.williamlong.info/"
+	// http://book.zongheng.com/chapter/777234/43415281.html
+	urlStr := "http://book.zongheng.com/showchapter/777234.html"
+	reader := ZonghengReader{}
+	list, err := reader.GetChapters(urlStr)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}

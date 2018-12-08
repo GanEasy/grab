@@ -166,3 +166,46 @@ func (r ZonghengReader) GetInfo(urlStr string) (ret TextContent, err error) {
 	return ret, nil
 
 }
+
+// GetChapters 获取章节列表
+func (r ZonghengReader) GetChapters(urlStr string) (list Catalog, err error) {
+
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = g.Find("title").Text()
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `http://book.zongheng.com/chapter/769150/43278054.html`, `http://book.zongheng.com/chapter/316562/5427097.html`, ``)
+		if state {
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `book`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
+
+}

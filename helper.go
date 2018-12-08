@@ -120,7 +120,6 @@ func GetTag(urlStr string) string {
 	link.Path = strings.Replace(link.Path, ".sht", ",sht", -1)
 
 	return fmt.Sprintf(`%v,%v%v`, link.Scheme, link.Host, link.Path)
-	// return link.Path
 }
 
 //GetHash 获取字符串hash

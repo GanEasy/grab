@@ -16,14 +16,15 @@ type Item struct {
 	Title string `json:"title"`
 	WxTo  string `json:"wxto"`
 	Intro string `json:"intro"`
+	Type  string `json:"type"`
 }
 
 //GetClassify 发现分类
 func GetClassify() []Item {
 	var list = []Item{
-		Item{`资源库`, `/pages/resources/index`, "收集整理常用平台资源，方便快速阅读。"},
-		Item{`各类榜单`, `/pages/rank/index`, "或许感兴趣的榜单，随时可以了解。"},
-		Item{`专题集`, `/pages/topic/index`, "由小易同学维护的专题包"},
+		Item{`资源库`, `/pages/resources/index`, "收集整理常用平台资源，方便快速阅读。", "card"},
+		Item{`各类榜单`, `/pages/rank/index`, "或许感兴趣的榜单，随时可以了解。", "card"},
+		Item{`专题集`, `/pages/topic/index`, "由小易同学维护的专题包", "card"},
 	}
 	return list
 }
@@ -33,8 +34,8 @@ func GetRanks() []Item {
 	var list = []Item{
 		// uDec, _ := base64.URLEncoding.DecodeString(input)
 		// eDec := base64.StdEncoding.EncodeToString(uDec)
-		Item{`纵横小说榜`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://www.zongheng.com/rank/details.html?rt=1&d=1`), ""},
-		Item{`起点月票榜`, `/pages/book/get?drive=default&url=` + EncodeURL(`https://www.qidian.com/rank/hotsales`), ""},
+		Item{`纵横小说榜`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://www.zongheng.com/rank/details.html?rt=1&d=1`), "", "link"},
+		Item{`起点月票榜`, `/pages/book/get?drive=default&url=` + EncodeURL(`https://www.qidian.com/rank/hotsales`), "", "link"},
 		// Item{`动漫之家漫画排行榜`, `/pages/article/get?url=` + base64.URLEncoding.EncodeToString([]byte(`http://www.dm5.com/manhua-yaoshenji/`),""},
 	}
 	return list
@@ -43,9 +44,9 @@ func GetRanks() []Item {
 //GetResources 自定义资源列表(支持平台目录)
 func GetResources() []Item {
 	var list = []Item{
-		Item{`起点小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`https://www.qidian.com`), ""},
-		Item{`纵横小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com`), ""},
-		Item{`17K文学`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://www.17k.com`), ""},
+		Item{`起点小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
+		Item{`纵横小说网`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
+		Item{`17K文学`, `/pages/resources/get?drive=default&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}
 	return list
 }
@@ -55,14 +56,14 @@ func GetResource(url string) []Item {
 	fmt.Println(`GetResource`, url)
 	// todo 根据相应的url获得分类详细 后台控制
 	var list = []Item{
-		Item{`奇幻玄幻`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`武侠仙侠`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`历史军事`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`都市娱乐`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`科幻游戏`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`悬疑灵异`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`竞技同人`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`评论文集`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
+		Item{`奇幻玄幻`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`武侠仙侠`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`历史军事`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`都市娱乐`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`科幻游戏`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`悬疑灵异`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`竞技同人`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`评论文集`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
 	}
 	return list
 }
@@ -71,14 +72,14 @@ func GetResource(url string) []Item {
 func GetTopics() []Item {
 	// todo 根据相应的url获得分类详细 后台控制
 	var list = []Item{
-		Item{`奇幻玄幻`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`武侠仙侠`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`历史军事`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`都市娱乐`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`科幻游戏`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`悬疑灵异`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`竞技同人`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
-		Item{`评论文集`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), ""},
+		Item{`奇幻玄幻`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`武侠仙侠`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`历史军事`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`都市娱乐`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`科幻游戏`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`悬疑灵异`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`竞技同人`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
+		Item{`评论文集`, `/pages/book/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", "link"},
 	}
 	return list
 }
@@ -88,13 +89,13 @@ func GetBooks(url string) []Item {
 	// todo 目标返回
 	fmt.Println(`GetBooks`, url)
 	var list = []Item{
-		Item{`元尊`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/685640.html`), ""},
-		Item{`圣武星辰`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/682920.html`), ""},
-		Item{`祭炼山河`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/309318.html`), ""},
-		Item{`逆天邪神`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/408586.html`), ""},
-		Item{`一剑独尊`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/777234.html`), ""},
-		Item{`魔域`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/568980.html`), ""},
-		Item{`永夜君王`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/342974.html`), ""},
+		Item{`元尊`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/685640.html`), "", "link"},
+		Item{`圣武星辰`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/682920.html`), "", "link"},
+		Item{`祭炼山河`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/309318.html`), "", "link"},
+		Item{`逆天邪神`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/408586.html`), "", "link"},
+		Item{`一剑独尊`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/777234.html`), "", "link"},
+		Item{`魔域`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/568980.html`), "", "link"},
+		Item{`永夜君王`, `/pages/chapter/get?drive=default&url=` + EncodeURL(`http://book.zongheng.com/showchapter/342974.html`), "", "link"},
 	}
 	return list
 }
@@ -104,8 +105,8 @@ func GetChapters(url string) []Item {
 
 	fmt.Println(`GetChapters`, url)
 	var list = []Item{
-		Item{`月光博客`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://feed.williamlong.info/`), ""},
-		Item{`修罗武神`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://www.17k.com/list/493239.html`), ""},
+		Item{`月光博客`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://feed.williamlong.info/`), "", "link"},
+		Item{`修罗武神`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://www.17k.com/list/493239.html`), "", "link"},
 	}
 	return list
 }
@@ -115,8 +116,8 @@ func GetChapter(url string) []Item {
 
 	fmt.Println(`GetChapters`, url)
 	var list = []Item{
-		Item{`月光博客`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://feed.williamlong.info/`), ""},
-		Item{`修罗武神`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://www.17k.com/list/493239.html`), ""},
+		Item{`月光博客`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://feed.williamlong.info/`), "", "link"},
+		Item{`修罗武神`, `/pages/chapter/info?drive=default&url=` + EncodeURL(`http://www.17k.com/list/493239.html`), "", "link"},
 	}
 	return list
 }
