@@ -200,7 +200,7 @@ func (r ZonghengReader) GetChapters(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `book`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `zongheng`)
 
 	list.SourceURL = urlStr
 
