@@ -84,11 +84,11 @@ func (r QidianReader) GetBooks(urlStr string) (list Catalog, err error) {
 	// html := `{"I":"5333","V":"马经理"},`
 	// page := FindString(`/p(?P<page>[^"]+)/`, html, "page")
 
-	page := FindString(`&page=(?P<page>(\d)+)&`, html, "page")
+	page := FindString(`&page=(?P<page>(\d)+)&`, urlStr, "page")
 	p, err := strconv.Atoi(page)
 	if p > 0 && err == nil {
 		// 已经组装url
-		nextURL := strings.Replace(urlStr, fmt.Sprintf(`/p%v/`, p), fmt.Sprintf(`/p%v/`, p+1), -1)
+		nextURL := strings.Replace(urlStr, fmt.Sprintf(`&page=%v&`, p), fmt.Sprintf(`&page=%v&`, p+1), -1)
 		list.Next = Link{`下一页`, EncodeURL(nextURL), ``}
 	}
 

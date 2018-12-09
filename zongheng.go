@@ -78,7 +78,7 @@ func (r ZonghengReader) GetBooks(urlStr string) (list Catalog, err error) {
 	// html := `{"I":"5333","V":"马经理"},`
 	// page := FindString(`/p(?P<page>[^"]+)/`, html, "page")
 
-	page := FindString(`/p(?P<page>(\d)+)/`, html, "page")
+	page := FindString(`/p(?P<page>(\d)+)/`, urlStr, "page")
 	p, err := strconv.Atoi(page)
 	if p > 0 && err == nil {
 		// 已经组装url
