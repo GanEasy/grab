@@ -26,6 +26,9 @@ func GetResourceReader(urlstr, drive string) InfoReader {
 // GetBookReader 小说资源平台
 func GetBookReader(drive string) BookReader {
 	//
+	if drive == `qidian` {
+		return &QidianReader{}
+	}
 	if drive == `zongheng` {
 		return &ZonghengReader{}
 	}
