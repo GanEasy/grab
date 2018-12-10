@@ -104,7 +104,8 @@ func GetTag(urlStr string) string {
 		`#`,
 		`/`,
 		`=`,
-		// `.`, // 不能把这个点去掉
+		`-`,
+		`.`,
 	}
 
 	link, _ := url.Parse(urlStr)

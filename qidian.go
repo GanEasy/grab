@@ -25,21 +25,21 @@ func (r QidianReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`玄幻`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=21&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`奇幻`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=1&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`武侠`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=2&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`仙侠`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=22&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`都市`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=4&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`现实`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=15&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`军事`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=6&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`历史`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=5&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`游戏`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=7&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`体育`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=8&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`科幻`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=9&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`灵异`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=10&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`二次元`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=12&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
-		Card{`短篇`, `/pages/book/get?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=20076&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`全部`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`玄幻`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=21&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`奇幻`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=1&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`武侠`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=2&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`仙侠`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=22&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`都市`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=4&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`现实`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=15&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`军事`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=6&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`历史`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=5&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`游戏`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=7&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`体育`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=8&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`科幻`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=9&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`灵异`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=10&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`二次元`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=12&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
+		Card{`短篇`, `/pages/transfer/list?action=book&drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=20076&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil},
 	}
 	return list, nil
 }

@@ -33,7 +33,7 @@ func GetBookReader(drive string) BookReader {
 	} else if drive == `17k` {
 		return &SeventeenKReader{}
 	} else if drive == `luoqiu` {
-		return &LuoqiuReader{}
+		return &MLuoqiuReader{}
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &DefaultBookReader{}
