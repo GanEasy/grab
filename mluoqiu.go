@@ -16,7 +16,7 @@ func (r MLuoqiuReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.luoqiu.com/`
 
-	list.Title = `落秋中文网(免)`
+	list.Title = `分类-落秋中文网`
 
 	list.SourceURL = urlStr
 
