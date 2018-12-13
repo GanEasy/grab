@@ -53,6 +53,7 @@ func GetResources() []Item {
 		Item{`纵横小说网`, `/pages/resources/get?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
 		Item{`17K文学`, `/pages/resources/get?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 		Item{`落秋中文`, `/pages/resources/get?drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
+		Item{`7878小说`, `/pages/resources/get?drive=7878xs&url=` + EncodeURL(`http://www.7878xs.com`), "", "link"},
 		// SeventeenKReader
 		// Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}

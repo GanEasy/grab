@@ -1,12 +1,16 @@
 package grab
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"golang.org/x/net/html/charset"
 )
 
 //QidianReader 纵横小说网
@@ -160,13 +164,19 @@ func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
 	list.Title = g.Find("title").Text()
 
 	catalogMsg := g.Find("#J-catalogCount").Text()
-	if catalogMsg == `` { //todo 从 https://book.qidian.com/ajax/book/category?_csrfToken=&bookId=1004608738 中获取章节列表(要解释json)
-		// panic(`catalogMsg`)
-	}
-
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
+	if catalogMsg == `` { //todo 从 https://book.qidian.com/ajax/book/category?_csrfToken=&bookId=1004608738 中获取章节列表(要解释json)
+		// panic(`catalogMsg`)
+
+		bookID := FindString(`/info/(?P<id>(\d)+)`, urlStr, "id")
+
+		if bookID != `` {
+			links, _ = r.GetChaptersLinksByJSON(bookID)
+		}
+
+	}
 
 	var needLinks []Link
 	var state bool
@@ -189,5 +199,81 @@ func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	return list, nil
+
+}
+
+// GetChaptersLinksByJSON 获取章节链接列表
+func (r QidianReader) GetChaptersLinksByJSON(bookID string) (links []Link, err error) {
+
+	urlStr := fmt.Sprintf(`https://book.qidian.com/ajax/book/category?_csrfToken=&bookId=%v`, bookID)
+	req, err := http.NewRequest("GET", urlStr, nil)
+	if err != nil {
+		return
+	}
+	req.Header = make(http.Header)
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return
+	}
+
+	reader, err := charset.NewReader(resp.Body, strings.ToLower(resp.Header.Get("Content-Type")))
+	defer resp.Body.Close()
+	bs, _ := ioutil.ReadAll(reader)
+
+	type QiChaptersJsonDataCsChapter struct {
+		UT          string `json:"uT"`
+		ChapterName string `json:"cN"`
+		ChapterURL  string `json:"cU"`
+		UuID        int    `json:"uuid"`
+		ID          int    `json:"id"`
+		Ss          int    `json:"sS"`
+	}
+
+	type QiChaptersJsonDataCs struct {
+		CCnt     int                           `json:"cCnt"`
+		Chapters []QiChaptersJsonDataCsChapter `json:"cs"`
+		// Chapters []map[string]interface{}      `json:"cs"`
+		// Chapters map[int]interface{} `json:"cs"`
+	}
+	type QiChaptersJsonData struct {
+		ChapterTotal int `json:"chapterTotalCnt"`
+		// Vs           map[string]QiChaptersJsonDataCs `json:"vs"`
+		Vs []QiChaptersJsonDataCs `json:"vs"`
+		// Vs map[string]interface{} `json:"vs"`
+		// Vs []interface{} `json:"vs"`
+	}
+	type QiChaptersJson struct {
+		Code int `json:"code"`
+		// Data map[string]interface{} `json:"data['vs']['cs']"`
+		Data QiChaptersJsonData `json:"data"`
+	}
+
+	var m QiChaptersJson
+	err = json.Unmarshal(bs, &m)
+
+	if err == nil {
+		for _, v := range m.Data.Vs {
+			for _, vv := range v.Chapters {
+				if vv.Ss == 1 {
+
+					links = append(links, Link{
+						vv.ChapterName,
+						fmt.Sprintf(`https://read.qidian.com/chapter/%v`, vv.ChapterURL),
+						``,
+					})
+				} else {
+
+					links = append(links, Link{
+						vv.ChapterName,
+						fmt.Sprintf(`https://vipreader.qidian.com/chapter/%v/%v`, bookID, vv.ID),
+						``,
+					})
+				}
+			}
+		}
+
+	}
+	return
 
 }
