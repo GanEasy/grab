@@ -167,6 +167,7 @@ func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
+	var needLinks []Link
 	if catalogMsg == `` { //todo 从 https://book.qidian.com/ajax/book/category?_csrfToken=&bookId=1004608738 中获取章节列表(要解释json)
 		// panic(`catalogMsg`)
 
@@ -174,22 +175,24 @@ func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
 
 		if bookID != `` {
 			links, _ = r.GetChaptersLinksByJSON(bookID)
+			needLinks = links
 		}
 
-	}
+	} else {
 
-	var needLinks []Link
-	var state bool
-	for _, l := range links { //起点普通和VIP章节不同地址
-		l.URL, state = JaccardMateGetURL(l.URL, `https://read.qidian.com/chapter/ORlSeSgZ6E_MQzCecGvf7A2/DKk0ho2xSYTM5j8_3RRvhw2`, `https://read.qidian.com/chapter/_AaqI-dPJJ4uTkiRw_sFYA2/_4Wioy7TTQD6ItTi_ILQ7A2`, ``)
-		if state {
-			needLinks = append(needLinks, l)
-		} else {
-			l.URL, state = JaccardMateGetURL(l.URL, `https://vipreader.qidian.com/chapter/1004608738/347194141`, `https://vipreader.qidian.com/chapter/1010734492/399246504`, ``)
+		var state bool
+		for _, l := range links { //起点普通和VIP章节不同地址
+			l.URL, state = JaccardMateGetURL(l.URL, `https://read.qidian.com/chapter/ORlSeSgZ6E_MQzCecGvf7A2/DKk0ho2xSYTM5j8_3RRvhw2`, `https://read.qidian.com/chapter/_AaqI-dPJJ4uTkiRw_sFYA2/_4Wioy7TTQD6ItTi_ILQ7A2`, ``)
 			if state {
 				needLinks = append(needLinks, l)
+			} else {
+				l.URL, state = JaccardMateGetURL(l.URL, `https://vipreader.qidian.com/chapter/1004608738/347194141`, `https://vipreader.qidian.com/chapter/1010734492/399246504`, ``)
+				if state {
+					needLinks = append(needLinks, l)
+				}
 			}
 		}
+
 	}
 
 	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `qidian`)

@@ -104,7 +104,7 @@ func GetTag(urlStr string) string {
 		`#`,
 		`/`,
 		`=`,
-		`-`,
+		// `-`,
 		`.`,
 	}
 
