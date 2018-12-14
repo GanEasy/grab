@@ -18,7 +18,7 @@ func (r ZonghengReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://book.zongheng.com`
 
-	list.Title = `纵横中文网`
+	list.Title = `分类-纵横中文网`
 
 	list.SourceURL = urlStr
 
@@ -56,7 +56,10 @@ func (r ZonghengReader) GetBooks(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = g.Find("title").Text()
+	list.Title = FindString(`小说_(?P<title>(.)+)小说推荐_`, g.Find("title").Text(), "title")
+	if list.Title == `` {
+		list.Title = g.Find("title").Text()
+	}
 
 	link, _ := url.Parse(urlStr)
 
@@ -110,8 +113,11 @@ func (r ZonghengReader) GetChapters(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = g.Find("title").Text()
-
+	// list.Title = g.Find("title").Text()
+	list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
+	if list.Title == `` {
+		list.Title = g.Find("title").Text()
+	}
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)

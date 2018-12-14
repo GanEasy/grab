@@ -54,7 +54,10 @@ func (r Xs7878Reader) GetBooks(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = g.Find("title").Text()
+	list.Title = FindString(`(?P<title>(.)+)小说第`, g.Find("title").Text(), "title")
+	if list.Title == `` {
+		list.Title = g.Find("title").Text()
+	}
 
 	link, _ := url.Parse(urlStr)
 
@@ -102,7 +105,10 @@ func (r Xs7878Reader) GetChapters(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = g.Find("title").Text()
+	list.Title = FindString(`(?P<title>(.)+)_无弹窗`, g.Find("title").Text(), "title")
+	if list.Title == `` {
+		list.Title = g.Find("title").Text()
+	}
 
 	link, _ := url.Parse(urlStr)
 
