@@ -4,7 +4,9 @@ import (
 	"net/http"
 
 	"github.com/GanEasy/grab"
+	c "github.com/GanEasy/grab/api"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 func main() {
@@ -21,6 +23,27 @@ func main() {
 /getarticle?url=
 `)
 	})
+
+	// 获取用户签名
+	e.GET("/gettoken", c.GetToken)
+	// 解密数据内容(保存数据到库)
+	e.GET("/crypt", c.Crypt)
+
+	// 获取二维码(图片资源)
+	e.GET("/qrcode", c.GetQrcode)
+
+	// Restricted group
+	api := e.Group("/api")
+
+	// Configure middleware with the custom claims type
+	config := middleware.JWTConfig{
+		Claims:     &c.JwtCustomClaims{},
+		SigningKey: []byte("secret"),
+	}
+	api.Use(middleware.JWTWithConfig(config))
+
+	api.GET("/checkopenid", c.CheckOpenID)
+	// r.Use(middleware.JWT([]byte("secret")))
 
 	// 获取html gethtml
 	e.GET("/gethtml", func(c echo.Context) error {
