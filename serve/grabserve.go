@@ -54,6 +54,23 @@ func main() {
 	//  粉丝自定义源
 	api.GET("/sources", c.GetUserSources)
 
+	api.POST("/urlencode", func(c echo.Context) (err error) {
+		type Data struct {
+			URL string `json:"url" validate:"required"`
+		}
+		u := new(Data)
+		if err = c.Bind(u); err != nil {
+			return
+		}
+		// url := c.FormValue("url")
+		return c.JSON(http.StatusOK, grab.EncodeURL(u.URL))
+	})
+
+	e.GET("/urlencode", func(c echo.Context) error {
+		url := c.QueryParam("url")
+		return c.JSON(http.StatusOK, grab.EncodeURL(url))
+	})
+
 	// 粉丝添加关注
 	api.POST("/sources", c.CreateUserSource)
 
