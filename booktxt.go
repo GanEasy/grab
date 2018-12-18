@@ -104,7 +104,7 @@ func (r BooktxtReader) GetChapters(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)_无弹窗`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -161,7 +161,11 @@ func (r BooktxtReader) GetChapter(urlStr string) (ret TextContent, err error) {
 
 	article.Readable(urlStr)
 
-	ret.Title = article.Title
+	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_(?P<category>(.)+)_`, article.Title, "title")
+	if ret.Title == `` {
+		ret.Title = article.Title
+	}
+
 	ret.SourceURL = urlStr
 
 	c := MarkDownFormatContent(article.ReadContent)
