@@ -45,6 +45,18 @@ func main() {
 	api.GET("/checkopenid", c.CheckOpenID)
 	// r.Use(middleware.JWT([]byte("secret")))
 
+	//  粉丝关注列表
+	api.GET("/follows", c.GetUserFollows)
+
+	// 粉丝添加关注
+	api.POST("/follows", c.CreateUserFollow)
+
+	//  粉丝自定义源
+	api.GET("/sources", c.GetUserSources)
+
+	// 粉丝添加关注
+	api.POST("/sources", c.CreateUserSource)
+
 	// 获取html gethtml
 	e.GET("/gethtml", func(c echo.Context) error {
 		urlStr := c.QueryParam("url")
@@ -105,7 +117,8 @@ func main() {
 
 	//  自定义分类
 	e.GET("/classify", func(c echo.Context) error {
-		list := grab.GetClassify()
+		// list := grab.GetClassify()
+		list := grab.GetResources()
 		return c.JSON(http.StatusOK, list)
 	})
 	//  自定义资源列表
@@ -168,6 +181,11 @@ func main() {
 	//  get book demo
 	e.GET("/getbookdemo", func(c echo.Context) error {
 		list := grab.BookDemoList()
+		return c.JSON(http.StatusOK, list)
+	})
+	//  get book demo
+	e.GET("/about", func(c echo.Context) error {
+		list := grab.GetAbouts()
 		return c.JSON(http.StatusOK, list)
 	})
 

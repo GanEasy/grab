@@ -1,11 +1,13 @@
 package api
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
 
+	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/db"
 	jwt "github.com/dgrijalva/jwt-go"
@@ -115,4 +117,116 @@ func GetQrcode(c echo.Context) error {
 
 	var err2 error
 	return err2
+}
+
+// GetUserFollows 获取用户关注的
+func GetUserFollows(c echo.Context) error {
+	//
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
+	}
+	user, _ := getUser(openID)
+	sources := user.GetFansAllSources(0, 100)
+
+	var cards []grab.Card
+	wxto := ``
+	for _, l := range sources {
+		wxto = fmt.Sprintf(`/pages/catalog/get?drive=%v&url=%v`, l.Drive, grab.EncodeURL(l.URL))
+		cards = append(cards,
+			grab.Card{
+				l.Title,
+				wxto, ``,
+				`link`,
+				``,
+				nil,
+			},
+		)
+	}
+
+	return c.JSON(http.StatusOK, cards)
+}
+
+// CreateUserFollow 获取用户关注的
+func CreateUserFollow(c echo.Context) error {
+	//
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
+	}
+	user, _ := getUser(openID)
+	sources := user.GetFansAllSources(0, 100)
+
+	var cards []grab.Card
+	wxto := ``
+	for _, l := range sources {
+		wxto = fmt.Sprintf(`/pages/catalog/get?drive=%v&url=%v`, l.Drive, grab.EncodeURL(l.URL))
+		cards = append(cards,
+			grab.Card{
+				l.Title,
+				wxto, ``,
+				`link`,
+				``,
+				nil,
+			},
+		)
+	}
+
+	return c.JSON(http.StatusOK, cards)
+}
+
+// GetUserSources 获取用户自己添加的书籍源
+func GetUserSources(c echo.Context) error {
+	//
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
+	}
+	user, _ := getUser(openID)
+	sources := user.GetFansAllSources(0, 100)
+
+	var cards []grab.Card
+	wxto := ``
+	for _, l := range sources {
+		wxto = fmt.Sprintf(`/pages/catalog/get?drive=%v&url=%v`, l.Drive, grab.EncodeURL(l.URL))
+		cards = append(cards,
+			grab.Card{
+				l.Title,
+				wxto, ``,
+				`link`,
+				``,
+				nil,
+			},
+		)
+	}
+
+	return c.JSON(http.StatusOK, cards)
+}
+
+// CreateUserSource 添加源
+func CreateUserSource(c echo.Context) error {
+	//
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
+	}
+	user, _ := getUser(openID)
+	sources := user.GetFansAllSources(0, 100)
+
+	var cards []grab.Card
+	wxto := ``
+	for _, l := range sources {
+		wxto = fmt.Sprintf(`/pages/catalog/get?drive=%v&url=%v`, l.Drive, grab.EncodeURL(l.URL))
+		cards = append(cards,
+			grab.Card{
+				l.Title,
+				wxto, ``,
+				`link`,
+				``,
+				nil,
+			},
+		)
+	}
+
+	return c.JSON(http.StatusOK, cards)
 }

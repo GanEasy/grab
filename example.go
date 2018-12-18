@@ -29,6 +29,27 @@ func GetClassify() []Item {
 	return list
 }
 
+//GetDrives 获取所有解释引擎
+func GetDrives() []Item {
+	var list = []Item{
+		Item{`泛文本类`, `/pages/user/createSource?drive=text`, "转码目录所有链接，并将目标详情页转换成文本详情。", "card"},
+		Item{`泛资讯类`, `/pages/user/createSource?drive=news`, "转码目录所有链接，并将目标详情页转换成图文详情。", "card"},
+		Item{`起点小说`, `/pages/user/createSource?drive=qidian`, "精准解释起点小说免费章节", "card"},
+	}
+	return list
+}
+
+//GetAbouts 获得关于我们的介绍
+func GetAbouts() []Item {
+	var list = []Item{
+		Item{`关于我们`, ``, "阅读助手提供第三方目录内容转码阅读服务，实时，无广告。", "card"},
+		Item{`数据缓存`, ``, "用户数据使用本地数据缓存，阅读助手不对数据安全做任何保证。", "card"},
+		Item{`免责声明`, ``, "阅读助手实时转码(服务器不缓存)第三方内容，内容版权归源站所有。", "card"},
+		Item{`来源声明`, ``, "阅读助手页面中“域名、原网页”等信息，都是转码数据的来源页，可点击复制。", "card"},
+	}
+	return list
+}
+
 //GetRanks 各类榜单
 func GetRanks() []Item {
 	var list = []Item{
