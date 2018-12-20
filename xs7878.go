@@ -161,6 +161,7 @@ func (r Xs7878Reader) GetChapter(urlStr string) (ret TextContent, err error) {
 	}
 
 	article.Readable(urlStr)
+	ret.SourceURL = urlStr
 
 	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_`, article.Title, "title")
 	if ret.Title == `` {

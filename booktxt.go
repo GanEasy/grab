@@ -16,7 +16,7 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.booktxt.com/`
 
-	list.Title = `分类-7878小说`
+	list.Title = `分类-顶点小说`
 
 	list.SourceURL = urlStr
 
