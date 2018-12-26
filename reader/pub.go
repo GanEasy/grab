@@ -1,4 +1,4 @@
-package grab
+package reader
 
 // GetListReader 获取列表解释器
 func GetListReader(urlstr, drive string) ListReader {

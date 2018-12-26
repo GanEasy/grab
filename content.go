@@ -6,8 +6,8 @@ import (
 	"github.com/GanEasy/html2article"
 )
 
-// Content 正文
-type Content struct {
+// FetchContent 正文
+type FetchContent struct {
 	Title     string `json:"title"`
 	Content   string `json:"content"`
 	PubAt     string `json:"pub_at"`
@@ -15,7 +15,7 @@ type Content struct {
 }
 
 // GetContent 读url中的正文 解释返回 markdown 格式正文
-func GetContent(urlStr string) (cont Content, err error) {
+func GetContent(urlStr string) (cont FetchContent, err error) {
 
 	if CheckStrIsLink(urlStr) != nil {
 		return cont, errors.New(`url error`)

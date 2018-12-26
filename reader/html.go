@@ -1,4 +1,4 @@
-package grab
+package reader
 
 import (
 	"io/ioutil"

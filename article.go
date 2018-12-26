@@ -15,7 +15,7 @@ type Article struct {
 }
 
 // GetArticle 读url中的正文 解释返回 markdown 格式正文
-func GetArticle(urlStr string) (cont Content, err error) {
+func GetArticle(urlStr string) (cont FetchContent, err error) {
 
 	if CheckStrIsLink(urlStr) != nil {
 		return cont, errors.New(`url error`)
@@ -114,7 +114,7 @@ type ArticleInfoReader struct {
 }
 
 // GetInfo 获取详细内容
-func (r ArticleInfoReader) GetInfo(urlStr string) (ret NewsContent, err error) {
+func (r ArticleInfoReader) GetInfo(urlStr string) (ret ReaderContent, err error) {
 
 	if CheckStrIsLink(urlStr) != nil {
 		return ret, errors.New(`url error`)

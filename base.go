@@ -33,16 +33,6 @@ type TextContent struct {
 	Next      Link          `json:"next"`
 }
 
-// NewsContent 新闻类内容正文
-type NewsContent struct {
-	Title     string `json:"title"`
-	Content   string `json:"content"`
-	PubAt     string `json:"pub_at"`
-	SourceURL string `json:"source_url"` // 数据抓取时，统一声明数据来源
-	Previous  Link   `json:"previous"`
-	Next      Link   `json:"next"`
-}
-
 // List 列表数据
 type List struct {
 	// Basic
@@ -76,3 +66,49 @@ type Link struct {
 	URL   string `json:"url"`
 	WxTo  string `json:"wxto"` // 小程序跳转到目标页
 }
+
+/******* Reader content start **********/
+
+//ReaderContent 正文
+type ReaderContent struct {
+	Title     string        `json:"title"`      // 内容标题
+	SourceURL string        `json:"source_url"` // 数据来源
+	Author    string        `json:"author"`
+	PubAt     string        `json:"pub_at"`   //发布时间
+	Previous  Link          `json:"previous"` // 上一章
+	Next      Link          `json:"next"`     // 下一章
+	Contents  []BookSection `json:"contents"` // text正文
+	Content   string        `json:"content"`  //新闻(图文)类内容正文
+	Images    string        `json:"images"`
+	SRC       string        `json:"src"`
+	Typw      string        `json:"type"`
+}
+
+// // BookContent 小说(文本)类正文
+// type BookContent struct {
+// 	ReaderContent
+// 	Content []BookSection `json:"content"` // text正文
+// }
+
+// // NewsContent 新闻(图文)类内容正文
+// type NewsContent struct {
+// 	ReaderContent
+// 	Content string `json:"content"`
+// 	Author  string `json:"author"`
+// }
+
+// // ImagesContent 动漫(图片)类内容正文
+// type ImagesContent struct {
+// 	ReaderContent
+// 	Images string `json:"images"`
+// 	Author string `json:"author"`
+// }
+
+// // VideoContent 新闻类内容正文
+// type VideoContent struct {
+// 	ReaderContent
+// 	SRC    string `json:"src"`
+// 	Author string `json:"author"`
+// }
+
+/******* Reader start **********/

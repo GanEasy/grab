@@ -18,3 +18,11 @@ type BookReader interface {
 	GetChapters(string) (Catalog, error)
 	GetChapter(string) (TextContent, error)
 }
+
+//Reader 目录资源阅读器
+/**输出第三方平台资源
+ */
+type Reader interface {
+	Catalog(string) (Catalog, error)
+	Info(string) (ReaderContent, error)
+}
