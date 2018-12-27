@@ -11,12 +11,12 @@ import (
 	"github.com/mmcdole/gofeed"
 )
 
-//CustomListReader Rss列表匹配器
-type CustomListReader struct {
+//CustomReader 自定义阅读器
+type CustomReader struct {
 }
 
-// GetList 获取Rss订阅接口文章列表
-func (r CustomListReader) GetList(urlStr string) (list Catalog, err error) {
+// GetCatalog 获取目录
+func (r CustomReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	fp := gofeed.NewParser()
 
 	// feed, err := fp.ParseString(html)
@@ -43,11 +43,7 @@ func (r CustomListReader) GetList(urlStr string) (list Catalog, err error) {
 	return
 }
 
-//CustomInfoReader 默认详细页匹配器
-type CustomInfoReader struct {
-}
-
-// GetInfo 获取详细内容
-func (r CustomInfoReader) GetInfo() {
+// GetInfo 获取详情
+func (r CustomReader) GetInfo() {
 	fmt.Print(`a read`)
 }

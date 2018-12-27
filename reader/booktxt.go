@@ -35,8 +35,8 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 	return list, nil
 }
 
-// GetBooks 获取书籍列表列表
-func (r BooktxtReader) GetBooks(urlStr string) (list Catalog, err error) {
+// GetList 获取书籍列表列表
+func (r BooktxtReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -86,8 +86,8 @@ func (r BooktxtReader) GetBooks(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetChapters 获取章节列表
-func (r BooktxtReader) GetChapters(urlStr string) (list Catalog, err error) {
+// GetCatalog 获取章节列表
+func (r BooktxtReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -142,8 +142,8 @@ func (r BooktxtReader) GetChapters(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetChapter 获取详细内容
-func (r BooktxtReader) GetChapter(urlStr string) (ret Catalog, err error) {
+// GetInfo 获取详细内容
+func (r BooktxtReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -172,7 +172,7 @@ func (r BooktxtReader) GetChapter(urlStr string) (ret Catalog, err error) {
 
 	c = BookContReplace(c)
 
-	ret.Content = GetSectionByContent(c)
+	ret.Contents = GetSectionByContent(c)
 
 	links, _ := GetLinkByHTML(urlStr, html)
 	ret.Previous = GetPreviousLink(links)

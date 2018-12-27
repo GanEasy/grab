@@ -1,42 +1,18 @@
 package reader
 
 import (
-	"fmt"
 	"net/url"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-//DefaultListReader 默认列表匹配器
-type DefaultListReader struct {
-}
-
-// GetList 获取列表
-func (r DefaultListReader) GetList() {
-	fmt.Print(`a read`)
-}
-
-//DefaultInfoReader 默认详细页匹配器
-type DefaultInfoReader struct {
-}
-
-// GetInfo 获取详细内容
-func (r DefaultInfoReader) GetInfo() {
-	fmt.Print(`a read`)
-}
-
-// // GetNextURL 获取详细内容
-// func (r DefaultInfoReader) GetNextURL() string {
-// 	return ``
-// }
-
 //DefaultReader 默认阅读器
 type DefaultReader struct {
 }
 
-// Catalog 获取列表
-func (r DefaultReader) Catalog(urlStr string) (list Catalog, err error) {
+// GetCatalog 获取列表
+func (r DefaultReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -69,8 +45,8 @@ func (r DefaultReader) Catalog(urlStr string) (list Catalog, err error) {
 
 }
 
-// Info 获取详细内容
-func (r DefaultReader) Info(urlStr string) (ret ReaderContent, err error) {
+// GetInfo 获取详细内容
+func (r DefaultReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	if err != nil {
 		return ret, err

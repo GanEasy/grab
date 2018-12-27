@@ -40,7 +40,7 @@ func GetHTMLContent(urlStr, find string) (cont FetchContent, err error) {
 	return cont, err
 }
 
-// GetHTMLBak 获取html链接地址中的链接
+// GetHTML 获取html链接地址中的链接
 func GetHTML(urlStr, find string) (htmlStr string, err error) {
 	err = CheckStrIsLink(urlStr)
 	if err != nil {

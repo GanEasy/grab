@@ -49,7 +49,7 @@ type QueryInfoReader struct {
 }
 
 // GetInfo 获取详细内容
-func (r QueryInfoReader) GetInfo(urlStr string) (ret ReaderContent, err error) {
+func (r QueryInfoReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	if CheckStrIsLink(urlStr) != nil {
 		return ret, errors.New(`url error`)
@@ -85,7 +85,7 @@ type QueryReader struct {
 }
 
 // GetInfo 获取详细内容
-func (r QueryReader) GetInfo(urlStr string) (ret ReaderContent, err error) {
+func (r QueryReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	if CheckStrIsLink(urlStr) != nil {
 		return ret, errors.New(`url error`)

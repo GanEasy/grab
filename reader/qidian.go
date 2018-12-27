@@ -48,8 +48,8 @@ func (r QidianReader) GetCategories(urlStr string) (list Catalog, err error) {
 	return list, nil
 }
 
-// GetBooks 获取分类书籍列表
-func (r QidianReader) GetBooks(urlStr string) (list Catalog, err error) {
+// GetList 获取分类书籍列表
+func (r QidianReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -102,55 +102,8 @@ func (r QidianReader) GetBooks(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetChapter 获取章节正文内容
-func (r QidianReader) GetChapter(urlStr string) (ret TextContent, err error) {
-
-	err = CheckStrIsLink(urlStr)
-	if err != nil {
-		return
-	}
-	html, err := GetHTML(urlStr, ``)
-	if err != nil {
-		return ret, err
-	}
-	// log.Println(html)
-	article, err := GetActicleByHTML(html)
-	if err != nil {
-		return ret, err
-	}
-
-	article.Readable(urlStr)
-
-	ret.Title = article.Title
-
-	ret.Title = FindString(`_(?P<title>(.)+)_起点中文网`, article.Title, "title")
-	if ret.Title == `` {
-		ret.Title = article.Title
-	}
-
-	ret.SourceURL = urlStr
-
-	c := MarkDownFormatContent(article.ReadContent)
-
-	c = BookContReplace(c)
-
-	ret.Content = GetSectionByContent(c)
-
-	links, _ := GetLinkByHTML(urlStr, html)
-	ret.Previous = GetPreviousLink(links)
-	if ret.Previous.URL != `` {
-		ret.Previous.URL = EncodeURL(ret.Previous.URL)
-	}
-	ret.Next = GetNextLink(links)
-	if ret.Next.URL != `` {
-		ret.Next.URL = EncodeURL(ret.Next.URL)
-	}
-	return ret, nil
-
-}
-
-// GetChapters 获取章节列表
-func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
+// GetCatalog 获取章节列表
+func (r QidianReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -211,6 +164,53 @@ func (r QidianReader) GetChapters(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	return list, nil
+
+}
+
+// GetInfo 获取章节正文内容
+func (r QidianReader) GetInfo(urlStr string) (ret Content, err error) {
+
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return ret, err
+	}
+	// log.Println(html)
+	article, err := GetActicleByHTML(html)
+	if err != nil {
+		return ret, err
+	}
+
+	article.Readable(urlStr)
+
+	ret.Title = article.Title
+
+	ret.Title = FindString(`_(?P<title>(.)+)_起点中文网`, article.Title, "title")
+	if ret.Title == `` {
+		ret.Title = article.Title
+	}
+
+	ret.SourceURL = urlStr
+
+	c := MarkDownFormatContent(article.ReadContent)
+
+	c = BookContReplace(c)
+
+	ret.Contents = GetSectionByContent(c)
+
+	links, _ := GetLinkByHTML(urlStr, html)
+	ret.Previous = GetPreviousLink(links)
+	if ret.Previous.URL != `` {
+		ret.Previous.URL = EncodeURL(ret.Previous.URL)
+	}
+	ret.Next = GetNextLink(links)
+	if ret.Next.URL != `` {
+		ret.Next.URL = EncodeURL(ret.Next.URL)
+	}
+	return ret, nil
 
 }
 

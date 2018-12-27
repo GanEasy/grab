@@ -4,21 +4,21 @@ import (
 	"testing"
 )
 
-func Test_GetBookInfoReader(t *testing.T) {
-	urlStr := `http://www.longfu8.com/417.html`
+func Test_BooktxtGetInfo(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapbook/4891_4943641.html`
 	// urlStr = `http://www.xinshubao.net/18/18685/2515188_2.html`
 	// urlStr = `https://m.35xs.com/book/237551/51896850.html`
-	reader := BookReader{}
+	reader := BooktxtReader{}
 	list, err := reader.GetInfo(urlStr)
 	if err != nil {
 
 	}
 	t.Fatal(list)
 }
-func Test_BookGetCatalog(t *testing.T) {
-	urlStr := `http://www.longfu8.com/`
-	urlStr = `http://www.xinshubao.net/18/18685/`
-	reader := BookReader{}
+func Test_BooktxtGetCatalog(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapbook/4891.html`
+	urlStr = `https://m.booktxt.net/wapbook/6454.html`
+	reader := BooktxtReader{}
 	list, err := reader.GetCatalog(urlStr)
 	if err != nil {
 

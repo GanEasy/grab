@@ -130,7 +130,7 @@ func (r MLuoqiuReader) GetChapters(urlStr string) (list Catalog, err error) {
 }
 
 // GetChapter 获取详细内容
-func (r MLuoqiuReader) GetChapter(urlStr string) (ret TextContent, err error) {
+func (r MLuoqiuReader) GetChapter(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -155,7 +155,7 @@ func (r MLuoqiuReader) GetChapter(urlStr string) (ret TextContent, err error) {
 
 	c = BookContReplace(c)
 
-	ret.Content = GetSectionByContent(c)
+	ret.Contents = GetSectionByContent(c)
 
 	links, _ := GetLinkByHTML(urlStr, html)
 	ret.Previous = GetPreviousLink(links)
