@@ -81,7 +81,7 @@ func (r QidianReader) GetList(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/get`, `qidian`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `qidian`)
 
 	list.SourceURL = urlStr
 
@@ -157,7 +157,7 @@ func (r QidianReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `qidian`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `qidian`)
 
 	list.SourceURL = urlStr
 

@@ -35,7 +35,7 @@ func (r BookReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	var links = GetLinks(g, link)
 
-	list.Cards = LinksToCards(Cleaning(links), `/pages/chapter/info`, `book`)
+	list.Cards = LinksToCards(Cleaning(links), `/pages/book`, `book`)
 
 	list.SourceURL = urlStr
 

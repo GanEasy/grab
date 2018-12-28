@@ -74,64 +74,6 @@ func main() {
 	// 粉丝添加关注
 	api.POST("/sources", c.CreateUserSource)
 
-	// 获取html gethtml
-	e.GET("/gethtml", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		find := c.QueryParam("find")
-		html, _ := grab.GetHTMLContent(urlStr, find)
-		return c.JSON(http.StatusOK, html)
-	})
-
-	// 获取获取文章 getarticle
-	e.GET("/getarticle", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		ret, _ := grab.GetArticle(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
-
-	// 获取获取文章列表 getarticlelist
-	e.GET("/getarticlelist", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		ret, _ := grab.GetArticleList(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
-
-	// 获取小说目录正文
-	e.GET("/getbookchapters", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		ret, _ := grab.GetBookChapters(urlStr)
-		return c.JSON(http.StatusOK, ret)
-	})
-	// 获取小说章节内容 getbookchapterinfo
-	e.GET("/getbookchapterinfo", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-		info, _ := grab.GetBookInfo(urlStr)
-		return c.JSON(http.StatusOK, info)
-	})
-
-	// 获取Rss列表 getrsslist
-	e.GET("/getrsslist", func(c echo.Context) error {
-		urlStr := c.QueryParam("url")
-
-		reader := grab.RssListReader{}
-		list, err := reader.GetList(urlStr)
-		if err == nil {
-			return c.JSON(http.StatusOK, list)
-		}
-		return c.JSON(http.StatusOK, list)
-	})
-
-	// // 获取html列表
-	// e.GET("/gethtmllist", func(c echo.Context) error {
-	// 	urlStr := c.QueryParam("url")
-	// 	find := c.QueryParam("find")
-	// 	list, err := grab.GetHTMLList(urlStr, find)
-	// 	if err == nil {
-	// 		return c.JSON(http.StatusOK, list)
-	// 	}
-	// 	return c.JSON(http.StatusOK, list)
-	// })
-
 	//  自定义分类
 	e.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
@@ -144,62 +86,47 @@ func main() {
 		return c.JSON(http.StatusOK, list)
 	})
 
-	//  获取自定义平台资源列表
-	e.GET("/resource/:url", func(c echo.Context) error {
-		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		drive := c.QueryParam("drive")
-		reader := grab.GetBookReader(drive)
-		list, _ := reader.GetCategories(urlStr)
-		return c.JSON(http.StatusOK, list)
-	})
 	//  自定义专题列表
 	e.GET("/topics", func(c echo.Context) error {
 		list := grab.GetTopics()
 		return c.JSON(http.StatusOK, list)
 	})
 
-	//  获取小说资源列表
-	e.GET("/book/:url", func(c echo.Context) error {
+	//  获取第三方资源的分类(按驱动)
+	e.GET("/categories/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
-		drive := c.QueryParam("drive")
-		reader := grab.GetBookReader(drive)
-		list, _ := reader.GetBooks(urlStr)
+		guide := grab.GetGuide(c.QueryParam("drive"))
+		list, _ := guide.GetCategories(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
 
-	// 获取章节列表
-	e.GET("/chapters/:url", func(c echo.Context) error {
+	//  获取可订阅目录列表
+	e.GET("/list/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		drive := c.QueryParam("drive")
-		reader := grab.GetBookReader(drive)
-		list, _ := reader.GetChapters(urlStr)
+		guide := grab.GetGuide(drive)
+		list, _ := guide.GetList(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
 
-	// 获取章节详细内容
-	e.GET("/chapter/:url", func(c echo.Context) error {
+	// 获取目录(订阅目录内容)
+	e.GET("/catalog/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		drive := c.QueryParam("drive")
-		reader := grab.GetBookReader(drive)
-		list, _ := reader.GetChapter(urlStr)
+		reader := grab.GetReader(drive)
+		list, _ := reader.GetCatalog(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
 
-	//  get rss demo
-	e.GET("/getrssdemo", func(c echo.Context) error {
-		list := grab.RssDemoList()
+	// 获取页面正文内容
+	e.GET("/info/:url", func(c echo.Context) error {
+		urlStr, _ := grab.DecodeURL(c.Param("url"))
+		drive := c.QueryParam("drive")
+		reader := grab.GetReader(drive)
+		list, _ := reader.GetInfo(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
-	//  get article demo
-	e.GET("/getarticledemo", func(c echo.Context) error {
-		list := grab.ArticleDemoList()
-		return c.JSON(http.StatusOK, list)
-	})
-	//  get book demo
-	e.GET("/getbookdemo", func(c echo.Context) error {
-		list := grab.BookDemoList()
-		return c.JSON(http.StatusOK, list)
-	})
+
 	//  get book demo
 	e.GET("/about", func(c echo.Context) error {
 		list := grab.GetAbouts()

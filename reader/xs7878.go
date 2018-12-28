@@ -72,7 +72,7 @@ func (r Xs7878Reader) GetList(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/get`, `7878xs`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `7878xs`)
 
 	list.SourceURL = urlStr
 
@@ -127,7 +127,7 @@ func (r Xs7878Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `7878xs`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `7878xs`)
 
 	list.SourceURL = urlStr
 

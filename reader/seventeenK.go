@@ -70,7 +70,7 @@ func (r SeventeenKReader) GetList(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/get`, `17k`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `17k`)
 
 	list.SourceURL = urlStr
 
@@ -118,7 +118,7 @@ func (r SeventeenKReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `17k`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `17k`)
 
 	list.SourceURL = urlStr
 

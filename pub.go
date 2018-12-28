@@ -1,64 +1,45 @@
 package grab
 
-// GetListReader 获取列表解释器
-func GetListReader(urlstr, drive string) ListReader {
-	return &DefaultListReader{}
-}
+import (
+	"github.com/GanEasy/grab/reader"
+)
 
-// GetInfoReader 获取内容解释器
-func GetInfoReader(urlstr, drive string) InfoReader {
-	// todo 根据 drive 返回不同的解释器
-	return &DefaultInfoReader{}
-}
-
-// GetCategoryReader 在分类页获取小说目录列表
-func GetCategoryReader(urlstr, drive string) InfoReader {
-	// todo 根据 drive 返回不同的解释器
-	return &DefaultInfoReader{}
-}
-
-// GetResourceReader 自定义不同平台有哪些资源
-func GetResourceReader(urlstr, drive string) InfoReader {
-	// todo 根据 drive 返回不同的解释器
-	return &DefaultInfoReader{}
-}
-
-// GetBookReader 小说资源平台
-func GetBookReader(drive string) BookReader {
+// GetGuide 获取引导
+func GetGuide(drive string) reader.Guide {
 	//
 	if drive == `qidian` {
-		return &QidianReader{}
+		return &reader.QidianReader{}
 	} else if drive == `zongheng` {
-		return &ZonghengReader{}
+		return &reader.ZonghengReader{}
 	} else if drive == `17k` {
-		return &SeventeenKReader{}
+		return &reader.SeventeenKReader{}
 	} else if drive == `luoqiu` {
-		return &MLuoqiuReader{}
+		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {
-		return &BooktxtReader{}
+		return &reader.BooktxtReader{}
 	} else if drive == `7878xs` {
-		return &Xs7878Reader{}
+		return &reader.Xs7878Reader{}
 	}
 	// todo 根据 drive 返回不同的解释器
-	return &DefaultBookReader{}
+	return &reader.DefaultGuide{}
 }
 
 // GetReader 获取阅读器
-func GetReader(drive string) Reader {
+func GetReader(drive string) reader.Reader {
 	//
 	if drive == `qidian` {
-		// return &QidianReader{}
+		return &reader.QidianReader{}
 	} else if drive == `zongheng` {
-		// return &ZonghengReader{}
+		return &reader.ZonghengReader{}
 	} else if drive == `17k` {
-		// return &SeventeenKReader{}
+		return &reader.SeventeenKReader{}
 	} else if drive == `luoqiu` {
-		// return &MLuoqiuReader{}
+		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {
-		// return &BooktxtReader{}
+		return &reader.BooktxtReader{}
 	} else if drive == `7878xs` {
-		// return &Xs7878Reader{}
+		return &reader.Xs7878Reader{}
 	}
 	// todo 根据 drive 返回不同的解释器
-	return &DefaultReader{}
+	return &reader.DefaultReader{}
 }

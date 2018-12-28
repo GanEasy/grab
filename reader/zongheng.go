@@ -74,7 +74,7 @@ func (r ZonghengReader) GetList(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/get`, `zongheng`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `zongheng`)
 
 	list.SourceURL = urlStr
 
@@ -131,7 +131,7 @@ func (r ZonghengReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/chapter/info`, `zongheng`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `zongheng`)
 
 	list.SourceURL = urlStr
 

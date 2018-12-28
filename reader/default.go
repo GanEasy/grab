@@ -84,3 +84,17 @@ func (r DefaultReader) GetInfo(urlStr string) (ret Content, err error) {
 	return ret, nil
 
 }
+
+//DefaultGuide 向导
+type DefaultGuide struct {
+}
+
+// GetCategories 获取所有分类
+func (r DefaultGuide) GetCategories(urlStr string) (list Catalog, err error) {
+	return
+}
+
+// GetList 获取书籍列表列表
+func (r DefaultGuide) GetList(urlStr string) (list Catalog, err error) {
+	return
+}
