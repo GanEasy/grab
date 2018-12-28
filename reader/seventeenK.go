@@ -37,8 +37,8 @@ func (r SeventeenKReader) GetCategories(urlStr string) (list Catalog, err error)
 	return list, nil
 }
 
-// GetBooks 获取书籍列表列表
-func (r SeventeenKReader) GetBooks(urlStr string) (list Catalog, err error) {
+// GetList 获取书籍列表列表
+func (r SeventeenKReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -85,8 +85,8 @@ func (r SeventeenKReader) GetBooks(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetChapters 获取章节列表
-func (r SeventeenKReader) GetChapters(urlStr string) (list Catalog, err error) {
+// GetCatalog 获取章节列表
+func (r SeventeenKReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -129,7 +129,7 @@ func (r SeventeenKReader) GetChapters(urlStr string) (list Catalog, err error) {
 }
 
 // GetChapter 获取详细内容
-func (r SeventeenKReader) GetChapter(urlStr string) (ret Content, err error) {
+func (r SeventeenKReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
