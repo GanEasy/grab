@@ -66,6 +66,26 @@ func main() {
 		return c.JSON(http.StatusOK, grab.EncodeURL(u.URL))
 	})
 
+	api.POST("/getdrive", func(c echo.Context) (err error) {
+		type Data struct {
+			URL string `json:"url" validate:"required"`
+		}
+		u := new(Data)
+		if err = c.Bind(u); err != nil {
+			return
+		}
+		type Ret struct {
+			Key   string `json:"key"`
+			Drive string `json:"drive"`
+		}
+		ret := Ret{
+			grab.EncodeURL(u.URL),
+			`book`,
+		}
+		// url := c.FormValue("url")
+		return c.JSON(http.StatusOK, ret)
+	})
+
 	e.GET("/urlencode", func(c echo.Context) error {
 		url := c.QueryParam("url")
 		return c.JSON(http.StatusOK, grab.EncodeURL(url))
