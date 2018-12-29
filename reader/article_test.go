@@ -4,9 +4,12 @@ import (
 	"testing"
 )
 
-func Test_GetArticle(t *testing.T) {
-	urlStr := `http://www.longfu8.com/417.html`
+func Test_GetArticleInfo(t *testing.T) {
+	// urlStr := `http://www.zjl88.com/article-show-id-709430.html`
+	urlStr := `https://wechatrank.com/`
 
-	t.Fatal(urlStr)
+	reader := ArticleReader{}
+	ret, _ := reader.GetInfo(urlStr)
+	t.Fatal(ret)
 
 }

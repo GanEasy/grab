@@ -77,10 +77,12 @@ func main() {
 		type Ret struct {
 			Key   string `json:"key"`
 			Drive string `json:"drive"`
+			Page  string `json:"page"`
 		}
 		ret := Ret{
 			grab.EncodeURL(u.URL),
-			`book`,
+			``,
+			`/pages/catalog`,
 		}
 		// url := c.FormValue("url")
 		return c.JSON(http.StatusOK, ret)
@@ -150,6 +152,19 @@ func main() {
 	//  get book demo
 	api.GET("/about", func(c echo.Context) error {
 		list := grab.GetAbouts()
+		return c.JSON(http.StatusOK, list)
+	})
+	//  get book demo
+	api.GET("/alldrive", func(c echo.Context) error {
+		type Item struct {
+			Name  string `json:"name" `
+			Drive string `json:"drive" `
+		}
+		var list = []Item{
+			Item{`文本类`, `book`},
+			Item{`图文类`, `news`},
+			Item{`Rss`, `rss`},
+		}
 		return c.JSON(http.StatusOK, list)
 	})
 

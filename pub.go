@@ -39,6 +39,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.BooktxtReader{}
 	} else if drive == `7878xs` {
 		return &reader.Xs7878Reader{}
+	} else if drive == `book` {
+		return &reader.Xs7878Reader{}
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &reader.DefaultReader{}
