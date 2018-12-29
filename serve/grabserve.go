@@ -75,25 +75,25 @@ func main() {
 	api.POST("/sources", c.CreateUserSource)
 
 	//  自定义分类
-	e.GET("/classify", func(c echo.Context) error {
+	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
 		list := grab.GetResources()
 		return c.JSON(http.StatusOK, list)
 	})
 	//  自定义资源列表
-	e.GET("/resources", func(c echo.Context) error {
+	api.GET("/resources", func(c echo.Context) error {
 		list := grab.GetResources()
 		return c.JSON(http.StatusOK, list)
 	})
 
 	//  自定义专题列表
-	e.GET("/topics", func(c echo.Context) error {
+	api.GET("/topics", func(c echo.Context) error {
 		list := grab.GetTopics()
 		return c.JSON(http.StatusOK, list)
 	})
 
 	//  获取第三方资源的分类(按驱动)
-	e.GET("/categories/:url", func(c echo.Context) error {
+	api.GET("/categories/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		guide := grab.GetGuide(c.QueryParam("drive"))
 		list, _ := guide.GetCategories(urlStr)
@@ -101,7 +101,7 @@ func main() {
 	})
 
 	//  获取可订阅目录列表
-	e.GET("/list/:url", func(c echo.Context) error {
+	api.GET("/list/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		drive := c.QueryParam("drive")
 		guide := grab.GetGuide(drive)
@@ -110,7 +110,7 @@ func main() {
 	})
 
 	// 获取目录(订阅目录内容)
-	e.GET("/catalog/:url", func(c echo.Context) error {
+	api.GET("/catalog/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		drive := c.QueryParam("drive")
 		reader := grab.GetReader(drive)
@@ -119,7 +119,7 @@ func main() {
 	})
 
 	// 获取页面正文内容
-	e.GET("/info/:url", func(c echo.Context) error {
+	api.GET("/info/:url", func(c echo.Context) error {
 		urlStr, _ := grab.DecodeURL(c.Param("url"))
 		drive := c.QueryParam("drive")
 		reader := grab.GetReader(drive)
@@ -128,7 +128,7 @@ func main() {
 	})
 
 	//  get book demo
-	e.GET("/about", func(c echo.Context) error {
+	api.GET("/about", func(c echo.Context) error {
 		list := grab.GetAbouts()
 		return c.JSON(http.StatusOK, list)
 	})
