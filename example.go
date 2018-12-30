@@ -19,8 +19,20 @@ type Item struct {
 	Type  string `json:"type"`
 }
 
+//GetWaitExamineClassify 获取做给审核检查的class
+func GetWaitExamineClassify() []Item {
+	var list = []Item{
+		Item{`从学徒到工匠精校版`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-from-appreciate-to-artisan`), "", "card"},
+		Item{`微信小程序开发入门系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/wechat-miniprogram-tutorial`), "", "card"},
+		Item{`从入门到精通系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-tutorial-5_7`), "", "card"},
+		Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
+	}
+	return list
+}
+
 //GetClassify 发现分类
 func GetClassify() []Item {
+
 	var list = []Item{
 		Item{`资源库`, `/pages/resources/index`, "收集整理常用平台资源，方便快速阅读。", "card"},
 		Item{`各类榜单`, `/pages/rank/index`, "或许感兴趣的榜单，随时可以了解。", "card"},
@@ -42,10 +54,19 @@ func GetDrives() []Item {
 //GetAbouts 获得关于我们的介绍
 func GetAbouts() []Item {
 	var list = []Item{
-		Item{`关于我们`, ``, "阅读助手提供第三方目录内容转码阅读服务，实时，无广告。", "card"},
+		Item{`关于我们`, ``, "阅读助手提供第三方web目录内容实时转码阅读服务。", "card"},
 		Item{`数据缓存`, ``, "用户数据使用本地数据缓存，阅读助手不对数据安全做任何保证。", "card"},
 		Item{`免责声明`, ``, "阅读助手实时转码(服务器不缓存)第三方内容，内容版权归源站所有。", "card"},
 		Item{`来源声明`, ``, "阅读助手页面中“域名、原网页”等信息，都是转码数据的来源页，可点击复制。", "card"},
+	}
+	return list
+}
+
+//GetHelps 获取帮助(常见问题)
+func GetHelps() []Item {
+	var list = []Item{
+		Item{`Q:如何订阅`, ``, "A:复制您感兴趣的网页链接地址，在“创建源”中提交即可！", "card"},
+		Item{`Q:选择类型`, ``, "A:纯文字选择文本类解释器，有图片有文本选择图文类，RSS链接请选择Rss", "card"},
 	}
 	return list
 }

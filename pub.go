@@ -45,6 +45,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.ArticleReader{}
 	} else if drive == `rss` {
 		return &reader.RssReader{}
+	} else if drive == `blog` {
+		return &reader.BlogReader{}
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &reader.DefaultReader{}
