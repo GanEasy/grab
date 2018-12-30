@@ -41,6 +41,10 @@ func (r DefaultReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	list.Hash = GetCatalogHash(list)
 
+	list.Next = GetNextLink(links)
+	if list.Next.URL != `` {
+		list.Next.URL = EncodeURL(list.Next.URL)
+	}
 	return list, nil
 
 }
