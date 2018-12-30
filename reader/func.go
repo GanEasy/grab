@@ -96,6 +96,27 @@ func GetActicleByHTML(html string) (article *html2article.Article, err error) {
 	return ext.ToArticle()
 }
 
+//GetActicleByContent 由Html返回*html2article.Article
+func GetActicleByContent(html string) (article *html2article.Article, err error) {
+
+	if !strings.Contains(html, `</html>`) || !strings.Contains(html, `</body>`) {
+		html = fmt.Sprintf(`
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+			<title>%v</title>
+			<body>
+			<div>
+			%v
+			</div>
+			</body>
+			</html>
+			`, `NONE TITLE`, html)
+	}
+
+	return GetActicleByHTML(html)
+}
+
 // GetSectionByContent 通过正文获取段落拆分
 func GetSectionByContent(content string) (sec []string) {
 	// 替换换行符

@@ -26,8 +26,9 @@ func (r RssListReader) GetList(urlStr string) (list Catalog, err error) {
 		if item.Image != nil {
 			cover = item.Image.URL
 		}
+		// https://img.readfollow.com/file?url=
 		// 小程序里面不支持含有html标签内容，一些rss的描述直接是文章正文的，现在暂时不需
-		list.Cards = append(list.Cards, Card{item.Title, wxto, ``, `card`, cover, nil})
+		list.Cards = append(list.Cards, Card{item.Title, wxto, item.Description, `card`, cover, nil})
 		// list.Cards = append(list.Cards, Card{item.Title, wxto, item.Description, `card`, item.Image.URL, nil})
 	}
 	list.SourceURL = urlStr

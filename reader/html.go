@@ -1,12 +1,25 @@
 package reader
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
 
 	"golang.org/x/net/html/charset"
 )
+
+// 替换图片服务地址(由服务器转抓取)
+func ReplaceImageServe(body string) (string, error) {
+	article, err := GetActicleByContent(body)
+	if err != nil {
+		return body, err
+	}
+	for _, i := range article.Images {
+		body = strings.Replace(body, i, fmt.Sprintf(`https://img.readfollow.com/file?url=%v`, i), -1)
+	}
+	return body, nil
+}
 
 // GetHTMLContent 获取html链接地址中的链接
 func GetHTMLContent(urlStr, find string) (cont FetchContent, err error) {

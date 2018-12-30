@@ -1,7 +1,9 @@
 package reader
 
 import (
+	"fmt"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -15,6 +17,32 @@ func Test_GetHTML(t *testing.T) {
 	t.Fatal(list)
 }
 
+func Test_ReplaceImageServe(t *testing.T) {
+
+	body := `<img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c07.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c01.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c02.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c03.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c04.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c05.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c06.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c07.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c08.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c09.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c10.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c11.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c12.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c13.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c14.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c15.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c16.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c17.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c18.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c19.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c20.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c21.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c22.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c23.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c24.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c25.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c26.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c27.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c28.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c29.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c30.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c31.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c32.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c33.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c34.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c35.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c36.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c37.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c38.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c39.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c40.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c41.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c42.jpg"><br />`
+	// log.Println(html)
+
+	list, err := ReplaceImageServe(body)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
+func Test_ReplaceImageServeDev(t *testing.T) {
+	// list, err := ReplaceImageServe(``)
+	body := `<img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c07.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c01.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c02.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c03.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c04.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c05.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c06.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c07.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c08.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c09.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c10.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c11.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c12.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c13.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c14.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c15.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c16.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c17.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c18.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c19.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c20.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c21.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c22.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c23.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c24.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c25.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c26.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c27.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c28.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c29.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c30.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c31.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c32.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c33.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c34.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c35.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c36.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c37.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c38.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c39.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c40.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c41.jpg"><br /><img referrerpolicy="no-referrer" src="https://i2.meizitu.net/2018/12/27c42.jpg"><br />`
+	// log.Println(html)
+	article, err := GetActicleByContent(body)
+	if err != nil {
+
+		t.Fatal(err)
+	}
+	for _, i := range article.Images {
+		body = strings.Replace(body, i, fmt.Sprintf(`https://img.readfollow.com/file?url=%v`, i), -1)
+	}
+	t.Fatal(body)
+}
 func Test_SimilarText(t *testing.T) {
 	var percent float64
 

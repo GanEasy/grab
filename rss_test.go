@@ -5,18 +5,35 @@ import (
 	"fmt"
 	"io"
 	"testing"
+
+	"github.com/mmcdole/gofeed"
 )
 
 func Test_GetRssListReader(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
-	urlStr := "http://news.qq.com/newsgn/rss_newsgn.xml"
+	urlStr := "https://rsshub.app/douyin/user/93610979153"
 	reader := RssListReader{}
 	list, err := reader.GetList(urlStr)
 	if err != nil {
 
 	}
 	t.Fatal(list)
+}
+
+func Test_GetRssListReader22(t *testing.T) {
+	// urlStr := "http://feeds.twit.tv/twit.xml"
+	// urlStr := "http://feed.williamlong.info/"
+	urlStr := "https://rsshub.app/douyin/user/93610979153"
+
+	fp := gofeed.NewParser()
+
+	// feed, err := fp.ParseString(html)
+	feed, err := fp.ParseURL(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(feed.Items)
 }
 
 func byteString(p []byte) string {
