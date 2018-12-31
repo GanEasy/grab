@@ -9,7 +9,7 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
-func main() {
+func mainBak() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK,

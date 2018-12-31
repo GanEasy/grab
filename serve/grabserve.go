@@ -99,6 +99,7 @@ func main() {
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
+		// list := grab.GetWaitExamineClassify()
 		list := grab.GetResources()
 		return c.JSON(http.StatusOK, list)
 	})
@@ -152,6 +153,11 @@ func main() {
 	//  get book demo
 	api.GET("/about", func(c echo.Context) error {
 		list := grab.GetAbouts()
+		return c.JSON(http.StatusOK, list)
+	})
+	//  get book demo
+	api.GET("/help", func(c echo.Context) error {
+		list := grab.GetHelps()
 		return c.JSON(http.StatusOK, list)
 	})
 	//  get book demo
