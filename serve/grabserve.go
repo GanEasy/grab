@@ -149,7 +149,6 @@ func main() {
 		list, _ := reader.GetInfo(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
-
 	//  get book demo
 	api.GET("/about", func(c echo.Context) error {
 		list := grab.GetAbouts()
