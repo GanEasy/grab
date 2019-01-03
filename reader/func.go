@@ -273,11 +273,13 @@ func JaccardMateGetURL(url, demo1, demo2, to1 string) (string, bool) {
 	if len(demoParamUn) != len(paramRp) {
 		return url, false
 	}
+	// log.Println(demotag1, demotag2, urltag, demoParamUn, paramRp)
 	if to1 != `` {
 		to := to1
 		for i, val := range demoParamUn {
 			// t.Fatal(i, val)
-			to = strings.Replace(to, val, paramRp[i], -1)
+			// log.Println(to, val, paramRp[i])
+			to = strings.Replace(to, val, paramRp[i], 1)
 		}
 		return to, true
 	}

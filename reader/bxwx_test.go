@@ -4,6 +4,13 @@ import (
 	"testing"
 )
 
+func Test_BxwxJaccardMateGetURL(t *testing.T) {
+	urlStr := `https://m.bxwx.la/b/2/2218/`
+	urlStr2, state := JaccardMateGetURL(urlStr, `https://m.bxwx.la/b/246/246596/`, `https://m.bxwx.la/b/287/287378/`, `https://m.bxwx.la/binfo/246/246596.htm`)
+
+	t.Fatal(urlStr2, state)
+}
+
 func Test_BxwxGetInfo(t *testing.T) {
 	urlStr := `https://m.bxwx.la/b/316/316850/1684236.html`
 	// urlStr = `http://www.xinshubao.net/18/18685/2515188_2.html`
