@@ -39,8 +39,10 @@ func GetReader(drive string) reader.Reader {
 		return &reader.BooktxtReader{}
 	} else if drive == `7878xs` {
 		return &reader.Xs7878Reader{}
+	} else if drive == `bxwx` {
+		return &reader.BxwxReader{}
 	} else if drive == `book` {
-		return &reader.Xs7878Reader{}
+		return &reader.BookReader{}
 	} else if drive == `article` {
 		return &reader.ArticleReader{}
 	} else if drive == `rss` {

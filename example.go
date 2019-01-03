@@ -91,12 +91,17 @@ func GetResources() []Item {
 		// Item{`17K文学`, `/pages/transfer/list?action=resource&drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 		// Item{`落秋中文`, `/pages/transfer/list?action=resource&drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 
+		// drive=article&url=aHR0cHM6Ly93ZWNoYXRyYW5rLmNvbS9nZXRsaXN0
+		Item{`微信精选`, `/pages/catalog?drive=article&url=` + EncodeURL(`https://wechatrank.com/`), "", "link"},
+		Item{`妹子图`, `/pages/rss?drive=rss&url=` + EncodeURL(`https://rsshub.app/mzitu/home`), "", "link"},
+
 		Item{`起点小说网`, `/pages/categories?drive=qidian&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
 		Item{`纵横小说网`, `/pages/categories?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
 		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 		Item{`顶点小说`, `/pages/categories?drive=booktxt&url=` + EncodeURL(`http://www.booktxt.net`), "", "link"},
 		// Item{`落秋中文`, `/pages/categories/get?drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 		Item{`7878小说`, `/pages/categories?drive=7878xs&url=` + EncodeURL(`http://www.7878xs.com`), "", "link"},
+		Item{`笔下文学`, `/pages/categories?drive=bxwx&url=` + EncodeURL(`https://www.bxwx.la`), "", "link"},
 		// SeventeenKReader
 		// Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}
