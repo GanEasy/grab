@@ -1,5 +1,10 @@
 package grab
 
+import (
+	"encoding/base64"
+	"net/url"
+)
+
 /**
 * base.go 放一些基础数据结构类,用于制定内外数据结构
  */
@@ -23,42 +28,6 @@ type Card struct {
 	Images []string `json:"images"` // 图片组效果时图片列表
 }
 
-// TextContent 文本类内容正文
-type TextContent struct {
-	Title     string        `json:"title"`
-	Content   []BookSection `json:"content"`
-	SourceURL string        `json:"source_url"`
-	PubAt     string        `json:"pub_at"`
-	Previous  Link          `json:"previous"`
-	Next      Link          `json:"next"`
-}
-
-// List 列表数据
-type List struct {
-	// Basic
-	Title     string `json:"title"`
-	Links     []Link //`json:"links"`
-	SourceURL string `json:"source_url"` // 数据抓取时，统一声明数据来源
-	Hash      string `json:"hash"`
-	Previous  Link   `json:"previous"`
-	Next      Link   `json:"next"`
-}
-
-// BookSection 小说段落 字数
-type BookSection struct {
-	Text string `json:"text"`
-}
-
-// Book 小说详细
-type Book struct {
-	URL      string        `json:"url"`
-	Title    string        `json:"title"`
-	Content  []BookSection `json:"content"`
-	PubAt    string        `json:"pub_at"`
-	Previous Link          `json:"previous"`
-	Next     Link          `json:"next"`
-}
-
 // Link 链接
 type Link struct {
 	// Basic
@@ -67,48 +36,31 @@ type Link struct {
 	WxTo  string `json:"wxto"` // 小程序跳转到目标页
 }
 
-/******* Reader content start **********/
-
-//ReaderContent 正文
-type ReaderContent struct {
-	Title     string        `json:"title"`      // 内容标题
-	SourceURL string        `json:"source_url"` // 数据来源
-	Author    string        `json:"author"`
-	PubAt     string        `json:"pub_at"`   //发布时间
-	Previous  Link          `json:"previous"` // 上一章
-	Next      Link          `json:"next"`     // 下一章
-	Contents  []BookSection `json:"contents"` // text正文
-	Content   string        `json:"content"`  //新闻(图文)类内容正文
-	Images    string        `json:"images"`
-	SRC       string        `json:"src"`
-	Typw      string        `json:"type"`
+// DemoItem 示例详细
+type DemoItem struct {
+	Title    string `json:"title"`
+	URL      string `json:"url"`
+	Category string `json:"category"`
 }
 
-// // BookContent 小说(文本)类正文
-// type BookContent struct {
-// 	ReaderContent
-// 	Content []BookSection `json:"content"` // text正文
-// }
+// Item 小程序授受参数明细
+type Item struct {
+	Title string `json:"title"`
+	WxTo  string `json:"wxto"`
+	Intro string `json:"intro"`
+	Type  string `json:"type"`
+}
 
-// // NewsContent 新闻(图文)类内容正文
-// type NewsContent struct {
-// 	ReaderContent
-// 	Content string `json:"content"`
-// 	Author  string `json:"author"`
-// }
+//EncodeURL 把url encode
+func EncodeURL(str string) string {
+	// es := base64.URLEncoding.EncodeToString([]byte(str))
+	return url.QueryEscape(base64.URLEncoding.EncodeToString([]byte(str)))
+	// return encodeURIComponent(es)
+}
 
-// // ImagesContent 动漫(图片)类内容正文
-// type ImagesContent struct {
-// 	ReaderContent
-// 	Images string `json:"images"`
-// 	Author string `json:"author"`
-// }
-
-// // VideoContent 新闻类内容正文
-// type VideoContent struct {
-// 	ReaderContent
-// 	SRC    string `json:"src"`
-// 	Author string `json:"author"`
-// }
-
-/******* Reader start **********/
+//DecodeURL 把url decode
+func DecodeURL(str string) (string, error) {
+	es, err := url.QueryUnescape(str)
+	strByte, err := base64.URLEncoding.DecodeString(es)
+	return string(strByte), err
+}
