@@ -4,21 +4,6 @@ import (
 	"fmt"
 )
 
-// DemoItem 示例详细
-type DemoItem struct {
-	Title    string `json:"title"`
-	URL      string `json:"url"`
-	Category string `json:"category"`
-}
-
-// Item 小程序授受参数明细
-type Item struct {
-	Title string `json:"title"`
-	WxTo  string `json:"wxto"`
-	Intro string `json:"intro"`
-	Type  string `json:"type"`
-}
-
 //GetWaitExamineClassify 获取做给审核检查的class
 func GetWaitExamineClassify() []Item {
 	var list = []Item{
