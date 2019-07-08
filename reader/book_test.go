@@ -18,6 +18,7 @@ func Test_GetBookInfoReader(t *testing.T) {
 func Test_BookGetCatalog(t *testing.T) {
 	urlStr := `http://www.longfu8.com/`
 	urlStr = `http://www.xinshubao.net/18/18685/`
+	urlStr = `https://m.uxiaoshuo.com/155/155018/all.html`
 	reader := BookReader{}
 	list, err := reader.GetCatalog(urlStr)
 	if err != nil {
