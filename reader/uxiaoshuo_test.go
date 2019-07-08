@@ -9,6 +9,7 @@ func Test_UxiaoshuoGetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
 	urlStr := "https://m.uxiaoshuo.com/sort/3/1.html"
+	urlStr = "https://m.uxiaoshuo.com/sort/1/1.html"
 	reader := UxiaoshuoReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()
