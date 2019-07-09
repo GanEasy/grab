@@ -105,7 +105,8 @@ func (r UxiaoshuoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)_无弹窗`, g.Find("title").Text(), "title")
+	// 偷心透视小村医最新章节,
+	list.Title = FindString(`(?P<title>(.)+)最新章节,`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}

@@ -35,6 +35,8 @@ func Test_UxiaoshuoGetChapters(t *testing.T) {
 
 func Test_UxiaoshuoGetChapter(t *testing.T) {
 	urlStr := "https://m.uxiaoshuo.com/282/282134/1460954.html"
+	urlStr = "https://m.uxiaoshuo.com/140/140420/7432883.html"
+	urlStr = "https://m.uxiaoshuo.com/278/278598/1741780.html"
 	reader := UxiaoshuoReader{}
 	list, err := reader.GetInfo(urlStr)
 	// list, err = reader.GetCategories()
