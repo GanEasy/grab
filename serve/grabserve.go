@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/GanEasy/grab"
-	c "github.com/GanEasy/grab/api"
+	a "github.com/GanEasy/grab/api"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -25,34 +25,34 @@ func main() {
 	})
 
 	// 获取用户签名
-	e.GET("/gettoken", c.GetToken)
+	e.GET("/gettoken", a.GetToken)
 	// 解密数据内容(保存数据到库)
-	e.GET("/crypt", c.Crypt)
+	e.GET("/crypt", a.Crypt)
 
 	// 获取二维码(图片资源)
-	e.GET("/qrcode", c.GetQrcode)
+	e.GET("/qrcode", a.GetQrcode)
 
 	// Restricted group
 	api := e.Group("/api")
 
 	// Configure middleware with the custom claims type
 	config := middleware.JWTConfig{
-		Claims:     &c.JwtCustomClaims{},
+		Claims:     &a.JwtCustomClaims{},
 		SigningKey: []byte("secret"),
 	}
 	api.Use(middleware.JWTWithConfig(config))
 
-	api.GET("/checkopenid", c.CheckOpenID)
+	api.GET("/checkopenid", a.CheckOpenID)
 	// r.Use(middleware.JWT([]byte("secret")))
 
 	//  粉丝关注列表
-	api.GET("/follows", c.GetUserFollows)
+	api.GET("/follows", a.GetUserFollows)
 
 	// 粉丝添加关注
-	api.POST("/follows", c.CreateUserFollow)
+	api.POST("/follows", a.CreateUserFollow)
 
 	//  粉丝自定义源
-	api.GET("/sources", c.GetUserSources)
+	api.GET("/sources", a.GetUserSources)
 
 	api.POST("/urlencode", func(c echo.Context) (err error) {
 		type Data struct {
@@ -94,7 +94,7 @@ func main() {
 	})
 
 	// 粉丝添加关注
-	api.POST("/sources", c.CreateUserSource)
+	api.POST("/sources", a.CreateUserSource)
 
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
@@ -129,6 +129,9 @@ func main() {
 		drive := c.QueryParam("drive")
 		guide := grab.GetGuide(drive)
 		list, _ := guide.GetList(urlStr)
+
+		go a.SyncPosts(list)
+
 		return c.JSON(http.StatusOK, list)
 	})
 

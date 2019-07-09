@@ -25,3 +25,14 @@ func Test_BooktxtGetCatalog(t *testing.T) {
 	}
 	t.Fatal(list)
 }
+
+func Test_BooktxtGetList(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapsort/1_1.html`
+	urlStr = `https://m.booktxt.net/wapsort/5_1.html`
+	reader := BooktxtReader{}
+	list, err := reader.GetList(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}

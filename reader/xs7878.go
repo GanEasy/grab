@@ -23,15 +23,15 @@ func (r Xs7878Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`异界`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/1/1.htm`), "", `link`, ``, nil},
-		Card{`奇幻`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/2/1.htm`), "", `link`, ``, nil},
-		Card{`仙侠`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/3/1.htm`), "", `link`, ``, nil},
-		Card{`都市`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/4/1.htm`), "", `link`, ``, nil},
-		Card{`历史`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/5/1.htm`), "", `link`, ``, nil},
-		Card{`游戏`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/6/1.htm`), "", `link`, ``, nil},
-		Card{`竞技`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/7/1.htm`), "", `link`, ``, nil},
-		Card{`灵异`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/8/1.htm`), "", `link`, ``, nil},
-		Card{`其他`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/9/1.htm`), "", `link`, ``, nil},
+		Card{`异界`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/1/1.htm`), "", `link`, ``, nil, ``},
+		Card{`奇幻`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/2/1.htm`), "", `link`, ``, nil, ``},
+		Card{`仙侠`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/3/1.htm`), "", `link`, ``, nil, ``},
+		Card{`都市`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/4/1.htm`), "", `link`, ``, nil, ``},
+		Card{`历史`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/5/1.htm`), "", `link`, ``, nil, ``},
+		Card{`游戏`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/6/1.htm`), "", `link`, ``, nil, ``},
+		Card{`竞技`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/7/1.htm`), "", `link`, ``, nil, ``},
+		Card{`灵异`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/8/1.htm`), "", `link`, ``, nil, ``},
+		Card{`其他`, `/pages/list?action=book&drive=7878xs&url=` + EncodeURL(`http://m.7878xs.com/f/9/1.htm`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }

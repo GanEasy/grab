@@ -18,7 +18,7 @@ func LinksToCards(links []Link, page, drive string) (cards []Card) {
 	for _, link := range links { //所有链接
 		// todo 合成链接
 		wxto := fmt.Sprintf(`%v?drive=%v&url=%v`, page, drive, EncodeURL(link.URL))
-		cards = append(cards, Card{link.Title, wxto, ``, `link`, ``, nil})
+		cards = append(cards, Card{link.Title, wxto, ``, `link`, ``, nil, link.URL})
 	}
 	return
 }

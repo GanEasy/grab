@@ -23,22 +23,14 @@ func (r BxwxReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		// Card{`全部`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort0/0/1.htm`), "", `link`, ``, nil},
-		// Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort1/0/1.htm`), "", `link`, ``, nil},
-		// Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort2/0/1.htm`), "", `link`, ``, nil},
-		// Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort3/0/1.htm`), "", `link`, ``, nil},
-		// Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort4/0/1.htm`), "", `link`, ``, nil},
-		// Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort5/0/1.htm`), "", `link`, ``, nil},
-		// Card{`风流竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort6/0/1.htm`), "", `link`, ``, nil},
-		// Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort7/0/1.htm`), "", `link`, ``, nil},
-		Card{`全部`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week.html`), "", `link`, ``, nil},
-		Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week1.html`), "", `link`, ``, nil},
-		Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week2.html`), "", `link`, ``, nil},
-		Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week3.html`), "", `link`, ``, nil},
-		Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week4.html`), "", `link`, ``, nil},
-		Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week5.html`), "", `link`, ``, nil},
-		Card{`风流竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week6.html`), "", `link`, ``, nil},
-		Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week7.html`), "", `link`, ``, nil},
+		Card{`全部`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week1.html`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week2.html`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week3.html`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week4.html`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week5.html`), "", `link`, ``, nil, ``},
+		Card{`游戏竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week6.html`), "", `link`, ``, nil, ``},
+		Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week7.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }

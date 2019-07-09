@@ -34,7 +34,7 @@ func (r RssReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		describe = item.Description
 		// describe, _ = ReplaceImageServe(item.Description)
 		// 小程序里面不支持含有html标签内容，一些rss的描述直接是文章正文的，现在暂时不需
-		list.Cards = append(list.Cards, Card{item.Title, wxto, describe, `card`, cover, nil})
+		list.Cards = append(list.Cards, Card{item.Title, wxto, describe, `card`, cover, nil, ``})
 		// list.Cards = append(list.Cards, Card{item.Title, wxto, item.Description, `card`, item.Image.URL, nil})
 	}
 	list.SourceURL = urlStr
