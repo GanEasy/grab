@@ -65,7 +65,7 @@ func (r UxiaoshuoReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.uxiaoshuo.com/140/140420/`, `https://m.uxiaoshuo.com/238/238242/`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.uxiaoshuo.com/140/140420/`, `https://m.uxiaoshuo.com/238/238242/`, `https://m.uxiaoshuo.com/140/140420/all.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
