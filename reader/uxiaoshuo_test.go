@@ -1,9 +1,14 @@
 package reader
 
 import (
+	"math"
 	"regexp"
 	"testing"
 )
+
+func Test_MathSqrt(t *testing.T) {
+	t.Fatal(math.Sqrt(10))
+}
 
 func Test_UxiaoshuoGetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
@@ -18,7 +23,6 @@ func Test_UxiaoshuoGetBooks(t *testing.T) {
 	}
 	t.Fatal(list)
 }
-
 func Test_UxiaoshuoGetChapters(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"

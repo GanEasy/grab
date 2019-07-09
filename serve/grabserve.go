@@ -96,6 +96,9 @@ func main() {
 	// 粉丝添加关注
 	api.POST("/sources", a.CreateUserSource)
 
+	// 搜索
+	api.GET("/select", a.SelectPosts)
+
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()

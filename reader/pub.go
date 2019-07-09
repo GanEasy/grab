@@ -19,3 +19,22 @@ func GetReader(drive string) Reader {
 	// todo 根据 drive 返回不同的解释器
 	return &DefaultReader{}
 }
+
+// Score2Level 积分阶梯
+func Score2Level(x int) int {
+	if x < 10 {
+		return 0
+	} else if x < 100 {
+		return 1
+	} else if x < 1000 {
+		return 2
+	} else if x < 10000 {
+		return 3
+	} else if x < 100000 {
+		return 4
+	} else if x < 1000000 {
+		return 5
+	} else {
+		return 0
+	}
+}

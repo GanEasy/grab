@@ -16,6 +16,9 @@ type Fans struct {
 	AvatarURL  string
 	Language   string
 	Timestamp  int64
+	Level      int32 // 用户等级
+	Score      int64 // 积分
+	Total      int64 // 总分
 	AppID      string
 	SessionKey string // 粉丝上次的session key 如果有变化，同步一次粉丝数据
 	CreatedAt  time.Time

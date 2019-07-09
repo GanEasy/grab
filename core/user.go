@@ -268,3 +268,10 @@ func SyncPost(name, wxto, from string, cate int32) {
 		post.Save()
 	}
 }
+
+// GetPostsByName 搜索post
+func GetPostsByName(name string) (posts []db.Post) {
+	var post db.Post
+	posts = post.GetPostsByName(name)
+	return posts
+}

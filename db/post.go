@@ -31,3 +31,9 @@ func (post *Post) GetPostByWxto(wxto string) {
 func (post *Post) GetPostByID(id int) {
 	DB().First(&post, id)
 }
+
+//GetPostsByName  通过名字获得查询记录
+func (post *Post) GetPostsByName(name string) (posts []Post) {
+	DB().Where("name = ?", name).Find(&posts)
+	return
+}
