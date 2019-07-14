@@ -97,7 +97,7 @@ func main() {
 	api.POST("/sources", a.CreateUserSource)
 
 	// 搜索
-	api.GET("/select", a.SelectPosts)
+	api.GET("/search", a.SearchPosts)
 
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {

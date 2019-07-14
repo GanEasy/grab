@@ -19,8 +19,8 @@ func SyncPosts(list reader.Catalog) {
 	}
 }
 
-// SelectPosts 搜索资源
-func SelectPosts(c echo.Context) error {
+// SearchPosts 搜索资源
+func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
 	openID := getOpenID(c)

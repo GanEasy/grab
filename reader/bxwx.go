@@ -114,6 +114,7 @@ func (r BxwxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `https://m.bxwx.la/b/187/187253/9475107.html`, `https://m.bxwx.la/b/53/53693/3388765.html`, ``)
 		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
