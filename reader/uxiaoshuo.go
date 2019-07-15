@@ -169,7 +169,7 @@ func (r UxiaoshuoReader) GetInfo(urlStr string) (ret Content, err error) {
 		ret.Title = article.Title
 	}
 
-	reg := regexp.MustCompile(`<a(.+)>([^<]+)<\/a>`)
+	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 

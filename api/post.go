@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/reader"
@@ -32,16 +33,26 @@ func SearchPosts(c echo.Context) error {
 	user, _ := getUser(openID)
 	posts := cpi.GetPostsByName(name)
 
+	var intro string
 	if len(posts) > 0 {
 		for _, v := range posts {
 			if user.Level >= v.Level {
+				// intro :=
+				link, err := url.Parse(v.From)
+
+				if err == nil && link.Host != "" {
+					intro = link.Host
+				} else {
+					intro = ``
+				}
+
 				catelog.Cards = append(
 					catelog.Cards,
 					reader.Card{
 						v.Name,
 						v.WxTo,
-						``,
-						`link`,
+						intro,
+						`card`,
 						``,
 						nil,
 						v.From,
