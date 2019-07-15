@@ -77,8 +77,8 @@ func GetResources() []Item {
 		// Item{`落秋中文`, `/pages/transfer/list?action=resource&drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 
 		// drive=article&url=aHR0cHM6Ly93ZWNoYXRyYW5rLmNvbS9nZXRsaXN0
-		Item{`微信精选`, `/pages/catalog?drive=article&url=` + EncodeURL(`https://wechatrank.com/getlist`), "", "link"},
-		Item{`妹子图`, `/pages/rss?drive=rss&url=` + EncodeURL(`https://rsshub.app/mzitu/home`), "", "link"},
+		// Item{`微信精选`, `/pages/catalog?drive=article&url=` + EncodeURL(`https://wechatrank.com/getlist`), "", "link"},
+		// Item{`妹子图`, `/pages/rss?drive=rss&url=` + EncodeURL(`https://rsshub.app/mzitu/home`), "", "link"},
 
 		Item{`起点小说网`, `/pages/categories?drive=qidian&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
 		Item{`纵横小说网`, `/pages/categories?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
