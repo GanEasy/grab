@@ -10,7 +10,7 @@ func GetWaitExamineClassify() []Item {
 		Item{`从学徒到工匠精校版`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-from-appreciate-to-artisan`), "", "card"},
 		Item{`微信小程序开发入门系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/wechat-miniprogram-tutorial`), "", "card"},
 		Item{`从入门到精通系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-tutorial-5_7`), "", "card"},
-		Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
+		// Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
 	}
 	return list
 }
