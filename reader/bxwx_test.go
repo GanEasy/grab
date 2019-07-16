@@ -36,6 +36,7 @@ func Test_BxwxGetCatalog(t *testing.T) {
 func Test_BxwxGetList(t *testing.T) {
 	urlStr := `https://m.bxwx.la/binfo/316/316850.htm`
 	urlStr = `https://m.bxwx.la/bsort1/0/1.htm`
+	urlStr = `https://m.bxwx.la/bsort1/0/8.htm`
 	reader := BxwxReader{}
 	list, err := reader.GetList(urlStr)
 	if err != nil {
