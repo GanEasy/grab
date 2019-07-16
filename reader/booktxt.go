@@ -2,6 +2,7 @@ package reader
 
 import (
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -166,6 +167,14 @@ func (r BooktxtReader) GetInfo(urlStr string) (ret Content, err error) {
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
+
+	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
+
+	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
+
+	reg2 := regexp.MustCompile(`本章未完，请点击下一页继续阅读....`)
+
+	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
 	ret.SourceURL = urlStr
 

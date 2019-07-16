@@ -23,16 +23,17 @@ func (r SeventeenKReader) GetCategories(urlStr string) (list Catalog, err error)
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`奇幻玄幻`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_21_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_24_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`都市小说`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_3_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`历史军事`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_22_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`游戏竞技`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_23_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`科幻末世`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/2_14_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`古装言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/3_5_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`都市言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/3_17_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`浪漫青春`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/3_20_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
-		Card{`幻想言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`http://all.17k.com/lib/book/3_18_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+
+		Card{`奇幻玄幻`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_21_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_24_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`都市小说`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_3_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_22_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`游戏竞技`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_23_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`科幻末世`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/2_14_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`古装言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_5_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_17_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`浪漫青春`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_20_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
+		Card{`幻想言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_18_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -64,7 +65,7 @@ func (r SeventeenKReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.17k.com/book/2897539.html`, `http://www.17k.com/book/2927482.html`, `http://www.17k.com/list/2897539.html`)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.17k.com/book/2897539.html`, `https://www.17k.com/book/2927482.html`, `https://www.17k.com/list/2897539.html`)
 		if state {
 			needLinks = append(needLinks, l)
 		}
@@ -114,7 +115,7 @@ func (r SeventeenKReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.17k.com/chapter/2927485/36602417.html`, `http://www.17k.com/chapter/493239/36611963.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.17k.com/chapter/2927485/36602417.html`, `https://www.17k.com/chapter/493239/36611963.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
