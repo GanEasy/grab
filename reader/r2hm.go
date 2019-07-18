@@ -2,7 +2,6 @@ package reader
 
 import (
 	"errors"
-	"log"
 	"net/url"
 	"strings"
 
@@ -173,7 +172,7 @@ func (r R2hmReader) GetInfo(urlStr string) (ret Content, err error) {
 	ret.SourceURL = urlStr
 
 	links, _ := GetLinkByHTML(urlStr, html)
-	log.Println(`article.Images`, links, ImagesBuildHTML(article.Images))
+	// log.Println(`article.Images`, links, ImagesBuildHTML(article.Images))
 	ret.Previous = GetPreviousLink(links)
 	if ret.Previous.URL != `` {
 		ret.Previous.URL = EncodeURL(ret.Previous.URL)
