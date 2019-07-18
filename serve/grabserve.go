@@ -133,7 +133,9 @@ func main() {
 		guide := grab.GetGuide(drive)
 		list, _ := guide.GetList(urlStr)
 
-		go a.SyncPosts(list)
+		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` {
+			go a.SyncPosts(list)
+		}
 
 		return c.JSON(http.StatusOK, list)
 	})
