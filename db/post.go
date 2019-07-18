@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -35,7 +34,7 @@ func (post *Post) GetPostByID(id int) {
 
 //GetPostsByName  通过名字获得查询记录
 func (post *Post) GetPostsByName(name string) (posts []Post) {
-	DB().Where("name LIKE ?", fmt.Sprintf(`%%v%`, name)).Find(&posts)
+	DB().Where("name LIKE ?", "%"+name+"%").Find(&posts)
 	// DB().Where("name = ?", name).Find(&posts)
 	return
 }
