@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"math/rand"
@@ -14,8 +15,21 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-// 函数包
+//ImagesBuildHTML 图片组转html
+func ImagesBuildHTML(images []string) string {
 
+	var buffer bytes.Buffer
+	for _, v := range images {
+
+		buffer.WriteString(`<img src="`)
+		buffer.WriteString(v)
+		buffer.WriteString(`">`)
+	}
+
+	return buffer.String()
+}
+
+// 函数包
 //GetLinkByHTML 获取网页内容所有链接
 func GetLinkByHTML(urlStr, html string) (links []Link, err error) {
 	// 没有 html标签 或者 body 标签可能出现文档解释异常
@@ -94,6 +108,16 @@ func GetActicleByHTML(html string) (article *html2article.Article, err error) {
 	}
 
 	return ext.ToArticle()
+}
+
+//GetActicleForHTML 由Html返回 *html2article.Article (纯原文)
+func GetActicleForHTML(html string) (article *html2article.Article, err error) {
+	ext, err := html2article.NewFromHtml(html)
+	if err != nil {
+		return
+	}
+
+	return ext.HTMLToArticle()
 }
 
 //GetActicleByContent 由Html返回*html2article.Article
