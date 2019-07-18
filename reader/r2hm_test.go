@@ -26,3 +26,14 @@ func Test_R2hmReaderGetCatalog(t *testing.T) {
 	}
 	t.Fatal(list)
 }
+
+func Test_R2hmReaderGetList(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapbook/4891.html`
+	urlStr = `https://r2hm.com/booklist?tag=%E5%85%A8%E9%83%A8&area=-1&end=-1`
+	reader := R2hmReader{}
+	list, err := reader.GetList(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
