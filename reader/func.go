@@ -93,7 +93,7 @@ func GetPreviousLink(links []Link) Link {
 //GetNextLink 获取下一页或者下一章
 func GetNextLink(links []Link) Link {
 	for _, link := range links {
-		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下页`) || strings.Contains(link.Title, `下一章`) || strings.Contains(link.Title, `下章`) || strings.Contains(link.Title, `>`) {
+		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下页`) || strings.Contains(link.Title, `下一章`) || strings.Contains(link.Title, `下章`) || link.Title == `>` {
 			return Link{Title: "next", URL: link.URL}
 		}
 	}
