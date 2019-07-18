@@ -2,6 +2,7 @@ package reader
 
 import (
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -23,22 +24,25 @@ func (r BxwxReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		// Card{`全部`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort0/0/1.htm`), "", `link`, ``, nil},
-		// Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort1/0/1.htm`), "", `link`, ``, nil},
-		// Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort2/0/1.htm`), "", `link`, ``, nil},
-		// Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort3/0/1.htm`), "", `link`, ``, nil},
-		// Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort4/0/1.htm`), "", `link`, ``, nil},
-		// Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort5/0/1.htm`), "", `link`, ``, nil},
-		// Card{`风流竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort6/0/1.htm`), "", `link`, ``, nil},
-		// Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort7/0/1.htm`), "", `link`, ``, nil},
-		Card{`全部`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week.html`), "", `link`, ``, nil},
-		Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week1.html`), "", `link`, ``, nil},
-		Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week2.html`), "", `link`, ``, nil},
-		Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week3.html`), "", `link`, ``, nil},
-		Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week4.html`), "", `link`, ``, nil},
-		Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week5.html`), "", `link`, ``, nil},
-		Card{`风流竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week6.html`), "", `link`, ``, nil},
-		Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week7.html`), "", `link`, ``, nil},
+
+		// https://m.bxwx.la/bxwx/week.html    https://m.bxwx.la/bsort0/0/1.htm
+		Card{`全部分类`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort0/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort1/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort2/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort3/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort4/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort5/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`网游竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort6/0/1.htm`), "", `link`, ``, nil, ``},
+		Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bsort7/0/1.htm`), "", `link`, ``, nil, ``},
+
+		Card{`全部热门`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week1.html`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week2.html`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week3.html`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week4.html`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week5.html`), "", `link`, ``, nil, ``},
+		Card{`游戏竞技`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week6.html`), "", `link`, ``, nil, ``},
+		Card{`女生频道`, `/pages/list?action=list&drive=bxwx&url=` + EncodeURL(`https://m.bxwx.la/bxwx/week7.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -71,6 +75,7 @@ func (r BxwxReader) GetList(urlStr string) (list Catalog, err error) {
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `https://m.bxwx.la/b/246/246596/`, `https://m.bxwx.la/b/287/287378/`, `https://m.bxwx.la/binfo/246/246596.htm`)
 		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
@@ -165,6 +170,14 @@ func (r BxwxReader) GetInfo(urlStr string) (ret Content, err error) {
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
+
+	reg := regexp.MustCompile(`<a([^>]+)>([^，]+)<\/a>`)
+
+	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
+
+	reg2 := regexp.MustCompile(`还在用浏览器看([^<]+)立即下载&gt;&gt;&gt;`)
+
+	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
 	ret.SourceURL = urlStr
 

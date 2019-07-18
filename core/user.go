@@ -256,3 +256,22 @@ func GetFansByOpenID(openID string) (*db.Fans, error) {
 	}
 	return &fans, err
 }
+
+// SyncPost 保存数据
+func SyncPost(name, wxto, from string, cate int32) {
+	var post db.Post
+	if wxto != "" {
+		post.GetPostByWxto(wxto)
+		post.Cate = cate
+		post.Name = name
+		post.From = from
+		post.Save()
+	}
+}
+
+// GetPostsByName 搜索post
+func GetPostsByName(name string) (posts []db.Post) {
+	var post db.Post
+	posts = post.GetPostsByName(name)
+	return posts
+}

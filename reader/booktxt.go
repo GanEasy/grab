@@ -2,6 +2,7 @@ package reader
 
 import (
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -23,14 +24,14 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/0_1.html`), "", `link`, ``, nil},
-		Card{`玄幻`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/1_1.html`), "", `link`, ``, nil},
-		Card{`修真`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/2_1.html`), "", `link`, ``, nil},
-		Card{`都市`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/3_1.html`), "", `link`, ``, nil},
-		Card{`穿越`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/4_1.html`), "", `link`, ``, nil},
-		Card{`网游`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/5_1.html`), "", `link`, ``, nil},
-		Card{`科幻`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/6_1.html`), "", `link`, ``, nil},
-		Card{`其他`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/7_1.html`), "", `link`, ``, nil},
+		Card{`全部`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/0_1.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/1_1.html`), "", `link`, ``, nil, ``},
+		Card{`修真`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/2_1.html`), "", `link`, ``, nil, ``},
+		Card{`都市`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/3_1.html`), "", `link`, ``, nil, ``},
+		Card{`穿越`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/4_1.html`), "", `link`, ``, nil, ``},
+		Card{`网游`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/5_1.html`), "", `link`, ``, nil, ``},
+		Card{`科幻`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/6_1.html`), "", `link`, ``, nil, ``},
+		Card{`其他`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/7_1.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -67,6 +68,7 @@ func (r BooktxtReader) GetList(urlStr string) (list Catalog, err error) {
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `https://m.booktxt.net/wapbook/10441.html`, `https://m.booktxt.net/wapbook/9643.html`, ``)
 		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
@@ -165,6 +167,14 @@ func (r BooktxtReader) GetInfo(urlStr string) (ret Content, err error) {
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
+
+	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
+
+	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
+
+	reg2 := regexp.MustCompile(`本章未完，请点击下一页继续阅读....`)
+
+	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
 	ret.SourceURL = urlStr
 

@@ -10,7 +10,7 @@ func GetWaitExamineClassify() []Item {
 		Item{`从学徒到工匠精校版`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-from-appreciate-to-artisan`), "", "card"},
 		Item{`微信小程序开发入门系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/wechat-miniprogram-tutorial`), "", "card"},
 		Item{`从入门到精通系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-tutorial-5_7`), "", "card"},
-		Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
+		// Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
 	}
 	return list
 }
@@ -50,8 +50,12 @@ func GetAbouts() []Item {
 //GetHelps 获取帮助(常见问题)
 func GetHelps() []Item {
 	var list = []Item{
-		Item{`Q:如何订阅`, ``, "A:复制您感兴趣的网页链接地址，在“创建源”中提交即可！", "card"},
-		Item{`Q:选择类型`, ``, "A:纯文字选择文本类解释器，有图片有文本选择图文类，RSS链接请选择Rss", "card"},
+		Item{`Q:有什么用？`, ``, "A:工具通过转码技术实现第三方资源阅读", "card"},
+		Item{`Q:能看什么？`, ``, "A:对于用户感兴趣的网站内容进行转码，以供阅读", "card"},
+		Item{`Q:资源免费看？`, ``, "A:免费提供对第三方网站数据转码，但不提供对方需要授权才能阅读的内容(我们不破解第三方需要付费才能阅读的内容，你可以通过准确关键字搜索看看有哪些平台有相应免费资源)。", "card"},
+		Item{`Q:资源找不到？`, ``, "A:您可以通过百度搜索引擎找到资源复制其目录地址，通过我的》创建源》粘目录链接地址》点击确认进行转码(纯文字选择文本类解释器，有图片有文本选择图文类，RSS链接请选择Rss)，也可以直接联系客服免费订制资源转码服务", "card"},
+		Item{`Q:如何收藏？`, ``, "A:在目录级别，点击“加入看单”，即可在“看单”快速进入目录查看资源", "card"},
+		Item{`Q:安全和隐私`, ``, "A:服务器不收集用户任何数据，看单缓存在本地，通过我的》清空数据即可清除用户所有数据(部分手机删除最近使用也会清空数据)", "card"},
 	}
 	return list
 }
@@ -77,8 +81,8 @@ func GetResources() []Item {
 		// Item{`落秋中文`, `/pages/transfer/list?action=resource&drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 
 		// drive=article&url=aHR0cHM6Ly93ZWNoYXRyYW5rLmNvbS9nZXRsaXN0
-		Item{`微信精选`, `/pages/catalog?drive=article&url=` + EncodeURL(`https://wechatrank.com/getlist`), "", "link"},
-		Item{`妹子图`, `/pages/rss?drive=rss&url=` + EncodeURL(`https://rsshub.app/mzitu/home`), "", "link"},
+		// Item{`微信精选`, `/pages/catalog?drive=article&url=` + EncodeURL(`https://wechatrank.com/getlist`), "", "link"},
+		// Item{`妹子图`, `/pages/rss?drive=rss&url=` + EncodeURL(`https://rsshub.app/mzitu/home`), "", "link"},
 
 		Item{`起点小说网`, `/pages/categories?drive=qidian&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
 		Item{`纵横小说网`, `/pages/categories?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},

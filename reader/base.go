@@ -21,6 +21,7 @@ type Card struct {
 	Type   string   `json:"type"`   // card展示形式 media card text image images link
 	Cover  string   `json:"cover"`  // 封面图片
 	Images []string `json:"images"` // 图片组效果时图片列表
+	From   string   `json:"from"`
 }
 
 // Link 链接

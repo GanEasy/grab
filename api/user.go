@@ -54,6 +54,9 @@ func GetToken(c echo.Context) error {
 		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"token": t,
+			"level": fans.Level,
+			"score": fans.Score,
+			"total": fans.Total,
 		})
 	}
 

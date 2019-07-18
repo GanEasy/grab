@@ -24,14 +24,14 @@ func (r UxiaoshuoReader) GetCategories(urlStr string) (list Catalog, err error) 
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/0/1.html`), "", `link`, ``, nil},
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/1/1.html`), "", `link`, ``, nil},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/2/1.html`), "", `link`, ``, nil},
-		Card{`都市言情`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/3/1.html`), "", `link`, ``, nil},
-		Card{`历史军事`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/4/1.html`), "", `link`, ``, nil},
-		Card{`科幻灵异`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/5/1.html`), "", `link`, ``, nil},
-		Card{`网游竞技`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/6/1.html`), "", `link`, ``, nil},
-		Card{`女生频道`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/7/1.html`), "", `link`, ``, nil},
+		Card{`全部`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/0/1.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/1/1.html`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/2/1.html`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/3/1.html`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/4/1.html`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/5/1.html`), "", `link`, ``, nil, ``},
+		Card{`网游竞技`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/6/1.html`), "", `link`, ``, nil, ``},
+		Card{`女生频道`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/7/1.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -65,7 +65,7 @@ func (r UxiaoshuoReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.uxiaoshuo.com/140/140420/`, `https://m.uxiaoshuo.com/238/238242/`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.uxiaoshuo.com/140/140420/`, `https://m.uxiaoshuo.com/238/238242/`, `https://m.uxiaoshuo.com/140/140420/all.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -105,7 +105,8 @@ func (r UxiaoshuoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)_无弹窗`, g.Find("title").Text(), "title")
+	// 偷心透视小村医最新章节,
+	list.Title = FindString(`(?P<title>(.)+)最新章节,`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -168,7 +169,7 @@ func (r UxiaoshuoReader) GetInfo(urlStr string) (ret Content, err error) {
 		ret.Title = article.Title
 	}
 
-	reg := regexp.MustCompile(`<a(.+)>([^<]+)<\/a>`)
+	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 

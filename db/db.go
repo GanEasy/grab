@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	DB().AutoMigrate(&Sign{}, &Fans{}, &Qrcode{})
+	DB().AutoMigrate(&Sign{}, &Fans{}, &Qrcode{}, &Post{})
 }
 
 var db *gorm.DB
@@ -25,7 +25,7 @@ func DB() *gorm.DB {
 		newDb.DB().SetMaxIdleConns(10)
 		newDb.DB().SetMaxOpenConns(100)
 
-		newDb.LogMode(false)
+		newDb.LogMode(true)
 		db = newDb
 	}
 

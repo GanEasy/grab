@@ -7,7 +7,7 @@ import (
 func Test_SeventeenKGetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
-	urlStr := "http://all.17k.com/lib/book/2_21_0_0_0_0_0_0_1.html"
+	urlStr := "http://www.17k.com/all/book/2_21_0_0_0_0_0_0_1.html"
 	reader := SeventeenKReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()
