@@ -153,6 +153,10 @@ func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	html = reg.ReplaceAllString(html, "")
 
+	reg2 := regexp.MustCompile(`<br([^>]+)>`)
+
+	html = reg2.ReplaceAllString(html, "")
+
 	if err != nil {
 		return ret, err
 	}
