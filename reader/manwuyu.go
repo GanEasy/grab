@@ -90,7 +90,7 @@ func (r ManwuyuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	html, err := GetHTML(urlStr, `.content`)
 	if err != nil {
 		return
 	}
@@ -146,22 +146,23 @@ func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	html, err := GetHTML(urlStr, `.article-content`)
 
 	// <noscript><img class="aligncenter myImgClass" src="http://www.manwuyu.com/wp-content/uploads/2019/04/46897-1116820.jpg" /><br /></noscript>
-	reg := regexp.MustCompile(`<noscript><img([^<]+)>`)
+	reg := regexp.MustCompile(`<noscript><img([^>]+)>`)
 
 	html = reg.ReplaceAllString(html, "")
 
-	reg2 := regexp.MustCompile(`<([\/]*)(br|p|noscript)([^>]*)>`)
+	// reg2 := regexp.MustCompile(`<([\/]*)(br|p|noscript)([^>]*)>`)
 
-	html = reg2.ReplaceAllString(html, "")
+	// html = reg2.ReplaceAllString(html, "")
 
 	if err != nil {
 		return ret, err
 	}
+
 	// log.Println(html)
-	article, err := GetActicleByHTML(html)
+	article, err := GetActicleForHTML(html)
 	if err != nil {
 		return ret, err
 	}
@@ -173,8 +174,11 @@ func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
 	ret.Title = FindString(`在线看,(?P<title>(.)+) – 漫物语`, article.Title, "title")
 
 	// ret.Title = article.Title
-	ret.Content = article.ReadContent
-	ret.PubAt = string(article.Publishtime)
+	// ret.Content = article.ReadContent
+	// log.Println(article.ReadContent)
+
+	ret.Content = ImagesBuildHTML(article.Images)
+	// ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 
 	links, _ := GetLinkByHTML(urlStr, html)

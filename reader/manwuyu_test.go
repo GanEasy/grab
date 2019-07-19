@@ -7,6 +7,7 @@ import (
 func Test_ManwuyuReaderGetInfo(t *testing.T) {
 	urlStr := `http://www.manwuyu.com/15396.html`
 	urlStr = `http://www.manwuyu.com/11132.html`
+	// urlStr = `http://www.manwuyu.com/2838.html`
 	// urlStr = `https://m.35xs.com/book/237551/51896850.html`
 	reader := ManwuyuReader{}
 	list, err := reader.GetInfo(urlStr)
