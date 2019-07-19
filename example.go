@@ -93,6 +93,7 @@ func GetResources() []Item {
 		Item{`笔下文学`, `/pages/categories?drive=bxwx&url=` + EncodeURL(`https://www.bxwx.la`), "", "link"},
 		Item{`U小说阅读网`, `/pages/categories?drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/`), "", "link"},
 		Item{`无双漫画`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
+		Item{`漫物语`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
 		// SeventeenKReader
 		// Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}
