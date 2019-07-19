@@ -149,11 +149,11 @@ func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
 	html, err := GetHTML(urlStr, ``)
 
 	// <noscript><img class="aligncenter myImgClass" src="http://www.manwuyu.com/wp-content/uploads/2019/04/46897-1116820.jpg" /><br /></noscript>
-	reg := regexp.MustCompile(`<noscript><img([^<]+)><(br|p)([^<]+)><\/noscript>`)
+	reg := regexp.MustCompile(`<noscript><img([^<]+)>`)
 
 	html = reg.ReplaceAllString(html, "")
 
-	reg2 := regexp.MustCompile(`<br([^>]+)>`)
+	reg2 := regexp.MustCompile(`<([\/]*)(br|p|noscript)([^>]*)>`)
 
 	html = reg2.ReplaceAllString(html, "")
 
