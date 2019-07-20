@@ -134,7 +134,9 @@ func main() {
 		list, _ := guide.GetList(urlStr)
 
 		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` {
-			go a.SyncPosts(list)
+			go a.SyncPosts(list, 1)
+		} else if drive == `manwuyu` {
+			go a.SyncPosts(list, 2)
 		}
 
 		return c.JSON(http.StatusOK, list)

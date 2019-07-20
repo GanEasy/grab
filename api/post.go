@@ -11,11 +11,11 @@ import (
 )
 
 // SyncPosts 添加源
-func SyncPosts(list reader.Catalog) {
+func SyncPosts(list reader.Catalog, cate int32) {
 	if len(list.Cards) > 0 {
 		for _, v := range list.Cards {
 			// fmt.Println(`tv`, v, list.Title)
-			cpi.SyncPost(v.Title, v.WxTo, v.From, 1)
+			cpi.SyncPost(v.Title, v.WxTo, v.From, cate)
 		}
 	}
 }

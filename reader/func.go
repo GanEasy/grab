@@ -116,7 +116,6 @@ func GetActicleForHTML(html string) (article *html2article.Article, err error) {
 	if err != nil {
 		return
 	}
-
 	return ext.HTMLToArticle()
 }
 

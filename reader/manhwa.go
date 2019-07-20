@@ -17,7 +17,7 @@ func (r ManhwaReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.booktxt.com/`
 
-	list.Title = `分类-无双漫画`
+	list.Title = `分类-漫画台`
 
 	list.SourceURL = urlStr
 
@@ -52,7 +52,7 @@ func (r ManhwaReader) GetList(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)-无双漫画`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)-漫画台`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -66,6 +66,7 @@ func (r ManhwaReader) GetList(urlStr string) (list Catalog, err error) {
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `https://www.manhwa.cc/book/996`, `https://www.manhwa.cc/book/955`, ``)
 		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
