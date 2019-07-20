@@ -135,7 +135,7 @@ func main() {
 
 		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` {
 			go a.SyncPosts(list, 1)
-		} else if drive == `manwuyu` {
+		} else if drive == `manhwa` || drive == `r2hm` {
 			go a.SyncPosts(list, 2)
 		}
 
