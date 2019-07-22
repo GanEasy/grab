@@ -115,7 +115,7 @@ func (r Soe8Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 偷心透视小村医最新章节,
-	list.Title = FindString(`(?P<title>(.)+)_`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_(?P<title2>(.)+)_`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
