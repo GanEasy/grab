@@ -61,14 +61,14 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 		list.Title = g.Find("title").Text()
 	}
 
-	link, _ := url.Parse(urlStr)
-
 	g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
 
 	if e2 != nil {
 		return list, e2
 	}
-	var links = GetLinks(g2, link)
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
 
 	var needLinks []Link
 	var state bool
@@ -84,7 +84,8 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 
 	list.SourceURL = urlStr
 
-	list.Next = GetNextLink(links)
+	var links2 = GetLinks(g2, link)
+	list.Next = GetNextLink(links2)
 	if list.Next.URL != `` {
 		list.Next.URL = EncodeURL(list.Next.URL)
 	}
