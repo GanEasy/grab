@@ -145,7 +145,7 @@ func (r Soe8Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	// list.Next = GetNextLink(links2)
 	if list.Next.URL != `` {
-		// list.Next.URL = EncodeURL(list.Next.URL)
+		list.Next.URL = EncodeURL(list.Next.URL)
 	}
 	list.Hash = GetCatalogHash(list)
 
