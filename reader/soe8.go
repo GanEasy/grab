@@ -44,12 +44,14 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.fk`)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
 
-	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+	html2, err := FindContentHTML(html, `.fk`)
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
 	if e != nil {
 		return list, e
@@ -61,7 +63,12 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	var links = GetLinks(g, link)
+	g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e2 != nil {
+		return list, e2
+	}
+	var links = GetLinks(g2, link)
 
 	var needLinks []Link
 	var state bool
@@ -107,7 +114,7 @@ func (r Soe8Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 偷心透视小村医最新章节,
-	list.Title = FindString(`(?P<title>(.)+)_,`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
