@@ -32,6 +32,9 @@ func main() {
 	// 获取二维码(图片资源)
 	e.GET("/qrcode", a.GetQrcode)
 
+	// 从二维码进来跳哪里去
+	e.GET("/qrcodejump", a.GetQrcodeWxto)
+
 	// Restricted group
 	api := e.Group("/api")
 
@@ -132,6 +135,13 @@ func main() {
 		drive := c.QueryParam("drive")
 		guide := grab.GetGuide(drive)
 		list, _ := guide.GetList(urlStr)
+
+		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `soe8` {
+			go a.SyncPosts(list, 1)
+		} else if drive == `manhwa` || drive == `r2hm` {
+			go a.SyncPosts(list, 2)
+		}
+
 		return c.JSON(http.StatusOK, list)
 	})
 
