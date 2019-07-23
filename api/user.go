@@ -54,6 +54,7 @@ func GetToken(c echo.Context) error {
 		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"token": t,
+			"uid":   fans.ID,
 			"level": fans.Level,
 			"score": fans.Score,
 			"total": fans.Total,
@@ -120,6 +121,29 @@ func GetQrcode(c echo.Context) error {
 
 	var err2 error
 	return err2
+}
+
+// GetQrcodeWxto 二维码ID去哪里
+func GetQrcodeWxto(c echo.Context) error {
+	// 去哪里
+	qrid := c.QueryParam("qrid")
+	if qrid == `` {
+		return c.HTML(http.StatusOK, `pages/index`)
+	}
+	var qrcode = db.Qrcode{}
+
+	id, e := strconv.Atoi(qrid)
+	if e != nil {
+		return c.HTML(http.StatusOK, `pages/index`)
+	}
+	qrcode.GetQrcodeByID(id)
+
+	if qrcode.WxTo == `` {
+		return c.HTML(http.StatusOK, `pages/index`)
+	}
+
+	log.Println(`qrcode to `, qrcode.WxTo)
+	return c.HTML(http.StatusOK, qrcode.WxTo)
 }
 
 // GetUserFollows 获取用户关注的

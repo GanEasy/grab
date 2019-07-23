@@ -32,6 +32,9 @@ func main() {
 	// 获取二维码(图片资源)
 	e.GET("/qrcode", a.GetQrcode)
 
+	// 从二维码进来跳哪里去
+	e.GET("/qrcodejump", a.GetQrcodeWxto)
+
 	// Restricted group
 	api := e.Group("/api")
 

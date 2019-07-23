@@ -18,6 +18,16 @@ func Test_GetHTML(t *testing.T) {
 	t.Fatal(list)
 }
 
+func Test_GetHTMLOrCache(t *testing.T) {
+	// urlStr := "http://feeds.twit.tv/twit.xml"
+	urlStr := "http://feed.williamlong.info/"
+	list, err := GetHTMLOrCache(urlStr, ``)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
 func Test_GetURLHost(t *testing.T) {
 	urlStr := `http://feeds.twit.tv/twit.xml`
 	urlStr = "https://m.uxiaoshuo.com/281/281973/1798980.html"
