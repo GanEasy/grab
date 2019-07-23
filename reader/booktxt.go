@@ -95,7 +95,7 @@ func (r BooktxtReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	html, err := GetHTMLOrCache(urlStr, ``)
 	if err != nil {
 		return
 	}
@@ -151,7 +151,7 @@ func (r BooktxtReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	html, err := GetHTMLOrCache(urlStr, ``)
 	if err != nil {
 		return ret, err
 	}

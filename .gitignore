@@ -17,4 +17,6 @@
 
 /reader/cache/*
 
+/serve/cache/*
+
 conf.toml
