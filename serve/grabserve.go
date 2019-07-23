@@ -136,7 +136,7 @@ func main() {
 		guide := grab.GetGuide(drive)
 		list, _ := guide.GetList(urlStr)
 
-		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` {
+		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `soe8` {
 			go a.SyncPosts(list, 1)
 		} else if drive == `manhwa` || drive == `r2hm` {
 			go a.SyncPosts(list, 2)

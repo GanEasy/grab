@@ -92,6 +92,7 @@ func GetResources() []Item {
 		// Item{`7878小说`, `/pages/categories?drive=7878xs&url=` + EncodeURL(`http://www.7878xs.com`), "", "link"},
 		Item{`笔下文学`, `/pages/categories?drive=bxwx&url=` + EncodeURL(`https://www.bxwx.la`), "", "link"},
 		Item{`U小说阅读网`, `/pages/categories?drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/`), "", "link"},
+		Item{`笔趣阁soe8`, `/pages/categories?drive=soe8&url=` + EncodeURL(`http://m.soe8.com/`), "", "link"},
 
 		Item{`╅╅╅︺⑱︺╅╆╆`, ``, "", "link"},
 		Item{`未满18岁禁止观看`, ``, "", "link"},
