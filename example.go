@@ -93,9 +93,9 @@ func GetResources() []Item {
 		Item{`笔下文学`, `/pages/categories?drive=bxwx&url=` + EncodeURL(`https://www.bxwx.la`), "", "link"},
 		Item{`U小说阅读网`, `/pages/categories?drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/`), "", "link"},
 		Item{`笔趣阁soe8`, `/pages/categories?drive=soe8&url=` + EncodeURL(`http://m.soe8.com/`), "", "link"},
+		Item{`笔趣阁xbiquge`, `/pages/categories?drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/`), "", "link"},
 
-		Item{`╅╅╅︺⑱︺╅╆╆`, ``, "", "link"},
-		Item{`未满18岁禁止观看`, ``, "", "link"},
+		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
 		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
 		Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
 		Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
