@@ -11,7 +11,12 @@ import (
 
 func TestGetPostsByName(t *testing.T) {
 	var post Post
-	t.Fatal(post.GetPostsByName(`点道为止`))
+	t.Fatal(post.GetPostsByName(``))
+}
+
+func TestGetPostsByNameLimitLevel(t *testing.T) {
+	var post Post
+	t.Fatal(post.GetPostsByNameLimitLevel(`古武帝师`, 0))
 }
 
 func TestGetPostsByNameFn(t *testing.T) {

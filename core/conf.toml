@@ -12,3 +12,6 @@ password = "123456"
 sslmode = "disable"
 dbname = "readerminapp"
 port = 5432
+
+[search]
+limit_level = true

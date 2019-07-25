@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	cpi "github.com/GanEasy/grab/core"
+	"github.com/GanEasy/grab/db"
 	"github.com/GanEasy/grab/reader"
 	"github.com/labstack/echo"
 )
@@ -31,8 +32,13 @@ func SearchPosts(c echo.Context) error {
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)
 	user, _ := getUser(openID)
-	posts := cpi.GetPostsByName(name)
-
+	cf := cpi.GetConf()
+	var posts []db.Post
+	if cf.Search.LimitLevel { // 开启严格检查
+		posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
+	} else {
+		posts = cpi.GetPostsByName(name)
+	}
 	var intro string
 	if len(posts) > 0 {
 		for _, v := range posts {

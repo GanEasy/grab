@@ -5,6 +5,7 @@ import (
 
 	"github.com/GanEasy/grab"
 	a "github.com/GanEasy/grab/api"
+	cpi "github.com/GanEasy/grab/core"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -105,6 +106,11 @@ func main() {
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
+		cf := cpi.GetConf()
+		if cf.Search.LimitLevel { // 开启严格检查
+			list := grab.GetWaitExamineClassify()
+			return c.JSON(http.StatusOK, list)
+		}
 		// list := grab.GetWaitExamineClassify()
 		list := grab.GetResources()
 		return c.JSON(http.StatusOK, list)

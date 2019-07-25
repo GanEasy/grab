@@ -275,3 +275,10 @@ func GetPostsByName(name string) (posts []db.Post) {
 	posts = post.GetPostsByName(name)
 	return posts
 }
+
+// GetPostsByNameLimitLevel 搜索post
+func GetPostsByNameLimitLevel(name string, level int) (posts []db.Post) {
+	var post db.Post
+	posts = post.GetPostsByNameLimitLevel(name, level)
+	return posts
+}

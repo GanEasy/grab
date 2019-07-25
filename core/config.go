@@ -6,12 +6,18 @@ import "github.com/BurntSushi/toml"
 type Config struct {
 	ReaderMinApp ReaderMinApp
 	Database     Database
+	Search       Search
 }
 
 //ReaderMinApp 配置
 type ReaderMinApp struct {
 	AppID     string `toml:"app_id"`
 	AppSecret string `toml:"app_secret"`
+}
+
+//Search 配置
+type Search struct {
+	LimitLevel bool `toml:"limit_level"`
 }
 
 //Database 配置

@@ -34,7 +34,14 @@ func (post *Post) GetPostByID(id int) {
 
 //GetPostsByName  通过名字获得查询记录
 func (post *Post) GetPostsByName(name string) (posts []Post) {
-	DB().Limit(50).Where("name LIKE ?", "%"+name+"%").Find(&posts)
+	DB().Limit(100).Where("name LIKE ?", "%"+name+"%").Find(&posts)
+	// DB().Where("name = ?", name).Find(&posts)
+	return
+}
+
+//GetPostsByNameLimitLevel  通过名字获得查询记录 限制资源等级
+func (post *Post) GetPostsByNameLimitLevel(name string, level int) (posts []Post) {
+	DB().Limit(100).Where("name LIKE ?", "%"+name+"%").Where("level < ?", level).Find(&posts)
 	// DB().Where("name = ?", name).Find(&posts)
 	return
 }
