@@ -14,14 +14,11 @@ func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK,
-			`https://open.readfollow.com build by golang, author yizenghui. 
-/gethtml?url=&find=
-/gethtmllist?url=&find=
-/getbookchapters?url=
-/getbookchapterinfo?url=
-/getrsslist?url=
-/getarticlelist?url=
-/getarticle?url=
+			`https://open.readfollow.com build by golang, author yizenghui.  use the msut jwt token
+/list/:url?drive=
+/catalog/:url?drive=
+/info/:url?drive=
+drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xbiquge
 `)
 	})
 
@@ -142,7 +139,7 @@ func main() {
 		guide := grab.GetGuide(drive)
 		list, _ := guide.GetList(urlStr)
 
-		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `soe8` {
+		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `xbiquge` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `soe8` {
 			go a.SyncPosts(list, 1)
 		} else if drive == `manhwa` || drive == `r2hm` {
 			go a.SyncPosts(list, 2)
