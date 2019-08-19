@@ -96,6 +96,7 @@ func GetResources() []Item {
 		Item{`笔趣阁xbiquge`, `/pages/categories?drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/`), "", "link"},
 
 		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
+		Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
 		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
 		Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
 		Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},

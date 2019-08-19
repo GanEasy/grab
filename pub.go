@@ -31,6 +31,8 @@ func GetGuide(drive string) reader.Guide {
 		return &reader.ManwuyuReader{}
 	} else if drive == `manhwa` {
 		return &reader.ManhwaReader{}
+	} else if drive == `aimeizi5` {
+		return &reader.Aimeizi5Reader{}
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &reader.DefaultGuide{}
@@ -71,6 +73,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.ManwuyuReader{}
 	} else if drive == `manhwa` {
 		return &reader.ManhwaReader{}
+	} else if drive == `aimeizi5` {
+		return &reader.Aimeizi5Reader{}
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &reader.DefaultReader{}

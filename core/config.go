@@ -7,6 +7,7 @@ type Config struct {
 	ReaderMinApp ReaderMinApp
 	Database     Database
 	Search       Search
+	Ad           Ad
 }
 
 //ReaderMinApp 配置
