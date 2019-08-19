@@ -20,6 +20,14 @@ type Search struct {
 	LimitLevel bool `toml:"limit_level"`
 }
 
+//Ad 配置
+type Ad struct {
+	Screen     string `toml:"screen"`
+	Reward     string `toml:"reward"`
+	ListBanner string `toml:"list_banner"`
+	InfoBanner string `toml:"info_banner"`
+}
+
 //Database 配置
 type Database struct {
 	Type     string `toml:"type"`

@@ -14,10 +14,10 @@ func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK,
-			`https://open.readfollow.com build by golang, author yizenghui.  use the msut jwt token
-/list/:url?drive=
-/catalog/:url?drive=
-/info/:url?drive=
+			`https://open.readfollow.com build by golang, author yizenghui.  use the api must jwt token
+/api/list/:url?drive=
+/api/catalog/:url?drive=
+/api/info/:url?drive=
 drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xbiquge
 `)
 	})
