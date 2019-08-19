@@ -99,6 +99,7 @@ func GetResources() []Item {
 		Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
 		Item{`腐漫漫画(18禁)`, `/pages/categories?drive=fuman&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
 		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
+		Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
 		// Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
 		Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
 		// SeventeenKReader
