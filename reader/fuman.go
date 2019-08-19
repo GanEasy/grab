@@ -3,37 +3,40 @@ package reader
 import (
 	"errors"
 	"net/url"
-	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-//ManwuyuReader 顶点小说 (盗版小说网站)
-type ManwuyuReader struct {
+//FumanReader 顶点小说 (盗版小说网站)
+type FumanReader struct {
 }
 
 // GetCategories 获取所有分类
-func (r ManwuyuReader) GetCategories(urlStr string) (list Catalog, err error) {
+func (r FumanReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.booktxt.com/`
 
-	list.Title = `分类-漫物语`
+	list.Title = `分类-我爱妹子漫画`
 
 	list.SourceURL = urlStr
 
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`韩国漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/hgmanhua`), "", `link`, ``, nil, ``},
-		Card{`日本漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/rbmanhua`), "", `link`, ``, nil, ``},
-		Card{`全部漫画`, `/pages/list?action=list&drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
+		Card{`伦理`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=%E4%BC%A6%E7%90%86&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`恋爱`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=%E6%81%8B%E7%88%B1&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`情感`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=%E6%83%85%E6%84%9F&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`OL`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=OL&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`暧昧`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=%E6%9A%A7%E6%98%A7&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`韩国`, `/pages/list?action=list&drive=fuman&url=` + EncodeURL(`https://www.fuman.cc/booklist?tag=%E5%85%A8%E9%83%A8&area=1&end=-1`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
 
 // GetList 获取书籍列表列表
-func (r ManwuyuReader) GetList(urlStr string) (list Catalog, err error) {
+func (r FumanReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -50,7 +53,7 @@ func (r ManwuyuReader) GetList(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+),百度网盘迅雷下载`, g.Find("title").Text(), "title")
+	list.Title = FindString(`免费韩漫列表-(?P<title>(.)+)`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -62,13 +65,14 @@ func (r ManwuyuReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.manwuyu.com/tag/%E7%A7%9F%E9%87%91%E8%BD%AC%E6%8A%98%E7%82%B9`, `http://www.manwuyu.com/tag/%E6%BD%AE%E6%B9%BF%E7%9A%84%E5%8F%A3%E7%BA%A2`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.fuman.cc/book/400`, `https://www.fuman.cc/book/25`, ``)
 		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `manwuyu`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `fuman`)
 
 	list.SourceURL = urlStr
 
@@ -84,13 +88,13 @@ func (r ManwuyuReader) GetList(urlStr string) (list Catalog, err error) {
 }
 
 // GetCatalog 获取章节列表
-func (r ManwuyuReader) GetCatalog(urlStr string) (list Catalog, err error) {
+func (r FumanReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.content`)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
@@ -117,13 +121,13 @@ func (r ManwuyuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.manwuyu.com/15420.html`, `http://www.manwuyu.com/24863.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.fuman.cc/chapter/1011`, `https://www.fuman.cc/chapter/1018`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/article`, `manwuyu`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/article`, `fuman`)
 
 	list.SourceURL = urlStr
 
@@ -140,29 +144,22 @@ func (r ManwuyuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 }
 
 // GetInfo 获取详细内容
-func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
+func (r FumanReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.article-content`)
-
-	// <noscript><img class="aligncenter myImgClass" src="http://www.manwuyu.com/wp-content/uploads/2019/04/46897-1116820.jpg" /><br /></noscript>
-	reg := regexp.MustCompile(`<noscript><img([^>]+)>`)
-
-	html = reg.ReplaceAllString(html, "")
-
-	// reg2 := regexp.MustCompile(`<([\/]*)(br|p|noscript)([^>]*)>`)
-
-	// html = reg2.ReplaceAllString(html, "")
-
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return ret, err
 	}
-
 	// log.Println(html)
-	article, err := GetActicleForHTML(html)
+
+	html2, err := FindContentHTML(html, `.comicpage`)
+	// g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html2))
+	// html2article
+	article, err := GetActicleForHTML(html2)
 	if err != nil {
 		return ret, err
 	}
@@ -171,22 +168,22 @@ func (r ManwuyuReader) GetInfo(urlStr string) (ret Content, err error) {
 	if CheckStrIsLink(urlStr) != nil {
 		return ret, errors.New(`url error`)
 	}
-	ret.Title = FindString(`在线看,(?P<title>(.)+) – 漫物语`, article.Title, "title")
 
-	// ret.Title = article.Title
+	ret.Title = FindString(`(?P<title>(.)+)免费阅读-腐漫漫画`, article.Title, "title")
+
 	// ret.Content = article.ReadContent
-	// log.Println(article.ReadContent)
 
 	ret.Content = ImagesBuildHTML(article.Images)
 	// ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 
 	links, _ := GetLinkByHTML(urlStr, html)
+	// log.Println(`article.Images`, links, ImagesBuildHTML(article.Images))
 	ret.Previous = GetPreviousLink(links)
 	if ret.Previous.URL != `` {
 		ret.Previous.URL = EncodeURL(ret.Previous.URL)
 	}
-	//todo 现在不支持下一页 参数写在JS文件里面用脚本跳转的 (坑爹)
+
 	ret.Next = GetNextLink(links)
 	if ret.Next.URL != `` {
 		ret.Next.URL = EncodeURL(ret.Next.URL)
