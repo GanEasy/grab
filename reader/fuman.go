@@ -179,6 +179,9 @@ func (r FumanReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	ret.Title = FindString(`(?P<title>(.)+)免费阅读-腐漫漫画`, article.Title, "title")
 
+	reg := regexp.MustCompile(`【([^<]+)】`)
+
+	ret.Title = reg.ReplaceAllString(ret.Title, "")
 	// ret.Content = article.ReadContent
 
 	ret.Content = ImagesBuildHTML(article.Images)
