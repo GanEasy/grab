@@ -113,14 +113,14 @@ func (r FumanReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)全集`, g.Find("title").Text(), "title")
+	list.Title = FindString(`】(?P<title>(.)+)_热门漫画独家全集`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
 
-	reg := regexp.MustCompile(`【([^<]+)】`)
+	// reg := regexp.MustCompile(`【([^<]+)】`)
 
-	list.Title = reg.ReplaceAllString(list.Title, "")
+	// list.Title = reg.ReplaceAllString(list.Title, "")
 
 	link, _ := url.Parse(urlStr)
 
@@ -181,8 +181,14 @@ func (r FumanReader) GetInfo(urlStr string) (ret Content, err error) {
 		return ret, errors.New(`url error`)
 	}
 
-	ret.Title = FindString(`(?P<title>(.)+)免费阅读-腐漫漫画`, article.Title, "title")
+	ret.Title = FindString(`】(?P<title>(.)+)免费阅读-腐漫漫画`, article.Title, "title")
 
+	if ret.Title == `` {
+		ret.Title = article.Title
+	}
+	// reg := regexp.MustCompile(`【([^<]+)】`)
+
+	// ret.Title = reg.ReplaceAllString(ret.Title, "")
 	// ret.Content = article.ReadContent
 
 	ret.Content = ImagesBuildHTML(article.Images)
