@@ -29,7 +29,7 @@ func Test_FumanReaderGetCatalog(t *testing.T) {
 
 func Test_FumanReaderGetList(t *testing.T) {
 	urlStr := `https://m.booktxt.net/wapbook/4891.html`
-	urlStr = `https://5aimeizi.com/booklist?page=2`
+	urlStr = `https://www.fuman.cc/booklist/`
 	reader := FumanReader{}
 	list, err := reader.GetList(urlStr)
 	if err != nil {

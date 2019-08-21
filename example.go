@@ -86,7 +86,6 @@ func GetResources() []Item {
 
 		Item{`起点小说网`, `/pages/categories?drive=qidian&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
 		Item{`纵横小说网`, `/pages/categories?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
-		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 		Item{`顶点小说`, `/pages/categories?drive=booktxt&url=` + EncodeURL(`http://www.booktxt.net`), "", "link"},
 		// Item{`落秋中文`, `/pages/categories/get?drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 		// Item{`7878小说`, `/pages/categories?drive=7878xs&url=` + EncodeURL(`http://www.7878xs.com`), "", "link"},
@@ -94,12 +93,17 @@ func GetResources() []Item {
 		Item{`U小说阅读网`, `/pages/categories?drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/`), "", "link"},
 		Item{`笔趣阁soe8`, `/pages/categories?drive=soe8&url=` + EncodeURL(`http://m.soe8.com/`), "", "link"},
 		Item{`笔趣阁xbiquge`, `/pages/categories?drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/`), "", "link"},
+		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 
 		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
-		Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
+		Item{`我爱妹子漫画(18禁)`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", "link"},
+		// Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
 		Item{`腐漫漫画(18禁)`, `/pages/categories?drive=fuman&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
 		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
-		Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
+
+		Item{`看妹子漫画(18禁)`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", "link"},
+
+		// Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
 		// Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
 		Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
 		// SeventeenKReader

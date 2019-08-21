@@ -3,6 +3,7 @@ package reader
 import (
 	"errors"
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -64,10 +65,17 @@ func (r FumanReader) GetList(urlStr string) (list Catalog, err error) {
 
 	var needLinks []Link
 	var state bool
+
+	reg := regexp.MustCompile(`【([^<]+)】`)
+
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `https://www.fuman.cc/book/400`, `https://www.fuman.cc/book/25`, ``)
 		if state {
-			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
+			//完结
+
+			l.Title = reg.ReplaceAllString(l.Title, "")
+
+			// l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
