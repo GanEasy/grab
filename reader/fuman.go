@@ -113,7 +113,7 @@ func (r FumanReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`】(?P<title>(.)+)_热门漫画独家全集`, g.Find("title").Text(), "title")
+	list.Title = FindString(`】(?P<title>(.)+)韩漫大全无删减版在线观看-腐漫漫画`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}

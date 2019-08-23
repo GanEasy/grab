@@ -5,7 +5,7 @@ import (
 )
 
 func Test_FumanReaderGetInfo(t *testing.T) {
-	urlStr := `https://www.fuman.cc/chapter/1014`
+	urlStr := `https://www.fuman.cc/chapter/80932`
 	// urlStr = `http://www.xinshubao.net/18/18685/2515188_2.html`
 	// urlStr = `https://m.35xs.com/book/237551/51896850.html`
 	reader := FumanReader{}
@@ -18,7 +18,7 @@ func Test_FumanReaderGetInfo(t *testing.T) {
 
 func Test_FumanReaderGetCatalog(t *testing.T) {
 	urlStr := `https://m.booktxt.net/wapbook/4891.html`
-	urlStr = `https://www.fuman.cc/book/25`
+	urlStr = `https://www.fuman.cc/book/1529`
 	reader := FumanReader{}
 	list, err := reader.GetCatalog(urlStr)
 	if err != nil {

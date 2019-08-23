@@ -52,12 +52,17 @@ func GetToken(c echo.Context) error {
 		if err != nil {
 			return err
 		}
+		cf := cpi.GetConf()
 		return c.JSON(http.StatusOK, echo.Map{
-			"token": t,
-			"uid":   fans.ID,
-			"level": fans.Level,
-			"score": fans.Score,
-			"total": fans.Total,
+			"token":       t,
+			"uid":         fans.ID,
+			"level":       fans.Level,
+			"score":       fans.Score,
+			"total":       fans.Total,
+			"screen":      cf.Ad.Screen,
+			"reward":      cf.Ad.Reward,
+			"list_banner": cf.Ad.ListBanner,
+			"info_banner": cf.Ad.InfoBanner,
 		})
 	}
 
