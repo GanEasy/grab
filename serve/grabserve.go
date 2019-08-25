@@ -104,12 +104,15 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
 		cf := cpi.GetConf()
-		if cf.Search.LimitLevel { // 开启严格检查
+
+		version := c.QueryParam("version")
+
+		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 			list := grab.GetWaitExamineClassify()
 			return c.JSON(http.StatusOK, list)
 		}
-		// list := grab.GetWaitExamineClassify()
 		list := grab.GetResources()
+		//
 		return c.JSON(http.StatusOK, list)
 	})
 	//  自定义资源列表
