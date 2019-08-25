@@ -8,40 +8,42 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//XbiqugeReader U小说阅读网 (盗版小说网站)
-type XbiqugeReader struct {
+//BiquyunReader U小说阅读网 (盗版小说网站)
+type BiquyunReader struct {
 }
 
 // GetCategories 获取所有分类
-func (r XbiqugeReader) GetCategories(urlStr string) (list Catalog, err error) {
+func (r BiquyunReader) GetCategories(urlStr string) (list Catalog, err error) {
 
-	// urlStr := `http://m.xbiquge.com/`
+	// urlStr := `http://m.biquyun.com/`
 
-	list.Title = `分类-U小说阅读网`
+	list.Title = `分类-笔趣阁biquyun`
 
 	list.SourceURL = urlStr
 
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻·奇幻`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`修真·仙侠`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`都市·青春`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/dushixiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`历史·穿越`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/chuanyuexiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`网游·竞技`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`科幻·灵异`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``},
+		Card{`玄幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/1_1.html`), "", `link`, ``, nil, ``},
+		Card{`修真`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/2_1.html`), "", `link`, ``, nil, ``},
+		Card{`都市`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/3_1.html`), "", `link`, ``, nil, ``},
+		Card{`历史`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/4_1.html`), "", `link`, ``, nil, ``},
+		Card{`网游`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/5_1.html`), "", `link`, ``, nil, ``},
+		Card{`科幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/6_1.html`), "", `link`, ``, nil, ``},
+		Card{`恐怖`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/7_1.html`), "", `link`, ``, nil, ``},
+		Card{`其它`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/8_1.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
 
 // GetList 获取书籍列表列表
-func (r XbiqugeReader) GetList(urlStr string) (list Catalog, err error) {
+func (r BiquyunReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.l`)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
@@ -51,7 +53,7 @@ func (r XbiqugeReader) GetList(urlStr string) (list Catalog, err error) {
 	if e != nil {
 		return list, e
 	}
-	list.Title = FindString(`(?P<title>(.)+)_好看的`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_笔趣阁`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -63,14 +65,14 @@ func (r XbiqugeReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.xbiquge.la/39/39551/`, `http://www.xbiquge.la/27/27807/`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.biquyun.com/10_10267/`, `https://m.biquyun.com/20_20963/`, `https://m.biquyun.com/10_10267_1.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `xbiquge`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `biquyun`)
 
 	list.SourceURL = urlStr
 
@@ -86,7 +88,7 @@ func (r XbiqugeReader) GetList(urlStr string) (list Catalog, err error) {
 }
 
 // GetCatalog 获取章节列表
-func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
+func (r BiquyunReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -104,14 +106,14 @@ func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 偷心透视小村医最新章节,
-	list.Title = FindString(`(?P<title>(.)+)小说_`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>([^_])+)_`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := FindContentHTML(html, `#list`)
+	html2, _ := FindContentHTML(html, `.chapters`)
 
 	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
@@ -120,13 +122,13 @@ func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.xbiquge.la/39/39551/18263995.html`, `http://www.xbiquge.la/7/7004/3246402.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.biquyun.com/10_10267/9947799.html`, `https://m.biquyun.com/20_20963/10035540.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `xbiquge`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `biquyun`)
 
 	list.SourceURL = urlStr
 
@@ -143,7 +145,7 @@ func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
 }
 
 // GetInfo 获取详细内容
-func (r XbiqugeReader) GetInfo(urlStr string) (ret Content, err error) {
+func (r BiquyunReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -162,7 +164,7 @@ func (r XbiqugeReader) GetInfo(urlStr string) (ret Content, err error) {
 	article.Readable(urlStr)
 	ret.SourceURL = urlStr
 
-	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_新笔趣阁`, article.Title, "title")
+	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_笔趣阁`, article.Title, "title")
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
@@ -171,10 +173,17 @@ func (r XbiqugeReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
-	reg2 := regexp.MustCompile(`(手机站全新改版升级地址：|http://m.xbiquge.la，数据和书签与电脑站同步，无广告清新阅读！)`)
+	reg2 := regexp.MustCompile(`<br/>看(?P<title>([^<])+)最新章节请去 m.biquyun.com`)
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
+	reg3 := regexp.MustCompile(`<p([^<]+)<\/p>`)
+
+	article.ReadContent = reg3.ReplaceAllString(article.ReadContent, "")
+
+	reg4 := regexp.MustCompile(`<li([^<]+)<\/li>`)
+
+	article.ReadContent = reg4.ReplaceAllString(article.ReadContent, "")
 	c := MarkDownFormatContent(article.ReadContent)
 
 	c = BookContReplace(c)
