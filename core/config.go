@@ -24,10 +24,15 @@ type Search struct {
 
 //Ad 配置
 type Ad struct {
-	Screen     string `toml:"screen"`
-	Reward     string `toml:"reward"`
-	ListBanner string `toml:"list_banner"`
-	InfoBanner string `toml:"info_banner"`
+	Screen     string `toml:"screen"`      // 弹窗视频广告
+	Reward     string `toml:"reward"`      // 激励式视频广告
+	HomeBanner string `toml:"home_banner"` // 首页banner广告(与视频广告两者用其一)
+	ListBanner string `toml:"list_banner"` // 列表页banner广告
+	InfoBanner string `toml:"info_banner"` // 详情页banner广告
+	HomeVideo  string `toml:"home_video"`  // 首页视频广告
+	ListVideo  string `toml:"list_video"`  // 列表页视频广告
+	InfoVideo  string `toml:"info_video"`  // 详情页视频广告
+	PreVideo   string `toml:"pre_video"`   // 视频播放前广告
 }
 
 //Database 配置

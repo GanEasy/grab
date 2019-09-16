@@ -15,3 +15,10 @@ port = 5432
 
 [search]
 limit_level = true
+
+
+[ad]
+screen = "adunit-da16d0f32013ecb0"
+reward = "adunit-c269e8732f5ae00c"
+list_banner = "adunit-a7438aa03206231f"
+info_banner = "adunit-1b169a05a6785147"

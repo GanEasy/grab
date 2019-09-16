@@ -54,15 +54,31 @@ func GetToken(c echo.Context) error {
 		}
 		cf := cpi.GetConf()
 		return c.JSON(http.StatusOK, echo.Map{
-			"token":       t,
-			"uid":         fans.ID,
-			"level":       fans.Level,
-			"score":       fans.Score,
-			"total":       fans.Total,
+			"token": t,
+			"uid":   fans.ID,
+			"level": fans.Level,
+			"score": fans.Score,
+			"total": fans.Total,
+			// "home_screen": cf.Ad.Screen,
+			// "list_screen": cf.Ad.Screen,
+			// "info_screen": cf.Ad.Screen,
 			"screen":      cf.Ad.Screen,
 			"reward":      cf.Ad.Reward,
+			"pre_video":   cf.Ad.PreVideo,
+			"home_banner": cf.Ad.HomeBanner,
 			"list_banner": cf.Ad.ListBanner,
 			"info_banner": cf.Ad.InfoBanner,
+
+			"home_video": cf.Ad.HomeVideo,
+			"list_video": cf.Ad.ListVideo,
+			"info_video": cf.Ad.InfoVideo,
+			// "home_pre_video": cf.Ad.PreVideo,
+			// "list_pre_video": cf.Ad.PreVideo,
+			// "info_pre_video": cf.Ad.PreVideo,
+
+			// "home_reward": cf.Ad.Reward,
+			// "list_reward": cf.Ad.Reward,
+			// "info_reward": cf.Ad.Reward,
 		})
 	}
 
