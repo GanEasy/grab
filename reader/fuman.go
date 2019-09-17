@@ -9,7 +9,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//FumanReader 顶点小说 (盗版小说网站)
+//FumanReader 腐漫漫画 (盗版漫画网站)
 type FumanReader struct {
 }
 
@@ -18,7 +18,7 @@ func (r FumanReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.booktxt.com/`
 
-	list.Title = `分类-我爱妹子漫画`
+	list.Title = `分类-腐漫漫画`
 
 	list.SourceURL = urlStr
 

@@ -75,6 +75,10 @@ func GetReader(drive string) reader.Reader {
 		return &reader.RssReader{}
 	} else if drive == `blog` {
 		return &reader.BlogReader{}
+	} else if drive == `learnku` {
+		return &reader.LearnkuReader{}
+	} else if drive == `github` {
+		return &reader.GithubReader{}
 	} else if drive == `r2hm` {
 		return &reader.R2hmReader{}
 	} else if drive == `manwuyu` {

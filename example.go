@@ -7,11 +7,16 @@ import (
 //GetWaitExamineClassify 获取做给审核检查的class
 func GetWaitExamineClassify() []Item {
 	var list = []Item{
-		Item{`从学徒到工匠精校版`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-from-appreciate-to-artisan`), "", "card"},
-		Item{`微信小程序开发入门系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/wechat-miniprogram-tutorial`), "", "card"},
-		Item{`从入门到精通系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-tutorial-5_7`), "", "card"},
-		Item{`Go语言入门教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/golang-tutorials`), "", "card"},
+		// Item{`从学徒到工匠精校版`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-from-appreciate-to-artisan`), "", "card"},
+		// Item{`微信小程序开发入门系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/wechat-miniprogram-tutorial`), "", "card"},
+		// Item{`从入门到精通系列教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/laravel-tutorial-5_7`), "", "card"},
+		// Item{`Go语言入门教程`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://laravelacademy.org/golang-tutorials`), "", "card"},
 		// Item{`德哥博客`, `/pages/catalog?drive=blog&url=` + EncodeURL(`https://github.com/digoal/blog`), "", "card"},
+		Item{`德哥博客-最佳实践`, `/pages/catalog?drive=github&url=` + EncodeURL(`https://github.com/digoal/blog/blob/master/class/24.md`), "", "card"},
+		Item{`德哥博客-经典案例`, `/pages/catalog?drive=github&url=` + EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`), "", "card"},
+		Item{`Laravel 项目开发规范`, `/pages/catalog?drive=learnku&url=` + EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`), "", "card"},
+		Item{`Laravel5.5开发文档`, `/pages/catalog?drive=learnku&url=` + EncodeURL(`https://learnku.com/docs/laravel/5.5`), "", "card"},
+		Item{`Dingo API 2.0.0 中文文档`, `/pages/catalog?drive=learnku&url=` + EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`), "", "card"},
 	}
 	return list
 }
