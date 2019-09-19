@@ -103,7 +103,7 @@ func GetResources() []Item {
 		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 
 		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
-		Item{`海猫吧(18禁)`, `/pages/categories?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com`), "", "link"},
+		Item{`海猫吧(18禁)`, `/pages/list?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com/list/0/`), "", "link"},
 		Item{`我爱妹子漫画(18禁)`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", "link"},
 		// Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
 		Item{`腐漫漫画(18禁)`, `/pages/categories?drive=fuman&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
