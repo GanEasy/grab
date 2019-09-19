@@ -144,7 +144,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 
 		if drive == `qidian` || drive == `zongheng` || drive == `17k` || drive == `xbiquge` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `biquyun` || drive == `soe8` {
 			go a.SyncPosts(list, 1)
-		} else if drive == `manhwa` || drive == `haimaoba` || drive == `hanmanku` || drive == `ssmh` || drive == `fuman` || drive == `aimeizi5` {
+		} else if drive == `manhwa` || drive == `haimaoba` || drive == `hanmanwo` || drive == `hanmanku` || drive == `ssmh` || drive == `fuman` || drive == `aimeizi5` {
 			go a.SyncPosts(list, 2)
 		}
 
