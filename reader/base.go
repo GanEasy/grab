@@ -57,3 +57,12 @@ type List struct {
 	Previous  Link   `json:"previous"`
 	Next      Link   `json:"next"`
 }
+
+//Links 链接排序(反序)
+type Links []Link
+
+func (s Links) Len() int { return len(s) }
+
+func (s Links) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s Links) Less(i, j int) bool { return true }

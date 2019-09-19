@@ -3,6 +3,7 @@ package reader
 import (
 	"errors"
 	"net/url"
+	"sort"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -112,7 +113,8 @@ func (r HaimaobaReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	var links = GetLinks(g2, link)
 
-	var needLinks []Link
+	var needLinks Links
+
 	var state bool
 	for _, l := range links {
 		l.URL, state = JaccardMateGetURL(l.URL, `http://www.haimaoba.com/catalog/4035/68444.html`, `http://www.haimaoba.com/catalog/4031/68372.html`, ``)
@@ -120,6 +122,7 @@ func (r HaimaobaReader) GetCatalog(urlStr string) (list Catalog, err error) {
 			needLinks = append(needLinks, l)
 		}
 	}
+	sort.Stable(needLinks)
 
 	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/article`, `haimaoba`)
 

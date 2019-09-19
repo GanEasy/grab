@@ -24,6 +24,8 @@ func Test_HaimaobaReaderGetCatalog(t *testing.T) {
 	if err != nil {
 
 	}
+	// sort.Reverse(list.Cards)
+	// t.Fatal(sort.Sort(sort.Reverse(list.Cards)))
 	t.Fatal(list)
 }
 
