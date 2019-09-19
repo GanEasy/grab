@@ -110,7 +110,8 @@ func GetResources() []Item {
 		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
 
 		Item{`看妹子漫画(18禁)`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", "link"},
-		Item{`绅士漫画网(18禁)`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://www.ssmh.cc/booklist`), "", "link"},
+		// 绅士漫画网 图片有防盗链 加载不出来
+		// Item{`绅士漫画网(18禁)`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://www.ssmh.cc/booklist`), "", "link"},
 		Item{`伟叫兽漫画网(18禁)`, `/pages/categories?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn`), "", "link"},
 
 		// Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
