@@ -15,7 +15,7 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-// 替换图片服务地址(由服务器转抓取)
+//ReplaceImageServe 替换图片服务地址(由服务器转抓取)
 func ReplaceImageServe(body string) (string, error) {
 	article, err := GetActicleByContent(body)
 	if err != nil {
