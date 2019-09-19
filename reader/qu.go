@@ -116,7 +116,7 @@ func (r QuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 偷心透视小村医最新章节,
-	list.Title = FindString(`(?P<title>(.)+)全文阅读_,`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)全文阅读_`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -179,13 +179,17 @@ func (r QuReader) GetInfo(urlStr string) (ret Content, err error) {
 		ret.Title = article.Title
 	}
 
-	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
+	reg3 := regexp.MustCompile(`<u([^>]*)>([^<]*)<\/u>`)
 
-	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
+	article.ReadContent = reg3.ReplaceAllString(article.ReadContent, "")
 
-	reg2 := regexp.MustCompile(`<span([^>]*)>([^<]+)<\/span>`)
+	reg2 := regexp.MustCompile(`<span([^>]*)>([^<]*)<\/span>`)
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
+
+	reg := regexp.MustCompile(`<a([^>]*)>([^<]*)<\/a>`)
+
+	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
 	log.Println(article.ReadContent)
 	c := MarkDownFormatContent(article.ReadContent)

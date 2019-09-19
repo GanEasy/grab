@@ -38,8 +38,8 @@ func Test_QuGetChapter(t *testing.T) {
 	urlStr = "https://m.uxiaoshuo.com/140/140420/7432883.html"
 	urlStr = "https://m.uxiaoshuo.com/278/278598/1741780.html"
 	urlStr = "https://m.uxiaoshuo.com/281/281973/1795867.html"
-	urlStr = "https://m.uxiaoshuo.com/281/281973/1796673.html"
-	urlStr = "https://m.qu.la/book/142095/7545899.html"
+	urlStr = "https://m.qu.la/book/39775/2494931.html"
+	// urlStr = "https://m.qu.la/book/142095/7545899.html"
 	reader := QuReader{}
 	list, err := reader.GetInfo(urlStr)
 	// list, err = reader.GetCategories()
