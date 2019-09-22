@@ -53,7 +53,7 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	html, err := GetHTML(urlStr, `#main`)
 	if err != nil {
 		return
 	}
