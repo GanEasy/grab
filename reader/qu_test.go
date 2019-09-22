@@ -10,6 +10,8 @@ func Test_QuGetBooks(t *testing.T) {
 	urlStr := "https://m.uxiaoshuo.com/sort/3/1.html"
 	urlStr = "https://m.qu.la/wapsort/0_1.html"
 	urlStr = "https://m.qu.la/waptop/week3.html"
+	urlStr = "https://m.qu.la/wapsort/0_1.html"
+	urlStr = "https://m.qu.la/waptop/month.html"
 	reader := QuReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()

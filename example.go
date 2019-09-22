@@ -92,16 +92,17 @@ func GetResources() []Item {
 
 		Item{`起点小说网`, `/pages/categories?drive=qidian&url=` + EncodeURL(`https://www.qidian.com`), "", "link"},
 		Item{`纵横小说网`, `/pages/categories?drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com`), "", "link"},
+		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
+
 		// Item{`落秋中文`, `/pages/categories/get?drive=luoqiu&url=` + EncodeURL(`http://www.luoqiu.com`), "", "link"},
 		// Item{`7878小说`, `/pages/categories?drive=7878xs&url=` + EncodeURL(`http://www.7878xs.com`), "", "link"},
-		Item{`笔趣阁qula`, `/pages/categories?drive=qu&url=` + EncodeURL(`https://m.qu.la/`), "", "link"},
 		Item{`笔下文学`, `/pages/categories?drive=bxwx&url=` + EncodeURL(`https://www.bxwx.la`), "", "link"},
 		Item{`U小说阅读网`, `/pages/categories?drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/`), "", "link"},
 		Item{`笔趣阁biquyun`, `/pages/categories?drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com`), "", "link"},
 		Item{`顶点小说`, `/pages/categories?drive=booktxt&url=` + EncodeURL(`http://www.booktxt.net`), "", "link"},
 		Item{`笔趣阁soe8`, `/pages/categories?drive=soe8&url=` + EncodeURL(`http://m.soe8.com/`), "", "link"},
 		Item{`笔趣阁xbiquge`, `/pages/categories?drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/`), "", "link"},
-		Item{`17K文学`, `/pages/categories?drive=17k&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
+		Item{`笔趣阁qula`, `/pages/categories?drive=qu&url=` + EncodeURL(`https://m.qu.la/`), "", "link"},
 
 		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
 		Item{`韩漫窝(18禁)`, `/pages/list?action=list&drive=hanmanwo&url=` + EncodeURL(`http://www.hanmanwo.com/booklist`), "", "link"},
