@@ -12,6 +12,8 @@ import (
 
 func main() {
 	e := echo.New()
+	e.Use(middleware.CORS())
+
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK,
 			`https://open.readfollow.com build by golang, author yizenghui.  use the api must jwt token
@@ -37,23 +39,23 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api := e.Group("/api")
 
 	// Configure middleware with the custom claims type
-	config := middleware.JWTConfig{
-		Claims:     &a.JwtCustomClaims{},
-		SigningKey: []byte("secret"),
-	}
-	api.Use(middleware.JWTWithConfig(config))
+	// config := middleware.JWTConfig{
+	// 	Claims:     &a.JwtCustomClaims{},
+	// 	SigningKey: []byte("secret"),
+	// }
+	// api.Use(middleware.JWTWithConfig(config))
 
 	api.GET("/checkopenid", a.CheckOpenID)
 	// r.Use(middleware.JWT([]byte("secret")))
 
-	//  粉丝关注列表
-	api.GET("/follows", a.GetUserFollows)
+	// //  粉丝关注列表
+	// api.GET("/follows", a.GetUserFollows)
 
-	// 粉丝添加关注
-	api.POST("/follows", a.CreateUserFollow)
+	// // 粉丝添加关注
+	// api.POST("/follows", a.CreateUserFollow)
 
 	//  粉丝自定义源
-	api.GET("/sources", a.GetUserSources)
+	// api.GET("/sources", a.GetUserSources)
 
 	api.POST("/urlencode", func(c echo.Context) (err error) {
 		type Data struct {
@@ -95,7 +97,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	})
 
 	// 粉丝添加关注
-	api.POST("/sources", a.CreateUserSource)
+	// api.POST("/sources", a.CreateUserSource)
 
 	// 搜索
 	api.GET("/search", a.SearchPosts)

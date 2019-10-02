@@ -31,39 +31,40 @@ func SearchPosts(c echo.Context) error {
 	}
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)
-	user, _ := getUser(openID)
+	// user, _ := getUser(openID)
 	cf := cpi.GetConf()
 	var posts []db.Post
 	if cf.Search.LimitLevel { // 开启严格检查
-		posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
+		posts = cpi.GetPostsByNameLimitLevel(name, 1)
+		// posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
 	} else {
 		posts = cpi.GetPostsByName(name)
 	}
 	var intro string
 	if len(posts) > 0 {
 		for _, v := range posts {
-			if user.Level >= v.Level {
-				// intro :=
-				link, err := url.Parse(v.From)
+			// if user.Level >= v.Level {
+			// intro :=
+			link, err := url.Parse(v.From)
 
-				if err == nil && link.Host != "" {
-					intro = link.Host
-				} else {
-					intro = ``
-				}
-
-				catelog.Cards = append(
-					catelog.Cards,
-					reader.Card{
-						v.Name,
-						v.WxTo,
-						intro,
-						`card`,
-						``,
-						nil,
-						v.From,
-					})
+			if err == nil && link.Host != "" {
+				intro = link.Host
+			} else {
+				intro = ``
 			}
+
+			catelog.Cards = append(
+				catelog.Cards,
+				reader.Card{
+					Title:  v.Name,
+					WxTo:   v.WxTo,
+					Intro:  intro,
+					Type:   `card`,
+					Cover:  ``,
+					Images: nil,
+					From:   v.From,
+				})
+			// }
 		}
 	}
 	return c.JSON(http.StatusOK, catelog)
