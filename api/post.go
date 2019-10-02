@@ -25,10 +25,10 @@ func SyncPosts(list reader.Catalog, cate int32) {
 func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
-	openID := getOpenID(c)
-	if openID == `` {
-		return c.HTML(http.StatusOK, "openid empty")
-	}
+	// openID := getOpenID(c)
+	// if openID == `` {
+	// 	return c.HTML(http.StatusOK, "openid empty")
+	// }
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)
 	// user, _ := getUser(openID)
