@@ -54,7 +54,7 @@ func GetUserLinks(c echo.Context) error {
 			Icon:  `cuIcon-new`,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/newCreate`,
+			WxTo:  `/pages/newCatalog`,
 			Style: `arrow`,
 		},
 		Link{
@@ -62,7 +62,7 @@ func GetUserLinks(c echo.Context) error {
 			Icon:  `cuIcon-time`,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/newCreate`,
+			WxTo:  `/pages/logs`,
 			Style: `arrow`,
 		},
 		Link{
@@ -106,6 +106,47 @@ func GetUserLinks(c echo.Context) error {
 			Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
 			WxTo:  ``,
 			Style: ``,
+		},
+	}
+	return c.JSON(http.StatusOK, links)
+}
+
+// GetNewCatelogLinks 获取用户列表内容 newcateloghelps
+func GetNewCatelogLinks(c echo.Context) error {
+	var links = []Link{
+		Link{
+			Title: `功能介绍`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/newCreate`,
+			Style: `arrow`,
+		},
+		Link{
+			Title: `使用说明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/newCreate`,
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `异常说明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/newCreate`,
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `加入交流群获得帮助`,
+			Icon:  ``,
+			Type:  `image`,
+			Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+			WxTo:  ``,
+			Style: `text-red`,
 		},
 	}
 	return c.JSON(http.StatusOK, links)
@@ -179,15 +220,6 @@ func GetExploreLinks(c echo.Context) error {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `公告信息`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  ``,
 			Style: `arrow`,
 		},
 

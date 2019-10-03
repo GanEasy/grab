@@ -106,6 +106,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/carousels", a.GetCarousels)
 	api.GET("/userlinks", a.GetUserLinks)
 	api.GET("/explorelinks", a.GetExploreLinks)
+	api.GET("/newcateloghelps", a.GetNewCatelogLinks)
 
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
