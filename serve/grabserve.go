@@ -102,6 +102,9 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	// 搜索
 	api.GET("/search", a.SearchPosts)
 
+	//首页走马灯数据
+	api.GET("/carousels", a.GetCarousels)
+
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()
