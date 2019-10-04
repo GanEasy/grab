@@ -10,6 +10,7 @@ type Fans struct {
 	OpenID     string `gorm:"type:varchar(255);unique_index"`
 	NickName   string
 	Gender     int
+	Provider   string //平台
 	City       string
 	Province   string
 	Country    string
@@ -19,6 +20,7 @@ type Fans struct {
 	Level      int32 // 用户等级
 	Score      int64 // 积分
 	Total      int64 // 总分
+	LoginTotal int64 // 授权访问次数
 	AppID      string
 	SessionKey string // 粉丝上次的session key 如果有变化，同步一次粉丝数据
 	CreatedAt  time.Time

@@ -85,6 +85,96 @@ func GetToken(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
+//GetAPIToken 获取 jwt token
+func GetAPIToken(c echo.Context) error {
+	code := c.QueryParam("code")
+	provider := c.QueryParam("provider")
+	if provider == `weixin` {
+		ret, _ := cpi.GetOpenID(code)
+		if code != "" && ret.OpenID != "" {
+			fans, err := cpi.GetFansByOpenID(ret.OpenID)
+			if fans.Provider == `` {
+				fans.Provider = provider
+			}
+			fans.LoginTotal++ // 增加一次授权访问次数
+			fans.Save()
+			claims := &JwtCustomClaims{
+				fans.ID,
+				ret.OpenID,
+				code,
+				ret.SessionKey,
+				jwt.StandardClaims{
+					ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+				},
+			}
+
+			// Create token with claims
+			token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+			// Generate encoded token and send it as response.
+			t, err := token.SignedString([]byte("secret"))
+			if err != nil {
+				return err
+			}
+			cf := cpi.GetConf()
+			return c.JSON(http.StatusOK, echo.Map{
+				"token":       t,
+				"uid":         fans.ID,
+				"level":       fans.Level,
+				"score":       fans.Score,
+				"total":       fans.Total,
+				"home_screen": cf.Ad.Screen,
+				"list_screen": cf.Ad.Screen,
+				"info_screen": cf.Ad.Screen,
+				"screen":      cf.Ad.Screen,
+				"reward":      cf.Ad.Reward,
+				"pre_video":   cf.Ad.PreVideo,
+				"home_banner": cf.Ad.HomeBanner,
+				"list_banner": cf.Ad.ListBanner,
+				"info_banner": cf.Ad.InfoBanner,
+
+				"home_video": cf.Ad.HomeVideo,
+				"list_video": cf.Ad.ListVideo,
+				"info_video": cf.Ad.InfoVideo,
+				// "home_pre_video": cf.Ad.PreVideo,
+				// "list_pre_video": cf.Ad.PreVideo,
+				// "info_pre_video": cf.Ad.PreVideo,
+
+				"home_reward": cf.Ad.Reward,
+				"list_reward": cf.Ad.Reward,
+				"info_reward": cf.Ad.Reward,
+			})
+		}
+	} else if provider == `h5` {
+
+		claims := &JwtCustomClaims{
+			1,
+			`visitor.OpenID`,
+			``,
+			``,
+			jwt.StandardClaims{
+				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+			},
+		}
+
+		// Create token with claims
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+		// Generate encoded token and send it as response.
+		t, err := token.SignedString([]byte("secret"))
+		if err != nil {
+			return err
+		}
+		return c.JSON(http.StatusOK, echo.Map{
+			"token": t,
+			"uid":   -1,
+			"level": 0,
+		})
+	}
+
+	return echo.ErrUnauthorized
+}
+
 //CheckOpenID 获取签名里面的信息
 func CheckOpenID(c echo.Context) error {
 	user := c.Get("user").(*jwt.Token)

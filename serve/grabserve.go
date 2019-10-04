@@ -26,6 +26,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 
 	// 获取用户签名
 	e.GET("/gettoken", a.GetToken)
+	e.GET("/getapitoken", a.GetAPIToken)
 	// 解密数据内容(保存数据到库)
 	e.GET("/crypt", a.Crypt)
 
@@ -194,9 +195,10 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			Page  string `json:"page"`
 		}
 		var list = []Item{
-			Item{`文本类`, `text`, `/pages/catalog`},
-			Item{`图文类`, `article`, `/pages/catalog`},
-			Item{`Rss`, `rss`, `/pages/rss`},
+			Item{`小说目录`, `text`, `/pages/catalog`},
+			Item{`小说单章`, `text`, `/pages/book`},
+			Item{`图文目录`, `article`, `/pages/catalog`},
+			Item{`图文详情`, `article`, `/pages/article`},
 		}
 		return c.JSON(http.StatusOK, list)
 	})

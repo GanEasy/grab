@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/GanEasy/grab"
+	cpi "github.com/GanEasy/grab/core"
 	"github.com/labstack/echo"
 )
 
@@ -154,6 +155,77 @@ func GetNewCatelogLinks(c echo.Context) error {
 
 // GetExploreLinks 获取首页(广场)列表内容
 func GetExploreLinks(c echo.Context) error {
+	cf := cpi.GetConf()
+
+	version := c.QueryParam("version")
+
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
+	return c.JSON(http.StatusOK, GetPublishExploreLinks())
+}
+
+// GetWaitExamineExplore 用于审核的内容列表
+func GetWaitExamineExplore() []Link {
+
+	var links = []Link{
+		Link{
+			Title: `德哥博客-最佳实践`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/24.md`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `德哥博客-经典案例`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `Laravel 项目开发规范`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `Laravel5.5开发文档`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
+			Style: ``,
+		},
+		Link{
+			Title: `Laravel 5.5 中文文档`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel/5.5`),
+			Style: ``,
+		},
+		Link{
+			Title: `Dingo API 2.0.0 中文文档`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
+			Style: ``,
+		},
+	}
+	return links
+
+}
+
+//GetPublishExploreLinks 获取公开发布的内容
+func GetPublishExploreLinks() []Link {
 	var links = []Link{
 		Link{
 			Title: `起点小说网`,
@@ -344,5 +416,5 @@ func GetExploreLinks(c echo.Context) error {
 		},
 	}
 
-	return c.JSON(http.StatusOK, links)
+	return links
 }
