@@ -66,48 +66,48 @@ func GetUserLinks(c echo.Context) error {
 			WxTo:  `/pages/logs`,
 			Style: `arrow`,
 		},
-		Link{
-			Title: `使用说明`,
-			Icon:  `cuIcon-question`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `免责声明`,
-			Icon:  `cuIcon-command`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `使用说明`,
+		// 	Icon:  `cuIcon-question`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `免责声明`,
+		// 	Icon:  `cuIcon-command`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
 
-		Link{
-			Title: `用户协议`,
-			Icon:  `cuIcon-squarecheck`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `公告信息`,
-			Icon:  `cuIcon-notification`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `用户协议`,
+		// 	Icon:  `cuIcon-squarecheck`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `公告信息`,
+		// 	Icon:  `cuIcon-notification`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
 
-		Link{
-			Title: `交流群`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `交流群`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 	}
 	return c.JSON(http.StatusOK, links)
 }
@@ -406,14 +406,14 @@ func GetPublishExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `交流群`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `交流群`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 	}
 
 	return links
