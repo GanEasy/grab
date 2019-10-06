@@ -10,6 +10,7 @@ import (
 	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/db"
+	"github.com/GanEasy/grab/reader"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 )
@@ -227,7 +228,7 @@ func GetQrcode(c echo.Context) error {
 	if err == nil {
 		http.ServeFile(c.Response().Writer, c.Request(), fileName)
 	} else {
-		http.ServeFile(c.Response().Writer, c.Request(), fileName)
+		return err
 	}
 
 	var err2 error
@@ -252,9 +253,8 @@ func GetQrcodeWxto(c echo.Context) error {
 	if qrcode.WxTo == `` {
 		return c.HTML(http.StatusOK, `pages/index`)
 	}
-
 	log.Println(`qrcode to `, qrcode.WxTo)
-	return c.HTML(http.StatusOK, qrcode.WxTo)
+	return c.HTML(http.StatusOK, reader.EncodeURL(qrcode.WxTo))
 }
 
 // GetUserFollows 获取用户关注的
