@@ -18,21 +18,21 @@ type Carousel struct {
 // GetCarousels 获取首页走马灯数据
 func GetCarousels(c echo.Context) error {
 	var carousels []Carousel
-	// carousels = append(
-	// 	carousels,
-	// 	Carousel{
-	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
-	// 		Type: `image`,
-	// 		WxTo: ``,
-	// 	})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
+			Type: `image`,
+			WxTo: ``,
+		})
 
-	// carousels = append(
-	// 	carousels,
-	// 	Carousel{
-	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-	// 		Type: `image`,
-	// 		WxTo: ``,
-	// 	})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+			Type: `image`,
+			WxTo: ``,
+		})
 
 	return c.JSON(http.StatusOK, carousels)
 }
@@ -305,15 +305,6 @@ func GetPublishExploreLinks() []Link {
 		},
 
 		Link{
-			Title: `笔趣阁xbiquge`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  ``,
-			Style: `arrow`,
-		},
-
-		Link{
 			Title: `笔趣阁qula`,
 			Icon:  ``,
 			Type:  `link`,
@@ -414,6 +405,7 @@ func GetPublishExploreLinks() []Link {
 		// 	WxTo:  ``,
 		// 	Style: ``,
 		// },
+
 	}
 
 	return links
