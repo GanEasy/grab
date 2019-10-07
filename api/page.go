@@ -120,35 +120,35 @@ func GetNewCatelogLinks(c echo.Context) error {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/newCreate`,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://github.com/GanEasy/grab/blob/master/doc/newCatalog.md`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `使用说明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `使用说明`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
 
-		Link{
-			Title: `异常说明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/newCreate`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `异常说明`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/newCreate`,
+		// 	Style: `arrow`,
+		// },
 
-		Link{
-			Title: `加入交流群获得帮助`,
-			Icon:  ``,
-			Type:  `image`,
-			Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-			WxTo:  ``,
-			Style: `text-red`,
-		},
+		// Link{
+		// 	Title: `加入交流群获得帮助`,
+		// 	Icon:  ``,
+		// 	Type:  `image`,
+		// 	Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: `text-red`,
+		// },
 	}
 	return c.JSON(http.StatusOK, links)
 }
