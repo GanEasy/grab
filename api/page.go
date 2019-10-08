@@ -201,7 +201,7 @@ func GetWaitExamineExplore() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-			Style: ``,
+			Style: `arrow`,
 		},
 		Link{
 			Title: `Laravel 5.5 中文文档`,
@@ -209,7 +209,7 @@ func GetWaitExamineExplore() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel/5.5`),
-			Style: ``,
+			Style: `arrow`,
 		},
 		Link{
 			Title: `Dingo API 2.0.0 中文文档`,
@@ -217,7 +217,7 @@ func GetWaitExamineExplore() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
-			Style: ``,
+			Style: `arrow`,
 		},
 	}
 	return links
