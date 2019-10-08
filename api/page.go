@@ -170,6 +170,40 @@ func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
 		Link{
+			Title: `微信小程序开发入门系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `从学徒到工匠精校版`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `从入门到精通系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `Go语言入门教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
+			Style: `arrow`,
+		},
+		Link{
 			Title: `德哥博客-最佳实践`,
 			Icon:  ``,
 			Type:  `link`,
