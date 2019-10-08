@@ -174,7 +174,7 @@ func GetWaitExamineExplore() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
 			Style: `arrow`,
 		},
 
@@ -183,7 +183,7 @@ func GetWaitExamineExplore() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
 			Style: `arrow`,
 		},
 
@@ -192,7 +192,7 @@ func GetWaitExamineExplore() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
 			Style: `arrow`,
 		},
 		Link{
@@ -200,7 +200,7 @@ func GetWaitExamineExplore() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
 			Style: `arrow`,
 		},
 		Link{
