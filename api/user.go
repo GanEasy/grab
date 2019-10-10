@@ -170,6 +170,31 @@ func GetAPIToken(c echo.Context) error {
 			"uid":   -1,
 			"level": 0,
 		})
+	} else if provider == `qq` {
+
+		claims := &JwtCustomClaims{
+			1,
+			`visitor.OpenID`,
+			``,
+			``,
+			jwt.StandardClaims{
+				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+			},
+		}
+
+		// Create token with claims
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+		// Generate encoded token and send it as response.
+		t, err := token.SignedString([]byte("secret"))
+		if err != nil {
+			return err
+		}
+		return c.JSON(http.StatusOK, echo.Map{
+			"token": t,
+			"uid":   -1,
+			"level": 0,
+		})
 	}
 
 	return echo.ErrUnauthorized

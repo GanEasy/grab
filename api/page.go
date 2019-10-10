@@ -5,6 +5,7 @@ import (
 
 	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
+	"github.com/GanEasy/grab/reader"
 	"github.com/labstack/echo"
 )
 
@@ -261,6 +262,15 @@ func GetWaitExamineExplore() []Link {
 //GetPublishExploreLinks 获取公开发布的内容
 func GetPublishExploreLinks() []Link {
 	var links = []Link{
+		// Link{
+		// 	Title: `全部资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
+
 		Link{
 			Title: `起点小说网`,
 			Icon:  ``,
@@ -443,4 +453,128 @@ func GetPublishExploreLinks() []Link {
 	}
 
 	return links
+}
+
+//GetAllResources 获取所有资源
+func GetAllResources(c echo.Context) error {
+	var list = reader.Catalog{}
+	list.Title = `全部资源`
+
+	list.SourceURL = ``
+
+	list.Hash = ``
+
+	list.Cards = []reader.Card{
+
+		reader.Card{
+			Title: `起点小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
+		},
+		reader.Card{
+			Title: `纵横小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		},
+		reader.Card{
+			Title: `17K文学`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
+		},
+		reader.Card{
+			Title: `笔下文学`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=bxwx&url=` + grab.EncodeURL(`https://www.bxwx.la`),
+		},
+		reader.Card{
+			Title: `U小说阅读网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
+		},
+		reader.Card{
+			Title: `笔趣阁biquyun`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biquyun&url=` + grab.EncodeURL(`https://m.biquyun.com`),
+		},
+
+		reader.Card{
+			Title: `顶点小说`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+		},
+
+		reader.Card{
+			Title: `笔趣阁soe8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+		},
+
+		reader.Card{
+			Title: `笔趣阁xbiquge`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+		},
+
+		reader.Card{
+			Title: `笔趣阁qula`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
+		},
+
+		reader.Card{
+			Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
+			Type:  `link`,
+			WxTo:  ``,
+		},
+
+		reader.Card{
+			Title: `韩漫窝(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		},
+
+		reader.Card{
+			Title: `韩漫库(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=hanmanku&url=` + grab.EncodeURL(`http://www.hanmanku.com/booklist`),
+		},
+
+		reader.Card{
+			Title: `海猫吧(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
+		},
+
+		reader.Card{
+			Title: `我爱妹子漫画(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		},
+		reader.Card{
+			Title: `腐漫漫画(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=fuman&url=` + grab.EncodeURL(`https://www.5aimeizi.com/`),
+		},
+		reader.Card{
+			Title: `漫画台(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=manhwa&url=` + grab.EncodeURL(`https://www.manhwa.cc/`),
+		},
+		reader.Card{
+			Title: `看妹子漫画(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=kanmeizi&url=` + grab.EncodeURL(`https://www.kanmeizi.cc/booklist`),
+		},
+		reader.Card{
+			Title: `伟叫兽漫画网(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?action=list&drive=weijiaoshou&url=` + grab.EncodeURL(`http://www.weijiaoshou.cn`),
+		},
+		reader.Card{
+			Title: `漫物语(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
+		},
+	}
+	return c.JSON(http.StatusOK, list)
 }
