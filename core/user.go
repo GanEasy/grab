@@ -123,7 +123,7 @@ func SendPostUpdateMSG(openID, formID, title, page string) error {
 	return err
 }
 
-//GetwxCodeUnlimit 发送更新通知
+//GetwxCodeUnlimit 获取无数量限制的微信二维码
 func GetwxCodeUnlimit(scene, page string) (file string, err error) {
 
 	// name := GetMd5String(fmt.Sprintf(`%v%v`, scene, page))
@@ -161,6 +161,7 @@ func GetwxCodeUnlimit(scene, page string) (file string, err error) {
 	return file, err
 }
 
+//GetMd5String 获取MD5加密字符串
 func GetMd5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
@@ -191,7 +192,7 @@ func SaveQrcodeImg(imageURL, saveName string, body []byte) (n int64, err error) 
 	if err != nil {
 		return
 	}
-	//errcode errmsg
+	//errcode errmsg {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest hint: [blkOua0570b105!]"}
 	type ErrRet struct {
 		Errcode int  `json:"errcode"`
 		Errmsg  bool `json:"errmsg"`
@@ -203,14 +204,16 @@ func SaveQrcodeImg(imageURL, saveName string, body []byte) (n int64, err error) 
 		return
 	}
 
-	n, err = io.Copy(out, bytes.NewReader(pix))
+	if len(pix) > 2048 {
+		n, err = io.Copy(out, bytes.NewReader(pix))
 
-	if err != nil {
-		return
+		if err != nil {
+			return
+		}
 	}
 	// todo 获取图片类型
 	// fmt.Println(resp.Header.Get("Content-Type"))
-	return
+	return 0, errors.New(`build wechat minapp qrcode error`)
 }
 
 // GetCryptData 解密数据
