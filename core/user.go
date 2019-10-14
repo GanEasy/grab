@@ -268,6 +268,7 @@ func SyncPost(name, wxto, from string, cate int32) {
 		post.Cate = cate
 		post.Name = name
 		post.From = from
+		post.Level = cate + 1
 		post.Save()
 	}
 }

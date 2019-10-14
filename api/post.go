@@ -29,13 +29,23 @@ func SearchPosts(c echo.Context) error {
 	// if openID == `` {
 	// 	return c.HTML(http.StatusOK, "openid empty")
 	// }
+	provider := c.QueryParam("provider")
+
+	var level = 5 // 4已经支持所有了 3支持小说，2什么都不支持
+	if provider == `weixin` {
+		level = 4
+	} else if provider == `qq` {
+		level = 2
+	} else if provider == `web` {
+		level = 5
+	}
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)
 	// user, _ := getUser(openID)
 	cf := cpi.GetConf()
 	var posts []db.Post
 	if cf.Search.LimitLevel { // 开启严格检查
-		posts = cpi.GetPostsByNameLimitLevel(name, 1)
+		posts = cpi.GetPostsByNameLimitLevel(name, level)
 		// posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
 	} else {
 		posts = cpi.GetPostsByName(name)
