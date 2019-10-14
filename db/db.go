@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	DB().AutoMigrate(&Sign{}, &Fans{}, &Qrcode{}, &Post{})
+	DB().AutoMigrate(&Sign{}, &Fans{}, &Qrcode{}, &Post{}, &Activity{})
 }
 
 var db *gorm.DB

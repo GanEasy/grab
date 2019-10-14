@@ -110,6 +110,9 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/newcateloghelps", a.GetNewCatelogLinks)
 	api.GET("/allroesoures", a.GetAllResources)
 
+	api.GET("/newactivity", a.NewActivity)  //新号召令
+	api.GET("/activities", a.GetActivities) //所有号召令(100条)
+
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {
 		// list := grab.GetClassify()

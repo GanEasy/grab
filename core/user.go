@@ -285,3 +285,22 @@ func GetPostsByNameLimitLevel(name string, level int) (posts []db.Post) {
 	posts = post.GetPostsByNameLimitLevel(name, level)
 	return posts
 }
+
+// AddActivity 新增号召
+func AddActivity(title, wxto string) (activity db.Activity) {
+	if wxto != `` {
+		activity.GetActivityByWxto(wxto)
+		activity.Title = title
+		activity.WxTo = wxto
+		activity.Total++
+		activity.Save()
+	}
+	return activity
+}
+
+// GetActivities 搜索post
+func GetActivities() (activities []db.Activity) {
+	var activity db.Activity
+	activities = activity.GetActivities()
+	return activities
+}
