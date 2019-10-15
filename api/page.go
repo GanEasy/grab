@@ -264,14 +264,14 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: `arrow`,
 		// },
 
-		// Link{
-		// 	Title: `Laravel 项目开发规范`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `Laravel 项目开发规范`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `Laravel5.5开发文档`,
 		// 	Icon:  ``,
