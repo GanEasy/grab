@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
@@ -167,8 +168,25 @@ func GetExploreLinks(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	version := c.QueryParam("version")
+	provider := c.QueryParam("provider")
 
+	if provider == `` { //兼容一下先
+		var req = c.Request()
+		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
+			provider = `weixin`
+		}
+		if strings.Contains(req.Referer(), `1109864069`) {
+			provider = `qq`
+		}
+	}
+	if provider == `weixin` { //特例
+		return c.JSON(http.StatusOK, GetWaitExamineExploreWx2())
+	}
+	if provider == `qq` { //特例
+		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 	return c.JSON(http.StatusOK, GetPublishExploreLinks())
@@ -296,6 +314,135 @@ func GetWaitExamineExplore() []Link {
 		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
 		// 	Style: `arrow`,
 		// },
+	}
+	return links
+
+}
+
+// GetWaitExamineExploreWx2 微信小程序临时应付一下
+func GetWaitExamineExploreWx2() []Link {
+
+	var links = []Link{
+
+		Link{
+			Title: `使用教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/guide.html?`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `关于`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/about.html`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `帮助`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/help.html`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `微信小程序开发入门系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			Style: `arrow`,
+		},
+		// Link{
+		// 	Title: `从学徒到工匠精校版`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+		// 	Style: `arrow`,
+		// },
+
+		// Link{
+		// 	Title: `从入门到精通系列教程`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+		// 	Style: `arrow`,
+		// },
+		Link{
+			Title: `Go语言入门教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
+			Style: `arrow`,
+		},
+		// Link{
+		// 	Title: `德哥博客-最佳实践`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/24.md`),
+		// 	Style: `arrow`,
+		// },
+
+		// Link{
+		// 	Title: `德哥博客-经典案例`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`),
+		// 	Style: `arrow`,
+		// },
+
+		Link{
+			Title: `Laravel 项目开发规范`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
+			Style: `arrow`,
+		},
+		// Link{
+		// 	Title: `Laravel5.5开发文档`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `Laravel 5.5 中文文档`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel/5.5`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `Dingo API 2.0.0 中文文档`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
+		// 	Style: `arrow`,
+		// },
+
+		Link{
+			Title: `所有资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
+			Style: `arrow`,
+		},
 	}
 	return links
 
