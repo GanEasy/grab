@@ -13,6 +13,7 @@ import (
 	"os"
 
 	"github.com/GanEasy/grab/db"
+	"github.com/GanEasy/grab/reader"
 	"github.com/chanxuehong/wechat.v2/mp/message/template"
 	wxbizdatacrypt "github.com/yilee/wx-biz-data-crypt"
 )
@@ -293,6 +294,7 @@ func AddActivity(title, wxto string) (activity db.Activity) {
 		activity.GetActivityByWxto(wxto)
 		activity.Title = title
 		activity.WxTo = wxto
+		activity.Level = reader.GetPathLevel(wxto)
 		activity.Total++
 		activity.Save()
 	}

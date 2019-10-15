@@ -10,6 +10,7 @@ type Activity struct {
 	Title     string `gorm:"type:varchar(255)"`       // 资源名称	名称搜索
 	WxTo      string `gorm:"type:varchar(255);index"` // 目标地址 	小程序往哪里走
 	Total     int64  // 次数统计
+	Level     int32
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

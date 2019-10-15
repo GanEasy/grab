@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/lunny/html2md"
 )
 
 //WeijiaoshouReader 顶点小说 (盗版小说网站)
@@ -170,6 +171,7 @@ func (r WeijiaoshouReader) GetInfo(urlStr string) (ret Content, err error) {
 	// ret.Content = article.ReadContent
 
 	ret.Content = ImagesBuildHTML(article.Images)
+	ret.Content = html2md.Convert(ret.Content)
 	// ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 

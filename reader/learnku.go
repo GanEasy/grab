@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/lunny/html2md"
 )
 
 //LearnkuReader 常规博客(使用) html2article算法
@@ -96,6 +97,7 @@ func (r LearnkuReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	ret.Title = article.Title
 	ret.Content = article.ReadContent
+	ret.Content = html2md.Convert(ret.Content)
 	ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 

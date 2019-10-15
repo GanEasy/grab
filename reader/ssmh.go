@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/lunny/html2md"
 )
 
 //SsmhReader 绅士漫画网 (盗版漫画网站)
@@ -169,6 +170,7 @@ func (r SsmhReader) GetInfo(urlStr string) (ret Content, err error) {
 	// ret.Content = article.ReadContent
 
 	ret.Content = ImagesBuildHTML(article.Images)
+	ret.Content = html2md.Convert(ret.Content)
 	// ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 

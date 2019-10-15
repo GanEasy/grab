@@ -31,13 +31,13 @@ func SearchPosts(c echo.Context) error {
 	// }
 	provider := c.QueryParam("provider")
 
-	var level = 5 // 4已经支持所有了 3支持小说，2什么都不支持
+	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 	if provider == `weixin` {
 		level = 4
 	} else if provider == `qq` {
 		level = 2
 	} else if provider == `web` {
-		level = 5
+		level = 4
 	}
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)

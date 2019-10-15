@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/lunny/html2md"
 )
 
 //ArticleReader 顶点小说 (盗版小说网站)
@@ -74,6 +75,7 @@ func (r ArticleReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	ret.Title = article.Title
 	ret.Content = article.ReadContent
+	ret.Content = html2md.Convert(ret.Content)
 	ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 

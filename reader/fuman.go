@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/lunny/html2md"
 )
 
 //FumanReader 腐漫漫画 (盗版漫画网站)
@@ -192,6 +193,7 @@ func (r FumanReader) GetInfo(urlStr string) (ret Content, err error) {
 	// ret.Content = article.ReadContent
 
 	ret.Content = ImagesBuildHTML(article.Images)
+	ret.Content = html2md.Convert(ret.Content)
 	// ret.PubAt = string(article.Publishtime)
 	ret.SourceURL = urlStr
 

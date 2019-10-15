@@ -310,3 +310,70 @@ func JaccardMateGetURL(url, demo1, demo2, to1 string) (string, bool) {
 	return url, true
 
 }
+
+// GetPathLevel 获取页面地址的等级
+func GetPathLevel(wxto string) (level int32) {
+
+	if b := strings.Contains(wxto, string("drive=qidian")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=zongheng")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=17k")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=qu")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=xbiquge")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=luoqiu")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=booktxt")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=bxwx")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=uxiaoshuo")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=biquyun")); b == true {
+		return 2
+	}
+	if b := strings.Contains(wxto, string("drive=soe8")); b == true {
+		return 2
+	}
+
+	if b := strings.Contains(wxto, string("drive=manhwa")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=haimaoba")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=hanmanwo")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=hanmanku")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=ssmh")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=fuman")); b == true {
+		return 3
+	}
+	if b := strings.Contains(wxto, string("drive=aimeizi5")); b == true {
+		return 3
+	}
+	return 1
+}
+
+// GetURLDrive 获取链接地址的解释器
+func GetURLDrive(url string) (drive, key string) {
+
+	return ``, ``
+}
