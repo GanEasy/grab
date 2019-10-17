@@ -111,7 +111,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/allroesoures", a.GetAllResources)
 	api.GET("/allbookroesoures", a.GetAllBookResources)
 	api.GET("/allcartoonroesoures", a.GetAllCartoonResources)
-	api.GET("/alllearnroesoures", a.GetAllLearnResources)
+	api.GET("/alllearnresources", a.GetAllLearnResources)
 
 	api.GET("/newactivity", a.NewActivity)  //新号召令
 	api.GET("/activities", a.GetActivities) //所有号召令(100条)

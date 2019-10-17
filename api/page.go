@@ -469,6 +469,14 @@ func GetPublishExploreLinks() []Link {
 			Style: `arrow`,
 		},
 		Link{
+			Title: `编程学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+		Link{
 			Title: `使用教程`,
 			Icon:  ``,
 			Type:  `link`,
@@ -634,7 +642,7 @@ func GetAllResources(c echo.Context) error {
 //GetAllBookResources 所有小说资源
 func GetAllBookResources(c echo.Context) error {
 	var list = reader.Catalog{}
-	list.Title = `全部小说资源`
+	list.Title = `小说资源`
 
 	list.SourceURL = ``
 
@@ -703,7 +711,7 @@ func GetAllBookResources(c echo.Context) error {
 //GetAllCartoonResources 获取所有漫画资源
 func GetAllCartoonResources(c echo.Context) error {
 	var list = reader.Catalog{}
-	list.Title = `全部漫画资源`
+	list.Title = `漫画资源`
 
 	list.SourceURL = ``
 
@@ -772,7 +780,7 @@ func GetAllCartoonResources(c echo.Context) error {
 //GetAllLearnResources 获取所有编程资源
 func GetAllLearnResources(c echo.Context) error {
 	var list = reader.Catalog{}
-	list.Title = `全部编程资源`
+	list.Title = `编程学习资料`
 
 	list.SourceURL = ``
 
