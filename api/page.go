@@ -704,6 +704,11 @@ func GetAllBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
+		reader.Card{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		},
 	}
 	return c.JSON(http.StatusOK, list)
 }
