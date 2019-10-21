@@ -29,6 +29,7 @@ func Test_BiqugeinfoGetCatalog(t *testing.T) {
 func Test_BiqugeinfoGetList(t *testing.T) {
 	urlStr := `https://m.booktxt.net/wapsort/1_1.html`
 	urlStr = `https://m.biquge.info/list/1_1.html`
+	urlStr = `https://m.biquge.info/list/5_7.html`
 	reader := BiqugeinfoReader{}
 	list, err := reader.GetList(urlStr)
 	if err != nil {

@@ -34,6 +34,8 @@ func GetActivities(c echo.Context) error {
 			level = 4
 		} else if provider == `qq` {
 			level = 2
+		} else if provider == `toutiao` {
+			level = 2
 		} else if provider == `web` {
 			level = 5
 		}
