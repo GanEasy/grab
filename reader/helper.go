@@ -23,6 +23,89 @@ func LinksToCards(links []Link, page, drive string) (cards []Card) {
 	return
 }
 
+//CleaningRepeat 清洗重复数据
+// func CleaningRepeat(links []Link) (newlinks []Link) {
+
+// 	var tnu = map[string]int{} //检查标题出现次数
+
+// 	for _, link := range links { //统计标题出现次数
+// 		if link.Title != "" {
+// 			if _, ok := tnu[link.Title]; ok && link.Title != "" {
+// 				tnu[link.Title]++
+// 			} else {
+// 				tnu[link.Title] = 1
+// 			}
+// 		}
+// 	}
+
+// 	var crp = map[string]int{}
+// 	for _, link := range links {
+// 		if link.Title != "" {
+// 			if _, ok := crp[link.URL]; ok {
+// 				crp[link.URL]++
+// 				if _, ok2 := tnu[link.Title]; ok2 && tnu[link.Title] == 1 { //如果这个标题只出现一次
+
+// 				}
+
+// 			} else {
+// 				crp[link.URL] = 1
+// 				newlinks = append(newlinks, link)
+// 			}
+// 		}
+// 	}
+
+// 	for _, link := range links {
+
+// 		if link.Title != "" {
+// 			if _, ok := crp[link.URL]; ok && tnu[link.Title] == 1 {
+// 				crp[link.URL]++
+// 			} else {
+// 				crp[link.URL] = 1
+// 			}
+// 		}
+
+// 		if _, ok := crp[link.URL]; !ok && link.Title != "" {
+// 			crp[link.URL] = 1
+// 			if _, ok := wg[link.URL]; ok && link.Title != "" {
+// 				newlinks = append(newlinks, link)
+// 			}
+// 		}
+
+// 	}
+// 	return newlinks
+// }
+
+// CleaningFrontRepeat 清洗前面的数据（相同标题地址出来两次用后面的）
+func CleaningFrontRepeat(links []Link) (newlinks []Link) {
+
+	var tnu = map[string]int{} //检查标题出现次数
+	var key string
+	for _, link := range links { //统计标题出现次数
+		if link.Title != "" {
+			key = link.Title + link.URL
+			if _, ok := tnu[key]; ok && link.Title != "" {
+				tnu[key]++
+			} else {
+				tnu[key] = 1
+			}
+		}
+	}
+
+	for _, link := range links { //统计标题出现次数
+		if link.Title != "" {
+			key = link.Title + link.URL
+			if _, ok := tnu[key]; ok {
+				tnu[key]--
+				if tnu[key] == 0 {
+					newlinks = append(newlinks, link)
+				}
+			}
+		}
+	}
+
+	return newlinks
+}
+
 //Cleaning 清洗数据
 func Cleaning(links []Link) (newlinks []Link) {
 	// 拆分链接字符占比重

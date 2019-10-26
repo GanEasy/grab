@@ -580,6 +580,16 @@ func GetAllResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
+		reader.Card{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		},
+		reader.Card{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+		},
 
 		reader.Card{
 			Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
@@ -708,6 +718,11 @@ func GetAllBookResources(c echo.Context) error {
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		},
+		reader.Card{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 		},
 	}
 	return c.JSON(http.StatusOK, list)
