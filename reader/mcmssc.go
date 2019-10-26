@@ -2,7 +2,6 @@ package reader
 
 import (
 	"fmt"
-	"log"
 	"net/url"
 	"regexp"
 	"strconv"
@@ -89,7 +88,7 @@ func (r McmsscReader) GetList(urlStr string) (list Catalog, err error) {
 		// 已经组装url
 		nextURL := fmt.Sprintf(`https://www.mcmssc.com%v%v.html`, pagemod, (p + 1))
 		list.Next = Link{`下一页`, EncodeURL(nextURL), ``}
-		log.Println(`pagemodpage`, nextURL)
+		// log.Println(`pagemodpage`, nextURL)
 	}
 
 	list.Hash = GetCatalogHash(list)
