@@ -97,7 +97,7 @@ func (r BiqugeinfoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTMLOrCache(urlStr, ``)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
@@ -153,7 +153,7 @@ func (r BiqugeinfoReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTMLOrCache(urlStr, ``)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return ret, err
 	}

@@ -1,7 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"io/ioutil"
 	"net/http"
+	"os"
+	"time"
 
 	"github.com/GanEasy/grab"
 	a "github.com/GanEasy/grab/api"
@@ -10,7 +14,55 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+//删除目录下的文件信息
+//dirpath 目录路径
+func delDirFile(dirpath string) {
+	//读取目录信息
+	dir, err := ioutil.ReadDir(dirpath)
+	if err != nil {
+		return
+	}
+
+	//当前系统的时间
+	ct := int32(time.Now().Unix())
+	//12小时
+	spt := int32(12 * 3600)
+
+	for _, file := range dir {
+		//读取到的是目录
+		if file.IsDir() {
+			// subDir := dirpath + `/` + file.Name()
+			subDir := fmt.Sprintf("%s/%s", dirpath, file.Name())
+			// dir2, _ := ioutil.ReadDir(subDir)
+			// fmt.Println(subDir, dir2)
+			delDirFile(subDir)
+			// continue
+		}
+		//文件的最后修改时间
+		tdate := file.ModTime()
+		ft := int32(tdate.Unix())
+
+		//3天前的文件就删除
+		if ft < ct-spt {
+			os.Remove(dirpath + "/" + file.Name())
+			fmt.Println("del file:", dirpath+"/"+file.Name())
+		}
+	}
+}
+
+func delDirTask() {
+	for {
+		//读取目录配置文件信息
+		delDirFile(`cache/`)
+
+		//休眠1小时
+		time.Sleep(time.Hour)
+		// time.Sleep(3600e9)
+	}
+}
+
 func main() {
+	go delDirTask()
 	e := echo.New()
 	e.Use(middleware.CORS())
 
@@ -88,6 +140,14 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			``,
 			``,
 		}
+
+		address, drive, page := grab.ExplainLink(u.URL)
+		if address != `` && drive != `` && page != `` { // 有解释到什么是资源就返回解释到的资源
+			ret.Key = grab.EncodeURL(address)
+			ret.Drive = drive
+			ret.Page = page
+		}
+
 		// url := c.FormValue("url")
 		return c.JSON(http.StatusOK, ret)
 	})
