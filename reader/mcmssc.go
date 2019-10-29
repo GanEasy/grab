@@ -33,6 +33,7 @@ func (r McmsscReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`网游竞技`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/wangyouxiaoshuo/`), "", `link`, ``, nil, ``},
 		Card{`科幻灵异`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/kehuanxiaoshuo/`), "", `link`, ``, nil, ``},
 		Card{`其它小说`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/qitaxiaoshuo/`), "", `link`, ``, nil, ``},
+		Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -66,6 +67,17 @@ func (r McmsscReader) GetList(urlStr string) (list Catalog, err error) {
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
+
+	if len(links) == 0 {
+
+		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+		if e2 != nil {
+			return list, e2
+		}
+
+		links = GetLinks(g2, link)
+	}
 
 	var needLinks []Link
 	var state bool

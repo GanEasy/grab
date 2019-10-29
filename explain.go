@@ -184,5 +184,106 @@ func ExplainLink(url string) (address, drive, page string) {
 			return url, `biquyun`, `/page/list`
 		}
 	}
+
+	// 检查是不是booktxt.net
+	if checkLinkIsBooktxt, _ := regexp.MatchString(`booktxt.net`, url); checkLinkIsBooktxt {
+
+		// 章节详细 https://m.booktxt.net/wapbook/4891_4943641.html
+		BookChapterInfo := `m.booktxt.net\/wapbook\/(?P<book_id>\d+)_(?P<chapter_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
+			return url, `booktxt`, `/page/book`
+		}
+		// 章节列表
+		// https://m.booktxt.net/wapbook/6454.html
+		BookChapterMenu := `m.booktxt.net\/wapbook\/(?P<book_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
+			return url, `booktxt`, `/page/catelog`
+		}
+		// 其它的当作列表页
+		BookList := `m.booktxt.net/(?P<path>.*)`
+		if b, _ := regexp.MatchString(BookList, url); b {
+			return url, `booktxt`, `/page/list`
+		}
+	}
+
+	// 检查是不是booktxt.net
+	if checkLinkIsBxwx, _ := regexp.MatchString(`bxwx.la`, url); checkLinkIsBxwx {
+
+		// 章节详细 https://m.bxwx.la/b/316/316850/1684236.html
+		BookChapterInfo := `m.bxwx.la\/b\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
+			return url, `bxwx`, `/page/book`
+		}
+		// 章节列表
+		// https://m.bxwx.la/binfo/246/246596.htm
+		BookChapterMenu := `m.bxwx.la\/binfo\/(?P<cate_id>\d+)\/(?P<book_id>\d+).htm`
+		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
+			return url, `bxwx`, `/page/catelog`
+		}
+		// 其它的当作列表页
+		BookList := `m.bxwx.la/(?P<path>.*)`
+		if b, _ := regexp.MatchString(BookList, url); b {
+			return url, `bxwx`, `/page/list`
+		}
+	}
+
+	// 检查是不是mcmssc.com
+	if checkLinkIsBxwx, _ := regexp.MatchString(`mcmssc.com`, url); checkLinkIsBxwx {
+
+		// 章节详细 https://www.mcmssc.com/44_44569/21647159.html
+		BookChapterInfo := `mcmssc.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
+			Map := reader.SelectString(BookChapterInfo, url)
+			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"]), `mcmssc`, `/page/book`
+
+		}
+		// 章节列表
+		// https://www.mcmssc.com/44_44569/
+		BookChapterMenu := `mcmssc.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/`
+		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
+			Map := reader.SelectString(BookChapterMenu, url)
+			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/page/catelog`
+		}
+		// https://m.mcmssc.com/44_44569/
+		BookChapterMenu2 := `mcmssc.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/all.html`
+		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
+			Map := reader.SelectString(BookChapterMenu2, url)
+			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/page/catelog`
+		}
+		// 其它的当作列表页
+		BookList := `mcmssc.com/(?P<path>.*)`
+		if b, _ := regexp.MatchString(BookList, url); b {
+			return url, `mcmssc`, `/page/list`
+		}
+	}
+	// 检查是不是mcmssc.com
+	if checkLinkIsBxwx, _ := regexp.MatchString(`mcmssc.com`, url); checkLinkIsBxwx {
+
+		// 章节详细 https://m.qu.la/book/39775/2494931.html
+		BookChapterInfo := `qu.la\/book\/(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
+			Map := reader.SelectString(BookChapterInfo, url)
+			return fmt.Sprintf("https://m.qu.la/book/%v/%v.html", Map["book_id"], Map["chapter_id"]), `qu`, `/page/book`
+
+		}
+		// 章节列表
+		// https://m.qu.la/book/193199/
+		BookChapterMenu := `qu.la\/book\/(?P<book_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
+			Map := reader.SelectString(BookChapterMenu, url)
+			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/page/catelog`
+		}
+		// https://m.qu.la/booklist/193199.html
+		BookChapterMenu2 := `qu.la\/booklist\/(?P<book_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
+			Map := reader.SelectString(BookChapterMenu2, url)
+			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/page/catelog`
+		}
+		// 其它的当作列表页
+		BookList := `qu.la/(?P<path>.*)`
+		if b, _ := regexp.MatchString(BookList, url); b {
+			return url, `qu`, `/page/list`
+		}
+	}
 	return ``, ``, ``
 }

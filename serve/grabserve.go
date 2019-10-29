@@ -45,7 +45,7 @@ func delDirFile(dirpath string) {
 		//3天前的文件就删除
 		if ft < ct-spt {
 			os.Remove(dirpath + "/" + file.Name())
-			fmt.Println("del file:", dirpath+"/"+file.Name())
+			// fmt.Println("del file:", dirpath+"/"+file.Name())
 		}
 	}
 }
