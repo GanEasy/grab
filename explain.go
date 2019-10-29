@@ -17,7 +17,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		InfoBook := `book.qidian.com\/info\/(?P<book_id>\d+)`
 		if b, _ := regexp.MatchString(InfoBook, url); b {
 			Map := reader.SelectString(InfoBook, url)
-			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catelog`
+			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catalog`
 		}
 
 		// 起点手机详细页
@@ -25,7 +25,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBook := `m.qidian.com\/book\/(?P<book_id>\d+)`
 		if b, _ := regexp.MatchString(MobileBook, url); b {
 			Map := reader.SelectString(MobileBook, url)
-			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catelog`
+			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catalog`
 		}
 
 		// 起点手机章节列表页
@@ -33,7 +33,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBookChapterMenu := `m.qidian.com\/book\/(?P<book_id>\d+)\/catalog`
 		if b, _ := regexp.MatchString(MobileBookChapterMenu, url); b {
 			Map := reader.SelectString(MobileBookChapterMenu, url)
-			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catelog`
+			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catalog`
 		}
 
 		// 手机章节详细页
@@ -41,13 +41,13 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBookChapterInfo := `m.qidian.com\/book\/(?P<book_id>\d+)\/(?P<chapter_id>\d+)`
 		if b, _ := regexp.MatchString(MobileBookChapterInfo, url); b {
 			Map := reader.SelectString(MobileBookChapterInfo, url)
-			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catelog`
+			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catalog`
 		}
 
 		BookVIPChapterInfo := `vipreader.qidian.com\/chapter\/(?P<book_id>\d+)\/(?P<chapter_id>\d+)`
 		if b, _ := regexp.MatchString(BookVIPChapterInfo, url); b {
 			Map := reader.SelectString(BookVIPChapterInfo, url)
-			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catelog`
+			return fmt.Sprintf("http://book.qidian.com/info/%v", Map["book_id"]), `qidian`, `/pages/catalog`
 		}
 
 		// todo http://read.qidian.com/chapter/_AaqI-dPJJ4uTkiRw_sFYA2/-Yjl2ADCXQvM5j8_3RRvhw2
@@ -60,14 +60,14 @@ func ExplainLink(url string) (address, drive, page string) {
 		InfoBook := `book.zongheng.com\/book\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(InfoBook, url); b {
 			Map := reader.SelectString(InfoBook, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 		}
 
 		// http://book.zongheng.com/chapter/672340/38144043.html
 		ChapterInfo := `book.zongheng.com\/chapter\/(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
 		if b, _ := regexp.MatchString(ChapterInfo, url); b {
 			Map := reader.SelectString(ChapterInfo, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 
 		}
 
@@ -75,7 +75,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `book.zongheng.com\/showchapter\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 
 		}
 		// 纵横手机详细页
@@ -83,7 +83,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBook := `m.zongheng.com\/h5\/book\?bookid=(?P<book_id>\d+)`
 		if b, _ := regexp.MatchString(MobileBook, url); b {
 			Map := reader.SelectString(MobileBook, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 
 		}
 
@@ -92,7 +92,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBookChapterMenu := `m.zongheng.com\/h5\/chapter\/list\?bookid=(?P<book_id>\d+)`
 		if b, _ := regexp.MatchString(MobileBookChapterMenu, url); b {
 			Map := reader.SelectString(MobileBookChapterMenu, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 
 		}
 
@@ -102,7 +102,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBookChapterInfo := `m.zongheng.com\/h5\/chapter\?bookid=(?P<book_id>\d+)&cid=(?P<chapter_id>\d+)`
 		if b, _ := regexp.MatchString(MobileBookChapterInfo, url); b {
 			Map := reader.SelectString(MobileBookChapterInfo, url)
-			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catelog`
+			return fmt.Sprintf("http://book.zongheng.com/showchapter/%v.html", Map["book_id"]), `zongheng`, `/pages/catalog`
 
 		}
 	}
@@ -113,7 +113,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		InfoBook := `17k.com\/book\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(InfoBook, url); b {
 			Map := reader.SelectString(InfoBook, url)
-			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catelog`
+			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catalog`
 		}
 
 		// 章节列表
@@ -121,14 +121,14 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `17k.com\/list\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catelog`
+			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catalog`
 		}
 
 		// 章节详细
 		MobileBookChapterInfo := `17k.com\/chapter\/(?P<book_id>\d+)/(?P<chapter_id>\d+).html`
 		if b, _ := regexp.MatchString(MobileBookChapterInfo, url); b {
 			Map := reader.SelectString(MobileBookChapterInfo, url)
-			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catelog`
+			return fmt.Sprintf("http://www.17k.com/book/%v.html", Map["book_id"]), `17k`, `/pages/catalog`
 		}
 	}
 
@@ -146,7 +146,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `m.biquge.info\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			// Map := reader.SelectString(BookChapterMenu, url)
-			return url, `biqugeinfo`, `/pages/catelog`
+			return url, `biqugeinfo`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `m.biquge.info/(?P<path>.*)`
@@ -169,13 +169,13 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `m.biquyun.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("https://m.biquyun.com/%v_%v_1_1.html", Map["cate_id"], Map["book_id"]), `biquyun`, `/pages/catelog`
+			return fmt.Sprintf("https://m.biquyun.com/%v_%v_1_1.html", Map["cate_id"], Map["book_id"]), `biquyun`, `/pages/catalog`
 
 		}
 		BookChapterMenu2 := `m.biquyun.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)_(?P<page>\d+)_1.html`
 		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
 			Map := reader.SelectString(BookChapterMenu2, url)
-			return fmt.Sprintf("https://m.biquyun.com/%v_%v_%v_1.html", Map["cate_id"], Map["book_id"], Map["page"]), `biquyun`, `/pages/catelog`
+			return fmt.Sprintf("https://m.biquyun.com/%v_%v_%v_1.html", Map["cate_id"], Map["book_id"], Map["page"]), `biquyun`, `/pages/catalog`
 
 		}
 		// 其它的当作列表页
@@ -197,7 +197,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		// https://m.booktxt.net/wapbook/6454.html
 		BookChapterMenu := `m.booktxt.net\/wapbook\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
-			return url, `booktxt`, `/pages/catelog`
+			return url, `booktxt`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `m.booktxt.net/(?P<path>.*)`
@@ -218,7 +218,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		// https://m.bxwx.la/binfo/246/246596.htm
 		BookChapterMenu := `m.bxwx.la\/binfo\/(?P<cate_id>\d+)\/(?P<book_id>\d+).htm`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
-			return url, `bxwx`, `/pages/catelog`
+			return url, `bxwx`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `m.bxwx.la/(?P<path>.*)`
@@ -242,13 +242,13 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `mcmssc.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/pages/catelog`
+			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/pages/catalog`
 		}
 		// https://m.mcmssc.com/44_44569/
 		BookChapterMenu2 := `mcmssc.com\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/all.html`
 		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
 			Map := reader.SelectString(BookChapterMenu2, url)
-			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/pages/catelog`
+			return fmt.Sprintf("https://www.mcmssc.com/%v_%v/", Map["cate_id"], Map["book_id"]), `mcmssc`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `mcmssc.com/(?P<path>.*)`
@@ -271,13 +271,13 @@ func ExplainLink(url string) (address, drive, page string) {
 		BookChapterMenu := `qu.la\/book\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catelog`
+			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catalog`
 		}
 		// https://m.qu.la/booklist/193199.html
 		BookChapterMenu2 := `qu.la\/booklist\/(?P<book_id>\d+).html`
 		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
 			Map := reader.SelectString(BookChapterMenu2, url)
-			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catelog`
+			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `qu.la/(?P<path>.*)`
