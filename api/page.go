@@ -23,25 +23,25 @@ type Carousel struct {
 // GetCarousels 获取首页走马灯数据
 func GetCarousels(c echo.Context) error {
 	var carousels []Carousel
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:    `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-			Type:   `image`,
-			Event:  `poster`,
-			WxTo:   ``,
-			Poster: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-		})
+	// carousels = append(
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:    `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+	// 		Type:   `image`,
+	// 		Event:  `poster`,
+	// 		WxTo:   ``,
+	// 		Poster: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+	// 	})
 
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
-			Type: `image`,
-			WxTo: ``,
-		})
+	// carousels = append(
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
+	// 		Type: `image`,
+	// 		WxTo: ``,
+	// 	})
 
-	carousels = append(
+	// carousels = append(
 		carousels,
 		Carousel{
 			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
