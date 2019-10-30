@@ -1,7 +1,6 @@
 package reader
 
 import (
-	"log"
 	"net/url"
 	"regexp"
 	"strings"
@@ -191,7 +190,11 @@ func (r QuReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
-	log.Println(article.ReadContent)
+	reg4 := regexp.MustCompile(`<([^>]+)>([^<]+)<\/([^>]+)>`)
+
+	article.ReadContent = reg4.ReplaceAllString(article.ReadContent, "")
+
+	// log.Println(article.ReadContent)
 	c := MarkDownFormatContent(article.ReadContent)
 
 	c = BookContReplace(c)
