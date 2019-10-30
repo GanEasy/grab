@@ -143,6 +143,11 @@ func GetAPIToken(c echo.Context) error {
 				"home_reward": cf.Ad.Reward,
 				"list_reward": cf.Ad.Reward,
 				"info_reward": cf.Ad.Reward,
+
+				// 定义首页分享标题
+				"share_title": `全网小说资源免费转码阅读 | 笔趣阁小说转码工具 | 全本免费小说阅读`,
+				// 定义首页分享图片
+				"share_cover": ``,
 			})
 		}
 	} else if provider == `h5` {

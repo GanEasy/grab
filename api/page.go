@@ -180,7 +180,7 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 	if provider == `weixin` { //特例
-		return c.JSON(http.StatusOK, GetPublishExploreLinks())
+		// return c.JSON(http.StatusOK, GetPublishExploreLinks())
 	}
 	if provider == `qq` { //特例
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
@@ -231,14 +231,14 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `微信小程序开发入门系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `微信小程序开发入门系列教程`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `从学徒到工匠精校版`,
 		// 	Icon:  ``,
@@ -256,14 +256,14 @@ func GetWaitExamineExplore() []Link {
 		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
 		// 	Style: `arrow`,
 		// },
-		Link{
-			Title: `Go语言入门教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `Go语言入门教程`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `德哥博客-最佳实践`,
 		// 	Icon:  ``,
@@ -282,14 +282,14 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: `arrow`,
 		// },
 
-		Link{
-			Title: `Laravel 项目开发规范`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `Laravel 项目开发规范`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `Laravel5.5开发文档`,
 		// 	Icon:  ``,
