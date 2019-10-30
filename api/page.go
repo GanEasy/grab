@@ -126,30 +126,21 @@ func GetUserLinks(c echo.Context) error {
 func GetNewCatelogLinks(c echo.Context) error {
 	var links = []Link{
 		Link{
-			Title: `功能介绍`,
+			Title: `如何添加转码数据源`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://github.com/GanEasy/grab/blob/master/doc/newCatalog.md`),
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/newguide.html`),
 			Style: `arrow`,
 		},
-		// Link{
-		// 	Title: `使用说明`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/newCreate`,
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `异常说明`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/newCreate`,
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
 
 		// Link{
 		// 	Title: `加入交流群获得帮助`,
@@ -205,29 +196,29 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: `arrow`,
 		// },
 		Link{
-			Title: `使用教程`,
+			Title: `Q&A`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/guide.html?`),
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/guide.html?`),
 			Style: `arrow`,
 		},
 
 		Link{
-			Title: `关于`,
+			Title: `工具介绍`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/about.html`),
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
 			Style: `arrow`,
 		},
 
 		Link{
-			Title: `帮助`,
+			Title: `免责声明`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/help.html`),
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
 		},
 
