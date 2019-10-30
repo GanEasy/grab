@@ -12,29 +12,42 @@ import (
 
 // Carousel 小程序首页轮播内容(作为专题广告或其它的东西使用)
 type Carousel struct {
-	URL  string `json:"url"`
-	Type string `json:"type"` // 期望可以同时支持视频播放(虽然很不现实)
-	WxTo string `json:"wxto"` // 点击后跳转地址
+	URL    string `json:"url"`
+	Type   string `json:"type"` // 期望可以同时支持视频播放(虽然很不现实)
+	WxTo   string `json:"wxto"` // 点击后跳转地址
+	Event  string `json:"event"`
+	Poster string `json:"poster"` //type 为 poster 时生效，打开一个图片
+	AppID  string `json:"appid"`  //type 为 jumpapp 时生效，跳转到另一个小程序
 }
 
 // GetCarousels 获取首页走马灯数据
 func GetCarousels(c echo.Context) error {
 	var carousels []Carousel
-	// carousels = append(
-	// 	carousels,
-	// 	Carousel{
-	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
-	// 		Type: `image`,
-	// 		WxTo: ``,
-	// 	})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:    `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+			Type:   `image`,
+			Event:  `poster`,
+			WxTo:   ``,
+			Poster: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+		})
 
-	// carousels = append(
-	// 	carousels,
-	// 	Carousel{
-	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-	// 		Type: `image`,
-	// 		WxTo: ``,
-	// 	})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg`,
+			Type: `image`,
+			WxTo: ``,
+		})
+
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+			Type: `image`,
+			WxTo: ``,
+		})
 
 	return c.JSON(http.StatusOK, carousels)
 }
