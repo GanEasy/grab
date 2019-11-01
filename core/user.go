@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/GanEasy/grab/db"
 	"github.com/GanEasy/grab/reader"
@@ -119,6 +120,41 @@ func SendPostUpdateMSG(openID, formID, title, page string) error {
 
 	if ret.ErrCode != 0 {
 		err = errors.New(string(ret.ErrCode))
+	}
+
+	return err
+}
+
+//MSGSecCHECK 文本安全检查
+func MSGSecCHECK(text string) error {
+	//
+	type Ret struct {
+		ErrCode int64  `json:"errcode"`
+		ErrMSG  string `json:"errmsg"`
+	}
+	var ret Ret
+
+	type Data struct {
+		Content string `json:"content"`
+	}
+
+	var data = Data{text}
+	token, err2 := TokenServe.Token()
+	if err2 != nil {
+		return err2
+	}
+	// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
+	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/msg_sec_check?access_token=?access_token=%v`, token)
+
+	b, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	HTTPPostJSON(url, b, &ret)
+
+	if ret.ErrCode != 0 {
+		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
 	}
 
 	return err

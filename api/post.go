@@ -25,6 +25,7 @@ func SyncPosts(list reader.Catalog, cate int32) {
 func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
+
 	// openID := getOpenID(c)
 	// if openID == `` {
 	// 	return c.HTML(http.StatusOK, "openid empty")
@@ -34,6 +35,12 @@ func SearchPosts(c echo.Context) error {
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 	if provider == `weixin` {
 		level = 4
+		cerr := cpi.MSGSecCHECK(name)
+		if cerr != nil {
+			catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
+			return c.JSON(http.StatusOK, catelog)
+		}
+
 	} else if provider == `qq` {
 		level = 2
 	} else if provider == `web` {
@@ -52,6 +59,7 @@ func SearchPosts(c echo.Context) error {
 	}
 	var intro string
 	if len(posts) > 0 {
+
 		for _, v := range posts {
 			// if user.Level >= v.Level {
 			// intro :=

@@ -18,6 +18,11 @@ func Test_GetwxCodeUnlimit(t *testing.T) {
 	t.Fatal(err)
 }
 
+func Test_MSGSecCHECK(t *testing.T) {
+	err := MSGSecCHECK(`强奸性爱游戏`)
+	t.Fatal(err)
+}
+
 func Test_GetToken(t *testing.T) {
 
 	token, _ := TokenServe.Token()

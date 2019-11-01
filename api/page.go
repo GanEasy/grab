@@ -480,38 +480,22 @@ func GetPublishExploreLinks() []Link {
 			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
 			Style: `arrow`,
 		},
+
 		Link{
-			Title: `使用教程`,
+			Title: `使用介绍`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/guide.html?`),
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
 			Style: `arrow`,
 		},
 
 		Link{
-			Title: `关于`,
+			Title: `免责声明`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/about.html`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `帮助`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/help.html`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `全部资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
 		},
 	}
@@ -601,11 +585,11 @@ func GetAllResources(c echo.Context) error {
 			WxTo:  ``,
 		},
 
-		reader.Card{
-			Title: `韩漫窝(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
-		},
+		// reader.Card{
+		// 	Title: `韩漫窝(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		// },
 
 		reader.Card{
 			Title: `韩漫库(18禁)`,
@@ -619,11 +603,11 @@ func GetAllResources(c echo.Context) error {
 			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
 		},
 
-		reader.Card{
-			Title: `我爱妹子漫画(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
-		},
+		// reader.Card{
+		// 	Title: `我爱妹子漫画(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		// },
 		reader.Card{
 			Title: `腐漫漫画(18禁)`,
 			Type:  `link`,
@@ -749,11 +733,11 @@ func GetAllCartoonResources(c echo.Context) error {
 			WxTo:  ``,
 		},
 
-		reader.Card{
-			Title: `韩漫窝(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
-		},
+		// reader.Card{
+		// 	Title: `韩漫窝(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		// },
 
 		reader.Card{
 			Title: `韩漫库(18禁)`,
@@ -767,11 +751,11 @@ func GetAllCartoonResources(c echo.Context) error {
 			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
 		},
 
-		reader.Card{
-			Title: `我爱妹子漫画(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
-		},
+		// reader.Card{
+		// 	Title: `我爱妹子漫画(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		// },
 		reader.Card{
 			Title: `腐漫漫画(18禁)`,
 			Type:  `link`,

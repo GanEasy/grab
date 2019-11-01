@@ -39,7 +39,6 @@ func GetActivities(c echo.Context) error {
 		} else if provider == `web` {
 			level = 5
 		}
-
 	}
 	var rows = cpi.GetActivities()
 	if len(rows) > 0 {
