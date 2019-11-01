@@ -42,12 +42,12 @@ func GetCarousels(c echo.Context) error {
 	// 	})
 
 	// carousels = append(
-		carousels,
-		Carousel{
-			URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-			Type: `image`,
-			WxTo: ``,
-		})
+	// carousels,
+	// Carousel{
+	// 	URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+	// 	Type: `image`,
+	// 	WxTo: ``,
+	// })
 
 	return c.JSON(http.StatusOK, carousels)
 }
