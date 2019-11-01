@@ -144,7 +144,7 @@ func MSGSecCHECK(text string) error {
 		return err2
 	}
 	// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
-	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/msg_sec_check?access_token=?access_token=%v`, token)
+	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/msg_sec_check?access_token=%v`, token)
 
 	b, err := json.Marshal(data)
 	if err != nil {
@@ -154,6 +154,7 @@ func MSGSecCHECK(text string) error {
 	HTTPPostJSON(url, b, &ret)
 
 	if ret.ErrCode != 0 {
+		// err = errors.New(string(ret.ErrMSG))
 		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
 	}
 
