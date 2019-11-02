@@ -26,13 +26,17 @@ func (r Soe8Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`https://m.soe8.com/sort/0/1.html`), "", `link`, ``, nil, ``},
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/1_1/`), "", `link`, ``, nil, ``},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/2_1/`), "", `link`, ``, nil, ``},
-		Card{`都市言情`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/3_1/`), "", `link`, ``, nil, ``},
-		Card{`历史军事`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/4_1/`), "", `link`, ``, nil, ``},
-		Card{`游戏体育`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/5_1/`), "", `link`, ``, nil, ``},
-		Card{`科幻灵异`, `/pages/list?action=book&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/6_1/`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/0/1.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/1_1/`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/2_1/`), "", `link`, ``, nil, ``},
+		Card{`都市言情`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/3_1/`), "", `link`, ``, nil, ``},
+		Card{`历史军事`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/4_1/`), "", `link`, ``, nil, ``},
+		Card{`游戏体育`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/5_1/`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/6_1/`), "", `link`, ``, nil, ``},
+
+		Card{`\月点击`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/top/monthvisit_1/`), "", `link`, ``, nil, ``},
+		Card{`\周点击`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/top/weekvisit_1/`), "", `link`, ``, nil, ``},
+		Card{`\总点击`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/top/allvisit_1/`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }

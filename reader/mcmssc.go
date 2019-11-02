@@ -33,7 +33,7 @@ func (r McmsscReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`网游竞技`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/wangyouxiaoshuo/`), "", `link`, ``, nil, ``},
 		Card{`科幻灵异`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/kehuanxiaoshuo/`), "", `link`, ``, nil, ``},
 		Card{`其它小说`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/qitaxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``},
+		// Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
