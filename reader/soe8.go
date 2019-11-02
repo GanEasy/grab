@@ -194,6 +194,10 @@ func (r Soe8Reader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
+	reg2 := regexp.MustCompile(`最快更新([^<]+)章节！`)
+
+	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
+
 	c := MarkDownFormatContent(article.ReadContent)
 
 	c = BookContReplace(c)

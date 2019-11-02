@@ -14,7 +14,7 @@ func Test_BxwxJaccardMateGetURL(t *testing.T) {
 func Test_BxwxGetInfo(t *testing.T) {
 	urlStr := `https://m.bxwx.la/b/316/316850/1684236.html`
 	// urlStr = `http://www.xinshubao.net/18/18685/2515188_2.html`
-	// urlStr = `https://m.35xs.com/book/237551/51896850.html`
+	urlStr = `https://m.bxwx.la/b/316/316697/1670797.html`
 	reader := BxwxReader{}
 	list, err := reader.GetInfo(urlStr)
 	if err != nil {

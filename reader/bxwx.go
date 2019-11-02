@@ -172,13 +172,13 @@ func (r BxwxReader) GetInfo(urlStr string) (ret Content, err error) {
 		ret.Title = article.Title
 	}
 
+	reg2 := regexp.MustCompile(`还在用浏览器看([^<]+)立即下载`)
+
+	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
+
 	reg := regexp.MustCompile(`<a([^>]+)>([^，]+)<\/a>`)
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
-
-	reg2 := regexp.MustCompile(`还在用浏览器看([^<]+)立即下载&gt;&gt;&gt;`)
-
-	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
 	ret.SourceURL = urlStr
 

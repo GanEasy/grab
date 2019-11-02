@@ -178,7 +178,7 @@ func (r BiquyunReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
-	reg2 := regexp.MustCompile(`<br/>看(?P<title>([^<])+)最新章节请去 m.biquyun.com`)
+	reg2 := regexp.MustCompile(`<br/>看(?P<title>([^<])+)biquyun.com</p>`)
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
