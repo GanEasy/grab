@@ -53,7 +53,7 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 		return
 	}
 
-	html2, err := FindContentHTML(html, `.fk`)
+	html2, err := FindContentHTML(html, `.list`)
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 

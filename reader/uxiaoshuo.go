@@ -32,6 +32,16 @@ func (r UxiaoshuoReader) GetCategories(urlStr string) (list Catalog, err error) 
 		Card{`科幻灵异`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/5/1.html`), "", `link`, ``, nil, ``},
 		Card{`网游竞技`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/6/1.html`), "", `link`, ``, nil, ``},
 		Card{`女生频道`, `/pages/list?action=book&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/sort/7/1.html`), "", `link`, ``, nil, ``},
+
+		Card{`↘↘↘排行榜↙↙↙`, ``, "", `link`, ``, nil, ``},
+		Card{`全部热门↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week1.html`), "", `link`, ``, nil, ``},
+		Card{`武侠仙侠↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week2.html`), "", `link`, ``, nil, ``},
+		Card{`都市言情↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week3.html`), "", `link`, ``, nil, ``},
+		Card{`历史军事↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week4.html`), "", `link`, ``, nil, ``},
+		Card{`科幻灵异↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week5.html`), "", `link`, ``, nil, ``},
+		Card{`游戏竞技↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week6.html`), "", `link`, ``, nil, ``},
+		Card{`女生频道↘↘↘`, `/pages/list?action=list&drive=uxiaoshuo&url=` + EncodeURL(`https://m.uxiaoshuo.com/phb/week7.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }

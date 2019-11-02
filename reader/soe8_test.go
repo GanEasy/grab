@@ -9,7 +9,8 @@ func Test_Soe8GetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
 	urlStr := "http://m.soe8.com/sort/2_1/"
-	// urlStr = "http://m.soe8.com/sort/1_1/"
+	urlStr = "http://m.soe8.com/sort/1_1/"
+	urlStr = "http://m.soe8.com/top/monthvisit_1/"
 	reader := Soe8Reader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()
