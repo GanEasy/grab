@@ -26,7 +26,7 @@ func GetActivities(c echo.Context) error {
 	provider := c.QueryParam("provider")
 
 	var level int32
-	level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
+	level = 3 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 
 	cf := cpi.GetConf()
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查

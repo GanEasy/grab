@@ -256,33 +256,33 @@ func ExplainLink(url string) (address, drive, page string) {
 			return url, `mcmssc`, `/pages/list`
 		}
 	}
-	// 检查是不是mcmssc.com
-	if checkLinkIsBxwx, _ := regexp.MatchString(`mcmssc.com`, url); checkLinkIsBxwx {
+	// 检查是不是uxiaoshuo.com
+	if checkLinkIsUxs, _ := regexp.MatchString(`uxiaoshuo.com`, url); checkLinkIsUxs {
 
-		// 章节详细 https://m.qu.la/book/39775/2494931.html
-		BookChapterInfo := `qu.la\/book\/(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
+		// 章节详细 https://m.uxiaoshuo.com/40/40423/2193344.html
+		BookChapterInfo := `m.uxiaoshuo.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/(?P<chapter_id>\d+)\/.html`
 		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
 			Map := reader.SelectString(BookChapterInfo, url)
-			return fmt.Sprintf("https://m.qu.la/book/%v/%v.html", Map["book_id"], Map["chapter_id"]), `qu`, `/pages/book`
+			return fmt.Sprintf("https://m.uxiaoshuo.com/%v/%v/%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"]), `uxiaoshuo`, `/pages/book`
 
 		}
 		// 章节列表
-		// https://m.qu.la/book/193199/
-		BookChapterMenu := `qu.la\/book\/(?P<book_id>\d+).html`
+		// https://m.uxiaoshuo.com/40/40423/all.html
+		BookChapterMenu := `m.uxiaoshuo.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/all.html`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
 			Map := reader.SelectString(BookChapterMenu, url)
-			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catalog`
+			return fmt.Sprintf("https://m.uxiaoshuo.com/%v/%v/all.html", Map["cate_id"], Map["book_id"]), `uxiaoshuo`, `/pages/catalog`
 		}
-		// https://m.qu.la/booklist/193199.html
-		BookChapterMenu2 := `qu.la\/booklist\/(?P<book_id>\d+).html`
+		// https://m.uxiaoshuo.com/40/40423/
+		BookChapterMenu2 := `m.uxiaoshuo.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/`
 		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
 			Map := reader.SelectString(BookChapterMenu2, url)
-			return fmt.Sprintf("https://m.qu.la/booklist/%v.html", Map["book_id"]), `qu`, `/pages/catalog`
+			return fmt.Sprintf("https://m.uxiaoshuo.com/%v/%v/all.html", Map["cate_id"], Map["book_id"]), `uxiaoshuo`, `/pages/catalog`
 		}
 		// 其它的当作列表页
-		BookList := `qu.la/(?P<path>.*)`
+		BookList := `uxiaoshuo.com/(?P<path>.*)`
 		if b, _ := regexp.MatchString(BookList, url); b {
-			return url, `qu`, `/pages/list`
+			return url, `uxiaoshuo`, `/pages/list`
 		}
 	}
 	return ``, ``, ``
