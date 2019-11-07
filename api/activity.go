@@ -42,20 +42,26 @@ func GetActivities(c echo.Context) error {
 	}
 	var rows = cpi.GetActivities()
 	if len(rows) > 0 {
+		var rp = map[string]int{}
 		var itemlevel int32
 		for _, v := range rows {
 			// 只显示拥有权限的级别
 			itemlevel = reader.GetPathLevel(v.WxTo)
 			if level > itemlevel {
-				links = append(links,
-					Link{
-						Title: v.Title,
-						Icon:  ``, // cuIcon-new
-						Type:  `link`,
-						Image: ``,
-						WxTo:  v.WxTo,
-						Style: `arrow`,
-					})
+				//  过滤掉相同 title 的资源（重复的只显示最新一个）
+				if _, ok := rp[v.Title]; !ok {
+					rp[v.Title] = 1
+					links = append(links,
+						Link{
+							Title: v.Title,
+							Icon:  ``, // cuIcon-new
+							Type:  `link`,
+							Image: ``,
+							WxTo:  v.WxTo,
+							Style: `arrow`,
+						})
+				}
+
 			}
 		}
 	}
