@@ -80,11 +80,12 @@ func (r HongxiuReader) GetList(urlStr string) (list Catalog, err error) {
 	// class='page-next' href="javascript:" onclick="setPage(3)"
 	// <div class="pagination" id="page-container" data-total="2750" data-size="10" data-page="1" data-url="/all?pageNum=1&amp;pageSize=10&amp;gender=2&amp;catId=-1&amp;isFinish=-1&amp;isVip=-1&amp;size=-1&amp;updT=-1&amp;orderBy=0"></div>
 
-	total := FindString(`id="page-container" data-total="(?P<total>(\d)+)" data-size="10"`, urlStr, "total")
+	total := FindString(`id="page-container" data-total="(?P<total>(\d)+)" data-size="10"`, html, "total")
 	t, err1 := strconv.Atoi(total)
-	page := FindString(`id="page-container" data-total="(?P<total>(\d)+)" data-size="10" data-page="(?P<page>(\d)+)" `, urlStr, "page")
+	page := FindString(`id="page-container" data-total="(?P<total>(\d)+)" data-size="10" data-page="(?P<page>(\d)+)" `, html, "page")
 	p, err2 := strconv.Atoi(page)
 
+	// log.Println(`xxx`, total, page)
 	if p > 0 && p < t && err1 == nil && err2 == nil {
 		// 已经组装url
 		nextURL := strings.Replace(urlStr, fmt.Sprintf(`pageNum=%v`, p), fmt.Sprintf(`pageNum=%v`, p+1), -1)
@@ -174,7 +175,7 @@ func (r HongxiuReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	ret.Title = article.Title
 
-	ret.Title = FindString(`_(?P<title>(.)+)_全文阅读`, article.Title, "title")
+	ret.Title = FindString(`(?P<title>(.)+)_(?P<auther>(.)+)著`, article.Title, "title")
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}

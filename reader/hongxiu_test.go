@@ -39,6 +39,7 @@ func Test_HongxiuGetInfo(t *testing.T) {
 }
 func Test_HongxiuGetChapters(t *testing.T) {
 	urlStr := "https://www.hongxiu.com/book/13287843305142504"
+	urlStr = "https://www.hongxiu.com/book/2807020600528302"
 	// urlStr = "https://www.xxsy.net/info/1079349.html"
 
 	reader := HongxiuReader{}
