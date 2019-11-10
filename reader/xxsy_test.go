@@ -14,7 +14,7 @@ import (
 func Test_XxsyGetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
-	urlStr := "https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0"
+	urlStr := "https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1"
 	reader := XxsyReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()

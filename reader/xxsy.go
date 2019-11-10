@@ -16,24 +16,22 @@ type XxsyReader struct {
 // GetCategories 获取所有自定义分类(写死)
 func (r XxsyReader) GetCategories(urlStr string) (list Catalog, err error) {
 
-	// urlStr := `http://book.qidian.com`
-
 	list.Title = `分类-潇湘书院`
 
 	list.SourceURL = urlStr
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`玄幻言情`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=3&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`仙侠奇缘`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=4&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`古代言情`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=1&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`现代言情`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=2&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`浪漫青春`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=6&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`悬疑`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=5&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`科幻空间`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=7&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`游戏竞技`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=8&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`轻小说`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=9&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
-		Card{`短篇`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=11&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`玄幻言情`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=3&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`仙侠奇缘`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=4&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`古代言情`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=1&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`现代言情`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=2&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`浪漫青春`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=6&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`悬疑`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=5&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`科幻空间`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=7&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`游戏竞技`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=8&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`轻小说`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=9&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
+		Card{`短篇`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=11&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
 	}
 	list.Hash = GetCatalogHash(list)
 	return list, nil
@@ -120,8 +118,7 @@ func (r XxsyReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	var links = GetLinks(g, link)
 	var needLinks []Link
-	if len(links) > 0 { //todo 从 https://book.qidian.com/ajax/book/category?_csrfToken=&bookId=1004608738 中获取章节列表(要解释json)
-		// panic(`catalogMsg`)
+	if len(links) > 0 {
 
 		bookID := FindString(`/info/(?P<id>(\d)+)`, urlStr, "id")
 
