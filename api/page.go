@@ -664,6 +664,11 @@ func GetAllBookResources(c echo.Context) error {
 			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
 		},
 		reader.Card{
+			Title: `潇湘书院`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
+		},
+		reader.Card{
 			Title: `笔下文学`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=bxwx&url=` + grab.EncodeURL(`https://www.bxwx.la`),
