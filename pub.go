@@ -15,6 +15,8 @@ func GetGuide(drive string) reader.Guide {
 		return &reader.SeventeenKReader{}
 	} else if drive == `xxsy` {
 		return &reader.XxsyReader{}
+	} else if drive == `hongxiu` {
+		return &reader.HongxiuReader{}
 	} else if drive == `luoqiu` {
 		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {
@@ -73,6 +75,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.SeventeenKReader{}
 	} else if drive == `xxsy` {
 		return &reader.XxsyReader{}
+	} else if drive == `hongxiu` {
+		return &reader.HongxiuReader{}
 	} else if drive == `luoqiu` {
 		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {

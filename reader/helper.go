@@ -106,6 +106,37 @@ func CleaningFrontRepeat(links []Link) (newlinks []Link) {
 	return newlinks
 }
 
+// CleaningFrontLinkRepeat 清洗前面的数据（相同标题地址出来两次用后面的）
+func CleaningFrontLinkRepeat(links []Link) (newlinks []Link) {
+
+	var tnu = map[string]int{} //检查标题出现次数
+	var key string
+	for _, link := range links { //统计标题出现次数
+		if link.Title != "" {
+			key = link.URL
+			if _, ok := tnu[key]; ok && link.Title != "" {
+				tnu[key]++
+			} else {
+				tnu[key] = 1
+			}
+		}
+	}
+
+	for _, link := range links { //统计标题出现次数
+		if link.Title != "" {
+			key = link.URL
+			if _, ok := tnu[key]; ok {
+				tnu[key]--
+				if tnu[key] == 0 {
+					newlinks = append(newlinks, link)
+				}
+			}
+		}
+	}
+
+	return newlinks
+}
+
 //Cleaning 清洗数据
 func Cleaning(links []Link) (newlinks []Link) {
 	// 拆分链接字符占比重

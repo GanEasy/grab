@@ -11,11 +11,11 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-func Test_XxsyGetBooks(t *testing.T) {
+func Test_HongxiuGetBooks(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
-	urlStr := "https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1"
-	reader := XxsyReader{}
+	urlStr := "https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30020&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1"
+	reader := HongxiuReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()
 	if err != nil {
@@ -24,12 +24,12 @@ func Test_XxsyGetBooks(t *testing.T) {
 	t.Fatal(list)
 }
 
-func Test_XxsyGetInfo(t *testing.T) {
+func Test_HongxiuGetInfo(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
-	urlStr := "https://www.xxsy.net/chapter/79588269.html"
-	urlStr = "https://www.xxsy.net/chapter/34109344.html"
-	reader := XxsyReader{}
+	urlStr := "https://www.hongxiu.com/chapter/13287843305142504/35669283073749147"
+	// urlStr = "https://www.hongxiu.com/chapter/13287843305142504/35669283107301847"
+	reader := HongxiuReader{}
 	list, err := reader.GetInfo(urlStr)
 	// list, err = reader.GetCategories()
 	if err != nil {
@@ -37,11 +37,11 @@ func Test_XxsyGetInfo(t *testing.T) {
 	}
 	t.Fatal(list)
 }
-func Test_XxsyGetChapters(t *testing.T) {
-	urlStr := "https://www.xxsy.net/info/959418.html"
+func Test_HongxiuGetChapters(t *testing.T) {
+	urlStr := "https://www.hongxiu.com/book/13287843305142504"
 	// urlStr = "https://www.xxsy.net/info/1079349.html"
 
-	reader := XxsyReader{}
+	reader := HongxiuReader{}
 	list, err := reader.GetCatalog(urlStr)
 	// list, err = reader.GetCategories()
 	if err != nil {
@@ -59,7 +59,7 @@ func Test_XxsyGetChapters(t *testing.T) {
 // 	}
 // }
 
-func Test_XxsyGetChaptersByJson(t *testing.T) {
+func Test_HongxiuGetChaptersByJson(t *testing.T) {
 
 	type QiChaptersJsonDataCsChapter struct {
 		UT          string `json:"uT"`

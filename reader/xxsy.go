@@ -3,6 +3,7 @@ package reader
 import (
 	"fmt"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -160,7 +161,6 @@ func (r XxsyReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return ret, err
 	}
-	// log.Println(html)
 	article, err := GetActicleByHTML(html)
 	if err != nil {
 		return ret, err
@@ -176,6 +176,10 @@ func (r XxsyReader) GetInfo(urlStr string) (ret Content, err error) {
 	}
 
 	ret.SourceURL = urlStr
+
+	reg := regexp.MustCompile(`<a([^<]+)<\/a>`)
+
+	article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
 	c := MarkDownFormatContent(article.ReadContent)
 
