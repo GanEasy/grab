@@ -206,7 +206,7 @@ func ExplainLink(url string) (address, drive, page string) {
 		}
 	}
 
-	// 检查是不是booktxt.net
+	// 检查是不是bxwx.la
 	if checkLinkIsBxwx, _ := regexp.MatchString(`bxwx.la`, url); checkLinkIsBxwx {
 
 		// 章节详细 https://m.bxwx.la/b/316/316850/1684236.html
@@ -285,5 +285,42 @@ func ExplainLink(url string) (address, drive, page string) {
 			return url, `uxiaoshuo`, `/pages/list`
 		}
 	}
+
+	// 检查是不是 laosijixs.com
+	if checkLinkIsBiquyun, _ := regexp.MatchString(`laosijixs.com`, url); checkLinkIsBiquyun {
+
+		// 章节详细 http://m.laosijixs.com/81/81228/5940566.html
+		BookChapterInfo := `laosijixs.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/(?P<chapter_id>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo, url); b {
+			Map := reader.SelectString(BookChapterInfo, url)
+			return fmt.Sprintf("http://m.laosijixs.com/%v/%v/%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"]), `laosijixs`, `/pages/book`
+		}
+		// 章节详细 http://m.laosijixs.com/81/81228/5940566_1.html
+		BookChapterInfo2 := `laosijixs.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/(?P<chapter_id>\d+)_(?P<page>\d+).html`
+		if b, _ := regexp.MatchString(BookChapterInfo2, url); b {
+			Map := reader.SelectString(BookChapterInfo2, url)
+			return fmt.Sprintf("http://m.laosijixs.com/%v/%v/%v_%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"], Map["page"]), `laosijixs`, `/pages/book`
+		}
+		// 章节列表
+		// https://m.biquyun.com/16_16635/
+		BookChapterMenu := `laosijixs.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)\/`
+		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
+			Map := reader.SelectString(BookChapterMenu, url)
+			return fmt.Sprintf("http://m.laosijixs.com/%v/%v/", Map["cate_id"], Map["book_id"]), `laosijixs`, `/pages/catalog`
+
+		}
+		BookChapterMenu2 := `laosijixs.com\/(?P<cate_id>\d+)\/(?P<book_id>\d+)_(?P<page>\d+)\/`
+		if b, _ := regexp.MatchString(BookChapterMenu2, url); b {
+			Map := reader.SelectString(BookChapterMenu2, url)
+			return fmt.Sprintf("http://m.laosijixs.com/%v/%v_%v/", Map["cate_id"], Map["book_id"], Map["page"]), `laosijixs`, `/pages/catalog`
+
+		}
+		// 其它的当作列表页
+		BookList := `laosijixs.com/(?P<path>.*)`
+		if b, _ := regexp.MatchString(BookList, url); b {
+			return url, `laosijixs`, `/pages/list`
+		}
+	}
+
 	return ``, ``, ``
 }

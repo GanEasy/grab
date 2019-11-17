@@ -1,0 +1,109 @@
+package reader
+
+import (
+	"context"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/chromedp/chromedp"
+)
+
+func Test_LaosijixsGetInfo(t *testing.T) {
+	urlStr := `http://m.laosijixs.com/20/20961/546056.html`
+	urlStr = `http://m.laosijixs.com/20/20961/546056_5.html`
+	// urlStr = `http://m.laosijixs.com/20/20961/546056_6.html`
+	// urlStr = `https://m.35xs.com/book/237551/51896850.html`
+	reader := LaosijixsReader{}
+	list, err := reader.GetInfo(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+func Test_LaosijixsGetCatalog(t *testing.T) {
+	urlStr := `http://m.laosijixs.com/80/80896/`
+	urlStr = `http://m.laosijixs.com/79/79531/`
+	reader := LaosijixsReader{}
+	list, err := reader.GetCatalog(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
+func Test_LaosijixsGetList(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapsort/1_1.html`
+	urlStr = `http://m.laosijixs.com/shuku/`
+	reader := LaosijixsReader{}
+	list, err := reader.GetList(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
+func Test_LaosijixsGetInfoBoby(t *testing.T) {
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	// run task list
+	var title, res string
+	// var res2 []string
+	err := chromedp.Run(ctx,
+		chromedp.Navigate(`http://www.laosijixs.com/20/20961/546056_5.html`),
+		chromedp.Reload(),
+		// chromedp.WaitVisible("#content"),
+		chromedp.Title(&title),
+		chromedp.Sleep(time.Second*2),
+		chromedp.Body(`content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.Evaluate(`$('#content').find('span').remove();`, &res2),
+		// chromedp.Text(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.OuterHTML("#content", &res),
+		// chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// log.Println(strings.TrimSpace(res))
+	t.Fatal(title, strings.TrimSpace(res))
+}
+
+func writeHTML(content string) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+		io.WriteString(w, strings.TrimSpace(content))
+	})
+}
+func Test_LaosijixsGetInfoClick(t *testing.T) {
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	ts := httptest.NewServer(writeHTML(`
+<body>
+<p id="content" onclick="changeText()">Original content.</p>
+<script>
+function changeText() {
+	document.getElementById("content").textContent = "New content!"
+}
+</script>
+</body>
+	`))
+	defer ts.Close()
+
+	var outerBefore, outerAfter string
+	if err := chromedp.Run(ctx,
+		chromedp.Navigate(ts.URL),
+		chromedp.OuterHTML("#content", &outerBefore),
+		chromedp.Click("#content", chromedp.ByID),
+		chromedp.OuterHTML("#content", &outerAfter),
+	); err != nil {
+		panic(err)
+	}
+	t.Fatal("OuterHTML before clicking:", outerBefore, "OuterHTML after clicking:", outerAfter)
+
+}

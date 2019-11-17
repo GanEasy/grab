@@ -262,10 +262,10 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			Page  string `json:"page"`
 		}
 		var list = []Item{
-			Item{`文本目录`, `text`, `/pages/catalog`},
-			Item{`文本单章`, `text`, `/pages/book`},
-			Item{`图文目录`, `article`, `/pages/catalog`},
-			Item{`图文详情`, `article`, `/pages/article`},
+			Item{`小说目录`, `text`, `/pages/catalog`},
+			Item{`小说单章`, `text`, `/pages/book`},
+			Item{`文章目录`, `article`, `/pages/catalog`},
+			Item{`文章详情`, `article`, `/pages/article`},
 		}
 		return c.JSON(http.StatusOK, list)
 	})

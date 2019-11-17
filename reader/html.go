@@ -2,6 +2,7 @@ package reader
 
 import (
 	"bytes"
+	"context"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
@@ -11,7 +12,9 @@ import (
 	"os"
 	"path"
 	"strings"
+	"time"
 
+	"github.com/yizenghui/chromedp"
 	"golang.org/x/net/html/charset"
 )
 
@@ -57,6 +60,33 @@ func GetHTMLContent(urlStr, find string) (cont FetchContent, err error) {
 	cont.PubAt = ""
 	cont.SourceURL = urlStr
 	return cont, err
+}
+
+// GetHTMLByChromedp 通过运行浏览器代理的方式获取被渲染后的网站内容
+func GetHTMLByChromedp(urlStr string) (htmlStr string, err error) {
+
+	// create context
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	err = chromedp.Run(ctx,
+		// chromedp.Navigate(`https://github.com/chromedp/examples`),
+		// chromedp.Text(`.Box-body`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.Navigate(`https://m.138txt.com/193/193028/`),
+		// chromedp.Text(`body`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.OuterHTML(`body`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Navigate(urlStr),
+		// chromedp.WaitReady(`html`, chromedp.ByQuery),
+		chromedp.Sleep(time.Second*2),
+		// chromedp.OuterHTML(`html`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Body(`html`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
+
+		// chromedp.Navigate(`http://m.laosijixs.com/20/20961/546056_5.html`),
+		// chromedp.Text(`#content`, &htmlStr, chromedp.NodeVisible, chromedp.ByID),
+		// chromedp.Text(`#pkg-overview`, &htmlStr, chromedp.NodeVisible, chromedp.ByID),
+	)
+	return htmlStr, err
+
 }
 
 // GetHTML 获取html链接地址中的内容
