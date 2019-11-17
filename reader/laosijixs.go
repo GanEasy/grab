@@ -143,8 +143,8 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
-	// html, err := GetHTMLByChromedp(urlStr)
+	// html, err := GetHTML(urlStr, ``)
+	html, err := GetHTMLByChromedp(urlStr)
 	if err != nil {
 		return ret, err
 	}
