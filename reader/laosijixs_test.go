@@ -61,11 +61,11 @@ func Test_LaosijixsGetInfoBoby(t *testing.T) {
 		chromedp.Navigate(`http://m.laosijixs.com/20/20961/546056_5.html`),
 		// chromedp.Reload(),
 		// chromedp.WaitVisible("#content"),
-		chromedp.Title(&title),
-		chromedp.Sleep(time.Second*2),
+		// chromedp.Title(&title),
+		chromedp.Sleep(time.Second*6),
 		// chromedp.Body(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 		// chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
-		chromedp.Text(`html`, &res2, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Text(`#content`, &res2, chromedp.NodeVisible, chromedp.ByID),
 		// chromedp.OuterHTML("#content", &res),
 		// chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 	)
@@ -73,11 +73,11 @@ func Test_LaosijixsGetInfoBoby(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	err = chromedp.Run(ctx,
-		chromedp.Sleep(time.Second*3),
-		chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
-		chromedp.OuterHTML("#html", &res),
-	) //
+	// err = chromedp.Run(ctx,
+	// 	chromedp.Sleep(time.Second*3),
+	// 	chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
+	// 	chromedp.OuterHTML("#html", &res),
+	// ) //
 	// chromedp.Body(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 
 	if err != nil {
