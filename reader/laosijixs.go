@@ -180,20 +180,16 @@ func (r LaosijixsReader) GetInfox(urlStr string) (ret Content, err error) {
 }
 
 // GetInfoBodyText 获取详细内容
-func (r LaosijixsReader) GetInfoBodyText(urlStr string) (body string, err error) {
-
+func (r LaosijixsReader) GetInfoBodyText(urlStr string) (html, body string, err error) {
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
-
-	// run task list
-	var res string
-	// var res2 []string
 	err = chromedp.Run(ctx,
 		chromedp.Navigate(urlStr),
-		chromedp.Sleep(time.Second*6),
-		chromedp.Text(`#content'`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Sleep(time.Second*3),
+		chromedp.OuterHTML("html", &html),
+		chromedp.Text(`#content'`, &body, chromedp.NodeVisible, chromedp.ByID),
 	)
-	return res, err
+	return html, body, err
 }
 
 // GetInfo 获取详细内容
@@ -203,8 +199,10 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
-	log.Println(html)
+
+	html, body, err := r.GetInfoBodyText(urlStr)
+	// html, err := GetHTML(urlStr, ``)
+	// log.Println(html)
 	// html, err := GetHTMLByChromedp(urlStr)
 	if err != nil {
 		return ret, err
@@ -220,20 +218,9 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
-	//content
 
-	content3, err := FindContentForHTML(html, `#content`)
-	// g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html2))
-	// html2article
-	log.Println(`content3`, content3)
-
-	if content3 != `` {
-		article.ReadContent = content3
-	}
-	content4, err := r.GetInfoBodyText(urlStr)
-	log.Println(`content4`, content4)
-	if content4 != `` {
-		article.ReadContent = content4
+	if body != `` {
+		article.ReadContent = body
 	}
 	if err != nil {
 		return ret, err

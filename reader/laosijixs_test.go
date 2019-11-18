@@ -49,6 +49,12 @@ func Test_LaosijixsGetList(t *testing.T) {
 	t.Fatal(list)
 }
 
+func Test_LaosijixsGetInfoBodyText(t *testing.T) {
+	urlStr := `http://m.laosijixs.com/20/20961/546056_5.html`
+	reader := LaosijixsReader{}
+	html, body, err := reader.GetInfoBodyText(urlStr)
+	t.Fatal(body, html, err)
+}
 func Test_LaosijixsGetInfoBoby(t *testing.T) {
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
