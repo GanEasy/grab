@@ -187,6 +187,7 @@ func (r LaosijixsReader) GetInfoBodyText(urlStr string) (html, body string, err 
 		chromedp.Navigate(urlStr),
 		chromedp.Sleep(time.Second*3),
 		chromedp.OuterHTML("html", &html),
+		chromedp.Sleep(time.Second*2),
 		chromedp.Text(`#content'`, &body, chromedp.NodeVisible, chromedp.ByID),
 	)
 	return html, body, err
@@ -202,7 +203,7 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	html, body, err := r.GetInfoBodyText(urlStr)
 	// html, err := GetHTML(urlStr, ``)
-	// log.Println(html)
+	log.Println(`GetInfoBodyText`, body, html, err)
 	// html, err := GetHTMLByChromedp(urlStr)
 	if err != nil {
 		return ret, err

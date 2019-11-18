@@ -722,11 +722,11 @@ func GetAllBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 		},
-		// reader.Card{
-		// 	Title: `老司机小说`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
-		// },
+		reader.Card{
+			Title: `老司机小说`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
+		},
 	}
 	return c.JSON(http.StatusOK, list)
 }
