@@ -77,7 +77,7 @@ func GetHTMLByChromedp(urlStr string) (htmlStr string, err error) {
 		// chromedp.OuterHTML(`body`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
 		chromedp.Navigate(urlStr),
 		// chromedp.WaitReady(`html`, chromedp.ByQuery),
-		chromedp.Sleep(time.Second*2),
+		chromedp.Sleep(time.Second*5),
 		// chromedp.OuterHTML(`html`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
 		chromedp.Body(`html`, &htmlStr, chromedp.NodeVisible, chromedp.ByQuery),
 

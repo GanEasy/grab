@@ -2,6 +2,7 @@ package reader
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -9,6 +10,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/chromedp/cdproto/cdp"
+	"github.com/chromedp/cdproto/runtime"
 	"github.com/chromedp/chromedp"
 )
 
@@ -55,15 +58,15 @@ func Test_LaosijixsGetInfoBoby(t *testing.T) {
 	// var res2 []string
 	err := chromedp.Run(ctx,
 		chromedp.Navigate(`http://www.laosijixs.com/20/20961/546056_5.html`),
-		chromedp.Reload(),
+		// chromedp.Reload(),
 		// chromedp.WaitVisible("#content"),
-		chromedp.Title(&title),
-		chromedp.Sleep(time.Second*2),
-		chromedp.Body(`content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.Title(&title),
+		chromedp.Sleep(time.Second*5),
+		// chromedp.Body(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 		// chromedp.Evaluate(`$('#content').find('span').remove();`, &res2),
 		// chromedp.Text(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 		// chromedp.OuterHTML("#content", &res),
-		// chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 	)
 	if err != nil {
 		t.Fatal(err)
@@ -105,5 +108,50 @@ function changeText() {
 		panic(err)
 	}
 	t.Fatal("OuterHTML before clicking:", outerBefore, "OuterHTML after clicking:", outerAfter)
+
+}
+
+func Test_LaosijixsGetInfoJS(t *testing.T) {
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	ts := httptest.NewServer(writeHTML(`<!doctype html>
+<html>
+<body>
+  <div id="content">the content</div>
+</body>
+</html>`))
+	defer ts.Close()
+
+	const expr = `(function(d, id, v) {
+		var b = d.querySelector('body');
+		var el = d.createElement('div');
+		el.id = id;
+		el.innerText = v;
+		b.insertBefore(el, b.childNodes[0]);
+	})(document, %q, %q);`
+
+	var nodes []*cdp.Node
+	if err := chromedp.Run(ctx,
+		chromedp.Navigate(ts.URL),
+		chromedp.Nodes(`document`, &nodes, chromedp.ByJSPath),
+		chromedp.WaitVisible(`#content`),
+		chromedp.ActionFunc(func(ctx context.Context) error {
+			s := fmt.Sprintf(expr, "thing", "a new thing!")
+			_, exp, err := runtime.Evaluate(s).Do(ctx)
+			if err != nil {
+				return err
+			}
+			if exp != nil {
+				return exp
+			}
+			return nil
+		}),
+		chromedp.WaitVisible(`#thing`),
+	); err != nil {
+		panic(err)
+	}
+	t.Fatal(nodes[0].Dump("  ", "  ", false))
 
 }
