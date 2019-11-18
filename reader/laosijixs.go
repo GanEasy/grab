@@ -139,8 +139,8 @@ func (r LaosijixsReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetInfo 获取详细内容
-func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
+// GetInfox 获取详细内容
+func (r LaosijixsReader) GetInfox(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -179,8 +179,8 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 
 }
 
-// GetInfob 获取详细内容
-func (r LaosijixsReader) GetInfob(urlStr string) (ret Content, err error) {
+// GetInfo 获取详细内容
+func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
