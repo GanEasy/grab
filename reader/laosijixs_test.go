@@ -54,25 +54,37 @@ func Test_LaosijixsGetInfoBoby(t *testing.T) {
 	defer cancel()
 
 	// run task list
-	var title, res string
+	var title, res, res2 string
+	var jres []string
 	// var res2 []string
 	err := chromedp.Run(ctx,
-		chromedp.Navigate(`http://www.laosijixs.com/20/20961/546056_5.html`),
+		chromedp.Navigate(`http://m.laosijixs.com/20/20961/546056_5.html`),
 		// chromedp.Reload(),
 		// chromedp.WaitVisible("#content"),
-		// chromedp.Title(&title),
-		chromedp.Sleep(time.Second*5),
-		// chromedp.Body(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
-		// chromedp.Evaluate(`$('#content').find('span').remove();`, &res2),
-		// chromedp.Text(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Title(&title),
+		chromedp.Sleep(time.Second*2),
+		// chromedp.Body(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
+		chromedp.Text(`html`, &res2, chromedp.NodeVisible, chromedp.ByQuery),
 		// chromedp.OuterHTML("#content", &res),
-		chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+		// chromedp.OuterHTML(`#content`, &res, chromedp.NodeVisible, chromedp.ByQuery),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	err = chromedp.Run(ctx,
+		chromedp.Sleep(time.Second*3),
+		chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
+		chromedp.OuterHTML("#html", &res),
+	) //
+	// chromedp.Body(`html`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+
+	if err != nil {
+		t.Fatal(err)
+	}
 	// log.Println(strings.TrimSpace(res))
-	t.Fatal(title, strings.TrimSpace(res))
+	t.Fatal(title, jres, strings.TrimSpace(res2), strings.TrimSpace(res))
 }
 
 func writeHTML(content string) http.Handler {

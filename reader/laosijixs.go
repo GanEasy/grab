@@ -1,12 +1,15 @@
 package reader
 
 import (
+	"context"
 	"log"
 	"net/url"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/yizenghui/chromedp"
 )
 
 //LaosijixsReader 顶点小说 (盗版小说网站)
@@ -138,6 +141,46 @@ func (r LaosijixsReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 // GetInfo 获取详细内容
 func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
+
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	// run task list
+	var title, res string
+	var jres []string
+	// var res2 []string
+	err = chromedp.Run(ctx,
+		chromedp.Navigate(urlStr),
+		chromedp.Title(&title),
+		chromedp.Sleep(time.Second*6),
+		chromedp.Evaluate(`function() {$('#content').find('span').remove();return { body: $('#content').innerText};}`, &jres),
+		chromedp.Text(`#content'`, &res, chromedp.NodeVisible, chromedp.ByQuery),
+	)
+
+	if err != nil {
+		return ret, err
+	}
+	ret.Title = title
+
+	ret.SourceURL = urlStr
+
+	c := MarkDownFormatContent(res)
+
+	c = BookContReplace(c)
+
+	ret.Contents = GetSectionByContent(c)
+
+	return ret, nil
+
+}
+
+// GetInfob 获取详细内容
+func (r LaosijixsReader) GetInfob(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
