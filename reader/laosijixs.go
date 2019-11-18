@@ -181,16 +181,42 @@ func (r LaosijixsReader) GetInfox(urlStr string) (ret Content, err error) {
 
 // GetInfoBodyText 获取详细内容
 func (r LaosijixsReader) GetInfoBodyText(urlStr string) (html, body string, err error) {
+
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
+
+	// run task list
+	// var res, res1 string
+	var res2 []string
 	err = chromedp.Run(ctx,
 		chromedp.Navigate(urlStr),
-		chromedp.Sleep(time.Second*3),
-		chromedp.OuterHTML("html", &html),
 		chromedp.Sleep(time.Second*2),
-		chromedp.Text(`#content'`, &body, chromedp.NodeVisible, chromedp.ByID),
+		//$('#content').find('span').remove();
+		chromedp.Evaluate(`Object.keys(window);`, &res2),
+		// chromedp.Body(`html`, &res),
+
+		// chromedp.Text(`html`, &res1, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Text(`#content`, &body, chromedp.NodeVisible, chromedp.ByID),
+		chromedp.OuterHTML("html", &html),
 	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// log.Println(strings.TrimSpace(res))
+	// log.Println(res1)
+
 	return html, body, err
+
+	// ctx, cancel := chromedp.NewContext(context.Background())
+	// defer cancel()
+	// err = chromedp.Run(ctx,
+	// 	chromedp.Navigate(urlStr),
+	// 	chromedp.Sleep(time.Second*3),
+	// 	chromedp.OuterHTML("html", &html),
+	// 	chromedp.Sleep(time.Second*2),
+	// 	chromedp.Text(`#content'`, &body, chromedp.NodeVisible, chromedp.ByID),
+	// )
+	// return html, body, err
 }
 
 // GetInfo 获取详细内容
@@ -201,9 +227,10 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 		return
 	}
 
+	log.Println(`GetInfo`, urlStr)
 	html, body, err := r.GetInfoBodyText(urlStr)
 	// html, err := GetHTML(urlStr, ``)
-	log.Println(`GetInfoBodyText`, body, html, err)
+	// log.Println(`GetInfoBodyText`, body, html, err)
 	// html, err := GetHTMLByChromedp(urlStr)
 	if err != nil {
 		return ret, err
@@ -212,8 +239,28 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return ret, err
 	}
-
 	article.Readable(urlStr)
+
+	regc1 := regexp.MustCompile(`<span([^>]*)>([^<]+)<\/span>`)
+	article.ReadContent = regc1.ReplaceAllString(article.ReadContent, "")
+
+	c1 := MarkDownFormatContent(article.ReadContent)
+
+	c1 = BookContReplace(c1)
+	// log.Println(`article.ReadContent`, article.ReadContent)
+
+	c1Contents := GetSectionByContent(c1)
+
+	// var edu = map[string]int{}
+	var c2Contents = map[string]int{}
+	for _, v := range c1Contents { //所有内容
+		if v != `` {
+			c2Contents[v] = 1
+			// log.Println(`c1Contents`, v)
+		}
+	}
+
+	// log.Println(`c1Contents,c2Contents`, c2Contents)
 
 	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_(?P<category>(.)+)_`, article.Title, "title")
 	if ret.Title == `` {
@@ -240,6 +287,32 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 	c = BookContReplace(c)
 
 	ret.Contents = GetSectionByContent(c)
+
+	var retContents []string
+	for _, v := range ret.Contents {
+		// if i%2 == 0 {
+		// 	retContents = append(retContents, v)
+		// 	log.Println(`Contents`, i, v)
+		// 	// delete(ret.Contents, i)
+		// }
+
+		if _, ok := c2Contents[v]; ok && v != `` {
+			retContents = append(retContents, v)
+			// log.Println(`Contents`, i, v)
+		} else {
+			// log.Println(`dd Contents`, i, v)
+		}
+
+		// if v != `` {
+		// 	_, ok := c2Contents[v]
+		// 	if ok {
+		// 		log.Println(`c2Contents`, i, v)
+		// 	} else {
+		// 		log.Println(`dd c2Contents`, i, v)
+		// 	}
+		// }
+	}
+	ret.Contents = retContents
 
 	links, _ := GetLinkByHTML(urlStr, html)
 	ret.Previous = GetPreviousLink(links)
@@ -271,7 +344,7 @@ func (r LaosijixsReader) GetInfo(urlStr string) (ret Content, err error) {
 		for i, l := range needLinks {
 			if thisPage == 0 && l.URL == urlStr {
 				thisPage = i
-				log.Println(`thisPage`, thisPage)
+				// log.Println(`thisPage`, thisPage)
 			}
 		}
 	}
