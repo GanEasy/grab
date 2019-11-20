@@ -728,6 +728,17 @@ func GetAllBookResources(c echo.Context) error {
 		// 	WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
 		// },
 	}
+
+	cf := cpi.GetConf()
+	if cf.Search.LimiterStageShow { //受显示限制给资源控制
+		list.Cards = append(list.Cards,
+			reader.Card{
+				Title: `老司机小说`,
+				Type:  `link`,
+				WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
+			})
+	}
+
 	return c.JSON(http.StatusOK, list)
 }
 

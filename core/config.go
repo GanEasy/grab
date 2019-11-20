@@ -18,8 +18,9 @@ type ReaderMinApp struct {
 
 //Search 配置
 type Search struct {
-	LimitLevel bool   `toml:"limit_level"`
-	DevVersion string `toml:"dev_version"`
+	LimitLevel       bool   `toml:"limit_level"`
+	LimiterStageShow bool   `toml:"limiter_stage_show"`
+	DevVersion       string `toml:"dev_version"`
 }
 
 //Ad 配置
