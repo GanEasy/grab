@@ -26,6 +26,7 @@ func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
 
+	version := c.QueryParam("version")
 	// openID := getOpenID(c)
 	// if openID == `` {
 	// 	return c.HTML(http.StatusOK, "openid empty")
@@ -51,7 +52,9 @@ func SearchPosts(c echo.Context) error {
 	// user, _ := getUser(openID)
 	cf := cpi.GetConf()
 	var posts []db.Post
-	if cf.Search.LimitLevel { // 开启严格检查
+	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
+		posts = cpi.GetPostsByNameLimitLevel(name, 2)
+	} else if cf.Search.LimitLevel {
 		posts = cpi.GetPostsByNameLimitLevel(name, level)
 		// posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
 	} else {
