@@ -32,6 +32,6 @@ func (activity *Activity) GetActivityByID(id int) {
 
 //GetActivities  获取最近100条号召令
 func (activity *Activity) GetActivities() (activities []Activity) {
-	DB().Order(`updated_at desc`).Limit(100).Find(&activities)
+	DB().Order(`updated_at desc`).Limit(200).Find(&activities)
 	return
 }
