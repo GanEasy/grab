@@ -47,7 +47,7 @@ func GetActivities(c echo.Context) error {
 		for _, v := range rows {
 			// 只显示拥有权限的级别
 			itemlevel = reader.GetPathLevel(v.WxTo)
-			if level > itemlevel && (itemlevel > 1 || version == cf.Search.DevVersion) {
+			if level > itemlevel {
 				//  过滤掉相同 title 的资源（重复的只显示最新一个）
 				if _, ok := rp[v.Title]; !ok {
 					rp[v.Title] = 1
