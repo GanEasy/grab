@@ -183,12 +183,12 @@ func GetExploreLinks(c echo.Context) error {
 			provider = `qq`
 		}
 	}
-	if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
-		return c.JSON(http.StatusOK, GetWaitExamineExploreWx2())
-	}
-	if provider == `qq` { //特例
-		return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	}
+	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
+	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	// }
+	// if provider == `qq` { //特例
+	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	// }
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
@@ -208,6 +208,15 @@ func GetWaitExamineExplore() []Link {
 		// 	WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
 		// 	Style: `arrow`,
 		// },
+		Link{
+			Title: `编程学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+
 		Link{
 			Title: `Q&A`,
 			Icon:  ``,
@@ -234,90 +243,6 @@ func GetWaitExamineExplore() []Link {
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
 		},
-
-		// Link{
-		// 	Title: `微信小程序开发入门系列教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `从学徒到工匠精校版`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `从入门到精通系列教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Go语言入门教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `德哥博客-最佳实践`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/24.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `德哥博客-经典案例`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `Laravel 项目开发规范`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Laravel5.5开发文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Laravel 5.5 中文文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel/5.5`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Dingo API 2.0.0 中文文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
-		// 	Style: `arrow`,
-		// },
 	}
 	return links
 
@@ -329,13 +254,14 @@ func GetWaitExamineExploreWx2() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `微信小程序开发入门系列教程`,
+			Title: `编程学习资料`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
 			Style: `arrow`,
 		},
+
 		Link{
 			Title: `使用教程`,
 			Icon:  ``,
