@@ -200,14 +200,6 @@ func GetExploreLinks(c echo.Context) error {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		// Link{
-		// 	Title: `全部资源`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
-		// 	Style: `arrow`,
-		// },
 		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
@@ -218,16 +210,7 @@ func GetWaitExamineExplore() []Link {
 		},
 
 		Link{
-			Title: `Q&A`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/guide.html?`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `工具介绍`,
+			Title: `使用介绍`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
