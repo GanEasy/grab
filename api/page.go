@@ -183,8 +183,8 @@ func GetExploreLinks(c echo.Context) error {
 			provider = `qq`
 		}
 	}
-	if provider == `weixin` { //特例
-		// return c.JSON(http.StatusOK, GetPublishExploreLinks())
+	if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
+		return c.JSON(http.StatusOK, GetWaitExamineExploreWx2())
 	}
 	if provider == `qq` { //特例
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
@@ -329,6 +329,14 @@ func GetWaitExamineExploreWx2() []Link {
 	var links = []Link{
 
 		Link{
+			Title: `微信小程序开发入门系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			Style: `arrow`,
+		},
+		Link{
 			Title: `使用教程`,
 			Icon:  ``,
 			Type:  `link`,
@@ -352,15 +360,6 @@ func GetWaitExamineExploreWx2() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/help.html`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `微信小程序开发入门系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
 			Style: `arrow`,
 		},
 		// Link{
