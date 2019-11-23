@@ -31,7 +31,7 @@ func GetActivities(c echo.Context) error {
 	cf := cpi.GetConf()
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		if provider == `weixin` {
-			level = 4
+			level = 2
 		} else if provider == `qq` {
 			level = 2
 		} else if provider == `toutiao` {
@@ -47,7 +47,7 @@ func GetActivities(c echo.Context) error {
 		for _, v := range rows {
 			// 只显示拥有权限的级别
 			itemlevel = reader.GetPathLevel(v.WxTo)
-			if level > itemlevel && itemlevel > 1 {
+			if level > itemlevel && (itemlevel > 1 || version == cf.Search.DevVersion) {
 				//  过滤掉相同 title 的资源（重复的只显示最新一个）
 				if _, ok := rp[v.Title]; !ok {
 					rp[v.Title] = 1
