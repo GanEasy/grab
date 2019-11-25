@@ -25,13 +25,12 @@ func SyncPosts(list reader.Catalog, cate int32) {
 func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
-
+	provider := c.QueryParam("provider")
 	version := c.QueryParam("version")
 	// openID := getOpenID(c)
 	// if openID == `` {
 	// 	return c.HTML(http.StatusOK, "openid empty")
 	// }
-	provider := c.QueryParam("provider")
 
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 	if provider == `weixin` {
