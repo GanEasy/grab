@@ -354,14 +354,14 @@ func AddActivity(title, wxto string) (activity db.Activity) {
 func GetActivities() (activities []db.Activity) {
 	var activity db.Activity
 	activities = activity.GetActivities()
-	for _, v := range activities {
-		if v.Resource == `` {
-			url, err := reader.GetURLStringParam(v.WxTo, `url`)
-			if err == nil {
-				v.Resource = url
-				v.Save()
-			}
-		}
-	}
+	// for _, v := range activities {
+	// 	if v.Resource == `` {
+	// 		url, err := reader.GetURLStringParam(v.WxTo, `url`)
+	// 		if err == nil {
+	// 			v.Resource = url
+	// 			v.Save()
+	// 		}
+	// 	}
+	// }
 	return activities
 }
