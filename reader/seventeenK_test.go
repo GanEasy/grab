@@ -21,7 +21,7 @@ func Test_SeventeenKGetChapters(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
 	// http://book.zongheng.com/chapter/777234/43415281.html
-	urlStr := "http://www.17k.com/list/2842794.html"
+	urlStr := "https://www.17k.com/list/2842794.html"
 	reader := SeventeenKReader{}
 	list, err := reader.GetCatalog(urlStr)
 	// list, err = reader.GetCategories()

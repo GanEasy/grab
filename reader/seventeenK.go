@@ -104,7 +104,7 @@ func (r SeventeenKReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_(?P<author>(.)+)_作品目录`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -131,7 +131,7 @@ func (r SeventeenKReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 }
 
-// GetChapter 获取详细内容
+// GetInfo 获取详细内容
 func (r SeventeenKReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
@@ -151,6 +151,12 @@ func (r SeventeenKReader) GetInfo(urlStr string) (ret Content, err error) {
 	article.Readable(urlStr)
 
 	ret.Title = article.Title
+
+	ret.Title = FindString(`_(?P<auther>(.)+)_(?P<title>(.)+)_(?P<status>(.)+)-17k小说网`, article.Title, "title")
+	if ret.Title == `` {
+		ret.Title = article.Title
+	}
+
 	ret.SourceURL = urlStr
 
 	c := MarkDownFormatContent(article.ReadContent)
