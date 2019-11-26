@@ -23,15 +23,33 @@ type Carousel struct {
 // GetCarousels 获取首页走马灯数据
 func GetCarousels(c echo.Context) error {
 	var carousels []Carousel
-	// carousels = append(
-	// 	carousels,
-	// 	Carousel{
-	// 		URL:    `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-	// 		Type:   `image`,
-	// 		Event:  `poster`,
-	// 		WxTo:   ``,
-	// 		Poster: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-	// 	})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:    `https://aireadhelper.github.io/static/images/demo.png`,
+			Type:   `image`,
+			Event:  `poster`,
+			WxTo:   ``,
+			Poster: `https://aireadhelper.github.io/static/images/group.png`,
+		})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:    `https://aireadhelper.github.io/static/images/boyslist.jpg`,
+			Type:   `image`,
+			Event:  `link`,
+			WxTo:   `/pages/list?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`),
+			Poster: ``,
+		})
+	carousels = append(
+		carousels,
+		Carousel{
+			URL:    `https://aireadhelper.github.io/static/images/girlslist.jpg`,
+			Type:   `image`,
+			Event:  `link`,
+			WxTo:   `/pages/list?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1`),
+			Poster: ``,
+		})
 
 	// carousels = append(
 	// 	carousels,
@@ -42,12 +60,12 @@ func GetCarousels(c echo.Context) error {
 	// 	})
 
 	// carousels = append(
-	// carousels,
-	// Carousel{
-	// 	URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
-	// 	Type: `image`,
-	// 	WxTo: ``,
-	// })
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:  `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+	// 		Type: `image`,
+	// 		WxTo: ``,
+	// 	})
 
 	return c.JSON(http.StatusOK, carousels)
 }
@@ -80,6 +98,14 @@ func GetUserLinks(c echo.Context) error {
 			Image: ``,
 			WxTo:  `/pages/logs`,
 			Style: `arrow`,
+		},
+		Link{
+			Title: `交流群反馈问题`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://aireadhelper.github.io/static/images/group.png`,
+			WxTo:  ``,
+			Style: ``,
 		},
 		// Link{
 		// 	Title: `我的推荐`,
@@ -127,7 +153,7 @@ func GetUserLinks(c echo.Context) error {
 		// 	Title: `交流群`,
 		// 	Icon:  `cuIcon-group`,
 		// 	Type:  `image`,
-		// 	Image: `https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg`,
+		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
 		// 	WxTo:  ``,
 		// 	Style: ``,
 		// },
@@ -155,6 +181,14 @@ func GetNewCatelogLinks(c echo.Context) error {
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `加入交流群获得帮助`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://aireadhelper.github.io/static/images/group.png`,
+			WxTo:  ``,
+			Style: ``,
+		},
 		// Link{
 		// 	Title: `加入交流群获得帮助`,
 		// 	Icon:  ``,
@@ -225,6 +259,15 @@ func GetWaitExamineExplore() []Link {
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
+		},
+
+		Link{
+			Title: `交流群`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://aireadhelper.github.io/static/images/group.png`,
+			WxTo:  ``,
+			Style: ``,
 		},
 	}
 	return links
@@ -405,6 +448,15 @@ func GetPublishExploreLinks() []Link {
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
+		},
+
+		Link{
+			Title: `阅读交流群`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://aireadhelper.github.io/static/images/group.png`,
+			WxTo:  ``,
+			Style: ``,
 		},
 	}
 
