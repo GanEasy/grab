@@ -3,6 +3,7 @@ package reader
 import (
 	"errors"
 	"fmt"
+	"net/url"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -19,6 +20,23 @@ func FindContentForHTML(htmlStr, find string) (string, error) {
 		return htmlStr, e
 	}
 	return g.Find(find).Html()
+}
+
+//GetURLStringParam 从url字符串中获取指定问号后的参数 	urlStr := "/pages/catalog?drive=xbiquge&url=aHR0cDovL3d3dy54YmlxdWdlLmxhLzE1LzE1MDIxLw%3D%3D"
+// 返回 aHR0cDovL3d3dy54YmlxdWdlLmxhLzE1LzE1MDIxLw==
+func GetURLStringParam(urlStr, key string) (string, error) {
+	u, e := url.Parse(urlStr)
+	if e != nil {
+		return ``, e
+	}
+	m, e2 := url.ParseQuery(u.RawQuery)
+	if e2 != nil {
+		return ``, e
+	}
+	if v, ok := m[key]; ok {
+		return v[0], nil
+	}
+	return ``, e
 }
 
 //ContentBuildHTML 内容合成 html

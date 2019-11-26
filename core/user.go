@@ -328,12 +328,24 @@ func GetPostsByNameLimitLevel(name string, level int) (posts []db.Post) {
 // AddActivity 新增号召
 func AddActivity(title, wxto string) (activity db.Activity) {
 	if wxto != `` {
-		activity.GetActivityByWxto(wxto)
-		activity.Title = title
-		activity.WxTo = wxto
-		activity.Level = reader.GetPathLevel(wxto)
-		activity.Total++
-		activity.Save()
+		// 修正已推荐数据使用不同解释器问题
+		url, err := reader.GetURLStringParam(wxto, `url`)
+		if err == nil {
+			activity.GetActivityByResource(url)
+			activity.Title = title
+			activity.Resource = url
+			activity.WxTo = wxto
+			activity.Level = reader.GetPathLevel(wxto)
+			activity.Total++
+			activity.Save()
+		} else {
+			activity.GetActivityByWxto(wxto)
+			activity.Title = title
+			activity.WxTo = wxto
+			activity.Level = reader.GetPathLevel(wxto)
+			activity.Total++
+			activity.Save()
+		}
 	}
 	return activity
 }
@@ -342,5 +354,14 @@ func AddActivity(title, wxto string) (activity db.Activity) {
 func GetActivities() (activities []db.Activity) {
 	var activity db.Activity
 	activities = activity.GetActivities()
+	for _, v := range activities {
+		if v.Resource == `` {
+			url, err := reader.GetURLStringParam(v.WxTo, `url`)
+			if err == nil {
+				v.Resource = url
+				v.Save()
+			}
+		}
+	}
 	return activities
 }

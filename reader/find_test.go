@@ -17,3 +17,10 @@ func Test_FindContentForHTML(t *testing.T) {
 	}
 	t.Fatal(h)
 }
+
+func Test_GetURLStringParam(t *testing.T) {
+	// urlStr := "http://feeds.twit.tv/twit.xml"
+	urlStr := "/pages/catalog?drive=xbiquge&url=aHR0cDovL3d3dy54YmlxdWdlLmxhLzE1LzE1MDIxLw%3D%3D"
+
+	t.Fatal(GetURLStringParam(urlStr, `url`))
+}

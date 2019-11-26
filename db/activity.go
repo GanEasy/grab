@@ -8,7 +8,8 @@ import (
 type Activity struct {
 	ID        uint   `gorm:"primary_key"`
 	Title     string `gorm:"type:varchar(255)"`       // 资源名称	名称搜索
-	WxTo      string `gorm:"type:varchar(255);index"` // 目标地址 	小程序往哪里走
+	WxTo      string `gorm:"type:varchar(255)"`       // 目标地址 	小程序往哪里走
+	Resource  string `gorm:"type:varchar(255);index"` // 目标地址
 	Total     int64  // 次数统计
 	Level     int32
 	CreatedAt time.Time
@@ -23,6 +24,11 @@ func (activity *Activity) Save() {
 //GetActivityByWxto  想去哪里 创建一个记录
 func (activity *Activity) GetActivityByWxto(wxto string) {
 	DB().Where(Activity{WxTo: wxto}).FirstOrCreate(&activity)
+}
+
+//GetActivityByResource  资源地址
+func (activity *Activity) GetActivityByResource(resource string) {
+	DB().Where(Activity{Resource: resource}).FirstOrCreate(&activity)
 }
 
 //GetActivityByID 获取一个资源
