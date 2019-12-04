@@ -20,6 +20,7 @@ func Test_GetwxCodeUnlimit(t *testing.T) {
 
 func Test_MSGSecCHECK(t *testing.T) {
 	err := MSGSecCHECK(`李克强强奸性爱游戏`) //这个是违禁词
+	// err := MSGSecCHECK(`点道`) //
 	t.Fatal(err)
 }
 

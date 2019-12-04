@@ -36,7 +36,7 @@ func SearchPosts(c echo.Context) error {
 	if provider == `weixin` {
 		level = 4
 		cerr := cpi.MSGSecCHECK(name)
-		if cerr != nil {
+		if cerr != nil { //&& cerr.Message == `87014`
 			catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
 			return c.JSON(http.StatusOK, catelog)
 		}
