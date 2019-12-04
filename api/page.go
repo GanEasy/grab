@@ -489,21 +489,21 @@ func GetAllResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
 		},
-		reader.Card{
-			Title: `笔下文学`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=bxwx&url=` + grab.EncodeURL(`https://www.bxwx.la`),
-		},
+		// reader.Card{
+		// 	Title: `笔下文学`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=bxwx&url=` + grab.EncodeURL(`https://www.bxwx.la`),
+		// },
 		reader.Card{
 			Title: `U小说阅读网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
 		},
-		reader.Card{
-			Title: `笔趣阁biquyun`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biquyun&url=` + grab.EncodeURL(`https://m.biquyun.com`),
-		},
+		// reader.Card{
+		// 	Title: `笔趣阁biquyun`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biquyun&url=` + grab.EncodeURL(`https://m.biquyun.com`),
+		// },
 
 		reader.Card{
 			Title: `顶点小说`,
