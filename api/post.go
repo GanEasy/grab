@@ -62,30 +62,32 @@ func SearchPosts(c echo.Context) error {
 	}
 	var intro string
 	if len(posts) > 0 {
-
+		var itemlevel int32
 		for _, v := range posts {
-			// if user.Level >= v.Level {
-			// intro :=
-			link, err := url.Parse(v.From)
 
-			if err == nil && link.Host != "" {
-				intro = link.Host
-			} else {
-				intro = ``
+			itemlevel = reader.GetPathLevel(v.WxTo)
+			if level >= int(itemlevel) {
+				// intro :=
+				link, err := url.Parse(v.From)
+
+				if err == nil && link.Host != "" {
+					intro = link.Host
+				} else {
+					intro = ``
+				}
+
+				catelog.Cards = append(
+					catelog.Cards,
+					reader.Card{
+						Title:  v.Name,
+						WxTo:   v.WxTo,
+						Intro:  intro,
+						Type:   `card`,
+						Cover:  ``,
+						Images: nil,
+						From:   v.From,
+					})
 			}
-
-			catelog.Cards = append(
-				catelog.Cards,
-				reader.Card{
-					Title:  v.Name,
-					WxTo:   v.WxTo,
-					Intro:  intro,
-					Type:   `card`,
-					Cover:  ``,
-					Images: nil,
-					From:   v.From,
-				})
-			// }
 		}
 	}
 	return c.JSON(http.StatusOK, catelog)
