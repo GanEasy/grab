@@ -30,6 +30,9 @@ type Ad struct {
 	HomeBanner string `toml:"home_banner"` // 首页banner广告(与视频广告两者用其一)
 	ListBanner string `toml:"list_banner"` // 列表页banner广告
 	InfoBanner string `toml:"info_banner"` // 详情页banner广告
+	HomeScreen string `toml:"home_screen"` // 首页弹窗广告
+	ListScreen string `toml:"list_screen"` // 列表页弹窗广告
+	InfoScreen string `toml:"info_screen"` // 详情页弹窗广告
 	HomeVideo  string `toml:"home_video"`  // 首页视频广告
 	ListVideo  string `toml:"list_video"`  // 列表页视频广告
 	InfoVideo  string `toml:"info_video"`  // 详情页视频广告
