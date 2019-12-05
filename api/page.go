@@ -99,14 +99,14 @@ func GetUserLinks(c echo.Context) error {
 			WxTo:  `/pages/logs`,
 			Style: `arrow`,
 		},
-		Link{
-			Title: `交流群反馈问题`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://aireadhelper.github.io/static/images/group.png`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `交流群反馈问题`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 		// Link{
 		// 	Title: `我的推荐`,
 		// 	Icon:  `cuIcon-activity`,
@@ -181,14 +181,14 @@ func GetNewCatelogLinks(c echo.Context) error {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `加入交流群获得帮助`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://aireadhelper.github.io/static/images/group.png`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `加入交流群获得帮助`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 		// Link{
 		// 	Title: `加入交流群获得帮助`,
 		// 	Icon:  ``,
@@ -450,14 +450,14 @@ func GetPublishExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `阅读交流群`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://aireadhelper.github.io/static/images/group.png`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `阅读交流群`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 	}
 
 	return links
