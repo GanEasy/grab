@@ -32,24 +32,24 @@ func GetCarousels(c echo.Context) error {
 	// 		WxTo:   ``,
 	// 		Poster: `https://aireadhelper.github.io/static/images/group.png`,
 	// 	})
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:    `https://aireadhelper.github.io/static/images/boyslist.jpg`,
-			Type:   `image`,
-			Event:  `link`,
-			WxTo:   `/pages/list?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`),
-			Poster: ``,
-		})
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:    `https://aireadhelper.github.io/static/images/girlslist.jpg`,
-			Type:   `image`,
-			Event:  `link`,
-			WxTo:   `/pages/list?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1`),
-			Poster: ``,
-		})
+	// carousels = append(
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:    `https://aireadhelper.github.io/static/images/boyslist.jpg`,
+	// 		Type:   `image`,
+	// 		Event:  `link`,
+	// 		WxTo:   `/pages/list?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`),
+	// 		Poster: ``,
+	// 	})
+	// carousels = append(
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:    `https://aireadhelper.github.io/static/images/girlslist.jpg`,
+	// 		Type:   `image`,
+	// 		Event:  `link`,
+	// 		WxTo:   `/pages/list?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net/search?s_wd=&channel=2&sort=9&pn=1`),
+	// 		Poster: ``,
+	// 	})
 
 	// carousels = append(
 	// 	carousels,
@@ -261,14 +261,14 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `交流群`,
-			Icon:  `cuIcon-group`,
-			Type:  `image`,
-			Image: `https://aireadhelper.github.io/static/images/group.png`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `交流群`,
+		// 	Icon:  `cuIcon-group`,
+		// 	Type:  `image`,
+		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 	}
 	return links
 
