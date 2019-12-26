@@ -518,13 +518,6 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
-			Title: `U小说阅读网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
-			Style: `arrow`,
-		},
-
-		Link{
 			Title: `顶点小说`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
@@ -546,12 +539,6 @@ func GetGuideExploreLinks() []Link {
 		},
 
 		Link{
-			Title: `笔趣阁qula`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
-			Style: `arrow`,
-		},
-		Link{
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
@@ -561,6 +548,19 @@ func GetGuideExploreLinks() []Link {
 			Title: `笔趣阁mcmssc`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			Style: `arrow`,
+		},
+
+		// Link{
+		// 	Title: `U小说阅读网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
+		// 	Style: `arrow`,
+		// },
+		Link{
+			Title: `笔趣阁jxla`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
 			Style: `arrow`,
 		},
 		// Link{

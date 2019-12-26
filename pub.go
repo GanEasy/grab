@@ -25,8 +25,10 @@ func GetGuide(drive string) reader.Guide {
 		return &reader.BxwxReader{}
 	} else if drive == `biqugeinfo` {
 		return &reader.BiqugeinfoReader{}
-	} else if drive == `qu` { // 笔趣阁qula
+	} else if drive == `qu` { // 笔趣阁qula  改域名 jx 了
 		return &reader.QuReader{}
+	} else if drive == `jx` { // 笔趣阁 jx
+		return &reader.JxReader{}
 	} else if drive == `uxiaoshuo` { // uxiaoshuo
 		return &reader.UxiaoshuoReader{}
 	} else if drive == `soe8` {
@@ -83,8 +85,10 @@ func GetReader(drive string) reader.Reader {
 		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {
 		return &reader.BooktxtReader{}
-	} else if drive == `qu` { // 笔趣阁qula
+	} else if drive == `qu` { // 笔趣阁qula 改域名为 jx.la 了
 		return &reader.QuReader{}
+	} else if drive == `jx` { // 笔趣阁qula 改域名为 jx.la 了
+		return &reader.JxReader{}
 	} else if drive == `uxiaoshuo` {
 		return &reader.UxiaoshuoReader{}
 	} else if drive == `soe8` {

@@ -324,6 +324,9 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=qu")); b == true {
+		return 9 //换域名jx了
+	}
+	if b := strings.Contains(wxto, string("drive=jx")); b == true {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=mcmssc")); b == true {

@@ -160,7 +160,11 @@ func (r ZonghengReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.Readable(urlStr)
 
-	ret.Title = article.Title
+	ret.Title = FindString(`_(?P<title>(.)+)_(?P<cate>(.)+)阅读页`, article.Title, "title")
+	if ret.Title == `` {
+		ret.Title = article.Title
+	}
+	//_奇幻·玄幻小说阅读页 - 纵横中文网
 	ret.SourceURL = urlStr
 
 	c := MarkDownFormatContent(article.ReadContent)
