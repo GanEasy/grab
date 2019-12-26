@@ -227,7 +227,8 @@ func GetExploreLinks(c echo.Context) error {
 
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
-	return c.JSON(http.StatusOK, GetPublishExploreLinks())
+	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
+	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
 // GetWaitExamineExplore 用于审核的内容列表
@@ -458,6 +459,179 @@ func GetPublishExploreLinks() []Link {
 		// 	WxTo:  ``,
 		// 	Style: ``,
 		// },
+	}
+
+	return links
+}
+
+//GetGuideExploreLinks  新版，引导转化
+func GetGuideExploreLinks() []Link {
+	var links = []Link{
+
+		Link{
+			Title: `关于&声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `起点小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `纵横小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `17K文学`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `红袖添香`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=hongxiu&url=` + grab.EncodeURL(`https://www.hongxiu.com`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `潇湘书院`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
+			Style: `arrow`,
+		},
+
+		// Link{
+		// 	Title: `更多小说资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
+
+		Link{
+			Title: `U小说阅读网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `顶点小说`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `笔趣阁soe8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `笔趣阁xbiquge`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `笔趣阁qula`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			Style: `arrow`,
+		},
+		// Link{
+		// 	Title: `老司机小说`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
+		// },
+
+		Link{
+			Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
+			Type:  `link`,
+			WxTo:  ``,
+		},
+
+		// Link{
+		// 	Title: `韩漫窝(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		// },
+
+		Link{
+			Title: `韩漫库(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=hanmanku&url=` + grab.EncodeURL(`http://www.hanmanku.com/booklist`),
+		},
+
+		Link{
+			Title: `海猫吧(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
+		},
+
+		// reader.Card{
+		// 	Title: `我爱妹子漫画(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		// },
+		Link{
+			Title: `腐漫漫画(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=fuman&url=` + grab.EncodeURL(`https://www.5aimeizi.com/`),
+		},
+		Link{
+			Title: `漫画台(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=manhwa&url=` + grab.EncodeURL(`https://www.manhwa.cc/`),
+		},
+		Link{
+			Title: `看妹子漫画(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/list?action=list&drive=kanmeizi&url=` + grab.EncodeURL(`https://www.kanmeizi.cc/booklist`),
+		},
+		Link{
+			Title: `伟叫兽漫画网(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?action=list&drive=weijiaoshou&url=` + grab.EncodeURL(`http://www.weijiaoshou.cn`),
+		},
+		Link{
+			Title: `漫物语(18禁)`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
+		},
+
+		Link{
+			Title: `编程学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
 	}
 
 	return links
