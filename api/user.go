@@ -157,6 +157,7 @@ func GetAPIToken(c echo.Context) error {
 				"share_title": `全网小说资源免费转码阅读 | 免费小说阅读器 | 笔趣阁小说转码工具 | 全本免费小说阅读`,
 				// 定义首页分享图片
 				"share_cover": ``,
+				"placeholder": `庆余年`,
 			})
 		}
 	} else if provider == `h5` {

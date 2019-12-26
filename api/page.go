@@ -585,12 +585,14 @@ func GetGuideExploreLinks() []Link {
 			Title: `韩漫库(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/list?action=list&drive=hanmanku&url=` + grab.EncodeURL(`http://www.hanmanku.com/booklist`),
+			Style: `arrow`,
 		},
 
 		Link{
 			Title: `海猫吧(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
+			Style: `arrow`,
 		},
 
 		// reader.Card{
@@ -602,26 +604,31 @@ func GetGuideExploreLinks() []Link {
 			Title: `腐漫漫画(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=fuman&url=` + grab.EncodeURL(`https://www.5aimeizi.com/`),
+			Style: `arrow`,
 		},
 		Link{
 			Title: `漫画台(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=manhwa&url=` + grab.EncodeURL(`https://www.manhwa.cc/`),
+			Style: `arrow`,
 		},
 		Link{
 			Title: `看妹子漫画(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/list?action=list&drive=kanmeizi&url=` + grab.EncodeURL(`https://www.kanmeizi.cc/booklist`),
+			Style: `arrow`,
 		},
 		Link{
 			Title: `伟叫兽漫画网(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?action=list&drive=weijiaoshou&url=` + grab.EncodeURL(`http://www.weijiaoshou.cn`),
+			Style: `arrow`,
 		},
 		Link{
 			Title: `漫物语(18禁)`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
+			Style: `arrow`,
 		},
 
 		Link{
