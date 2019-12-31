@@ -138,7 +138,7 @@ func GetAPIToken(c echo.Context) error {
 
 				// "home_video": cf.Ad.HomeVideo,
 				// "list_video": cf.Ad.ListVideo,
-				"cata_video": cf.Ad.CataVideo,
+				// "cata_video": cf.Ad.CataVideo,
 				"info_video": cf.Ad.InfoVideo,
 
 				// "home_grid": cf.Ad.HomeGrid, // 首页格子广告
