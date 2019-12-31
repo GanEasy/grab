@@ -71,7 +71,7 @@ func GetToken(c echo.Context) error {
 			"info_banner": cf.Ad.InfoBanner,
 
 			"home_video": cf.Ad.HomeVideo,
-			"list_video": cf.Ad.ListVideo,
+			// "list_video": cf.Ad.ListVideo,
 			"info_video": cf.Ad.InfoVideo,
 			// "home_pre_video": cf.Ad.PreVideo,
 			// "list_pre_video": cf.Ad.PreVideo,
@@ -126,7 +126,7 @@ func GetAPIToken(c echo.Context) error {
 				"total": fans.Total,
 				// "home_screen": cf.Ad.HomeScreen,
 				// "list_screen": cf.Ad.ListScreen,
-				"info_screen": cf.Ad.InfoScreen,
+				// "info_screen": cf.Ad.InfoScreen,
 				"cata_screen": cf.Ad.CataScreen,
 				// "screen":      cf.Ad.Screen,
 				// "reward":      cf.Ad.Reward,
@@ -138,13 +138,13 @@ func GetAPIToken(c echo.Context) error {
 
 				// "home_video": cf.Ad.HomeVideo,
 				// "list_video": cf.Ad.ListVideo,
-				"cata_video": cf.Ad.CataVideo,
+				// "cata_video": cf.Ad.CataVideo,
 				"info_video": cf.Ad.InfoVideo,
 
 				// "home_grid": cf.Ad.HomeGrid, // 首页格子广告
-				"list_grid": cf.Ad.ListGrid, // 列表页格子广告
+				// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
 				// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-				"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+				// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 				// "home_pre_video": cf.Ad.PreVideo,
 				// "list_pre_video": cf.Ad.PreVideo,
 				// "info_pre_video": cf.Ad.PreVideo,
@@ -154,7 +154,7 @@ func GetAPIToken(c echo.Context) error {
 				"info_reward": cf.Ad.Reward,
 
 				// 定义首页分享标题
-				"share_title": `全网小说资源免费转码阅读 | 免费小说阅读器 | 笔趣阁小说转码工具 | 全本免费小说阅读`,
+				"share_title": `笔趣阁plus全网免费小说转码阅读`,
 				// 定义首页分享图片
 				"share_cover": ``,
 				"placeholder": `庆余年`,
