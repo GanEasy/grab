@@ -139,14 +139,14 @@ func ExplainLink(url string) (address, drive, page string) {
 		MobileBookChapterInfo := `m.biquge.info\/(?P<cate_id>\d+)_(?P<book_id>\d+)/(?P<chapter_id>\d+).html`
 		if b, _ := regexp.MatchString(MobileBookChapterInfo, url); b {
 			Map := reader.SelectString(MobileBookChapterInfo, url)
-			return fmt.Sprintf("https://m.biquge.info/%v_%v/%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"]), `biqugeinfo`, `/pages/book`
+			return fmt.Sprintf("http://www.biquge.info/%v_%v/%v.html", Map["cate_id"], Map["book_id"], Map["chapter_id"]), `biqugeinfo`, `/pages/book`
 		}
 		// 章节列表
 		// https://m.biquge.info/10_10218/
 		BookChapterMenu := `m.biquge.info\/(?P<cate_id>\d+)_(?P<book_id>\d+)\/`
 		if b, _ := regexp.MatchString(BookChapterMenu, url); b {
-			// Map := reader.SelectString(BookChapterMenu, url)
-			return url, `biqugeinfo`, `/pages/catalog`
+			Map := reader.SelectString(BookChapterMenu, url)
+			return fmt.Sprintf("http://www.biquge.info/%v_%v/", Map["cate_id"], Map["book_id"]), `biqugeinfo`, `/pages/catalog`
 		}
 		// 其它的当作列表页
 		BookList := `m.biquge.info/(?P<path>.*)`

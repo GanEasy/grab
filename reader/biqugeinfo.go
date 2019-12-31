@@ -68,7 +68,7 @@ func (r BiqugeinfoReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.biquge.info/71_71389/`, `https://m.biquge.info/1_1760/`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.biquge.info/71_71389/`, `https://m.biquge.info/1_1760/`, `http://www.biquge.info/71_71389/`)
 		if state {
 			// l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -115,7 +115,7 @@ func (r BiqugeinfoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := g.Find(`.chapter`).Eq(1).Html()
+	html2, _ := g.Find(`#list`).Html()
 
 	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
@@ -124,7 +124,7 @@ func (r BiqugeinfoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.biquge.info/10_10218/5001515.html`, `https://m.biquge.info/68_68619/12705323.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://www.biquge.info/10_10218/5001515.html`, `http://www.biquge.info/68_68619/12705323.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
@@ -167,7 +167,10 @@ func (r BiqugeinfoReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_笔趣阁手机版`, article.Title, "title")
 	if ret.Title == `` {
-		ret.Title = article.Title
+		ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_(?P<cate>(.)+)_笔趣阁`, article.Title, "title")
+		if ret.Title == `` {
+			ret.Title = article.Title
+		}
 	}
 
 	reg := regexp.MustCompile(`<a([^>]+)>([^<]+)<\/a>`)
