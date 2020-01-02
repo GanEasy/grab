@@ -125,8 +125,8 @@ func GetAPIToken(c echo.Context) error {
 				"score": fans.Score,
 				"total": fans.Total,
 				// "home_screen": cf.Ad.HomeScreen,
-				// "list_screen": cf.Ad.ListScreen,
-				// "info_screen": cf.Ad.InfoScreen,
+				"list_screen": cf.Ad.ListScreen,
+				"info_screen": cf.Ad.InfoScreen,
 				// "cata_screen": cf.Ad.CataScreen,
 				// "screen":      cf.Ad.Screen,
 				// "reward":      cf.Ad.Reward,
@@ -138,13 +138,13 @@ func GetAPIToken(c echo.Context) error {
 
 				// "home_video": cf.Ad.HomeVideo,
 				// "list_video": cf.Ad.ListVideo,
-				// "cata_video": cf.Ad.CataVideo,
+				"cata_video": cf.Ad.CataVideo,
 				"info_video": cf.Ad.InfoVideo,
 
 				// "home_grid": cf.Ad.HomeGrid, // 首页格子广告
 				"list_grid": cf.Ad.ListGrid, // 列表页格子广告
 				// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-				// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+				"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 				// "home_pre_video": cf.Ad.PreVideo,
 				// "list_pre_video": cf.Ad.PreVideo,
 				// "info_pre_video": cf.Ad.PreVideo,
