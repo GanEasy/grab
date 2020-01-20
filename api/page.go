@@ -23,15 +23,15 @@ type Carousel struct {
 // GetCarousels 获取首页走马灯数据
 func GetCarousels(c echo.Context) error {
 	var carousels []Carousel
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:    `https://aireadhelper.github.io/static/images/mfqz.jpg`,
-			Type:   `image`,
-			Event:  `poster`,
-			WxTo:   ``,
-			Poster: `https://aireadhelper.github.io/static/images/qrcode.png`,
-		})
+	// carousels = append(
+	// 	carousels,
+	// Carousel{
+	// 	URL:    `https://aireadhelper.github.io/static/images/mfqz.jpg`,
+	// 	Type:   `image`,
+	// 	Event:  `poster`,
+	// 	WxTo:   ``,
+	// 	Poster: `https://aireadhelper.github.io/static/images/qrcode.png`,
+	// })
 	// carousels = append(
 	// 	carousels,
 	// 	Carousel{
