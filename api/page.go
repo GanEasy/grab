@@ -469,15 +469,6 @@ func GetGuideExploreLinks() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `关于&声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
-			Style: `arrow`,
-		},
-
-		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
@@ -518,6 +509,36 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁jxla`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `顶点小说280xs`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁xbiquge`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+			Style: `arrow`,
+		},
+		Link{
 			Title: `顶点小说`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
@@ -531,38 +552,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `笔趣阁xbiquge`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `笔趣阁mcmssc`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
-			Style: `arrow`,
-		},
-
 		// Link{
 		// 	Title: `U小说阅读网`,
 		// 	Type:  `link`,
 		// 	WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
 		// 	Style: `arrow`,
 		// },
-		Link{
-			Title: `笔趣阁jxla`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
-			Style: `arrow`,
-		},
 		// Link{
 		// 	Title: `老司机小说`,
 		// 	Type:  `link`,
@@ -637,6 +632,15 @@ func GetGuideExploreLinks() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `关于&声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
 			Style: `arrow`,
 		},
 	}

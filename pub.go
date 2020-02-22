@@ -35,6 +35,8 @@ func GetGuide(drive string) reader.Guide {
 		return &reader.Soe8Reader{}
 	} else if drive == `mcmssc` {
 		return &reader.McmsscReader{}
+	} else if drive == `xs280` {
+		return &reader.Xs280Reader{}
 	} else if drive == `xbiquge` {
 		return &reader.XbiqugeReader{}
 	} else if drive == `biquyun` {
@@ -99,6 +101,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.BiqugeinfoReader{}
 	} else if drive == `mcmssc` {
 		return &reader.McmsscReader{}
+	} else if drive == `xs280` {
+		return &reader.Xs280Reader{}
 	} else if drive == `xbiquge` {
 		return &reader.XbiqugeReader{}
 	} else if drive == `biquyun` {

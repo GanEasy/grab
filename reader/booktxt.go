@@ -123,7 +123,7 @@ func (r BooktxtReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := g.Find(`.directoryArea`).Eq(1).Html()
+	html2, _ := g.Find(`.book_last`).Eq(1).Html()
 
 	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
