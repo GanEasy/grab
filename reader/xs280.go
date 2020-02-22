@@ -49,7 +49,7 @@ func (r Xs280Reader) GetList(urlStr string) (list Catalog, err error) {
 		return
 	}
 
-	html2, err2 := FindContentHTML(html, `.l`)
+	html2, err2 := FindContentHTML(html, `#BookList`)
 	if err2 != nil {
 		return
 	}
