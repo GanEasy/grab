@@ -8,7 +8,7 @@ import (
 func Test_Xs280GetBooks(t *testing.T) {
 	urlStr := "https://www.Xs280.com/xuanhuanxiaoshuo/"
 	urlStr = "https://www.Xs280.com/chuanyuexiaoshuo/"
-	urlStr = "https://www.280xs.com/book_2_1/"
+	urlStr = "https://www.280xs.com/book_1_1/"
 	reader := Xs280Reader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()

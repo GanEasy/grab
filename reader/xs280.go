@@ -24,15 +24,15 @@ func (r Xs280Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_1_1/`), "", `link`, ``, nil, ``},
-		Card{`武侠修真`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_2_1/`), "", `link`, ``, nil, ``},
-		Card{`言情都市`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_3_1/`), "", `link`, ``, nil, ``},
-		Card{`历史穿越`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_4_1/`), "", `link`, ``, nil, ``},
-		Card{`网游动漫`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_6_1/`), "", `link`, ``, nil, ``},
-		Card{`科幻小说`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_7_1/`), "", `link`, ``, nil, ``},
-		Card{`恐怖灵异`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_8_1/`), "", `link`, ``, nil, ``},
-		Card{`其它小说`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/book_10_1/`), "", `link`, ``, nil, ``},
-		// Card{`排行榜单`, `/pages/list?action=book&drive=Xs280&url=` + EncodeURL(`https://www.280xs.com/paihangbang/`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_1_1/`), "", `link`, ``, nil, ``},
+		Card{`武侠修真`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_2_1/`), "", `link`, ``, nil, ``},
+		Card{`言情都市`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_3_1/`), "", `link`, ``, nil, ``},
+		Card{`历史穿越`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_4_1/`), "", `link`, ``, nil, ``},
+		Card{`网游动漫`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_6_1/`), "", `link`, ``, nil, ``},
+		Card{`科幻小说`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_7_1/`), "", `link`, ``, nil, ``},
+		Card{`恐怖灵异`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_8_1/`), "", `link`, ``, nil, ``},
+		Card{`其它小说`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_10_1/`), "", `link`, ``, nil, ``},
+		// Card{`排行榜单`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/paihangbang/`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
