@@ -127,7 +127,7 @@ func GetAPIToken(c echo.Context) error {
 				// "home_screen": cf.Ad.HomeScreen,
 				"list_screen": cf.Ad.ListScreen,
 				"info_screen": cf.Ad.InfoScreen,
-				// "cata_screen": cf.Ad.CataScreen,
+				"cata_screen": cf.Ad.CataScreen,
 				// "screen":      cf.Ad.Screen,
 				// "reward":      cf.Ad.Reward,
 				// "pre_video":   cf.Ad.PreVideo,
@@ -137,7 +137,7 @@ func GetAPIToken(c echo.Context) error {
 				// "info_banner": cf.Ad.InfoBanner,
 
 				// "home_video": cf.Ad.HomeVideo,
-				// "list_video": cf.Ad.ListVideo,
+				"list_video": cf.Ad.ListVideo,
 				"cata_video": cf.Ad.CataVideo,
 				"info_video": cf.Ad.InfoVideo,
 
@@ -157,7 +157,7 @@ func GetAPIToken(c echo.Context) error {
 				"share_title": `笔趣阁plus全网免费小说转码阅读`,
 				// 定义首页分享图片
 				"share_cover": ``,
-				"placeholder": `庆余年`,
+				"placeholder": `请输入小说名进行搜索`,
 			})
 		}
 	} else if provider == `h5` {
