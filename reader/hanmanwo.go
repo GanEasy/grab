@@ -82,6 +82,11 @@ func (r HanmanwoReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r HanmanwoReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r HanmanwoReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

@@ -95,6 +95,11 @@ func (r ZonghengReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r ZonghengReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r ZonghengReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

@@ -5,12 +5,13 @@ package reader
  */
 // Catalog 第三方资源目录(用户可任意订阅此目录)
 type Catalog struct {
-	Title     string `json:"title"`
-	Cards     []Card //`json:"links"`
-	SourceURL string `json:"source_url"` // 数据抓取时，统一声明数据来源
-	Hash      string `json:"hash"`       // 当前目录 Hash
-	Previous  Link   `json:"previous"`   // 如果有上一页
-	Next      Link   `json:"next"`       // 如果有下一页
+	Title         string `json:"title"`
+	Cards         []Card //`json:"links"`
+	SourceURL     string `json:"source_url"`     // 数据抓取时，统一声明数据来源
+	Hash          string `json:"hash"`           // 当前目录 Hash
+	Previous      Link   `json:"previous"`       // 如果有上一页
+	Next          Link   `json:"next"`           // 如果有下一页
+	SearchSupport bool   `json:"search_support"` // 搜索支持（实现第三方站内搜索）
 }
 
 // Card 使用卡片代替链接

@@ -84,6 +84,11 @@ func (r R2hmReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r R2hmReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r R2hmReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

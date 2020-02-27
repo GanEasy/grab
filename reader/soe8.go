@@ -100,6 +100,11 @@ func (r Soe8Reader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r Soe8Reader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r Soe8Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 

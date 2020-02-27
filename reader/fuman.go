@@ -96,6 +96,11 @@ func (r FumanReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r FumanReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r FumanReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

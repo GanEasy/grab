@@ -157,7 +157,7 @@ func GetAPIToken(c echo.Context) error {
 				"share_title": `笔趣阁plus全网免费小说转码阅读`,
 				// 定义首页分享图片
 				"share_cover": ``,
-				"placeholder": `请输入小说名进行搜索`,
+				"placeholder": `请输入关键字进行搜索`, // 小说名
 			})
 		}
 	} else if provider == `h5` {

@@ -30,6 +30,11 @@ func (r KanmeiziReader) GetCategories(urlStr string) (list Catalog, err error) {
 	return list, nil
 }
 
+// Search 搜索资源
+func (r KanmeiziReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetList 获取书籍列表列表
 func (r KanmeiziReader) GetList(urlStr string) (list Catalog, err error) {
 

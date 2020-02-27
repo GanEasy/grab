@@ -92,7 +92,15 @@ func (r Xs280Reader) GetList(urlStr string) (list Catalog, err error) {
 
 	list.SourceURL = urlStr
 
-	list.Next = GetNextLink(links)
+	g3, e3 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e3 != nil {
+		return list, e3
+	}
+
+	alllinks := GetLinks(g3, link)
+
+	list.Next = GetNextLink(alllinks)
 	if list.Next.URL != `` {
 		list.Next.URL = EncodeURL(list.Next.URL)
 	}
@@ -101,6 +109,11 @@ func (r Xs280Reader) GetList(urlStr string) (list Catalog, err error) {
 
 	return list, nil
 
+}
+
+// Search 搜索资源
+func (r Xs280Reader) Search(keyword string) (list Catalog, err error) {
+	return
 }
 
 // GetCatalog 获取章节列表

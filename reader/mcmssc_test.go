@@ -5,6 +5,16 @@ import (
 	"testing"
 )
 
+func Test_McmsscSearch(t *testing.T) {
+	reader := McmsscReader{}
+	list, err := reader.Search(`点道`)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
 func Test_McmsscGetBooks(t *testing.T) {
 	urlStr := "https://www.mcmssc.com/xuanhuanxiaoshuo/"
 	urlStr = "https://www.mcmssc.com/chuanyuexiaoshuo/"

@@ -102,3 +102,8 @@ func (r DefaultGuide) GetCategories(urlStr string) (list Catalog, err error) {
 func (r DefaultGuide) GetList(urlStr string) (list Catalog, err error) {
 	return
 }
+
+// Search 搜索资源
+func (r DefaultGuide) Search(keyword string) (list Catalog, err error) {
+	return
+}

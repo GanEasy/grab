@@ -30,6 +30,11 @@ func (r Aimeizi5Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	return list, nil
 }
 
+// Search 搜索资源
+func (r Aimeizi5Reader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetList 获取书籍列表列表
 func (r Aimeizi5Reader) GetList(urlStr string) (list Catalog, err error) {
 

@@ -87,6 +87,11 @@ func (r Xs7878Reader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r Xs7878Reader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r Xs7878Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 

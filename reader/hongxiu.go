@@ -155,6 +155,11 @@ func (r HongxiuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r HongxiuReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetInfo 获取章节正文内容
 func (r HongxiuReader) GetInfo(urlStr string) (ret Content, err error) {
 

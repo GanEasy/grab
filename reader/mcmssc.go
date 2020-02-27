@@ -35,7 +35,63 @@ func (r McmsscReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`其它小说`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/qitaxiaoshuo/`), "", `link`, ``, nil, ``},
 		// Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
+}
+
+// Search 搜索资源
+func (r McmsscReader) Search(keyword string) (list Catalog, err error) {
+	urlStr := `https://www.mcmssc.com/search.html?name=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, `#main`)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果-笔趣阁mcmssc`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	if len(links) == 0 {
+
+		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+		if e2 != nil {
+			return list, e2
+		}
+
+		links = GetLinks(g2, link)
+	}
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.mcmssc.com/90_90485/`, `https://www.mcmssc.com/87_87108/`, ``)
+		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `mcmssc`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
+
 }
 
 // GetList 获取书籍列表列表

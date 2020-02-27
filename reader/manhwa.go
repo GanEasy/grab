@@ -87,6 +87,11 @@ func (r ManhwaReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r ManhwaReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r ManhwaReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

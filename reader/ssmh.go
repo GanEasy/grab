@@ -82,6 +82,11 @@ func (r SsmhReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r SsmhReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r SsmhReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

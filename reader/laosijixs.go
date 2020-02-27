@@ -93,6 +93,11 @@ func (r LaosijixsReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r LaosijixsReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r LaosijixsReader) GetCatalog(urlStr string) (list Catalog, err error) {
 

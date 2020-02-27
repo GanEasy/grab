@@ -18,4 +18,6 @@ type Guide interface {
 	GetCategories(string) (Catalog, error)
 	// 获取第三方目录列表
 	GetList(string) (Catalog, error)
+	// 实现第三方平台搜索接口 (允许在分类设置不支持搜索，允许功能不存在，但是不能不实现该接口)
+	Search(string) (Catalog, error)
 }

@@ -33,15 +33,16 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`科幻`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/6_1.html`), "", `link`, ``, nil, ``},
 		Card{`其他`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/wapsort/7_1.html`), "", `link`, ``, nil, ``},
 
-		Card{`↘↘↘排行榜↙↙↙`, ``, "", `link`, ``, nil, ``},
-		Card{`全部↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/1.html`), "", `link`, ``, nil, ``},
-		Card{`玄幻↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/1_1.html`), "", `link`, ``, nil, ``},
-		Card{`修真↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/2_1.html`), "", `link`, ``, nil, ``},
-		Card{`都市↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/3_1.html`), "", `link`, ``, nil, ``},
-		Card{`穿越↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/4_1.html`), "", `link`, ``, nil, ``},
-		Card{`网游↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/5_1.html`), "", `link`, ``, nil, ``},
-		Card{`科幻↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/6_1.html`), "", `link`, ``, nil, ``},
-		Card{`其他↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/7_1.html`), "", `link`, ``, nil, ``},
+		// Card{`↘↘↘排行榜↙↙↙`, ``, "", `link`, ``, nil, ``},
+		Card{`↙↙↙↘↘↘排行榜`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/top/`), "", `link`, ``, nil, ``},
+		// Card{`全部↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/1.html`), "", `link`, ``, nil, ``},
+		// Card{`玄幻↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/1_1.html`), "", `link`, ``, nil, ``},
+		// Card{`修真↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/2_1.html`), "", `link`, ``, nil, ``},
+		// Card{`都市↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/3_1.html`), "", `link`, ``, nil, ``},
+		// Card{`穿越↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/4_1.html`), "", `link`, ``, nil, ``},
+		// Card{`网游↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/5_1.html`), "", `link`, ``, nil, ``},
+		// Card{`科幻↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/6_1.html`), "", `link`, ``, nil, ``},
+		// Card{`其他↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/7_1.html`), "", `link`, ``, nil, ``},
 	}
 	return list, nil
 }
@@ -96,6 +97,11 @@ func (r BooktxtReader) GetList(urlStr string) (list Catalog, err error) {
 
 	return list, nil
 
+}
+
+// Search 搜索资源
+func (r BooktxtReader) Search(keyword string) (list Catalog, err error) {
+	return
 }
 
 // GetCatalog 获取章节列表

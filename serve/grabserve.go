@@ -218,6 +218,13 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		list, _ := guide.GetCategories(urlStr)
 		return c.JSON(http.StatusOK, list)
 	})
+	//  在第三方平台进行资源搜索(按驱动)
+	api.GET("/searchmore", func(c echo.Context) error {
+		keyword := c.QueryParam("keyword") //grab.DecodeURL()
+		guide := grab.GetGuide(c.QueryParam("drive"))
+		list, _ := guide.Search(keyword)
+		return c.JSON(http.StatusOK, list)
+	})
 
 	//  获取可订阅目录列表
 	api.GET("/list/:url", func(c echo.Context) error {

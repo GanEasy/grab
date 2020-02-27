@@ -96,6 +96,11 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 
 }
 
+// Search 搜索资源
+func (r QuReader) Search(keyword string) (list Catalog, err error) {
+	return
+}
+
 // GetCatalog 获取章节列表
 func (r QuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
