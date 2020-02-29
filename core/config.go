@@ -14,6 +14,9 @@ type Config struct {
 type ReaderMinApp struct {
 	AppID     string `toml:"app_id"`
 	AppSecret string `toml:"app_secret"`
+	AppTitle  string `toml:"app_title"`
+	AppCover  string `toml:"app_cover"`
+	AppSearch string `toml:"app_search"`
 }
 
 //Search 配置
