@@ -26,7 +26,7 @@ func Test_QidianGetBooks(t *testing.T) {
 
 func Test_QidianSearch(t *testing.T) {
 	reader := QidianReader{}
-	list, err := reader.Search(`点道`)
+	list, err := reader.Search(`圣墟`)
 	// list, err = reader.GetCategories()
 	if err != nil {
 

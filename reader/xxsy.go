@@ -35,6 +35,7 @@ func (r XxsyReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`短篇`, `/pages/list?drive=xxsy&url=` + EncodeURL(`https://www.xxsy.net/search?s_wd=&s_type=11&channel=2&sort=9&pn=1`), "", `link`, ``, nil, ``},
 	}
 	list.Hash = GetCatalogHash(list)
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -94,7 +95,44 @@ func (r XxsyReader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r XxsyReader) Search(keyword string) (list Catalog, err error) {
-	return
+	urlStr := `https://www.xxsy.net/search?s_wd=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果 - 潇湘书院xxsy.net`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.xxsy.net/info/1079349.html`, `https://www.xxsy.net/info/1104267.html`, ``)
+		if state {
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `xxsy`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
 }
 
 // GetCatalog 获取章节列表

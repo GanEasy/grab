@@ -17,7 +17,7 @@ func (r XbiqugeReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.xbiquge.com/`
 
-	list.Title = `分类-U小说阅读网`
+	list.Title = `分类-xbiquge.la`
 
 	list.SourceURL = urlStr
 

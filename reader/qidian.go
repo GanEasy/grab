@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -8,8 +9,10 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/yizenghui/chromedp"
 	"golang.org/x/net/html/charset"
 )
 
@@ -171,10 +174,28 @@ func (r QidianReader) Search(keyword string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+
+	var html string
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	err = chromedp.Run(ctx,
+		chromedp.Navigate(urlStr),
+		chromedp.Sleep(time.Second*2),
+		chromedp.OuterHTML("html", &html),
+	)
 	if err != nil {
+		// log.Fatal(err)
 		return
 	}
+
+	html, err = FindContentHTML(html, `#result-list`)
+	// html, err := GetHTML(urlStr, `#result-list`)
+	// if err != nil {
+	// 	return
+	// }
+	// log.Println(html)
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
 
@@ -187,7 +208,7 @@ func (r QidianReader) Search(keyword string) (list Catalog, err error) {
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
-
+	// log.Println(links)
 	var needLinks []Link
 	var state bool
 	for _, l := range links {

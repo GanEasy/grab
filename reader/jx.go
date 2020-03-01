@@ -101,7 +101,7 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 // Search 搜索资源
 func (r JxReader) Search(keyword string) (list Catalog, err error) {
 
-	urlStr := `https://sou.xanbhx.com/search?q=` + keyword + `&s=920895234054625192&t=m&siteid=qula`
+	urlStr := `https://sou.xanbhx.com/search?q=` + keyword + `&s=&t=m&siteid=qula`
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
