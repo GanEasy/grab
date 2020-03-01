@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"fmt"
 	"net/url"
 	"regexp"
 	"strings"
@@ -34,6 +35,7 @@ func (r Xs280Reader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`其它小说`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/book_10_1/`), "", `link`, ``, nil, ``},
 		// Card{`排行榜单`, `/pages/list?action=book&drive=xs280&url=` + EncodeURL(`https://www.280xs.com/paihangbang/`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -113,7 +115,61 @@ func (r Xs280Reader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r Xs280Reader) Search(keyword string) (list Catalog, err error) {
-	return
+
+	urlStr := `https://www.280xs.com/searchbook.php?search_key=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	html2, err2 := FindContentHTML(html, `#BookList`)
+	if err2 != nil {
+		return
+	}
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果 - 顶点小说280xs.com`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	if len(links) == 0 {
+
+		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+		if e2 != nil {
+			return list, e2
+		}
+
+		links = GetLinks(g2, link)
+	}
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.280xs.com/dingdian/10_10353/`, `https://www.280xs.com/dingdian/36_36734/`, ``)
+		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `xs280`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
 }
 
 // GetCatalog 获取章节列表

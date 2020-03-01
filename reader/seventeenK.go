@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"fmt"
 	"net/url"
 	"strings"
 
@@ -35,6 +36,7 @@ func (r SeventeenKReader) GetCategories(urlStr string) (list Catalog, err error)
 		Card{`浪漫青春`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_20_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
 		Card{`幻想言情`, `/pages/list?action=book&drive=17k&url=` + EncodeURL(`https://www.17k.com/all/book/3_18_0_0_0_0_0_0_1.html`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -88,7 +90,44 @@ func (r SeventeenKReader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r SeventeenKReader) Search(keyword string) (list Catalog, err error) {
-	return
+	urlStr := `https://search.17k.com/search.xhtml?c.st=0&c.q=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果 - 17k.com`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.17k.com/book/2897539.html`, `https://www.17k.com/book/2927482.html`, `https://www.17k.com/list/2897539.html`)
+		if state {
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `17k`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
 }
 
 // GetCatalog 获取章节列表

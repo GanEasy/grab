@@ -24,6 +24,16 @@ func Test_QidianGetBooks(t *testing.T) {
 	t.Fatal(list)
 }
 
+func Test_QidianSearch(t *testing.T) {
+	reader := QidianReader{}
+	list, err := reader.Search(`点道`)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
 func Test_QidianGetChapters(t *testing.T) {
 	urlStr := "https://book.qidian.com/info/1010734492"
 	urlStr = "https://book.qidian.com/info/1004608738"

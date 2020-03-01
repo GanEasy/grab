@@ -4,6 +4,16 @@ import (
 	"testing"
 )
 
+func Test_ZonghengSearch(t *testing.T) {
+	reader := ZonghengReader{}
+	list, err := reader.Search(`点道`)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
 func Test_ZonghengGetList(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"
@@ -16,7 +26,6 @@ func Test_ZonghengGetList(t *testing.T) {
 	}
 	t.Fatal(list)
 }
-
 func Test_ZonghengGetCatalog(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"
 	// urlStr := "http://feed.williamlong.info/"

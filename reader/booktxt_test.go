@@ -18,6 +18,8 @@ func Test_BooktxtGetInfo(t *testing.T) {
 func Test_BooktxtGetCatalog(t *testing.T) {
 	urlStr := `https://m.booktxt.net/wapbook/4891.html`
 	urlStr = `https://m.booktxt.net/wapbook/6454.html`
+	urlStr = `https://www.booktxt.net/book/goto/id/4243`
+	urlStr = `https://www.booktxt.net/10_10269/`
 	reader := BooktxtReader{}
 	list, err := reader.GetCatalog(urlStr)
 	if err != nil {
@@ -31,6 +33,15 @@ func Test_BooktxtGetList(t *testing.T) {
 	urlStr = `https://m.booktxt.net/wapsort/5_1.html`
 	reader := BooktxtReader{}
 	list, err := reader.GetList(urlStr)
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
+
+func Test_BooktxtSearch(t *testing.T) {
+	reader := BooktxtReader{}
+	list, err := reader.Search(`点道`)
 	if err != nil {
 
 	}

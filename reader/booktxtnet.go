@@ -9,12 +9,12 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//BooktxtReader 顶点小说 (盗版小说网站)
-type BooktxtReader struct {
+//BooktxtnetReader 顶点小说 (盗版小说网站)
+type BooktxtnetReader struct {
 }
 
 // GetCategories 获取所有分类
-func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
+func (r BooktxtnetReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://m.booktxt.com/`
 
@@ -49,7 +49,7 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 }
 
 // GetList 获取书籍列表列表
-func (r BooktxtReader) GetList(urlStr string) (list Catalog, err error) {
+func (r BooktxtnetReader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -101,7 +101,7 @@ func (r BooktxtReader) GetList(urlStr string) (list Catalog, err error) {
 }
 
 // Search 搜索资源
-func (r BooktxtReader) Search(keyword string) (list Catalog, err error) {
+func (r BooktxtnetReader) Search(keyword string) (list Catalog, err error) {
 	urlStr := `https://so.biqusoso.com/s1.php?ie=utf-8&siteid=booktxt.net&q=` + keyword
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -155,7 +155,7 @@ func (r BooktxtReader) Search(keyword string) (list Catalog, err error) {
 }
 
 // GetCatalog 获取章节列表
-func (r BooktxtReader) GetCatalog(urlStr string) (list Catalog, err error) {
+func (r BooktxtnetReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -211,7 +211,7 @@ func (r BooktxtReader) GetCatalog(urlStr string) (list Catalog, err error) {
 }
 
 // GetInfo 获取详细内容
-func (r BooktxtReader) GetInfo(urlStr string) (ret Content, err error) {
+func (r BooktxtnetReader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {

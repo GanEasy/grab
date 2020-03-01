@@ -105,6 +105,7 @@ func (r QidianReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`二次元`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=12&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil, ``},
 		Card{`短篇`, `/pages/list?drive=qidian&url=` + EncodeURL(`https://www.qidian.com/all?chanId=20076&orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -164,7 +165,46 @@ func (r QidianReader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r QidianReader) Search(keyword string) (list Catalog, err error) {
-	return
+
+	urlStr := `https://www.qidian.com/search?kw=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果 - 起点小说qidian.com`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://book.qidian.com/info/1010734492`, `https://book.qidian.com/info/1010868264`, ``)
+		if state {
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `qidian`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
+
 }
 
 // GetCatalog 获取章节列表

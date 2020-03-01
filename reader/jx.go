@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"fmt"
 	"net/url"
 	"regexp"
 	"strings"
@@ -42,6 +43,7 @@ func (r JxReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`\网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month6.html`), "", `link`, ``, nil, ``},
 		Card{`\女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month7.html`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -98,7 +100,59 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r JxReader) Search(keyword string) (list Catalog, err error) {
-	return
+
+	urlStr := `https://sou.xanbhx.com/search?q=` + keyword + `&s=920895234054625192&t=m&siteid=qula`
+
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, `.recommend`)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果-qu.la`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	if len(links) == 0 {
+
+		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+		if e2 != nil {
+			return list, e2
+		}
+
+		links = GetLinks(g2, link)
+	}
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.jx.la/book/175443/`, `https://m.jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
+		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
+			l.Title = strings.Replace(l.Title, " ", "", -1)
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `jx`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
 }
 
 // GetCatalog 获取章节列表

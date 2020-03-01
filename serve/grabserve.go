@@ -221,8 +221,15 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	//  在第三方平台进行资源搜索(按驱动)
 	api.GET("/searchmore", func(c echo.Context) error {
 		keyword := c.QueryParam("keyword") //grab.DecodeURL()
-		guide := grab.GetGuide(c.QueryParam("drive"))
+		drive := c.QueryParam("drive")
+		guide := grab.GetGuide(drive)
 		list, _ := guide.Search(keyword)
+
+		if drive == `qidian` || drive == `zongheng` || drive == `jx` || drive == `xs280` || drive == `hongxiu` || drive == `xxsy` || drive == `biqugeinfo` || drive == `mcmssc` || drive == `17k` || drive == `xbiquge` || drive == `luoqiu` || drive == `booktxt` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `biquyun` || drive == `soe8` {
+			go a.SyncPosts(list, 1)
+		} else if drive == `manhwa` || drive == `kanmeizi` || drive == `haimaoba` || drive == `hanmanwo` || drive == `hanmanku` || drive == `ssmh` || drive == `fuman` || drive == `aimeizi5` {
+			go a.SyncPosts(list, 2)
+		}
 		return c.JSON(http.StatusOK, list)
 	})
 

@@ -16,6 +16,15 @@ func Test_SeventeenKGetBooks(t *testing.T) {
 	}
 	t.Fatal(list)
 }
+func Test_SeventeenKSearch(t *testing.T) {
+	reader := SeventeenKReader{}
+	list, err := reader.Search(`归一`)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
 
 func Test_SeventeenKGetChapters(t *testing.T) {
 	// urlStr := "http://feeds.twit.tv/twit.xml"

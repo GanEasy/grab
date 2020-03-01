@@ -18,6 +18,15 @@ func Test_Xs280GetBooks(t *testing.T) {
 	t.Fatal(list)
 }
 
+func Test_Xs280Search(t *testing.T) {
+	reader := Xs280Reader{}
+	list, err := reader.Search(`修仙`)
+	// list, err = reader.GetCategories()
+	if err != nil {
+
+	}
+	t.Fatal(list)
+}
 func Test_Xs280GetChapters(t *testing.T) {
 	urlStr := "http://www.xbiquge.la/39/39720/"
 	urlStr = "https://www.280xs.com/dingdian/34_34693/"
