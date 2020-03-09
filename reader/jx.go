@@ -1,12 +1,15 @@
 package reader
 
 import (
+	"context"
 	"fmt"
 	"net/url"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/yizenghui/chromedp"
 )
 
 //JxReader 笔趣阁qula (盗版小说网站)
@@ -107,7 +110,25 @@ func (r JxReader) Search(keyword string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.recommend`)
+
+	var html string
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	err = chromedp.Run(ctx,
+		chromedp.Navigate(urlStr),
+		chromedp.Sleep(time.Second*2),
+		chromedp.OuterHTML("html", &html),
+	)
+	if err != nil {
+		// log.Fatal(err)
+		return
+	}
+
+	html, err = FindContentHTML(html, `.recommend`)
+	// html, err := GetHTML(urlStr, `.recommend`)
+	// html, err := GetHTML(urlStr, `#result-list`)
 	if err != nil {
 		return
 	}

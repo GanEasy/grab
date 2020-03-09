@@ -192,9 +192,9 @@ func (r QidianReader) Search(keyword string) (list Catalog, err error) {
 
 	html, err = FindContentHTML(html, `#result-list`)
 	// html, err := GetHTML(urlStr, `#result-list`)
-	// if err != nil {
-	// 	return
-	// }
+	if err != nil {
+		return
+	}
 	// log.Println(html)
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
