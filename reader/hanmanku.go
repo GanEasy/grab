@@ -60,7 +60,7 @@ func (r HanmankuReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.hanmanku.com/book/485.html`, `http://www.hanmanku.com/book/483.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://www.hanmanku.com/book/485`, `http://www.hanmanku.com/book/483`, ``)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -121,7 +121,7 @@ func (r HanmankuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks Links
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.hanmanku.com/chapter/24116.html`, `http://www.hanmanku.com/chapter/24126.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://www.hanmanku.com/chapter/24116`, `http://www.hanmanku.com/chapter/24126`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
