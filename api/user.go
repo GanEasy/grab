@@ -156,8 +156,9 @@ func GetAPIToken(c echo.Context) error {
 				// 定义首页分享标题
 				"share_title": cf.ReaderMinApp.AppTitle,
 				// 定义首页分享图片
-				"share_cover": cf.ReaderMinApp.AppCover,
-				"placeholder": cf.ReaderMinApp.AppSearch, // 小说名
+				"share_cover":    cf.ReaderMinApp.AppCover,
+				"placeholder":    cf.ReaderMinApp.AppSearch, // 小说名
+				"online_service": true,
 			})
 		}
 	} else if provider == `h5` {
