@@ -549,7 +549,7 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 		Link{
-			Title: `顶点小说`,
+			Title: `顶点小说booktxt`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
 			Style: `arrow`,
@@ -701,7 +701,7 @@ func GetAllResources(c echo.Context) error {
 		// },
 
 		reader.Card{
-			Title: `顶点小说`,
+			Title: `顶点小说booktxt`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
 		},

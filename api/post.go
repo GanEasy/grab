@@ -248,6 +248,17 @@ func SearchMoreAction(c echo.Context) error {
 	catelog.Cards = append(
 		catelog.Cards,
 		reader.Card{
+			Title:  `在顶点小说booktxt 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=booktxt&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
 			Title:  `在顶点小说280xs 搜索“` + name + `”`,
 			WxTo:   `/pages/searchmore?drive=xs280&name=` + name,
 			Intro:  ``,
