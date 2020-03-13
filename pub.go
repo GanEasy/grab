@@ -87,6 +87,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.MLuoqiuReader{}
 	} else if drive == `booktxt` {
 		return &reader.BooktxtReader{}
+	} else if drive == `booktxtnet` {
+		return &reader.BooktxtnetReader{}
 	} else if drive == `qu` { // 笔趣阁qula 改域名为 jx.la 了
 		return &reader.QuReader{}
 	} else if drive == `jx` { // 笔趣阁qula 改域名为 jx.la 了

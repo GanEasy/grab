@@ -28,20 +28,20 @@ func Test_BooktxtGetCatalog(t *testing.T) {
 	t.Fatal(list)
 }
 
-func Test_BooktxtGetList(t *testing.T) {
-	urlStr := `https://m.booktxt.net/wapsort/1_1.html`
-	urlStr = `https://m.booktxt.net/wapsort/5_1.html`
+func Test_BooktxtSearch(t *testing.T) {
 	reader := BooktxtReader{}
-	list, err := reader.GetList(urlStr)
+	list, err := reader.Search(`圣王`)
 	if err != nil {
 
 	}
 	t.Fatal(list)
 }
 
-func Test_BooktxtSearch(t *testing.T) {
+func Test_BooktxtGetList(t *testing.T) {
+	urlStr := `https://m.booktxt.net/wapsort/1_1.html`
+	urlStr = `https://m.booktxt.net/wapsort/5_1.html`
 	reader := BooktxtReader{}
-	list, err := reader.Search(`点道`)
+	list, err := reader.GetList(urlStr)
 	if err != nil {
 
 	}

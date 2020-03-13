@@ -179,22 +179,24 @@ func (r BooktxtnetReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := g.Find(`.book_last`).Eq(1).Html()
+	// html2, _ := g.Find(`#list`).Eq(1).Html()
 
-	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
+	// g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
-	var links = GetLinks(g2, link)
+	var links = GetLinks(g, link)
 
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.booktxt.net/wapbook/9643_3668840.html`, `https://m.booktxt.net/wapbook/10170_4878581.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.booktxt.net/0_10117/4280471.html`, `https://www.booktxt.net/4_4243/2973519.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `booktxt`)
+	needLinks = CleaningFrontRepeat(needLinks)
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `booktxtnet`)
 
 	list.SourceURL = urlStr
 
@@ -241,6 +243,10 @@ func (r BooktxtnetReader) GetInfo(urlStr string) (ret Content, err error) {
 	reg2 := regexp.MustCompile(`本章未完，请点击下一页继续阅读....`)
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
+
+	reg3 := regexp.MustCompile(`请记住本书首发域名：booktxt.net。顶点小说手机版阅读网址：m.booktxt.net`)
+
+	article.ReadContent = reg3.ReplaceAllString(article.ReadContent, "")
 
 	ret.SourceURL = urlStr
 

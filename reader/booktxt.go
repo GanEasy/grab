@@ -45,6 +45,7 @@ func (r BooktxtReader) GetCategories(urlStr string) (list Catalog, err error) {
 		// Card{`科幻↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/6_1.html`), "", `link`, ``, nil, ``},
 		// Card{`其他↘↘↘`, `/pages/list?action=list&drive=booktxt&url=` + EncodeURL(`https://m.booktxt.net/waptop/7_1.html`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -138,7 +139,7 @@ func (r BooktxtReader) Search(keyword string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.booktxt.net/book/goto/id/4243`, `http://www.booktxt.net/book/goto/id/4846`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://www.booktxt.net/book/goto/id/4243`, `http://www.booktxt.net/book/goto/id/4846`, `https://www.booktxt.net/0_4243/`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
