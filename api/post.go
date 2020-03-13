@@ -89,6 +89,171 @@ func SearchPosts(c echo.Context) error {
 					})
 			}
 		}
+
 	}
+
+	if len(catelog.Cards) == 0 {
+		//
+	}
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `╅╅╅︺ 找不到想要的？您可以 ︺╅╆╆`,
+			WxTo:   ``,
+			Intro:  ``,
+			Type:   `link`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `1. 更换搜索关键字`,
+			WxTo:   ``,
+			Intro:  `请使用准确的书名搜索，宁可少字也不要有错别字。（尽量不要用主角搜索）`,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `2. 使用第三方平台搜索`,
+			WxTo:   `/pages/transfer?action=allsearchdrives&url=&drive=` + name,
+			Intro:  `>>点击前往第三方平台搜索“` + name + `<<`,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
+	// 	Card{`全部`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `3. 联系我们获取帮助`,
+			WxTo:   ``, //reader.EncodeURL(name),
+			Intro:  `在我的>“在线客服”或“问题反馈”联系我们。`,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `请直接告诉我们，您遇到什么问题，需要我们做什么。`,
+			WxTo:   ``,
+			Intro:  ``,
+			Type:   `link`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `请不要问“在吗？”，因为我们答“在呢。”`,
+			WxTo:   ``,
+			Intro:  ``,
+			Type:   `link`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
+	return c.JSON(http.StatusOK, catelog)
+}
+
+// SearchMoreAction 更多搜索方法
+func SearchMoreAction(c echo.Context) error {
+	var catelog reader.Catalog
+	name := c.QueryParam("drive") // 注： 小程序页面 pages/transfer 无法将name参数传上来
+
+	catelog.Title = fmt.Sprintf(`更多“%v”搜索结果`, name)
+	// catelog.Title = `更多相关搜索结果`
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `起点小说网 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=qidian&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在纵横小说网 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=zongheng&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在17K文学 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=17k&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在潇湘书院 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=xxsy&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在笔趣阁jxla 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=jx&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在笔趣阁mcmssc 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=mcmssc&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在顶点小说280xs 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=xs280&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
 	return c.JSON(http.StatusOK, catelog)
 }

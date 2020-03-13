@@ -232,6 +232,8 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		}
 		return c.JSON(http.StatusOK, list)
 	})
+	// 组装第三方平台搜索所需链接
+	api.GET("/allsearchdrives", a.SearchMoreAction)
 
 	//  获取可订阅目录列表
 	api.GET("/list/:url", func(c echo.Context) error {
