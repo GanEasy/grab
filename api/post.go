@@ -94,6 +94,7 @@ func SearchPosts(c echo.Context) error {
 
 	if len(catelog.Cards) == 0 {
 		//
+
 	}
 	catelog.Cards = append(
 		catelog.Cards,
