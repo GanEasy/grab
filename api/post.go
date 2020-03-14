@@ -52,8 +52,8 @@ func SearchPosts(c echo.Context) error {
 	cf := cpi.GetConf()
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
-		// posts = cpi.GetPostsByNameLimitLevel(name, 2)
-		posts = cpi.GetPostsByNameLimitLevel(name, level)
+		posts = cpi.GetPostsByNameLimitLevel(name, 2)
+		// posts = cpi.GetPostsByNameLimitLevel(name, level)
 	} else if cf.Search.LimitLevel {
 		posts = cpi.GetPostsByNameLimitLevel(name, level)
 		// posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
@@ -96,77 +96,80 @@ func SearchPosts(c echo.Context) error {
 		//
 
 	}
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `╅╅╅︺ 找不到想要的？您可以 ︺╅╆╆`,
-			WxTo:   ``,
-			Intro:  ``,
-			Type:   `link`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
+	if version != cf.Search.DevVersion {
 
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `1. 更换搜索关键字`,
-			WxTo:   ``,
-			Intro:  `请使用准确的书名搜索，宁可少字也不要有错别字。（尽量不要用主角搜索）`,
-			Type:   `card`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `╅╅╅︺ 找不到想要的？您可以 ︺╅╆╆`,
+				WxTo:   ``,
+				Intro:  ``,
+				Type:   `link`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
 
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `2. 使用第三方平台搜索`,
-			WxTo:   `/pages/transfer?action=allsearchdrives&url=&drive=` + name,
-			Intro:  `>>点击前往第三方平台搜索“` + name + `<<`,
-			Type:   `card`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `1. 更换搜索关键字`,
+				WxTo:   ``,
+				Intro:  `请使用准确的书名搜索，宁可少字也不要有错别字。（尽量不要用主角搜索）`,
+				Type:   `card`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
 
-	// 	Card{`全部`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `2. 使用第三方平台搜索`,
+				WxTo:   `/pages/transfer?action=allsearchdrives&url=&drive=` + name,
+				Intro:  `>>点击前往第三方平台搜索“` + name + `<<`,
+				Type:   `card`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
 
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `3. 联系我们获取帮助`,
-			WxTo:   ``, //reader.EncodeURL(name),
-			Intro:  `在我的>“在线客服”或“问题反馈”联系我们。`,
-			Type:   `card`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `请直接告诉我们，您遇到什么问题，需要我们做什么。`,
-			WxTo:   ``,
-			Intro:  ``,
-			Type:   `link`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
-	catelog.Cards = append(
-		catelog.Cards,
-		reader.Card{
-			Title:  `请不要问“在吗？”，因为我们答“在呢。”`,
-			WxTo:   ``,
-			Intro:  ``,
-			Type:   `link`,
-			Cover:  ``,
-			Images: nil,
-			From:   ``,
-		})
+		// 	Card{`全部`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
+
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `3. 联系我们获取帮助`,
+				WxTo:   ``, //reader.EncodeURL(name),
+				Intro:  `在我的>“在线客服”或“问题反馈”联系我们。`,
+				Type:   `card`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `请直接告诉我们，您遇到什么问题，需要我们做什么。`,
+				WxTo:   ``,
+				Intro:  ``,
+				Type:   `link`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `请不要问“在吗？”，因为我们答“在呢。”`,
+				WxTo:   ``,
+				Intro:  ``,
+				Type:   `link`,
+				Cover:  ``,
+				Images: nil,
+				From:   ``,
+			})
+	}
 
 	return c.JSON(http.StatusOK, catelog)
 }
