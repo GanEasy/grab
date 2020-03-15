@@ -530,6 +530,14 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 			Style: `arrow`,
 		},
+
+		Link{
+			Title: `笔趣阁paoshu8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+			Style: `arrow`,
+		},
+
 		Link{
 			Title: `顶点小说280xs`,
 			Type:  `link`,

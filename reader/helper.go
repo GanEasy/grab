@@ -237,6 +237,34 @@ func GetTag(urlStr string) string {
 	return fmt.Sprintf(`%v,%v%v`, link.Scheme, link.Host, link.Path)
 }
 
+//GetTagMore 获取特点
+func GetTagMore(urlStr string) string {
+
+	var exp = []string{
+		`?`,
+		`&`,
+		`#`,
+		`/`,
+		`=`,
+		`-`,
+		`.`,
+	}
+
+	link, _ := url.Parse(urlStr)
+
+	// link.Path =
+	for _, t := range exp {
+		// u := fmt.Sprintf(`%v`, link.Path)
+		link.Path = strings.Replace(link.Path, t, ",", -1)
+	}
+
+	// 补丁，替换掉 .htm .html .shtml 静态后缀
+	link.Path = strings.Replace(link.Path, ".htm", ",htm", -1)
+	link.Path = strings.Replace(link.Path, ".sht", ",sht", -1)
+
+	return fmt.Sprintf(`%v,%v%v`, link.Scheme, link.Host, link.Path)
+}
+
 //GetHash 获取字符串hash
 func GetHash(s string) string {
 	h := sha1.New()

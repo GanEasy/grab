@@ -264,6 +264,53 @@ func Jaccard(arr1 []string, arr2 []string) float64 {
 	return float64(len(Union(arr1, arr2))) / float64(len(Intersection(arr1, arr2)))
 }
 
+//JaccardMateGetURLMore  杰卡德（Jaccard）相似系数 匹配出目标url
+/**
+快速获取固定结构动态链接
+url 为要验证参考的链接地址
+demo1 有效的学习链接地址1，与url具有相同结构
+demo2 有效的学习链接地址2，与url具有相同结构
+to1   有效果的目标链接地址1， 将url变量替换到to1结构中 (to1为空时，保持原有结构)
+
+todo 	t.Fatal(JaccardMateGetURL(`http://book.zongheng.com/book/book/658887.html`, `http://book.zongheng.com/book/769150.html`, `http://book.zongheng.com/book/316562.html`, `http://book.zongheng.com/showchapter/769150.html`))
+相同值不同位置时抽风了。。
+*/
+func JaccardMateGetURLMore(url, demo1, demo2, to1 string) (string, bool) {
+	// demo1,2的标签
+	demotag1 := strings.Split(GetTagMore(demo1), ",")
+	demotag2 := strings.Split(GetTagMore(demo2), ",")
+
+	// url的标签
+	urltag := strings.Split(GetTagMore(url), ",")
+
+	if len(demotag1) != len(urltag) {
+		return url, false
+	}
+
+	eduUn := Union(demotag1, demotag2)
+	eduIn := Intersection(demotag1, demotag2)
+
+	demoParamUn := Union(demotag1, Nonion(eduIn, eduUn))
+
+	paramRp := Nonion(urltag, eduUn)
+
+	if len(demoParamUn) != len(paramRp) {
+		return url, false
+	}
+	// log.Println(demotag1, demotag2, urltag, demoParamUn, paramRp)
+	if to1 != `` {
+		to := to1
+		for i, val := range demoParamUn {
+			// t.Fatal(i, val)
+			// log.Println(to, val, paramRp[i])
+			to = strings.Replace(to, val, paramRp[i], 1)
+		}
+		return to, true
+	}
+	return url, true
+
+}
+
 //JaccardMateGetURL  杰卡德（Jaccard）相似系数 匹配出目标url
 /**
 快速获取固定结构动态链接
@@ -339,6 +386,12 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=booktxt")); b == true {
+		return 2 //
+	}
+	if b := strings.Contains(wxto, string("drive=booktxtnet")); b == true {
+		return 2 //
+	}
+	if b := strings.Contains(wxto, string("drive=paoshu8")); b == true {
 		return 2 //
 	}
 	if b := strings.Contains(wxto, string("drive=bxwx")); b == true {
