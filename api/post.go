@@ -115,7 +115,7 @@ func SearchPosts(c echo.Context) error {
 			reader.Card{
 				Title:  `1. 更换搜索关键字`,
 				WxTo:   ``,
-				Intro:  `请使用准确的书名搜索，宁可少字也不要有错别字。（尽量不要用主角搜索）`,
+				Intro:  `请使用书名搜索，宁可少字也不要错字。例：输入“三生三”搜索“三生三世十里桃花”`,
 				Type:   `card`,
 				Cover:  ``,
 				Images: nil,
