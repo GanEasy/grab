@@ -264,7 +264,7 @@ func (r Paoshu8Reader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
 
-	reg3 := regexp.MustCompile(`try{content1\(\);} catch\(ex\){}`)
+	reg3 := regexp.MustCompile(`try{([^<]+)} catch\(ex\){}`)
 
 	article.ReadContent = reg3.ReplaceAllString(article.ReadContent, "")
 
