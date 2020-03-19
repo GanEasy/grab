@@ -194,8 +194,8 @@ func GetAPIToken(c echo.Context) error {
 				// "reward":      cf.Ad.Reward,
 				// "pre_video":   cf.Ad.PreVideo,
 				// "home_banner": cf.Ad.HomeBanner,
-				// "list_banner": cf.Ad.ListBanner,
-				// "cata_banner": cf.Ad.CataBanner,
+				"list_banner": cf.Ad.ListBanner,
+				"cata_banner": cf.Ad.CataBanner,
 				"info_banner": cf.Ad.InfoBanner,
 
 				// "home_video": cf.Ad.HomeVideo,
