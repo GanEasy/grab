@@ -67,15 +67,15 @@ func GetCarousels(c echo.Context) error {
 	// 		WxTo: ``,
 	// 	})
 
-	carousels = append(
-		carousels,
-		Carousel{
-			URL:    `https://luck.wechatrank.com/images/adyyy.jpg`,
-			Type:   `image`,
-			Event:  `poster`,
-			WxTo:   ``,
-			Poster: `https://luck.wechatrank.com/images/adyyy.jpg`,
-		})
+	// carousels = append(
+	// 	carousels,
+	// 	Carousel{
+	// 		URL:    `https://luck.wechatrank.com/images/adyyy.jpg`,
+	// 		Type:   `image`,
+	// 		Event:  `poster`,
+	// 		WxTo:   ``,
+	// 		Poster: `https://luck.wechatrank.com/images/adyyy.jpg`,
+	// 	})
 
 	return c.JSON(http.StatusOK, carousels)
 }
