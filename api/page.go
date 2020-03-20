@@ -246,6 +246,14 @@ func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
 		Link{
+			Title: `搜索备用小程序“米读plus”`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
 			Type:  `link`,
