@@ -155,7 +155,7 @@ func GetAPIToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": true, // 看小说下一章强制要点视频广告
+			"info_force_reward": cf.Ad.ForceReward, // 看小说下一章强制要点视频广告
 			"info_video_adlt":   2,
 			"info_video_adlm":   0,
 			"info_banner_adlt":  10,
@@ -163,7 +163,7 @@ func GetAPIToken(c echo.Context) error {
 			"info_grid_adlt":    10,
 			"info_grid_adlm":    7,
 			"info_screen_adlt":  10,
-			"info_screen_adlm":  9,
+			"info_screen_adlm":  8,
 		})
 	}
 
