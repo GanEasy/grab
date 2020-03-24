@@ -163,7 +163,7 @@ func GetAPIToken(c echo.Context) error {
 			"info_grid_adlt":    0,
 			"info_grid_adlm":    4,
 			"info_screen_adlt":  12,
-			"info_screen_adlm":  10,
+			"info_screen_adlm":  9,
 		})
 	}
 
