@@ -156,14 +156,14 @@ func GetAPIToken(c echo.Context) error {
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
 			"info_force_reward": cf.Ad.ForceReward, // 看小说下一章强制要点视频广告
-			"info_video_adlt":   6,
+			"info_video_adlt":   4,
 			"info_video_adlm":   0,
-			"info_banner_adlt":  6,
+			"info_banner_adlt":  4,
 			"info_banner_adlm":  2,
-			"info_grid_adlt":    6,
+			"info_grid_adlt":    0,
 			"info_grid_adlm":    4,
 			"info_screen_adlt":  12,
-			"info_screen_adlm":  9,
+			"info_screen_adlm":  10,
 		})
 	}
 
