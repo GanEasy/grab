@@ -121,25 +121,25 @@ func GetAPIToken(c echo.Context) error {
 			// "reward":      cf.Ad.Reward,
 			// "pre_video":   cf.Ad.PreVideo,
 
-			"top_home_banner": cf.Ad.HomeBanner,
-			"top_list_banner": cf.Ad.HomeBanner,
+			// "top_home_banner": cf.Ad.HomeBanner,
+			// "top_list_banner": cf.Ad.HomeBanner,
 			// "home_banner":     cf.Ad.HomeBanner,
 			"list_banner": cf.Ad.ListBanner,
 			"cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
 
-			"top_home_video": cf.Ad.HomeVideo,
-			"top_list_video": cf.Ad.HomeVideo,
+			"top_home_video": cf.Ad.TopHomeVideo,
+			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
 			"list_video": cf.Ad.ListVideo,
 			"cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
 
-			"top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			"top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
 			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-			"list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			"cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
 			"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			// "home_pre_video": cf.Ad.PreVideo,
 			// "list_pre_video": cf.Ad.PreVideo,
@@ -157,9 +157,9 @@ func GetAPIToken(c echo.Context) error {
 			"online_service":    true,
 			"info_force_reward": cf.Ad.ForceReward, // 看小说下一章强制要点视频广告
 			"info_video_adlt":   6,
-			"info_video_adlm":   2,
+			"info_video_adlm":   0,
 			"info_banner_adlt":  6,
-			"info_banner_adlm":  0,
+			"info_banner_adlm":  2,
 			"info_grid_adlt":    6,
 			"info_grid_adlm":    4,
 			"info_screen_adlt":  12,
