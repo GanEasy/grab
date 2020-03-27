@@ -591,66 +591,75 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
-			Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
+			Title: `漫画资源`,
+			Icon:  ``,
 			Type:  `link`,
-			WxTo:  ``,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+			Style: `arrow`,
 		},
 
 		// Link{
-		// 	Title: `韩漫窝(18禁)`,
+		// 	Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
 		// 	Type:  `link`,
-		// 	WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		// 	WxTo:  ``,
 		// },
 
-		Link{
-			Title: `韩漫库(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=hanmanku&url=` + grab.EncodeURL(`http://www.hanmanku.com/booklist`),
-			Style: `arrow`,
-		},
+		// // Link{
+		// // 	Title: `韩漫窝(18禁)`,
+		// // 	Type:  `link`,
+		// // 	WxTo:  `/pages/list?action=list&drive=hanmanwo&url=` + grab.EncodeURL(`http://www.hanmanwo.com/booklist`),
+		// // },
 
-		Link{
-			Title: `海猫吧(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
-			Style: `arrow`,
-		},
-
-		// reader.Card{
-		// 	Title: `我爱妹子漫画(18禁)`,
+		// Link{
+		// 	Title: `韩漫库(18禁)`,
 		// 	Type:  `link`,
-		// 	WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		// 	WxTo:  `/pages/list?action=list&drive=hanmanku&url=` + grab.EncodeURL(`http://www.hanmanku.com/booklist`),
+		// 	Style: `arrow`,
 		// },
-		Link{
-			Title: `腐漫漫画(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=fuman&url=` + grab.EncodeURL(`https://www.5aimeizi.com/`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `漫画台(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=manhwa&url=` + grab.EncodeURL(`https://www.manhwa.cc/`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `看妹子漫画(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/list?action=list&drive=kanmeizi&url=` + grab.EncodeURL(`https://www.kanmeizi.cc/booklist`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `伟叫兽漫画网(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?action=list&drive=weijiaoshou&url=` + grab.EncodeURL(`http://www.weijiaoshou.cn`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `漫物语(18禁)`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
-			Style: `arrow`,
-		},
+
+		// Link{
+		// 	Title: `海猫吧(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=haimaoba&url=` + grab.EncodeURL(`http://www.haimaoba.com/list/0/`),
+		// 	Style: `arrow`,
+		// },
+
+		// // reader.Card{
+		// // 	Title: `我爱妹子漫画(18禁)`,
+		// // 	Type:  `link`,
+		// // 	WxTo:  `/pages/list?action=list&drive=aimeizi5&url=` + grab.EncodeURL(`https://5aimeizi.com/booklist`),
+		// // },
+		// Link{
+		// 	Title: `腐漫漫画(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=fuman&url=` + grab.EncodeURL(`https://www.5aimeizi.com/`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `漫画台(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=manhwa&url=` + grab.EncodeURL(`https://www.manhwa.cc/`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `看妹子漫画(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/list?action=list&drive=kanmeizi&url=` + grab.EncodeURL(`https://www.kanmeizi.cc/booklist`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `伟叫兽漫画网(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?action=list&drive=weijiaoshou&url=` + grab.EncodeURL(`http://www.weijiaoshou.cn`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `漫物语(18禁)`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
+		// 	Style: `arrow`,
+		// },
 
 		Link{
 			Title: `编程学习资料`,

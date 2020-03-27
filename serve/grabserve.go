@@ -64,7 +64,7 @@ func delDirTask() {
 }
 
 func main() {
-	go delDirTask()
+	// go delDirTask()
 	e := echo.New()
 
 	s := NewStats()
