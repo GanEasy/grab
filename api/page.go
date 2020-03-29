@@ -678,6 +678,14 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
 			Style: `arrow`,
 		},
+		Link{
+			Title: `广告策略与用户养成`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
+			Style: `arrow`,
+		},
 	}
 
 	return links

@@ -205,7 +205,7 @@ func GetAPIToken(c echo.Context) error {
 			}
 			cf := cpi.GetConf()
 
-			// 对受邀请的人和老人好些（登录超过50次）
+			// 对受邀请的人和铁杆好些（登录超过50次）
 			if fans.LoginTotal > 50 || fromid > 1 {
 
 				return c.JSON(http.StatusOK, echo.Map{
@@ -274,8 +274,8 @@ func GetAPIToken(c echo.Context) error {
 					"score": fans.Score,
 					"total": fans.Total,
 					// "list_screen": cf.Ad.ListScreen,
-					// "info_screen": cf.Ad.InfoScreen,
-					// "cata_screen": cf.Ad.CataScreen,
+					"info_screen": cf.Ad.InfoScreen,
+					"cata_screen": cf.Ad.CataScreen,
 					// "screen":      cf.Ad.Screen,
 					// "reward":      cf.Ad.Reward,
 					// "pre_video":   cf.Ad.PreVideo,
@@ -314,15 +314,15 @@ func GetAPIToken(c echo.Context) error {
 					"share_cover":       cf.ReaderMinApp.AppCover,
 					"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 					"online_service":    true,
-					"info_force_reward": false, // 老人不再强制广告了
-					"info_video_adlt":   3,     //详情页面视频轮循总数
-					"info_video_adlm":   2,     //详情页面视频轮循开始余量
-					"info_banner_adlt":  3,     //详情页面Banner轮循总数
-					"info_banner_adlm":  0,     //详情页面Banner轮循开始余量
-					"info_grid_adlt":    3,     //详情页面格子广告轮循总数
-					"info_grid_adlm":    1,     //详情页面格子广告轮循开始余量
-					// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-					// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+					"info_force_reward": false,                // 老人不再强制广告了
+					"info_video_adlt":   3,                    //详情页面视频轮循总数
+					"info_video_adlm":   2,                    //详情页面视频轮循开始余量
+					"info_banner_adlt":  3,                    //详情页面Banner轮循总数
+					"info_banner_adlm":  0,                    //详情页面Banner轮循开始余量
+					"info_grid_adlt":    3,                    //详情页面格子广告轮循总数
+					"info_grid_adlm":    1,                    //详情页面格子广告轮循开始余量
+					"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+					"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 				})
 			}
 			// 新人新猪肉
