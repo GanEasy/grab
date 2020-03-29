@@ -109,6 +109,24 @@ func GetUserLinks(c echo.Context) error {
 			WxTo:  `/pages/logs`,
 			Style: `arrow`,
 		},
+
+		Link{
+			Title: `广告策略与用户养成`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `交流群反馈问题`,
 		// 	Icon:  `cuIcon-group`,
