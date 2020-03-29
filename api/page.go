@@ -112,7 +112,7 @@ func GetUserLinks(c echo.Context) error {
 
 		Link{
 			Title: `广告策略与用户养成`,
-			Icon:  ``,
+			Icon:  `cuIcon-discover`,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
@@ -120,8 +120,16 @@ func GetUserLinks(c echo.Context) error {
 		},
 
 		Link{
+			Title: `使用介绍`,
+			Icon:  `cuIcon-question`,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
+			Style: `arrow`,
+		},
+		Link{
 			Title: `免责声明`,
-			Icon:  ``,
+			Icon:  `cuIcon-lightforbid`,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
