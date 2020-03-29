@@ -1,6 +1,11 @@
 package core
 
-import "testing"
+import (
+	"strconv"
+	"testing"
+
+	"github.com/GanEasy/grab/db"
+)
 
 func Test_GetOpenID(t *testing.T) {
 	u2, _ := GetOpenID("00397Gwx0b39sj1Pm3wx0guNwx097GwP")
@@ -28,4 +33,17 @@ func Test_GetToken(t *testing.T) {
 
 	token, _ := TokenServe.Token()
 	t.Fatal(token)
+}
+
+func Test_GetFromid(t *testing.T) {
+
+	fromid, _ := strconv.Atoi(`-1`)
+	t.Fatal(uint(fromid))
+}
+
+func Test_GetFansByID(t *testing.T) {
+	var fans db.Fans
+	fromid, _ := strconv.Atoi(`1`)
+	fans.GetFansByID(uint(fromid))
+	t.Fatal(fans)
 }

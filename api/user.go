@@ -89,8 +89,9 @@ func GetToken(c echo.Context) error {
 //GetAPIToken 获取 jwt token
 func GetAPIToken(c echo.Context) error {
 
-	// 直接给 -1
-	if true {
+	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
+	// 直接给 -1(不经过验证用户openid)
+	if false {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -155,15 +156,15 @@ func GetAPIToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": cf.Ad.ForceReward, // 看小说下一章强制要点视频广告
-			"info_video_adlt":   4,
-			"info_video_adlm":   0,
-			"info_banner_adlt":  4,
-			"info_banner_adlm":  2,
-			"info_grid_adlt":    0,
-			"info_grid_adlm":    4,
-			"info_screen_adlt":  12,
-			"info_screen_adlm":  9,
+			"info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
+			"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+			"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+			"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
+			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
+			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
+			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
+			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 		})
 	}
 
@@ -176,7 +177,13 @@ func GetAPIToken(c echo.Context) error {
 			if fans.Provider == `` {
 				fans.Provider = provider
 			}
-			fans.LoginTotal++ // 增加一次授权访问次数
+
+			// 增加用户被邀请次数
+			if fromid > 0 && uint(fromid) != fans.ID {
+				fans.InvitationTotal++
+			}
+
+			fans.LoginTotal++ // 增加一次访问登录次数
 			fans.Save()
 			claims := &JwtCustomClaims{
 				fans.ID,
@@ -197,6 +204,70 @@ func GetAPIToken(c echo.Context) error {
 				return err
 			}
 			cf := cpi.GetConf()
+
+			// 对受邀请的人和老人好些
+			if fans.LoginTotal > 5 || fromid > 1 {
+
+				return c.JSON(http.StatusOK, echo.Map{
+					"token": t,
+					"uid":   fans.ID,
+					"level": fans.Level,
+					"score": fans.Score,
+					"total": fans.Total,
+					// "list_screen": cf.Ad.ListScreen,
+					// "info_screen": cf.Ad.InfoScreen,
+					// "cata_screen": cf.Ad.CataScreen,
+					// "screen":      cf.Ad.Screen,
+					// "reward":      cf.Ad.Reward,
+					// "pre_video":   cf.Ad.PreVideo,
+
+					"top_home_banner": cf.Ad.HomeBanner,
+					// "top_list_banner": cf.Ad.HomeBanner,
+					// "home_banner":     cf.Ad.HomeBanner,
+					"list_banner": cf.Ad.ListBanner,
+					"cata_banner": cf.Ad.CataBanner,
+					"info_banner": cf.Ad.InfoBanner,
+
+					// "top_home_video": cf.Ad.TopHomeVideo,
+					// "top_list_video": cf.Ad.HomeVideo,
+					// "home_video":     cf.Ad.HomeVideo,
+					// "list_video": cf.Ad.ListVideo,
+					// "cata_video": cf.Ad.CataVideo,
+					// "info_video": cf.Ad.InfoVideo,
+
+					// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+					// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+					// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+					// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+					// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+					"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					// "home_pre_video": cf.Ad.PreVideo,
+					// "list_pre_video": cf.Ad.PreVideo,
+					// "info_pre_video": cf.Ad.PreVideo,
+
+					// "home_reward": cf.Ad.Reward,
+					// "list_reward": cf.Ad.Reward,
+					"info_reward": cf.Ad.Reward,
+
+					// 定义首页分享标题
+					"share_title": cf.ReaderMinApp.AppTitle,
+					// 定义首页分享图片
+					"share_cover":       cf.ReaderMinApp.AppCover,
+					"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
+					"online_service":    true,
+					"info_force_reward": false, // 老人不再强制广告了
+					// "info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+					// "info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+					"info_banner_adlt": 2, //详情页面Banner轮循总数
+					"info_banner_adlm": 0, //详情页面Banner轮循开始余量
+					"info_grid_adlt":   2, //详情页面格子广告轮循总数
+					"info_grid_adlm":   1, //详情页面格子广告轮循开始余量
+					// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+					// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+				})
+			}
+
+			// 新人新猪肉
 			return c.JSON(http.StatusOK, echo.Map{
 				"token": t,
 				"uid":   fans.ID,
@@ -210,23 +281,26 @@ func GetAPIToken(c echo.Context) error {
 				// "reward":      cf.Ad.Reward,
 				// "pre_video":   cf.Ad.PreVideo,
 
-				"top_home_banner": cf.Ad.HomeBanner,
-				"home_banner":     cf.Ad.HomeBanner,
-				"list_banner":     cf.Ad.ListBanner,
-				"cata_banner":     cf.Ad.CataBanner,
-				"info_banner":     cf.Ad.InfoBanner,
+				// "top_home_banner": cf.Ad.HomeBanner,
+				// "top_list_banner": cf.Ad.HomeBanner,
+				// "home_banner":     cf.Ad.HomeBanner,
+				"list_banner": cf.Ad.ListBanner,
+				"cata_banner": cf.Ad.CataBanner,
+				"info_banner": cf.Ad.InfoBanner,
 
-				"top_home_video": cf.Ad.HomeVideo,
-				"home_video":     cf.Ad.HomeVideo,
-				"list_video":     cf.Ad.ListVideo,
-				"cata_video":     cf.Ad.CataVideo,
-				"info_video":     cf.Ad.InfoVideo,
+				"top_home_video": cf.Ad.TopHomeVideo,
+				// "top_list_video": cf.Ad.HomeVideo,
+				// "home_video":     cf.Ad.HomeVideo,
+				"list_video": cf.Ad.ListVideo,
+				"cata_video": cf.Ad.CataVideo,
+				"info_video": cf.Ad.InfoVideo,
 
-				"top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-				"home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-				"list_grid":     cf.Ad.ListGrid, // 列表页格子广告
-				"cata_grid":     cf.Ad.CataGrid, // 列表页格子广告
-				"info_grid":     cf.Ad.InfoGrid, // 详细页格子广告
+				// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+				// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+				// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+				// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+				// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+				"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 				// "home_pre_video": cf.Ad.PreVideo,
 				// "list_pre_video": cf.Ad.PreVideo,
 				// "info_pre_video": cf.Ad.PreVideo,
@@ -241,14 +315,17 @@ func GetAPIToken(c echo.Context) error {
 				"share_cover":       cf.ReaderMinApp.AppCover,
 				"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 				"online_service":    true,
-				"info_force_reward": true, // 看小说下一章强制要点视频广告
-				"info_video_adlt":   2,
-				"info_video_adlm":   0,
-				"info_banner_adlt":  10,
-				"info_banner_adlm":  3,
-				"info_grid_adlt":    10,
-				"info_grid_adlm":    7,
+				"info_force_reward": true,                 //看小说下一章强制要点视频广告
+				"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+				"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+				"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
+				"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
+				"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
+				"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
+				"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+				"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 			})
+
 		}
 	} else if provider == `h5` {
 
@@ -333,19 +410,26 @@ func GetAPIToken(c echo.Context) error {
 			// "screen":      cf.Ad.Screen,
 			// "reward":      cf.Ad.Reward,
 			// "pre_video":   cf.Ad.PreVideo,
-			// "home_banner": cf.Ad.HomeBanner,
-			// "list_banner": cf.Ad.ListBanner,
-			// "cata_banner": cf.Ad.CataBanner,
+
+			// "top_home_banner": cf.Ad.HomeBanner,
+			// "top_list_banner": cf.Ad.HomeBanner,
+			// "home_banner":     cf.Ad.HomeBanner,
+			"list_banner": cf.Ad.ListBanner,
+			"cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
 
-			// "home_video": cf.Ad.HomeVideo,
+			"top_home_video": cf.Ad.TopHomeVideo,
+			// "top_list_video": cf.Ad.HomeVideo,
+			// "home_video":     cf.Ad.HomeVideo,
 			"list_video": cf.Ad.ListVideo,
 			"cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
 
-			// "home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			"list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			"cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
 			"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			// "home_pre_video": cf.Ad.PreVideo,
 			// "list_pre_video": cf.Ad.PreVideo,
@@ -358,9 +442,18 @@ func GetAPIToken(c echo.Context) error {
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
 			// 定义首页分享图片
-			"share_cover":    cf.ReaderMinApp.AppCover,
-			"placeholder":    cf.ReaderMinApp.AppSearch, // 小说名
-			"online_service": true,
+			"share_cover":       cf.ReaderMinApp.AppCover,
+			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
+			"online_service":    true,
+			"info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
+			"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+			"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+			"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
+			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
+			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
+			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
+			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 		})
 	}
 	return echo.ErrUnauthorized
