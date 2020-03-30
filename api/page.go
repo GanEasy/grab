@@ -111,12 +111,12 @@ func GetUserLinks(c echo.Context) error {
 		},
 
 		Link{
-			Title: `广告策略与用户养成`,
+			Title: `广告策略与用户组`,
 			Icon:  `cuIcon-discover`,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
-			Style: `arrow`,
+			Style: `arrow text-red`,
 		},
 
 		Link{
@@ -513,6 +513,15 @@ func GetGuideExploreLinks() []Link {
 	var links = []Link{
 
 		Link{
+			Title: `广告策略与用户组`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
+			Style: `arrow text-red`,
+		},
+
+		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
@@ -702,14 +711,6 @@ func GetGuideExploreLinks() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `广告策略与用户养成`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
 			Style: `arrow`,
 		},
 	}

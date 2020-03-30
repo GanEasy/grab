@@ -113,9 +113,9 @@ func SearchPosts(c echo.Context) error {
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
-				Title:  `1. 更换搜索关键字`,
-				WxTo:   ``,
-				Intro:  `请使用书名搜索，宁可少字也不要错字。例：输入“三生三”搜索“三生三世十里桃花”`,
+				Title:  `1. 使用第三方平台搜索`,
+				WxTo:   `/pages/transfer?action=allsearchdrives&url=&drive=` + name,
+				Intro:  `>>点击前往第三方平台搜索“` + name + `<<`,
 				Type:   `card`,
 				Cover:  ``,
 				Images: nil,
@@ -125,9 +125,9 @@ func SearchPosts(c echo.Context) error {
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
-				Title:  `2. 使用第三方平台搜索`,
-				WxTo:   `/pages/transfer?action=allsearchdrives&url=&drive=` + name,
-				Intro:  `>>点击前往第三方平台搜索“` + name + `<<`,
+				Title:  `2. 更换搜索关键字`,
+				WxTo:   ``,
+				Intro:  `请使用书名搜索，宁可少字也不要错字。例：输入“三生三”搜索“三生三世十里桃花”`,
 				Type:   `card`,
 				Cover:  ``,
 				Images: nil,
