@@ -206,7 +206,7 @@ func GetAPIToken(c echo.Context) error {
 			cf := cpi.GetConf()
 
 			// 对铁杆好些（登录超过200次）
-			if fans.LoginTotal > 200 {
+			if fans.LoginTotal > 100 {
 
 				return c.JSON(http.StatusOK, echo.Map{
 					"token": t,
@@ -265,7 +265,7 @@ func GetAPIToken(c echo.Context) error {
 					// // "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
 					// // "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 				})
-			} else if fans.LoginTotal > 50 || fromid > 1 {
+			} else if fans.LoginTotal > 20 || fromid > 1 {
 				// 对受邀请的人和老人好些（登录超过50次）
 
 				return c.JSON(http.StatusOK, echo.Map{
