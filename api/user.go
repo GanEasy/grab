@@ -226,14 +226,14 @@ func GetAPIToken(c echo.Context) error {
 					// // "home_banner":     cf.Ad.HomeBanner,
 					// "list_banner": cf.Ad.ListBanner,
 					// "cata_banner": cf.Ad.CataBanner,
-					// "info_banner": cf.Ad.InfoBanner,
+					"info_banner": cf.Ad.InfoBanner,
 
 					// // "top_home_video": cf.Ad.TopHomeVideo,
 					// // "top_list_video": cf.Ad.HomeVideo,
 					// // "home_video":     cf.Ad.HomeVideo,
 					// // "list_video": cf.Ad.ListVideo,
 					// // "cata_video": cf.Ad.CataVideo,
-					"info_video": cf.Ad.InfoVideo,
+					//"info_video": cf.Ad.InfoVideo,
 
 					// // "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
 					// // "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
@@ -256,10 +256,10 @@ func GetAPIToken(c echo.Context) error {
 					"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 					"online_service":    true,
 					"info_force_reward": false, // 老人不再强制广告了
-					"info_video_adlt":   2,     //详情页面视频轮循总数
-					"info_video_adlm":   0,     //详情页面视频轮循开始余量
-					// "info_banner_adlt":  3,     //详情页面Banner轮循总数
-					// "info_banner_adlm":  0,     //详情页面Banner轮循开始余量
+					// "info_video_adlt":   2,     //详情页面视频轮循总数
+					// "info_video_adlm":   0,     //详情页面视频轮循开始余量
+					"info_banner_adlt": 2, //详情页面Banner轮循总数
+					"info_banner_adlm": 0, //详情页面Banner轮循开始余量
 					// "info_grid_adlt":    3,     //详情页面格子广告轮循总数
 					// "info_grid_adlm":    1,     //详情页面格子广告轮循开始余量
 					// // "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
@@ -359,7 +359,7 @@ func GetAPIToken(c echo.Context) error {
 					// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
 					// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
 					// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-					"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					//"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 					// "home_pre_video": cf.Ad.PreVideo,
 					// "list_pre_video": cf.Ad.PreVideo,
 					// "info_pre_video": cf.Ad.PreVideo,
