@@ -91,7 +91,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if false {
+	if true {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -116,24 +116,24 @@ func GetAPIToken(c echo.Context) error {
 			"uid":   -1,
 			"level": 0,
 			// "list_screen": cf.Ad.ListScreen,
-			"info_screen": cf.Ad.InfoScreen,
-			"cata_screen": cf.Ad.CataScreen,
+			// "info_screen": cf.Ad.InfoScreen,
+			// "cata_screen": cf.Ad.CataScreen,
 			// "screen":      cf.Ad.Screen,
 			// "reward":      cf.Ad.Reward,
 			// "pre_video":   cf.Ad.PreVideo,
 
-			// "top_home_banner": cf.Ad.HomeBanner,
+			"top_home_banner": cf.Ad.HomeBanner,
 			// "top_list_banner": cf.Ad.HomeBanner,
 			// "home_banner":     cf.Ad.HomeBanner,
 			"list_banner": cf.Ad.ListBanner,
 			"cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
 
-			"top_home_video": cf.Ad.TopHomeVideo,
+			// "top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
 			"list_video": cf.Ad.ListVideo,
-			"cata_video": cf.Ad.CataVideo,
+			// "cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
 
 			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
@@ -163,8 +163,8 @@ func GetAPIToken(c echo.Context) error {
 			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
 			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
 			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+			// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+			// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 		})
 	}
 
