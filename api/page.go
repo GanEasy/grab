@@ -110,31 +110,31 @@ func GetUserLinks(c echo.Context) error {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `广告策略与用户组`,
-			Icon:  `cuIcon-discover`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
-			Style: `arrow text-red`,
-		},
+		// Link{
+		// 	Title: `广告策略与用户组`,
+		// 	Icon:  `cuIcon-discover`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
+		// 	Style: `arrow text-red`,
+		// },
 
-		Link{
-			Title: `使用介绍`,
-			Icon:  `cuIcon-question`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `免责声明`,
-			Icon:  `cuIcon-lightforbid`,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `使用介绍`,
+		// 	Icon:  `cuIcon-question`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `免责声明`,
+		// 	Icon:  `cuIcon-lightforbid`,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `交流群反馈问题`,
 		// 	Icon:  `cuIcon-group`,
@@ -512,14 +512,14 @@ func GetPublishExploreLinks() []Link {
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
 
-		Link{
-			Title: `广告策略与用户组`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
-			Style: `arrow text-red`,
-		},
+		// Link{
+		// 	Title: `广告策略与用户组`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
+		// 	Style: `arrow text-red`,
+		// },
 
 		Link{
 			Title: `起点小说网`,
