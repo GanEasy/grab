@@ -522,6 +522,12 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
+			Title: `通知：清明节当天暂停所有广告展示。`,
+			Type:  `link`,
+			WxTo:  ``,
+			Style: `arrow`,
+		},
+		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),

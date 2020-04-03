@@ -121,35 +121,35 @@ func GetAPIToken(c echo.Context) error {
 			// "screen":      cf.Ad.Screen,
 			// "reward":      cf.Ad.Reward,
 			// "pre_video":   cf.Ad.PreVideo,
+			//s
+			// "top_home_banner": cf.Ad.TopHomeBanner,
+			// // "top_list_banner": cf.Ad.HomeBanner,
+			// // "home_banner":     cf.Ad.HomeBanner,
+			// "list_banner": cf.Ad.ListBanner,
+			// "cata_banner": cf.Ad.CataBanner,
+			// "info_banner": cf.Ad.InfoBanner,
 
-			"top_home_banner": cf.Ad.TopHomeBanner,
-			// "top_list_banner": cf.Ad.HomeBanner,
-			// "home_banner":     cf.Ad.HomeBanner,
-			"list_banner": cf.Ad.ListBanner,
-			"cata_banner": cf.Ad.CataBanner,
-			"info_banner": cf.Ad.InfoBanner,
+			// // "top_home_video": cf.Ad.TopHomeVideo,
+			// // "top_list_video": cf.Ad.HomeVideo,
+			// // "home_video":     cf.Ad.HomeVideo,
+			// "list_video": cf.Ad.ListVideo,
+			// // "cata_video": cf.Ad.CataVideo,
+			// "info_video": cf.Ad.InfoVideo,
 
-			// "top_home_video": cf.Ad.TopHomeVideo,
-			// "top_list_video": cf.Ad.HomeVideo,
-			// "home_video":     cf.Ad.HomeVideo,
-			"list_video": cf.Ad.ListVideo,
-			// "cata_video": cf.Ad.CataVideo,
-			"info_video": cf.Ad.InfoVideo,
+			// // "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// // "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// // "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+			// // "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+			// // "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+			// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// // "home_pre_video": cf.Ad.PreVideo,
+			// // "list_pre_video": cf.Ad.PreVideo,
+			// // "info_pre_video": cf.Ad.PreVideo,
 
-			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-			"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			// "home_pre_video": cf.Ad.PreVideo,
-			// "list_pre_video": cf.Ad.PreVideo,
-			// "info_pre_video": cf.Ad.PreVideo,
-
-			// "home_reward": cf.Ad.Reward,
-			// "list_reward": cf.Ad.Reward,
-			"info_reward": cf.Ad.Reward,
-
+			// // "home_reward": cf.Ad.Reward,
+			// // "list_reward": cf.Ad.Reward,
+			// "info_reward": cf.Ad.Reward,
+			//e
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
 			// 定义首页分享图片
