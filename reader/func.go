@@ -404,10 +404,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 9 //网站打不开了
 	}
 	if b := strings.Contains(wxto, string("drive=soe8")); b == true {
-		return 2
-	}
-	if b := strings.Contains(wxto, string("drive=soe8")); b == true {
-		return 2
+		return 9 //网站已经打不开了
 	}
 	if b := strings.Contains(wxto, string("drive=xs280")); b == true {
 		return 2

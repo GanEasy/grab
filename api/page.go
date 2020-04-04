@@ -521,11 +521,12 @@ func GetGuideExploreLinks() []Link {
 		// 	Style: `arrow text-red`,
 		// },
 
+		//
 		Link{
-			Title: `通知：清明节当天暂停所有广告展示。`,
+			Title: `今天起暂停插屏广告组件的展示。`,
 			Type:  `link`,
 			WxTo:  ``,
-			Style: `arrow`,
+			Style: ``,
 		},
 		Link{
 			Title: `起点小说网`,
@@ -612,12 +613,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `笔趣阁soe8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔趣阁soe8`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+		// 	Style: `arrow`,
+		// },
 
 		// Link{
 		// 	Title: `U小说阅读网`,
