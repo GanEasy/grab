@@ -522,12 +522,12 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		//
-		Link{
-			Title: `今天起暂停插屏广告组件的展示。`,
-			Type:  `link`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		//Link{
+		//	Title: `今天起暂停插屏广告组件的展示。`,
+		//	Type:  `link`,
+		//	WxTo:  ``,
+		//	Style: ``,
+		//},
 		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
