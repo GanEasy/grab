@@ -113,15 +113,15 @@ func GetUserLinks(c echo.Context) error {
 		
 		Link{
 			Title: `主线路(笔趣阁plus)`,
-			Icon:  `cuIcon-group`,
+			Icon:  `cuIcon-move`,
 			Type:  `image`,
 			Image: `https://iblog.wechatrank.com/images/r1.jpg`,
 			WxTo:  ``,
 			Style: ``,
 		},
 		Link{
-			Title: `备用线路(笔趣阁在线)稳定性差暂无广告`,
-			Icon:  `cuIcon-group`,
+			Title: `备用线路稳定性差暂无广告`,
+			Icon:  `cuIcon-move`,
 			Type:  `image`,
 			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
 			WxTo:  ``,
@@ -550,8 +550,15 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 		Link{
-			Title: `请合理安排阅读时间，以学业、工作、生活为重!`,
+			Title: `请同学们以学业、工作、生活为重!`,
 			Type:  `link`,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
+			Title: `备用线路稳定性差暂无广告`,
+			Type:  `image`,
+			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
 			WxTo:  ``,
 			Style: ``,
 		},
@@ -561,6 +568,7 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  ``,
 			Style: ``,
 		},
+
 		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
