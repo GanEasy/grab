@@ -110,6 +110,24 @@ func GetUserLinks(c echo.Context) error {
 			Style: `arrow`,
 		},
 
+		
+		Link{
+			Title: `主线路(笔趣阁plus)`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://iblog.wechatrank.com/images/r1.jpg`,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
+			Title: `备用线路(笔趣阁在线)稳定性差暂无广告`,
+			Icon:  `cuIcon-group`,
+			Type:  `image`,
+			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
+			WxTo:  ``,
+			Style: ``,
+		},
+
 		// Link{
 		// 	Title: `广告策略与用户组`,
 		// 	Icon:  `cuIcon-discover`,
@@ -522,12 +540,27 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		//
-		//Link{
-		//	Title: `今天起暂停插屏广告组件的展示。`,
-		//	Type:  `link`,
-		//	WxTo:  ``,
-		//	Style: ``,
-		//},
+		
+		Link{
+			Title: `评书、推书、同人作品征稿`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://mp.weixin.qq.com/s/RszJ-ibBDR9Np7GJkRKyjQ`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `请合理安排阅读时间，以学业、工作、生活为重!`,
+			Type:  `link`,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
+			Title: `-----------------------------`,
+			Type:  `link`,
+			WxTo:  ``,
+			Style: ``,
+		},
 		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
