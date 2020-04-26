@@ -120,7 +120,7 @@ func GetUserLinks(c echo.Context) error {
 			Style: ``,
 		},
 		Link{
-			Title: `备用线路稳定性差暂无广告`,
+			Title: `备用线路(无广告)`,
 			Icon:  `cuIcon-move`,
 			Type:  `image`,
 			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
@@ -556,7 +556,7 @@ func GetGuideExploreLinks() []Link {
 			Style: ``,
 		},
 		Link{
-			Title: `备用线路稳定性差暂无广告`,
+			Title: `备用线路(无广告)`,
 			Type:  `image`,
 			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
 			WxTo:  ``,
