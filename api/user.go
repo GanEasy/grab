@@ -125,15 +125,15 @@ func GetAPIToken(c echo.Context) error {
 			// "top_home_banner": cf.Ad.TopHomeBanner,
 			// "top_list_banner": cf.Ad.HomeBanner,
 			// "home_banner":     cf.Ad.HomeBanner,
-			"list_banner": cf.Ad.ListBanner,
-			"cata_banner": cf.Ad.CataBanner,
-			"info_banner": cf.Ad.InfoBanner,
+			// "list_banner": cf.Ad.ListBanner,
+			// "cata_banner": cf.Ad.CataBanner,
+			// "info_banner": cf.Ad.InfoBanner,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
-			// "list_video": cf.Ad.ListVideo,
-			// "cata_video": cf.Ad.CataVideo,
+			"list_video": cf.Ad.ListVideo,
+			"cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
 
 			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
