@@ -110,23 +110,22 @@ func GetUserLinks(c echo.Context) error {
 			Style: `arrow`,
 		},
 
-		
-		Link{
-			Title: `主线路(笔趣阁plus)`,
-			Icon:  `cuIcon-move`,
-			Type:  `image`,
-			Image: `https://iblog.wechatrank.com/images/r1.jpg`,
-			WxTo:  ``,
-			Style: ``,
-		},
-		Link{
-			Title: `备用线路(无广告)`,
-			Icon:  `cuIcon-move`,
-			Type:  `image`,
-			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `主线路(笔趣阁plus)`,
+		// 	Icon:  `cuIcon-move`,
+		// 	Type:  `image`,
+		// 	Image: `https://iblog.wechatrank.com/images/r1.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
+		// Link{
+		// 	Title: `备用线路(无广告)`,
+		// 	Icon:  `cuIcon-move`,
+		// 	Type:  `image`,
+		// 	Image: `https://iblog.wechatrank.com/images/r2.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 
 		// Link{
 		// 	Title: `广告策略与用户组`,
@@ -540,34 +539,34 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		//
-		
-		Link{
-			Title: `评书、推书、同人作品征稿`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://mp.weixin.qq.com/s/RszJ-ibBDR9Np7GJkRKyjQ`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `请同学们以学业、工作、生活为重!`,
-			Type:  `link`,
-			WxTo:  ``,
-			Style: ``,
-		},
-		Link{
-			Title: `备用线路(无广告)`,
-			Type:  `image`,
-			Image: `https://iblog.wechatrank.com/images/r2.jpg`,
-			WxTo:  ``,
-			Style: ``,
-		},
-		Link{
-			Title: `-----------------------------`,
-			Type:  `link`,
-			WxTo:  ``,
-			Style: ``,
-		},
+
+		// Link{
+		// 	Title: `评书、推书、同人作品征稿`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://mp.weixin.qq.com/s/RszJ-ibBDR9Np7GJkRKyjQ`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `请同学们以学业、工作、生活为重!`,
+		// 	Type:  `link`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
+		// Link{
+		// 	Title: `备用线路(无广告)`,
+		// 	Type:  `image`,
+		// 	Image: `https://iblog.wechatrank.com/images/r2.jpg`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
+		// Link{
+		// 	Title: `-----------------------------`,
+		// 	Type:  `link`,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 
 		Link{
 			Title: `起点小说网`,
