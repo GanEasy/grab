@@ -288,14 +288,14 @@ func GetExploreLinks(c echo.Context) error {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		Link{
-			Title: `找资源列表请使用小程序“米读plus”`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  ``,
-			Style: ``,
-		},
+		// Link{
+		// 	Title: `找资源列表请使用小程序“米读plus”`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  ``,
+		// 	Style: ``,
+		// },
 		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
