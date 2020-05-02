@@ -33,7 +33,7 @@ func (r Qkshu6Reader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`其他小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/qita/`), "", `link`, ``, nil, ``},
 		Card{`全本小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/quanben/`), "", `link`, ``, nil, ``},
 		Card{`-----------------`, ``, "", `link`, ``, nil, ``},
-		Card{`↘↘↘排行榜↙↙↙`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/top.php`), "", `link`, ``, nil, ``},
+		Card{`↘↘↘榜单(18禁)↙↙↙`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/top.php`), "", `link`, ``, nil, ``},
 	}
 	list.SearchSupport = false
 	return list, nil
