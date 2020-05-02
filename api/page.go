@@ -629,6 +629,13 @@ func GetGuideExploreLinks() []Link {
 		},
 
 		Link{
+			Title: `去看书qkshu6`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
+			Style: `arrow`,
+		},
+
+		Link{
 			Title: `顶点小说280xs`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
