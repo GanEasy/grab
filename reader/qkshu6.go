@@ -183,7 +183,7 @@ func (r Qkshu6Reader) GetInfo(urlStr string) (ret Content, err error) {
 
 	article.Readable(urlStr)
 
-	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_笔趣阁`, article.Title, "title")
+	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)_去看书网`, article.Title, "title")
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}
