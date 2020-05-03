@@ -308,6 +308,15 @@ func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
 		Link{
+			Title: `主线路`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx7543142ce921d8e3`,
+		},
+		Link{
 			Title: `备用线路`,
 			Icon:  ``,
 			Type:  `jumpapp`,
