@@ -629,13 +629,6 @@ func GetGuideExploreLinks() []Link {
 		},
 
 		Link{
-			Title: `去看书qkshu6`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
-			Style: `arrow`,
-		},
-
-		Link{
 			Title: `顶点小说280xs`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
@@ -660,6 +653,18 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `去看书qkshu6`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `书阁小说网shugela`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `笔趣阁soe8`,
 		// 	Type:  `link`,

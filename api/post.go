@@ -281,5 +281,18 @@ func SearchMoreAction(c echo.Context) error {
 			Images: nil,
 			From:   ``,
 		})
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `在书阁小说shuge 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=shuge&name=` + name,
+			Intro:  ``,
+			Type:   `card`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
 	return c.JSON(http.StatusOK, catelog)
 }

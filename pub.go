@@ -23,6 +23,8 @@ func GetGuide(drive string) reader.Guide {
 		return &reader.BooktxtReader{}
 	} else if drive == `paoshu8` {
 		return &reader.Paoshu8Reader{}
+	} else if drive == `shuge` {
+		return &reader.ShugeReader{}
 	} else if drive == `qkshu6` {
 		return &reader.Qkshu6Reader{}
 	} else if drive == `bxwx` {
@@ -97,6 +99,8 @@ func GetReader(drive string) reader.Reader {
 		return &reader.Paoshu8Reader{}
 	} else if drive == `qkshu6` {
 		return &reader.Qkshu6Reader{}
+	} else if drive == `shuge` {
+		return &reader.ShugeReader{}
 	} else if drive == `qu` { // 笔趣阁qula 改域名为 jx.la 了
 		return &reader.QuReader{}
 	} else if drive == `jx` { // 笔趣阁qula 改域名为 jx.la 了

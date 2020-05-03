@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/axgle/mahonia"
 	"github.com/yizenghui/chromedp"
 	"golang.org/x/net/html/charset"
 )
@@ -219,4 +220,36 @@ func SaveHTML(urlStr, saveName string) (n int64, err error) {
 		return
 	}
 	return
+}
+
+// 字符串转编码
+func ConvertStrEncode(inStr, inCharset, outCharset string) string {
+	if outCharset == "" {
+		outCharset = inCharset
+	}
+
+	inCharset = strings.ToLower(inCharset)
+	outCharset = strings.ToLower(outCharset)
+
+	if inCharset == outCharset {
+		return inStr
+	}
+
+	if inCharset == "gbk" || inCharset == "gb2312" {
+		inCharset = "gb18030"
+	}
+
+	// 输入字符串解码为utf-8
+	var destr string
+	if inCharset != "utf8" && inCharset != "utf-8" {
+		destr = mahonia.NewDecoder(inCharset).ConvertString(inStr)
+	} else {
+		destr = inStr
+	}
+
+	if outCharset == "utf8" || outCharset == "utf-8" {
+		return destr
+	}
+	// 转换为 outCharset
+	return mahonia.NewEncoder(outCharset).ConvertString(destr)
 }
