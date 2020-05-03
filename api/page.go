@@ -88,6 +88,7 @@ type Link struct {
 	Image string `json:"image"`
 	WxTo  string `json:"wxto"`  // 点击后跳转地址
 	Style string `json:"style"` //特定样式
+	Appid string `json:"appid"` //跳转小程序
 }
 
 // GetUserLinks 获取用户列表内容
@@ -306,14 +307,15 @@ func GetExploreLinks(c echo.Context) error {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		// Link{
-		// 	Title: `找资源列表请使用小程序“米读plus”`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
+		Link{
+			Title: `备用线路`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx7c30b98c7f42f651`,
+		},
 		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
