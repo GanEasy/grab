@@ -92,6 +92,24 @@ type Link struct {
 
 // GetUserLinks 获取用户列表内容
 func GetUserLinks(c echo.Context) error {
+
+	cf := cpi.GetConf()
+	version := c.QueryParam("version")
+
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+
+		return c.JSON(http.StatusOK, []Link{
+			Link{
+				Title: `浏览记录`,
+				Icon:  `cuIcon-time`,
+				Type:  `link`,
+				Image: ``,
+				WxTo:  `/pages/logs`,
+				Style: `arrow`,
+			},
+		})
+	}
+
 	var links = []Link{
 		Link{
 			Title: `创建源`,

@@ -112,9 +112,10 @@ func GetAPIToken(c echo.Context) error {
 		}
 		cf := cpi.GetConf()
 		return c.JSON(http.StatusOK, echo.Map{
-			"token": t,
-			"uid":   -1,
-			"level": 0,
+			"token":      t,
+			"uid":        -1,
+			"level":      0,
+			"can_create": 0, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
 			// "cata_screen": cf.Ad.CataScreen,
