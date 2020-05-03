@@ -37,6 +37,7 @@ func (r ShugeReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`耽美同人`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/8_1/`), "", `link`, ``, nil, ``},
 		Card{`女生言情`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/9_1/`), "", `link`, ``, nil, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -126,7 +127,7 @@ func (r ShugeReader) Search(keyword string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = fmt.Sprintf(`%v - 搜索结果 - 17k.com`, keyword)
+	list.Title = fmt.Sprintf(`%v - 搜索结果 - shuge.la`, keyword)
 
 	link, _ := url.Parse(urlStr)
 
