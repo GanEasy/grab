@@ -669,18 +669,18 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `顶点小说booktxt`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔趣阁biqugeinfo`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `顶点小说booktxt`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+		// 	Style: `arrow`,
+		// },
 
 		Link{
 			Title: `去看书qkshu6`,
