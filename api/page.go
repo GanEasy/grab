@@ -317,7 +317,7 @@ func GetWaitExamineExplore() []Link {
 		// 	Appid: `wx7543142ce921d8e3`,
 		// },
 		Link{
-			Title: `找资源列表请用备用线路`,
+			Title: `备用线路`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
@@ -675,12 +675,12 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
 		// 	Style: `arrow`,
 		// },
-		// Link{
-		// 	Title: `顶点小说booktxt`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `顶点小说booktxt`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+			Style: `arrow`,
+		},
 
 		Link{
 			Title: `去看书qkshu6`,
