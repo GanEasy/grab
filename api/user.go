@@ -459,6 +459,60 @@ func GetAPIToken(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
+//GetAPIToken2 获取 jwt token
+func GetAPIToken2(c echo.Context) error {
+
+	// fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
+	// 直接给 -1(不经过验证用户openid)
+	if true {
+		claims := &JwtCustomClaims{
+			1,
+			`visitor.OpenID`,
+			``,
+			``,
+			jwt.StandardClaims{
+				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+			},
+		}
+
+		// Create token with claims
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+		// Generate encoded token and send it as response.
+		t, err := token.SignedString([]byte("secret"))
+		if err != nil {
+			return err
+		}
+		cf := cpi.GetConf()
+		return c.JSON(http.StatusOK, echo.Map{
+			"token":          t,
+			"uid":            -1,
+			"level":          0,
+			"ismini":         1,
+			"show_tips_next": 0,
+			"can_create":     1, // 允许创建内容
+
+			// 定义首页分享标题
+			"share_title": cf.ReaderMinApp.AppTitle,
+			// 定义首页分享图片
+			"share_cover":       cf.ReaderMinApp.AppCover,
+			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
+			"online_service":    true,
+			"info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
+			"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+			"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+			"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
+			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
+			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
+			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
+			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+		})
+	}
+
+	return echo.ErrUnauthorized
+}
+
 //CheckOpenID 获取签名里面的信息
 func CheckOpenID(c echo.Context) error {
 	user := c.Get("user").(*jwt.Token)
