@@ -316,15 +316,15 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: ``,
 		// 	Appid: `wx7543142ce921d8e3`,
 		// },
-		Link{
-			Title: `备用线路`,
-			Icon:  ``,
-			Type:  `jumpapp`,
-			Image: ``,
-			WxTo:  `/pages/index`,
-			Style: ``,
-			Appid: `wx7c30b98c7f42f651`,
-		},
+		// Link{
+		// 	Title: `备用线路`,
+		// 	Icon:  ``,
+		// 	Type:  `jumpapp`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/index`,
+		// 	Style: ``,
+		// 	Appid: `wx7c30b98c7f42f651`,
+		// },
 		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
@@ -334,14 +334,14 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `使用介绍`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `使用介绍`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
+		// 	Style: `arrow`,
+		// },
 
 		Link{
 			Title: `免责声明`,
