@@ -280,8 +280,8 @@ func GetExploreLinks(c echo.Context) error {
 	version := c.QueryParam("version")
 	provider := c.QueryParam("provider")
 
+	var req = c.Request()
 	if provider == `` { //兼容一下先
-		var req = c.Request()
 		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
 			provider = `weixin`
 		}
@@ -289,6 +289,7 @@ func GetExploreLinks(c echo.Context) error {
 			provider = `qq`
 		}
 	}
+
 	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
 	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	// }
@@ -299,8 +300,39 @@ func GetExploreLinks(c echo.Context) error {
 
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
+
+	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
+		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
+}
+
+// GetBDZCExplore 霸道总裁专题小说 推荐页
+func GetBDZCExplore() []Link {
+
+	var links = []Link{
+		Link{
+			Title: `发现更多免费小说资源`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx7543142ce921d8e3`,
+		},
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
 }
 
 // GetWaitExamineExplore 用于审核的内容列表
@@ -325,6 +357,14 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: ``,
 		// 	Appid: `wx7c30b98c7f42f651`,
 		// },
+		Link{
+			Title: `列表维护更新中，请使用搜索找资源`,
+			Icon:  `cuIcon-notice`,
+			Type:  `text`,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+		},
 		Link{
 			Title: `编程学习资料`,
 			Icon:  ``,
