@@ -128,9 +128,9 @@ func GetAPIToken(c echo.Context) error {
 			// "home_banner":     cf.Ad.HomeBanner,
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
-			"info_banner":      cf.Ad.InfoBanner,
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			"autoload_tips":    `体验广告6~15秒，解锁自动加载功能`,
+			"info_banner": cf.Ad.InfoBanner,
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
