@@ -358,8 +358,8 @@ func GetWaitExamineExplore() []Link {
 		// 	Appid: `wx7c30b98c7f42f651`,
 		// },
 		Link{
-			Title: `列表维护更新中，请使用搜索找资源`,
-			Icon:  `cuIcon-notice`,
+			Title: `列表更新维护中，请使用搜索找资源`,
+			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
 			WxTo:  ``,
