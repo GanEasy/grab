@@ -91,7 +91,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if false {
+	if true {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -130,6 +130,7 @@ func GetAPIToken(c echo.Context) error {
 			// "cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			"info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
@@ -159,15 +160,15 @@ func GetAPIToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
-			"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
-			"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
-			"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
-			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
-			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
-			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+			"info_force_reward": true, // 强制广告
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_grid_adlt":    4,    //详情页面格子广告轮循总数
+			"info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
+			"info_banner_adlt":  4,    //详情页面Banner轮循总数
+			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+			"info_screen_adlt": 10, 	//详情页面插屏广告轮循总数
+			"info_screen_adlm": 8,	 	//详情页面插屏广告轮循开始余量
 		})
 	}
 
