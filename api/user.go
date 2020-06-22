@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
@@ -91,7 +92,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if true {
+	if false {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -111,6 +112,19 @@ func GetAPIToken(c echo.Context) error {
 			return err
 		}
 		cf := cpi.GetConf()
+		
+			
+		rand.Seed(time.Now().UnixNano())
+		inum := rand.Intn(10) // 先搞低些广告出现机率
+
+		var info_tips_banner,info_tips_grid string
+		if inum==1 {
+			info_tips_banner = cf.Ad.InfoBanner
+		}else if inum==2{
+			info_tips_grid =  cf.Ad.InfoGrid
+		}
+
+
 		return c.JSON(http.StatusOK, echo.Map{
 			"token":      t,
 			"uid":        -1,
@@ -129,8 +143,8 @@ func GetAPIToken(c echo.Context) error {
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
-			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			"info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+			"info_tips_grid": info_tips_grid, // 详细页格子广告
 			"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
@@ -209,6 +223,17 @@ func GetAPIToken(c echo.Context) error {
 			}
 			cf := cpi.GetConf()
 
+			
+			rand.Seed(time.Now().UnixNano())
+			inum := rand.Intn(10) // 先搞低些广告出现机率
+
+			var info_tips_banner,info_tips_grid string
+			if inum==1 {
+				info_tips_banner = cf.Ad.InfoBanner
+			}else if inum==2{
+				info_tips_grid =  cf.Ad.InfoGrid
+			}
+
 			// 用户登录次数大于5并且不是从分享页面来的
 			if fans.LoginTotal > 5 && fromid < 1 {
 
@@ -230,8 +255,8 @@ func GetAPIToken(c echo.Context) error {
 					// "list_banner": cf.Ad.ListBanner,
 					// "cata_banner": cf.Ad.CataBanner,
 					"info_banner": cf.Ad.InfoBanner,
-					"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-					// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+					"info_tips_grid": info_tips_grid, // 格子广告
 					"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 					"top_home_video": cf.Ad.TopHomeVideo,
@@ -264,10 +289,10 @@ func GetAPIToken(c echo.Context) error {
 					"info_force_reward": true, // 老人强制广告
 					"info_video_adlt":   2,    //详情页面视频轮循总数
 					"info_video_adlm":   0,    //详情页面视频轮循开始余量
-					"info_banner_adlt":  2,    //详情页面Banner轮循总数
-					"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
-					// "info_grid_adlt":    6,                    //详情页面格子广告轮循总数
-					// "info_grid_adlm":    4,                    //详情页面格子广告轮循开始余量
+					"info_banner_adlt":  4,    //详情页面Banner轮循总数
+					"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+					"info_grid_adlt":    4,    //详情页面格子广告轮循总数
+					"info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
 					"info_screen_adlt": 10, //详情页面插屏广告轮循总数
 					"info_screen_adlm": 8, //详情页面插屏广告轮循开始余量
 				})
