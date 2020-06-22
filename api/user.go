@@ -91,7 +91,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if true {
+	if false {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -215,10 +215,9 @@ func GetAPIToken(c echo.Context) error {
 					"token": t,
 					"uid":   fans.ID,
 					"level": fans.Level,
-					"score": fans.Score,
-					"total": fans.Total,
+					"can_create": 1, // 允许创建内容
 					// "list_screen": cf.Ad.ListScreen,
-					// "info_screen": cf.Ad.InfoScreen,
+					"info_screen": cf.Ad.InfoScreen,
 					// "cata_screen": cf.Ad.CataScreen,
 					// "screen":      cf.Ad.Screen,
 					// "reward":      cf.Ad.Reward,
@@ -230,6 +229,9 @@ func GetAPIToken(c echo.Context) error {
 					// "list_banner": cf.Ad.ListBanner,
 					// "cata_banner": cf.Ad.CataBanner,
 					"info_banner": cf.Ad.InfoBanner,
+					"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+					// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 					"top_home_video": cf.Ad.TopHomeVideo,
 					// "top_list_video": cf.Ad.HomeVideo,
@@ -243,7 +245,7 @@ func GetAPIToken(c echo.Context) error {
 					// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
 					// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
 					// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-					//"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 					// "home_pre_video": cf.Ad.PreVideo,
 					// "list_pre_video": cf.Ad.PreVideo,
 					// "info_pre_video": cf.Ad.PreVideo,
@@ -265,8 +267,8 @@ func GetAPIToken(c echo.Context) error {
 					"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
 					// "info_grid_adlt":    6,                    //详情页面格子广告轮循总数
 					// "info_grid_adlm":    4,                    //详情页面格子广告轮循开始余量
-					"info_screen_adlt": cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-					"info_screen_adlm": cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+					"info_screen_adlt": 10, //详情页面插屏广告轮循总数
+					"info_screen_adlm": 8, //详情页面插屏广告轮循开始余量
 				})
 			}
 			// 新人访问体验要好些
@@ -274,21 +276,23 @@ func GetAPIToken(c echo.Context) error {
 				"token": t,
 				"uid":   fans.ID,
 				"level": fans.Level,
-				"score": fans.Score,
-				"total": fans.Total,
+				"can_create": 1, // 允许创建内容
 				// "list_screen": cf.Ad.ListScreen,
-				// "info_screen": cf.Ad.InfoScreen,
+				"info_screen": cf.Ad.InfoScreen,
 				// "cata_screen": cf.Ad.CataScreen,
 				// "screen":      cf.Ad.Screen,
 				// "reward":      cf.Ad.Reward,
 				// "pre_video":   cf.Ad.PreVideo,
 
-				// "top_home_banner": cf.Ad.HomeBanner,
+				// "top_home_banner": cf.Ad.TopHomeBanner,
 				// "top_list_banner": cf.Ad.HomeBanner,
 				// "home_banner":     cf.Ad.HomeBanner,
 				// "list_banner": cf.Ad.ListBanner,
 				// "cata_banner": cf.Ad.CataBanner,
 				"info_banner": cf.Ad.InfoBanner,
+				// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+				// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+				"autoload_tips": `体验广告6~15秒，解锁自动加载功能`,
 
 				"top_home_video": cf.Ad.TopHomeVideo,
 				// "top_list_video": cf.Ad.HomeVideo,
@@ -302,7 +306,7 @@ func GetAPIToken(c echo.Context) error {
 				// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
 				// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
 				// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-				"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+				// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 				// "home_pre_video": cf.Ad.PreVideo,
 				// "list_pre_video": cf.Ad.PreVideo,
 				// "info_pre_video": cf.Ad.PreVideo,
@@ -317,15 +321,15 @@ func GetAPIToken(c echo.Context) error {
 				"share_cover":       cf.ReaderMinApp.AppCover,
 				"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 				"online_service":    true,
-				"info_force_reward": false,                //新用户不强制看激励视频
-				"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
-				"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
-				"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
-				"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
-				"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
-				"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-				"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-				"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+				"info_force_reward": false, // 新人不强制广告
+				"info_video_adlt":   2,    //详情页面视频轮循总数
+				"info_video_adlm":   0,    //详情页面视频轮循开始余量
+				"info_banner_adlt":  2,    //详情页面Banner轮循总数
+				"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+				// "info_grid_adlt":    6,                    //详情页面格子广告轮循总数
+				// "info_grid_adlm":    4,                    //详情页面格子广告轮循开始余量
+				"info_screen_adlt": 10, //详情页面插屏广告轮循总数
+				"info_screen_adlm": 7, //详情页面插屏广告轮循开始余量
 			})
 
 		}
