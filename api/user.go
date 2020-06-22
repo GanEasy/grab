@@ -92,7 +92,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if false {
+	if true {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
