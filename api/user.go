@@ -92,7 +92,7 @@ func GetAPIToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	// 直接给 -1(不经过验证用户openid)
-	if true {
+	if false {
 		claims := &JwtCustomClaims{
 			1,
 			`visitor.OpenID`,
@@ -271,7 +271,7 @@ func GetAPIToken(c echo.Context) error {
 					// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
 					// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
 					// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-					// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+					"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
 					// "home_pre_video": cf.Ad.PreVideo,
 					// "list_pre_video": cf.Ad.PreVideo,
 					// "info_pre_video": cf.Ad.PreVideo,
