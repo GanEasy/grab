@@ -142,11 +142,11 @@ func GetAPIToken(c echo.Context) error {
 			// "home_banner":     cf.Ad.HomeBanner,
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
-			"info_banner": cf.Ad.InfoBanner,
+			// "info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			"info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `体验广告6~15秒，开启自动加载+免打扰模式`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
@@ -179,10 +179,10 @@ func GetAPIToken(c echo.Context) error {
 			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   2,    //详情页面视频轮循总数
 			"info_video_adlm":   0,    //详情页面视频轮循开始余量
-			// "info_grid_adlt":    4,    //详情页面格子广告轮循总数
-			// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
-			"info_banner_adlt":  2,    //详情页面Banner轮循总数
-			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_grid_adlt":    2,    //详情页面格子广告轮循总数
+			"info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
+			// "info_banner_adlt":  2,    //详情页面Banner轮循总数
+			// "info_banner_adlm":  1,    //详情页面Banner轮循开始余量
 			"info_screen_adlt": 10, 	//详情页面插屏广告轮循总数
 			"info_screen_adlm": 8,	 	//详情页面插屏广告轮循开始余量
 		})
