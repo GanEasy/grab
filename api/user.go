@@ -112,8 +112,7 @@ func GetAPIToken(c echo.Context) error {
 			return err
 		}
 		cf := cpi.GetConf()
-		
-			
+
 		// rand.Seed(time.Now().UnixNano())
 		// inum := rand.Intn(10) // 先搞低些广告出现机率
 
@@ -123,7 +122,6 @@ func GetAPIToken(c echo.Context) error {
 		// }else if inum==2{
 		// 	info_tips_grid =  cf.Ad.InfoGrid
 		// }
-
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"token":      t,
@@ -145,8 +143,8 @@ func GetAPIToken(c echo.Context) error {
 			// "info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			"info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `体验广告6~15秒，开启自动加载+免打扰模式`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
@@ -183,8 +181,8 @@ func GetAPIToken(c echo.Context) error {
 			"info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
 			// "info_banner_adlt":  2,    //详情页面Banner轮循总数
 			// "info_banner_adlm":  1,    //详情页面Banner轮循开始余量
-			"info_screen_adlt": 10, 	//详情页面插屏广告轮循总数
-			"info_screen_adlm": 8,	 	//详情页面插屏广告轮循开始余量
+			"info_screen_adlt": 3, //详情页面插屏广告轮循总数
+			"info_screen_adlm": 2, //详情页面插屏广告轮循开始余量
 		})
 	}
 
@@ -225,7 +223,6 @@ func GetAPIToken(c echo.Context) error {
 			}
 			cf := cpi.GetConf()
 
-			
 			// rand.Seed(time.Now().UnixNano())
 			// inum := rand.Intn(3) // 先搞低些广告出现机率
 
@@ -240,9 +237,9 @@ func GetAPIToken(c echo.Context) error {
 			if fans.LoginTotal > 5 && fromid < 1 {
 
 				return c.JSON(http.StatusOK, echo.Map{
-					"token": t,
-					"uid":   fans.ID,
-					"level": fans.Level,
+					"token":      t,
+					"uid":        fans.ID,
+					"level":      fans.Level,
 					"can_create": 1, // 允许创建内容
 					// "list_screen": cf.Ad.ListScreen,
 					"info_screen": cf.Ad.InfoScreen,
@@ -256,8 +253,8 @@ func GetAPIToken(c echo.Context) error {
 					// "home_banner":     cf.Ad.HomeBanner,
 					// "list_banner": cf.Ad.ListBanner,
 					// "cata_banner": cf.Ad.CataBanner,
-					"info_banner": cf.Ad.InfoBanner,
-					"info_tips_banner":  cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+					"info_banner":      cf.Ad.InfoBanner,
+					"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 					// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 					// "info_tips_grid": info_tips_grid, // 格子广告
 					"autoload_tips": `体验广告6~15秒，开启自动加载+免打扰模式`,
@@ -297,14 +294,14 @@ func GetAPIToken(c echo.Context) error {
 					// "info_grid_adlt":    4,    //详情页面格子广告轮循总数
 					// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
 					"info_screen_adlt": 10, //详情页面插屏广告轮循总数
-					"info_screen_adlm": 8, //详情页面插屏广告轮循开始余量
+					"info_screen_adlm": 8,  //详情页面插屏广告轮循开始余量
 				})
 			}
 			// 新人访问体验要好些
 			return c.JSON(http.StatusOK, echo.Map{
-				"token": t,
-				"uid":   fans.ID,
-				"level": fans.Level,
+				"token":      t,
+				"uid":        fans.ID,
+				"level":      fans.Level,
 				"can_create": 1, // 允许创建内容
 				// "list_screen": cf.Ad.ListScreen,
 				"info_screen": cf.Ad.InfoScreen,
@@ -351,14 +348,14 @@ func GetAPIToken(c echo.Context) error {
 				"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 				"online_service":    true,
 				"info_force_reward": false, // 新人不强制广告
-				"info_video_adlt":   2,    //详情页面视频轮循总数
-				"info_video_adlm":   0,    //详情页面视频轮循开始余量
-				"info_banner_adlt":  2,    //详情页面Banner轮循总数
-				"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+				"info_video_adlt":   2,     //详情页面视频轮循总数
+				"info_video_adlm":   0,     //详情页面视频轮循开始余量
+				"info_banner_adlt":  2,     //详情页面Banner轮循总数
+				"info_banner_adlm":  1,     //详情页面Banner轮循开始余量
 				// "info_grid_adlt":    6,                    //详情页面格子广告轮循总数
 				// "info_grid_adlm":    4,                    //详情页面格子广告轮循开始余量
 				"info_screen_adlt": 10, //详情页面插屏广告轮循总数
-				"info_screen_adlm": 7, //详情页面插屏广告轮循开始余量
+				"info_screen_adlm": 7,  //详情页面插屏广告轮循开始余量
 			})
 
 		}
