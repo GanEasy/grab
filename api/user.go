@@ -122,17 +122,17 @@ func GetAPIToken(c echo.Context) error {
 		// }else if inum==2{
 		// 	info_tips_grid =  cf.Ad.InfoGrid
 		// }
-		var canCreate int32
-		canCreate = 0
-		if fromid > 0 {
-			canCreate = 1
-		}
+		// var canCreate int32
+		// canCreate = 0
+		// if fromid > 0 {
+		// 	canCreate = 1
+		// }
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"token":      t,
 			"uid":        -1,
 			"level":      0,
-			"can_create": canCreate, // 允许创建内容
+			"can_create": 1, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
 			// "cata_screen": cf.Ad.CataScreen,
