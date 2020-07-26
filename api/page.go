@@ -722,18 +722,18 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `去看书qkshu6`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `书阁小说网shugela`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `去看书qkshu6`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `书阁小说网shugela`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `笔趣阁soe8`,
 		// 	Type:  `link`,
@@ -753,14 +753,14 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=laosijixs&url=` + grab.EncodeURL(`http://m.laosijixs.com/`),
 		// },
 
-		Link{
-			Title: `漫画资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `漫画资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
 
 		// Link{
 		// 	Title: `╅╅╅︺未满18岁禁止观看︺╅╆╆`,
