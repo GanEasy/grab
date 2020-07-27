@@ -122,6 +122,11 @@ func GetAPIToken(c echo.Context) error {
 		// }else if inum==2{
 		// 	info_tips_grid =  cf.Ad.InfoGrid
 		// }
+		// var canCreate int32
+		// canCreate = 0
+		// if fromid > 0 {
+		// 	canCreate = 1
+		// }
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"token":      t,
