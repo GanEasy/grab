@@ -52,8 +52,8 @@ func SearchPosts(c echo.Context) error {
 	cf := cpi.GetConf()
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
-		// posts = cpi.GetPostsByNameLimitLevel(name, 2)
-		posts = cpi.GetPostsByNameLimitLevel(name, level)
+		posts = cpi.GetPostsByNameLimitLevel(name, 2)
+		// posts = cpi.GetPostsByNameLimitLevel(name, level)
 	} else if cf.Search.LimitLevel {
 		posts = cpi.GetPostsByNameLimitLevel(name, level)
 		// posts = cpi.GetPostsByNameLimitLevel(name, int(user.Level))
