@@ -23,6 +23,7 @@ type Card struct {
 	Cover  string   `json:"cover"`  // 封面图片
 	Images []string `json:"images"` // 图片组效果时图片列表
 	From   string   `json:"from"`
+	AppID  string   `json:"appid"`
 }
 
 // Link 链接

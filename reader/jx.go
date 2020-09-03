@@ -28,23 +28,23 @@ func (r JxReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`-全部分类`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/0_1.html`), "", `link`, ``, nil, ``},
-		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/1_1.html`), "", `link`, ``, nil, ``},
-		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/2_1.html`), "", `link`, ``, nil, ``},
-		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/3_1.html`), "", `link`, ``, nil, ``},
-		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/4_1.html`), "", `link`, ``, nil, ``},
-		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/5_1.html`), "", `link`, ``, nil, ``},
-		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/6_1.html`), "", `link`, ``, nil, ``},
-		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/7_1.html`), "", `link`, ``, nil, ``},
+		Card{`-全部分类`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/1_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/2_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/3_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/4_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/5_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/6_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/7_1.html`), "", `link`, ``, nil, ``, ``},
 
-		Card{`\全部排行`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month.html`), "", `link`, ``, nil, ``},
-		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month1.html`), "", `link`, ``, nil, ``},
-		Card{`\武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month2.html`), "", `link`, ``, nil, ``},
-		Card{`\都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month3.html`), "", `link`, ``, nil, ``},
-		Card{`\历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month4.html`), "", `link`, ``, nil, ``},
-		Card{`\科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month5.html`), "", `link`, ``, nil, ``},
-		Card{`\网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month6.html`), "", `link`, ``, nil, ``},
-		Card{`\女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month7.html`), "", `link`, ``, nil, ``},
+		Card{`\全部排行`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month4.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month5.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month6.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month7.html`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil

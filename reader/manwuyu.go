@@ -26,9 +26,9 @@ func (r ManwuyuReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`韩国漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/hgmanhua`), "", `link`, ``, nil, ``},
-		Card{`日本漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/rbmanhua`), "", `link`, ``, nil, ``},
-		Card{`全部漫画`, `/pages/list?action=list&drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", `link`, ``, nil, ``},
+		Card{`韩国漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/hgmanhua`), "", `link`, ``, nil, ``, ``},
+		Card{`日本漫画`, `/pages/catalog?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/rbmanhua`), "", `link`, ``, nil, ``, ``},
+		Card{`全部漫画`, `/pages/list?action=list&drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

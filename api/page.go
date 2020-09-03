@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -275,6 +276,17 @@ func GetNewCatelogLinks(c echo.Context) error {
 
 // GetExploreLinks 获取首页(广场)列表内容
 func GetExploreLinks(c echo.Context) error {
+
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
+	}
+	user, _ := getUser(openID)
+	fmt.Println(user)
+	if user.LoginTotal >= 10 { //老用户给直通
+		// return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	}
+
 	cf := cpi.GetConf()
 
 	version := c.QueryParam("version")
@@ -597,7 +609,22 @@ func GetPublishExploreLinks() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-
+		Link{
+			Title: `小说资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+			Style: `arrow`,
+		},
+		Link{
+			Title: `漫画资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `广告策略与用户组`,
 		// 	Icon:  ``,
@@ -990,7 +1017,17 @@ func GetAllBookResources(c echo.Context) error {
 	list.Hash = ``
 
 	list.Cards = []reader.Card{
-
+		reader.Card{
+			Title: `备用线路`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/index`,
+			AppID: `wx7c30b98c7f42f651`,
+		},
+		reader.Card{
+			Title: `起点小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
+		},
 		reader.Card{
 			Title: `起点小说网`,
 			Type:  `link`,

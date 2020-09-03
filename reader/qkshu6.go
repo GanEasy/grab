@@ -24,16 +24,16 @@ func (r Qkshu6Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`都市小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/dushi/`), "", `link`, ``, nil, ``},
-		Card{`玄幻小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xuanhuan/`), "", `link`, ``, nil, ``},
-		Card{`仙侠小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xianxia/`), "", `link`, ``, nil, ``},
-		Card{`历史小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/lishi/`), "", `link`, ``, nil, ``},
-		Card{`科幻小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/kehuan/`), "", `link`, ``, nil, ``},
-		Card{`悬疑小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xuanyi/`), "", `link`, ``, nil, ``},
-		Card{`其他小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/qita/`), "", `link`, ``, nil, ``},
-		Card{`全本小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/quanben/`), "", `link`, ``, nil, ``},
-		Card{`-----------------`, ``, "", `link`, ``, nil, ``},
-		Card{`↘↘↘榜单(18禁)↙↙↙`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/top.php`), "", `link`, ``, nil, ``},
+		Card{`都市小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/dushi/`), "", `link`, ``, nil, ``, ``},
+		Card{`玄幻小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xuanhuan/`), "", `link`, ``, nil, ``, ``},
+		Card{`仙侠小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xianxia/`), "", `link`, ``, nil, ``, ``},
+		Card{`历史小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/lishi/`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/kehuan/`), "", `link`, ``, nil, ``, ``},
+		Card{`悬疑小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/xuanyi/`), "", `link`, ``, nil, ``, ``},
+		Card{`其他小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/qita/`), "", `link`, ``, nil, ``, ``},
+		Card{`全本小说`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/quanben/`), "", `link`, ``, nil, ``, ``},
+		Card{`-----------------`, ``, "", `link`, ``, nil, ``, ``},
+		Card{`↘↘↘榜单(18禁)↙↙↙`, `/pages/list?action=list&drive=qkshu6&url=` + EncodeURL(`https://m.qkshu6.com/top.php`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = false
 	return list, nil

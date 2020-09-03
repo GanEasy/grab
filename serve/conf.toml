@@ -1,8 +1,10 @@
 # This is a TOML document. Boom.
 
 [readerMinApp]
-app_id = "wx4d466242a9ecc265"
-app_secret = "0e353a37bcc03dea9ec30926173834e0"
+app_id = "wx331f3c3e2761f080"
+app_secret = "bac8885fda26c5e2c38d701f40702243"
+app_title = "全网小说免费阅读工具"
+app_search = "请输入书名搜索"
 
 [database]
 type = "postgres"
@@ -16,15 +18,34 @@ port = 5432
 
 [search]
 limit_level = false
-dev_version = "1.0.1"
+dev_version = "1.0.17"
 
 [ad]
-screen = "adunit-da16d0f32013ecb0"
-reward = "adunit-c269e8732f5ae00c"
-home_banner = "adunit-97bfa88d1c446274"
+force_reward = false
+#screenx = "adunit-da16d0f32013ecb0"
+reward = "adunit-64f7d1d011805ca2"  # 详细页自动加载激励
+#pre_video = "adunit-1c8adb51667c8652"
+#top_home_banner = "adunit-97bfa88d1c446274"
 list_banner = "adunit-a7438aa03206231f"
-info_banner = "adunit-1b169a05a6785147"
-home_video = "adunit-2f7190abab0323b1"
-list_video = "adunit-3b89982cba1ecd7e"
-info_video = "adunit-d5b4a862d8daadf3"
-pre_video = "adunit-1c8adb51667c8652"
+info_banner = "adunit-a8a1154078d1c51f"
+#cata_banner = "adunit-1b169a05a6785147"
+top_home_video = "adunit-2482969e65f73c20"
+list_video = "adunit-2482969e65f73c20"
+info_video = "adunit-2482969e65f73c20"
+cata_video = "adunit-2482969e65f73c20"
+#home_gridx = ""
+#list_grid = "adunit-ff8193d63c1a32e0"
+#info_grid = "adunit-03eeaa8d8725e589"
+#cata_grid = "adunit-05cccd4271ee203f"
+#home_screen = "adunit-da16d0f32013ecb0"
+#list_screen = "adunit-1074fd88076c5bfc"
+info_screen = "adunit-95a902f9c0312945"
+cata_screen = "adunit-95a902f9c0312945"
+xinfo_video_adlt = 2 
+xinfo_video_adlm = 0
+xinfo_banner_adlt = 2
+xinfo_banner_adlm = 1
+#info_grid_adlt = 4
+#info_grid_adlm = 3
+#info_screen_adlt = 12
+#info_screen_adlm = 9

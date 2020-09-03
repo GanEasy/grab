@@ -22,17 +22,17 @@ func (r HongxiuReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.SourceURL = urlStr
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=-1&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`现代言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30020&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`古代言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30013&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`浪漫青春`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30031&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`玄幻言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30001&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`仙侠奇缘`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30008&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`悬疑`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30036&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`科幻空间`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30042&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`游戏竞技`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30050&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`短篇小说`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30083&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
-		Card{`轻小说`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30055&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=-1&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`现代言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30020&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`古代言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30013&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`浪漫青春`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30031&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`玄幻言情`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30001&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`仙侠奇缘`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30008&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`悬疑`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30036&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻空间`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30042&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`游戏竞技`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30050&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`短篇小说`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30083&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
+		Card{`轻小说`, `/pages/list?drive=hongxiu&url=` + EncodeURL(`https://www.hongxiu.com/all?pageNum=1&pageSize=10&gender=2&catId=30055&isFinish=-1&isVip=-1&size=-1&updT=-1&orderBy=0&pageNum=1`), "", `link`, ``, nil, ``, ``},
 	}
 	list.Hash = GetCatalogHash(list)
 	return list, nil

@@ -23,17 +23,17 @@ func (r MLuoqiuReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻魔法`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-1-1/`), "", `link`, ``, nil, ``},
-		Card{`武侠修真`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-2-1/`), "", `link`, ``, nil, ``},
-		Card{`都市言情`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-3-1/`), "", `link`, ``, nil, ``},
-		Card{`历史军事`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-4-1/`), "", `link`, ``, nil, ``},
-		Card{`游戏竞技`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-5-1/`), "", `link`, ``, nil, ``},
-		Card{`科幻小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-6-1/`), "", `link`, ``, nil, ``},
-		Card{`恐怖灵异`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-7-1/`), "", `link`, ``, nil, ``},
-		Card{`同人小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-8-1/`), "", `link`, ``, nil, ``},
-		Card{`商战职场`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-9-1/`), "", `link`, ``, nil, ``},
-		Card{`文学美文`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-10-1/`), "", `link`, ``, nil, ``},
-		Card{`女生小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-11-1/`), "", `link`, ``, nil, ``},
+		Card{`玄幻魔法`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-1-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`武侠修真`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-2-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`都市言情`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-3-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`历史军事`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-4-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`游戏竞技`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-5-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-6-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`恐怖灵异`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-7-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`同人小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-8-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`商战职场`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-9-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`文学美文`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-10-1/`), "", `link`, ``, nil, ``, ``},
+		Card{`女生小说`, `/pages/transfer/list?action=book&drive=luoqiu&url=` + EncodeURL(`http://m.luoqiu.com/sort-11-1/`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

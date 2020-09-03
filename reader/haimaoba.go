@@ -26,7 +26,7 @@ func (r HaimaobaReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com/list/0/1.html`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com/list/0/1.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

@@ -25,15 +25,15 @@ func (r ZonghengReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`奇幻玄幻`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`历史军事`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`都市娱乐`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`科幻游戏`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`悬疑灵异`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`竞技同人`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`评论文集`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
-		Card{`二次元`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c40/c0/b0/u0/p1/v0/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``},
+		Card{`奇幻玄幻`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c1/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`武侠仙侠`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c3/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`历史军事`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c6/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`都市娱乐`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c9/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻游戏`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c15/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`悬疑灵异`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c18/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`竞技同人`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c21/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`评论文集`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c24/c0/b0/u6/p1/v9/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
+		Card{`二次元`, `/pages/list?action=book&drive=zongheng&url=` + EncodeURL(`http://book.zongheng.com/store/c40/c0/b0/u0/p1/v0/s9/t0/u0/i1/ALL.html`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil

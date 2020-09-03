@@ -28,18 +28,18 @@ func (r LaosijixsReader) GetCategories(urlStr string) (list Catalog, err error) 
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/`), "", `link`, ``, nil, ``},
-		Card{`精品小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/1-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`藏经阁`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/2-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`高辣文`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/3-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`耽美小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/4-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`海棠耽美`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/5-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`言情小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/6-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`海棠言情`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/7-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`百合小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/8-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`情欲小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/9-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`评书品书`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/10-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
-		Card{`私密趣事`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/11-lastupdate-0-1.html`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/`), "", `link`, ``, nil, ``, ``},
+		Card{`精品小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/1-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`藏经阁`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/2-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`高辣文`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/3-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`耽美小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/4-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`海棠耽美`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/5-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`言情小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/6-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`海棠言情`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/7-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`百合小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/8-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`情欲小说`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/9-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`评书品书`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/10-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`私密趣事`, `/pages/list?action=list&drive=laosijixs&url=` + EncodeURL(`http://m.laosijixs.com/shuku/11-lastupdate-0-1.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

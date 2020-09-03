@@ -27,15 +27,15 @@ func (r ShugeReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/1_1/`), "", `link`, ``, nil, ``},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/2_1/`), "", `link`, ``, nil, ``},
-		Card{`都市异能`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/3_1/`), "", `link`, ``, nil, ``},
-		Card{`军事历史`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/4_1/`), "", `link`, ``, nil, ``},
-		Card{`游戏竞技`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/5_1/`), "", `link`, ``, nil, ``},
-		Card{`科幻世界`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/6_1/`), "", `link`, ``, nil, ``},
-		Card{`灵异悬疑`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/7_1/`), "", `link`, ``, nil, ``},
-		Card{`耽美同人`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/8_1/`), "", `link`, ``, nil, ``},
-		Card{`女生言情`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/9_1/`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/1_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`武侠仙侠`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/2_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`都市异能`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/3_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`军事历史`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/4_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`游戏竞技`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/5_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻世界`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/6_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`灵异悬疑`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/7_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`耽美同人`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/8_1/`), "", `link`, ``, nil, ``, ``},
+		Card{`女生言情`, `/pages/list?action=book&drive=shuge&url=` + EncodeURL(`https://m.shuge.la/sort/9_1/`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil

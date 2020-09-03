@@ -25,7 +25,7 @@ func (r SsmhReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://ssmh.cc/booklist`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://ssmh.cc/booklist`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

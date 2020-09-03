@@ -25,9 +25,9 @@ func (r WeijiaoshouReader) GetCategories(urlStr string) (list Catalog, err error
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`韩国漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-1.html`), "", `link`, ``, nil, ``},
-		Card{`污漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-2.html`), "", `link`, ``, nil, ``},
-		Card{`19禁漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-3.html`), "", `link`, ``, nil, ``},
+		Card{`韩国漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`污漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-2.html`), "", `link`, ``, nil, ``, ``},
+		Card{`19禁漫画`, `/pages/list?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn/manhua/liebiao/hanguomanhua-3.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

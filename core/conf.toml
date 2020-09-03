@@ -1,8 +1,8 @@
 # This is a TOML document. Boom.
 
 [readerMinApp]
-app_id = "wxa94ddd94358b2d1d"
-app_secret = "1bc426774cced93e8b9e322c6aadaac4"
+app_id = "wx7543142ce921d8e3"
+app_secret = "170394ae66866bb390c786be68f1a31e"
 
 [database]
 type = "postgres"

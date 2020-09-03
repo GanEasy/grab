@@ -24,19 +24,19 @@ func (r BiquyunReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/1_1.html`), "", `link`, ``, nil, ``},
-		Card{`修真`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/2_1.html`), "", `link`, ``, nil, ``},
-		Card{`都市`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/3_1.html`), "", `link`, ``, nil, ``},
-		Card{`历史`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/4_1.html`), "", `link`, ``, nil, ``},
-		Card{`网游`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/5_1.html`), "", `link`, ``, nil, ``},
-		Card{`科幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/6_1.html`), "", `link`, ``, nil, ``},
-		Card{`恐怖`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/7_1.html`), "", `link`, ``, nil, ``},
-		Card{`其它`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/8_1.html`), "", `link`, ``, nil, ``},
-		Card{`↘↘↘排行榜↙↙↙`, ``, "", `link`, ``, nil, ``},
-		Card{`总点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/allvisit_1.html`), "", `link`, ``, nil, ``},
-		Card{`月点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/monthvisit_1.html`), "", `link`, ``, nil, ``},
-		Card{`周点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/weekvisit_1.html`), "", `link`, ``, nil, ``},
-		Card{`日点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/dayvisit_1.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/1_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`修真`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/2_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`都市`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/3_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`历史`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/4_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`网游`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/5_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/6_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`恐怖`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/7_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`其它`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/wapsort/8_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`↘↘↘排行榜↙↙↙`, ``, "", `link`, ``, nil, ``, ``},
+		Card{`总点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/allvisit_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`月点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/monthvisit_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`周点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/weekvisit_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`日点击榜`, `/pages/list?action=book&drive=biquyun&url=` + EncodeURL(`https://m.biquyun.com/top/dayvisit_1.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

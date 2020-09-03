@@ -25,12 +25,12 @@ func (r ManhwaReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist`), "", `link`, ``, nil, ``},
-		Card{`韩国`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E9%9F%A9%E5%9B%BD`), "", `link`, ``, nil, ``},
-		Card{`男性`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E7%94%B7%E6%80%A7`), "", `link`, ``, nil, ``},
-		Card{`国产`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E5%9B%BD%E4%BA%A7`), "", `link`, ``, nil, ``},
-		Card{`女性`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E5%A5%B3%E6%80%A7`), "", `link`, ``, nil, ``},
-		Card{`恐怖`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E6%81%90%E6%80%96`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist`), "", `link`, ``, nil, ``, ``},
+		Card{`韩国`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E9%9F%A9%E5%9B%BD`), "", `link`, ``, nil, ``, ``},
+		Card{`男性`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E7%94%B7%E6%80%A7`), "", `link`, ``, nil, ``, ``},
+		Card{`国产`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E5%9B%BD%E4%BA%A7`), "", `link`, ``, nil, ``, ``},
+		Card{`女性`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E5%A5%B3%E6%80%A7`), "", `link`, ``, nil, ``, ``},
+		Card{`恐怖`, `/pages/list?action=list&drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/booklist/%E6%81%90%E6%80%96`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

@@ -148,9 +148,9 @@ func GetAPIToken(c echo.Context) error {
 			"info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `体验广告6~15秒，开启自动加载+免打扰模式`,
+			"autoload_tips": `体验6秒视频广告，开启自动加载+免打扰模式`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
@@ -179,15 +179,15 @@ func GetAPIToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,    //详情页面视频轮循总数
-			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_force_reward": false, // 强制广告
+			"info_video_adlt":   2,     //详情页面视频轮循总数
+			"info_video_adlm":   0,     //详情页面视频轮循开始余量
 			// "info_grid_adlt":    2,    //详情页面格子广告轮循总数
 			// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt": 2, //详情页面Banner轮循总数
 			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
 			"info_screen_adlt": 3, //详情页面插屏广告轮循总数
-			"info_screen_adlm": 2, //详情页面插屏广告轮循开始余量
+			"info_screen_adlm": 1, //详情页面插屏广告轮循开始余量
 		})
 	}
 
@@ -527,7 +527,7 @@ func GetAPIToken2(c echo.Context) error {
 			"level":          0,
 			"ismini":         1,
 			"show_tips_next": 0,
-			"can_create":     1, // 允许创建内容
+			"can_create":     0, // 允许创建内容
 
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,

@@ -25,10 +25,10 @@ func (r R2hmReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E5%85%A8%E9%83%A8&area=-1&end=-1`), "", `link`, ``, nil, ``},
-		Card{`韩漫`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E5%85%A8%E9%83%A8&area=2&end=-1`), "", `link`, ``, nil, ``},
-		Card{`伦理`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E4%BC%A6%E7%90%86&area=-1&end=-1`), "", `link`, ``, nil, ``},
-		Card{`福利`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E7%A6%8F%E5%88%A9&area=-1&end=-1`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E5%85%A8%E9%83%A8&area=-1&end=-1`), "", `link`, ``, nil, ``, ``},
+		Card{`韩漫`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E5%85%A8%E9%83%A8&area=2&end=-1`), "", `link`, ``, nil, ``, ``},
+		Card{`伦理`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E4%BC%A6%E7%90%86&area=-1&end=-1`), "", `link`, ``, nil, ``, ``},
+		Card{`福利`, `/pages/list?action=list&drive=r2hm&url=` + EncodeURL(`https://r2hm.com/booklist?tag=%E7%A6%8F%E5%88%A9&area=-1&end=-1`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

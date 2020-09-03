@@ -25,7 +25,7 @@ func (r KanmeiziReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", `link`, ``, nil, ``},
+		Card{`全部`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

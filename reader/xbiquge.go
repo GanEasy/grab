@@ -24,12 +24,12 @@ func (r XbiqugeReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻·奇幻`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`修真·仙侠`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`都市·青春`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/dushixiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`历史·穿越`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/chuanyuexiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`网游·竞技`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`科幻·灵异`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``},
+		Card{`玄幻·奇幻`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`修真·仙侠`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`都市·青春`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`历史·穿越`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/chuanyuexiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`网游·竞技`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻·灵异`, `/pages/list?action=book&drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

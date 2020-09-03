@@ -24,23 +24,23 @@ func (r QuReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`-全部分类`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/0_1.html`), "", `link`, ``, nil, ``},
-		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/1_1.html`), "", `link`, ``, nil, ``},
-		Card{`-武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/2_1.html`), "", `link`, ``, nil, ``},
-		Card{`-都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/3_1.html`), "", `link`, ``, nil, ``},
-		Card{`-历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/4_1.html`), "", `link`, ``, nil, ``},
-		Card{`-科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/5_1.html`), "", `link`, ``, nil, ``},
-		Card{`-网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/6_1.html`), "", `link`, ``, nil, ``},
-		Card{`-女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/7_1.html`), "", `link`, ``, nil, ``},
+		Card{`-全部分类`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/1_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/2_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/3_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/4_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/5_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/6_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/7_1.html`), "", `link`, ``, nil, ``, ``},
 
-		Card{`\全部排行`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month.html`), "", `link`, ``, nil, ``},
-		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month1.html`), "", `link`, ``, nil, ``},
-		Card{`\武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month2.html`), "", `link`, ``, nil, ``},
-		Card{`\都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month3.html`), "", `link`, ``, nil, ``},
-		Card{`\历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month4.html`), "", `link`, ``, nil, ``},
-		Card{`\科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month5.html`), "", `link`, ``, nil, ``},
-		Card{`\网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month6.html`), "", `link`, ``, nil, ``},
-		Card{`\女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month7.html`), "", `link`, ``, nil, ``},
+		Card{`\全部排行`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month4.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month5.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month6.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month7.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }

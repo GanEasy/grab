@@ -101,11 +101,11 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/stats", s.Handle) // Endpoint to get stats
 
 	// Configure middleware with the custom claims type
-	// config := middleware.JWTConfig{
-	// 	Claims:     &a.JwtCustomClaims{},
-	// 	SigningKey: []byte("secret"),
-	// }
-	// api.Use(middleware.JWTWithConfig(config))
+	config := middleware.JWTConfig{
+		Claims:     &a.JwtCustomClaims{},
+		SigningKey: []byte("secret"),
+	}
+	api.Use(middleware.JWTWithConfig(config))
 
 	api.GET("/checkopenid", a.CheckOpenID)
 	// r.Use(middleware.JWT([]byte("secret")))

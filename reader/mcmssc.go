@@ -26,14 +26,14 @@ func (r McmsscReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`修真仙侠`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`都市青春`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/dushixiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`历史穿越`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/chuanyuexiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`网游竞技`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/wangyouxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`科幻灵异`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/kehuanxiaoshuo/`), "", `link`, ``, nil, ``},
-		Card{`其它小说`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/qitaxiaoshuo/`), "", `link`, ``, nil, ``},
-		// Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`修真仙侠`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`都市青春`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`历史穿越`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/chuanyuexiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`网游竞技`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻灵异`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`其它小说`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/qitaxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		// Card{`排行榜单`, `/pages/list?action=book&drive=mcmssc&url=` + EncodeURL(`https://www.mcmssc.com/paihangbang/`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil

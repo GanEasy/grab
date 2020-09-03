@@ -24,16 +24,16 @@ func (r BiqugeinfoReader) GetCategories(urlStr string) (list Catalog, err error)
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/1_1.html`), "", `link`, ``, nil, ``},
-		Card{`修真`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/2_1.html`), "", `link`, ``, nil, ``},
-		Card{`都市`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/3_1.html`), "", `link`, ``, nil, ``},
-		Card{`穿越`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/4_1.html`), "", `link`, ``, nil, ``},
-		Card{`网游`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/5_1.html`), "", `link`, ``, nil, ``},
-		Card{`女生`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/6_1.html`), "", `link`, ``, nil, ``},
+		Card{`玄幻`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/1_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`修真`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/2_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`都市`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/3_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`穿越`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/4_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`网游`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/5_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`女生`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/list/6_1.html`), "", `link`, ``, nil, ``, ``},
 
-		Card{`\日点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_dayvisit/1.html`), "", `link`, ``, nil, ``},
-		Card{`\周点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_weekvisit/1.html`), "", `link`, ``, nil, ``},
-		Card{`\月点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_monthvisit/1.html`), "", `link`, ``, nil, ``},
+		Card{`\日点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_dayvisit/1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\周点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_weekvisit/1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`\月点击榜`, `/pages/list?action=list&drive=biqugeinfo&url=` + EncodeURL(`https://m.biquge.info/paihangbang_monthvisit/1.html`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }
