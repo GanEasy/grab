@@ -609,22 +609,22 @@ func GetPublishExploreLinks() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-		Link{
-			Title: `小说资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `漫画资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `小说资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `漫画资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `广告策略与用户组`,
 		// 	Icon:  ``,
