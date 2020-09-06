@@ -94,7 +94,7 @@ func GetPreviousLink(links []Link) Link {
 //GetNextLink 获取下一页或者下一章
 func GetNextLink(links []Link) Link {
 	for _, link := range links {
-		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下页`) || strings.Contains(link.Title, `下一`) || strings.Contains(link.Title, `下一章`) || strings.Contains(link.Title, `下章`) || link.Title == `>` {
+		if strings.Contains(link.Title, `下一页`) || strings.Contains(link.Title, `下页`) || strings.Contains(link.Title, `下一`) || strings.Contains(link.Title, `下一章`) || strings.Contains(link.Title, `下章`) || link.Title == `>` || link.Title == `&raquo;` {
 			return Link{Title: "next", URL: link.URL}
 		}
 	}
@@ -176,6 +176,7 @@ func BookContReplace(html string) string {
 	c = strings.Replace(c, `<pre>`, ``, -1)
 	c = strings.Replace(c, `</pre>`, ``, -1)
 
+	c = strings.Replace(c, `<p/>`, `</p>`, -1)
 	c = strings.Replace(c, `<br/>`, `</p>`, -1)
 	c = strings.Replace(c, `<br />`, `</p>`, -1)
 	c = strings.Replace(c, `<br>`, `</p>`, -1)
@@ -399,6 +400,9 @@ func GetPathLevel(wxto string) (level int32) {
 	}
 	if b := strings.Contains(wxto, string("drive=shuge")); b == true {
 		return 2 //
+	}
+	if b := strings.Contains(wxto, string("drive=bxks")); b == true {
+		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=bxwx")); b == true {
 		return 9 //网站打不开了
