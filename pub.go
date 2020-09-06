@@ -50,6 +50,60 @@ func GetGuide(drive string) reader.Guide {
 	return &reader.DefaultGuide{}
 }
 
+// ReaderList 阅读器匹配组
+var ReaderList = map[string]reader.Reader{
+	"qidian":      &reader.QidianReader{},
+	"zongheng":    &reader.ZonghengReader{},
+	"17k":         &reader.SeventeenKReader{},
+	"xxsy":        &reader.XxsyReader{},
+	"hongxiu":     &reader.HongxiuReader{},
+	"luoqiu":      &reader.MLuoqiuReader{},
+	"booktxt":     &reader.BooktxtReader{},
+	"booktxtnet":  &reader.BooktxtnetReader{},
+	"paoshu8":     &reader.Paoshu8Reader{},
+	"qkshu6":      &reader.Qkshu6Reader{},
+	"shuge":       &reader.ShugeReader{},
+	"qu":          &reader.QuReader{},
+	"jx":          &reader.JxReader{},
+	"uxiaoshuo":   &reader.UxiaoshuoReader{},
+	"soe8":        &reader.Soe8Reader{},
+	"bxks":        &reader.BxksReader{},
+	"bxwx":        &reader.BxwxReader{},
+	"biqugeinfo":  &reader.BiqugeinfoReader{},
+	"mcmssc":      &reader.McmsscReader{},
+	"xs280":       &reader.Xs280Reader{},
+	"xbiquge":     &reader.XbiqugeReader{},
+	"biquyun":     &reader.BiquyunReader{},
+	"book":        &reader.BookReader{},
+	"article":     &reader.ArticleReader{},
+	"rss":         &reader.RssReader{},
+	"blog":        &reader.BlogReader{},
+	"learnku":     &reader.LearnkuReader{},
+	"github":      &reader.GithubReader{},
+	"r2hm":        &reader.R2hmReader{},
+	"manwuyu":     &reader.ManwuyuReader{},
+	"manhwa":      &reader.ManhwaReader{},
+	"aimeizi5":    &reader.Aimeizi5Reader{},
+	"kanmeizi":    &reader.KanmeiziReader{},
+	"fuman":       &reader.FumanReader{},
+	"weijiaoshou": &reader.WeijiaoshouReader{},
+	"haimaoba":    &reader.HaimaobaReader{},
+	"ssmh":        &reader.SsmhReader{},
+	"hanmanku":    &reader.HanmankuReader{},
+	"hanmanwo":    &reader.HanmanwoReader{},
+	"laosijixs":   &reader.LaosijixsReader{},
+}
+
+// GetReader 获取阅读器
+func GetReader(drive string) reader.Reader {
+	//
+	if reader, ok := ReaderList[drive]; ok {
+		return reader
+	}
+	// todo 根据 drive 返回不同的解释器
+	return &reader.DefaultReader{}
+}
+
 // GetGuidex 获取引导
 func GetGuidex(drive string) reader.Guide {
 	//
@@ -122,60 +176,6 @@ func GetGuidex(drive string) reader.Guide {
 	}
 	// todo 根据 drive 返回不同的解释器
 	return &reader.DefaultGuide{}
-}
-
-// ReaderList 阅读器匹配组
-var ReaderList = map[string]reader.Reader{
-	"qidian":      &reader.QidianReader{},
-	"zongheng":    &reader.ZonghengReader{},
-	"17k":         &reader.SeventeenKReader{},
-	"xxsy":        &reader.XxsyReader{},
-	"hongxiu":     &reader.HongxiuReader{},
-	"luoqiu":      &reader.MLuoqiuReader{},
-	"booktxt":     &reader.BooktxtReader{},
-	"booktxtnet":  &reader.BooktxtnetReader{},
-	"paoshu8":     &reader.Paoshu8Reader{},
-	"qkshu6":      &reader.Qkshu6Reader{},
-	"shuge":       &reader.ShugeReader{},
-	"qu":          &reader.QuReader{},
-	"jx":          &reader.JxReader{},
-	"uxiaoshuo":   &reader.UxiaoshuoReader{},
-	"soe8":        &reader.Soe8Reader{},
-	"bxks":        &reader.BxksReader{},
-	"bxwx":        &reader.BxwxReader{},
-	"biqugeinfo":  &reader.BiqugeinfoReader{},
-	"mcmssc":      &reader.McmsscReader{},
-	"xs280":       &reader.Xs280Reader{},
-	"xbiquge":     &reader.XbiqugeReader{},
-	"biquyun":     &reader.BiquyunReader{},
-	"book":        &reader.BookReader{},
-	"article":     &reader.ArticleReader{},
-	"rss":         &reader.RssReader{},
-	"blog":        &reader.BlogReader{},
-	"learnku":     &reader.LearnkuReader{},
-	"github":      &reader.GithubReader{},
-	"r2hm":        &reader.R2hmReader{},
-	"manwuyu":     &reader.ManwuyuReader{},
-	"manhwa":      &reader.ManhwaReader{},
-	"aimeizi5":    &reader.Aimeizi5Reader{},
-	"kanmeizi":    &reader.KanmeiziReader{},
-	"fuman":       &reader.FumanReader{},
-	"weijiaoshou": &reader.WeijiaoshouReader{},
-	"haimaoba":    &reader.HaimaobaReader{},
-	"ssmh":        &reader.SsmhReader{},
-	"hanmanku":    &reader.HanmankuReader{},
-	"hanmanwo":    &reader.HanmanwoReader{},
-	"laosijixs":   &reader.LaosijixsReader{},
-}
-
-// GetReader 获取阅读器
-func GetReader(drive string) reader.Reader {
-	//
-	if reader, ok := ReaderList[drive]; ok {
-		return reader
-	}
-	// todo 根据 drive 返回不同的解释器
-	return &reader.DefaultReader{}
 }
 
 // GetReaderx 获取阅读器
