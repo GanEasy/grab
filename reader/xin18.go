@@ -9,40 +9,40 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//BxksReader www.jininggeyin.com (盗版小说网站)
-type BxksReader struct {
+//Xin18Reader www.jininggeyin.com (盗版小说网站)
+type Xin18Reader struct {
 }
 
 // GetCategories 获取所有分类
-func (r BxksReader) GetCategories(urlStr string) (list Catalog, err error) {
+func (r Xin18Reader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	// urlStr := `http://www.jininggeyin.com/`
 
-	list.Title = `分类-笔下看书阁`
+	list.Title = `分类-新18小说网`
 
 	list.SourceURL = urlStr
 
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`玄幻奇幻`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/18.html`), "", `link`, ``, nil, ``, ``},
-		Card{`武侠仙侠`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/19.html`), "", `link`, ``, nil, ``, ``},
-		Card{`历史军事`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/20.html`), "", `link`, ``, nil, ``, ``},
-		Card{`都市娱乐`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/21.html`), "", `link`, ``, nil, ``, ``},
-		Card{`科幻末日`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/22.html`), "", `link`, ``, nil, ``, ``},
-		Card{`悬疑灵异`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/23.html`), "", `link`, ``, nil, ``, ``},
-		Card{`游戏竞技`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/34.html`), "", `link`, ``, nil, ``, ``},
-		Card{`耽美百合`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/40.html`), "", `link`, ``, nil, ``, ``},
-		Card{`幻想言情`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/28.html`), "", `link`, ``, nil, ``, ``},
-		Card{`其他`, `/pages/list?action=book&drive=bxks&url=` + EncodeURL(`https://www.jininggeyin.com/ji/35.html`), "", `link`, ``, nil, ``, ``},
+		Card{`玄幻奇幻`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/18.html`), "", `link`, ``, nil, ``, ``},
+		Card{`武侠仙侠`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/19.html`), "", `link`, ``, nil, ``, ``},
+		Card{`历史军事`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/20.html`), "", `link`, ``, nil, ``, ``},
+		Card{`都市娱乐`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/21.html`), "", `link`, ``, nil, ``, ``},
+		Card{`科幻末日`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/22.html`), "", `link`, ``, nil, ``, ``},
+		Card{`悬疑灵异`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/23.html`), "", `link`, ``, nil, ``, ``},
+		Card{`游戏竞技`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/34.html`), "", `link`, ``, nil, ``, ``},
+		Card{`耽美百合`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/40.html`), "", `link`, ``, nil, ``, ``},
+		Card{`幻想言情`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/28.html`), "", `link`, ``, nil, ``, ``},
+		Card{`其他`, `/pages/list?action=book&drive=xin18&url=` + EncodeURL(`https://www.0335jjlm.com/03/35.html`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil
 }
 
 // Search 搜索资源
-func (r BxksReader) Search(keyword string) (list Catalog, err error) {
-	urlStr := `https://www.jininggeyin.com/search.html?keyword=` + keyword + `&t_btnsearch=`
+func (r Xin18Reader) Search(keyword string) (list Catalog, err error) {
+	urlStr := `https://www.0335jjlm.com/search.html?keyword=` + keyword
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
 		return
@@ -58,7 +58,7 @@ func (r BxksReader) Search(keyword string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = fmt.Sprintf(`%v - 搜索-笔下看书阁`, keyword)
+	list.Title = fmt.Sprintf(`%v-搜索-新18小说网`, keyword)
 
 	link, _ := url.Parse(urlStr)
 
@@ -78,14 +78,14 @@ func (r BxksReader) Search(keyword string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://www.jininggeyin.com/jin/50142.html`, `https://www.jininggeyin.com/jin/49294.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.0335jjlm.com/0335/29097.html`, `https://www.0335jjlm.com/0335/25002.html`, ``)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `bxks`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `xin18`)
 
 	list.SourceURL = urlStr
 
@@ -96,7 +96,7 @@ func (r BxksReader) Search(keyword string) (list Catalog, err error) {
 }
 
 // GetList 获取书籍列表列表
-func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
+func (r Xin18Reader) GetList(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -116,7 +116,7 @@ func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
 	if e != nil {
 		return list, e
 	}
-	list.Title = FindString(`(?P<title>(.)+)-笔下看书阁`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)-新18小说网`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -139,14 +139,14 @@ func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://www.jininggeyin.com/jin/52006.html`, `https://www.jininggeyin.com/jin/51702.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.0335jjlm.com/0335/45087.html`, `https://www.0335jjlm.com/0335/44951.html`, ``)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
 		}
 	}
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `bxks`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `xin18`)
 
 	list.SourceURL = urlStr
 	// log.Println(links)
@@ -162,7 +162,7 @@ func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
 }
 
 // GetCatalog 获取章节列表
-func (r BxksReader) GetCatalog(urlStr string) (list Catalog, err error) {
+func (r Xin18Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -196,11 +196,11 @@ func (r BxksReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if len(links) == 0 {
 		links = GetLinks(g, link)
 	}
-
+	// log.Println(links)
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://www.jininggeyin.com/jin1/50725/SURG9JT8HSn9W.html`, `https://www.jininggeyin.com/jin1/50749/ecOkp0Ccya3Ky.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.0335jjlm.com/03351/45647/HTp7gw1xO0ocC.html`, `https://www.0335jjlm.com/03351/45432/uDX8OLCLGEDyJ.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
@@ -208,7 +208,7 @@ func (r BxksReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	needLinks = CleaningFrontRepeat(needLinks)
 
-	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `bxks`)
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/book`, `xin18`)
 
 	list.SourceURL = urlStr
 
@@ -225,7 +225,7 @@ func (r BxksReader) GetCatalog(urlStr string) (list Catalog, err error) {
 }
 
 // GetInfo 获取详细内容
-func (r BxksReader) GetInfo(urlStr string) (ret Content, err error) {
+func (r Xin18Reader) GetInfo(urlStr string) (ret Content, err error) {
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -244,7 +244,7 @@ func (r BxksReader) GetInfo(urlStr string) (ret Content, err error) {
 	article.Readable(urlStr)
 	ret.SourceURL = urlStr
 
-	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)-笔下看书阁`, article.Title, "title")
+	ret.Title = FindString(`(?P<title>(.)+)_(?P<bookname>(.)+)-新18小说网`, article.Title, "title")
 	if ret.Title == `` {
 		ret.Title = article.Title
 	}

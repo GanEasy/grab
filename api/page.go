@@ -757,10 +757,16 @@ func GetGuideExploreLinks() []Link {
 		Link{
 			Title: `笔下看书阁jininggeyin`,
 			Type:  `link`,
-			WxTo:  `/pages/categories?drive=bxks&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			WxTo:  `/pages/categories?drive=bxks&url=` + grab.EncodeURL(`https://www.jininggeyin.com/`),
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `新18小说网0335jjlm`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xin18&url=` + grab.EncodeURL(`https://www.0335jjlm.com/`),
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `去看书qkshu6`,
 		// 	Type:  `link`,
