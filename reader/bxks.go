@@ -107,7 +107,7 @@ func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
 		return
 	}
 
-	html2, err2 := FindContentHTML(html, `.item-con`)
+	html2, err2 := FindContentHTML(html, `.list-type`)
 	if err2 != nil {
 		return
 	}
@@ -149,7 +149,7 @@ func (r BxksReader) GetList(urlStr string) (list Catalog, err error) {
 	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `bxks`)
 
 	list.SourceURL = urlStr
-
+	// log.Println(links)
 	list.Next = GetNextLink(links)
 	if list.Next.URL != `` {
 		list.Next.URL = EncodeURL(list.Next.URL)
@@ -208,12 +208,12 @@ func (r BxksReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	list.SourceURL = urlStr
 
-	var links2 = GetLinks(g, link)
+	// var links2 = GetLinks(g, link)
 
-	list.Next = GetNextLink(links2)
-	if list.Next.URL != `` {
-		list.Next.URL = EncodeURL(list.Next.URL)
-	}
+	// list.Next = GetNextLink(links2)
+	// if list.Next.URL != `` {
+	// 	list.Next.URL = EncodeURL(list.Next.URL)
+	// }
 	list.Hash = GetCatalogHash(list)
 
 	return list, nil
@@ -264,6 +264,7 @@ func (r BxksReader) GetInfo(urlStr string) (ret Content, err error) {
 	// log.Println(len(ret.Contents))
 
 	links, _ := GetLinkByHTML(urlStr, html)
+	// log.Println(links)
 	ret.Previous = GetPreviousLink(links)
 	if ret.Previous.URL != `` {
 		ret.Previous.URL = EncodeURL(ret.Previous.URL)

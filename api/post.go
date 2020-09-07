@@ -288,7 +288,19 @@ func SearchMoreAction(c echo.Context) error {
 			Title:  `在书阁小说shuge 搜索“` + name + `”`,
 			WxTo:   `/pages/searchmore?drive=shuge&name=` + name,
 			Intro:  ``,
-			Type:   `card`,
+			Type:   `link`,
+			Cover:  ``,
+			Images: nil,
+			From:   ``,
+		})
+
+	catelog.Cards = append(
+		catelog.Cards,
+		reader.Card{
+			Title:  `笔下看书阁jininggeyin 搜索“` + name + `”`,
+			WxTo:   `/pages/searchmore?drive=bxks&name=` + name,
+			Intro:  ``,
+			Type:   `link`,
 			Cover:  ``,
 			Images: nil,
 			From:   ``,

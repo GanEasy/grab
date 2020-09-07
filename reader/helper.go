@@ -304,12 +304,18 @@ func GetLinks(g *goquery.Document, link *url.URL) (links []Link) {
 		if strings.Index(u, "java") != 0 && n != "" {
 			if strings.Index(u, "//") == 0 {
 				u = fmt.Sprintf(`%v:%v`, link.Scheme, u)
+				// log.Println(`u1`, u)
 			} else if strings.Index(u, "/") == 0 {
 				u = fmt.Sprintf(`%v://%v%v`, link.Scheme, link.Host, u)
+				// log.Println(`u2`, u, link)
+			} else if strings.Index(u, "?") == 0 {
+				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, link.Path, u)
+				// log.Println(`u2`, u, link)
 			} else if strings.Index(u, "#") != 0 && strings.Index(u, "http") != 0 {
 				//todo   link.Path 获取目录
 				p1, _ := filepath.Split(link.Path)
 				u = fmt.Sprintf(`%v://%v%v%v`, link.Scheme, link.Host, p1, u)
+				// log.Println(`u3`, u, link)
 			}
 			u = strings.Replace(u, " ", "", -1)
 			u = strings.Replace(u, "　", "", -1)

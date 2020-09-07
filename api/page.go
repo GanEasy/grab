@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -282,7 +281,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.HTML(http.StatusOK, "wxto empty")
 	}
 	user, _ := getUser(openID)
-	fmt.Println(user)
+	// fmt.Println(user)
 	if user.LoginTotal >= 10 { //老用户给直通
 		// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 	}
@@ -748,17 +747,24 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
 			Style: `arrow`,
 		},
+		Link{
+			Title: `书阁小说网shugela`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `笔下看书阁jininggeyin`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=bxks&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			Style: `arrow`,
+		},
 
 		// Link{
 		// 	Title: `去看书qkshu6`,
 		// 	Type:  `link`,
 		// 	WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `书阁小说网shugela`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
 		// 	Style: `arrow`,
 		// },
 		// Link{
