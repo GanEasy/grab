@@ -57,7 +57,7 @@ func SearchPosts(c echo.Context) error {
 				reader.Card{
 					Title:  `成功解锁`,
 					WxTo:   ``,
-					Intro:  `请重新加载小程序`,
+					Intro:  `请重新加载小程序！`,
 					Type:   `card`,
 					Cover:  ``,
 					Images: nil,
