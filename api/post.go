@@ -25,31 +25,47 @@ func SyncPosts(list reader.Catalog, cate int32) {
 func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
-	provider := c.QueryParam("provider")
+	// provider := c.QueryParam("provider")
 	version := c.QueryParam("version")
-	// openID := getOpenID(c)
-	// if openID == `` {
-	// 	return c.HTML(http.StatusOK, "openid empty")
-	// }
 
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
-	if provider == `weixin` {
-		level = 4
-		cerr := cpi.MSGSecCHECK(name)
-		if cerr != nil { //&& cerr.Message == `87014`
-			catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
+
+	cerr := cpi.MSGSecCHECK(name)
+	if cerr != nil { //&& cerr.Message == `87014`
+		catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
+		return c.JSON(http.StatusOK, catelog)
+	}
+
+	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
+
+	// 对受限制的应用进行过滤
+	cf := cpi.GetConf()
+	if cf.Search.LimitInvitation {
+		openID := getOpenID(c)
+		if openID == `` {
 			return c.JSON(http.StatusOK, catelog)
 		}
+		user, _ := getUser(openID)
+		level = int(user.Level)
 
-	} else if provider == `qq` {
-		level = 2
-	} else if provider == `web` {
-		level = 4
+		if cf.Search.InvitationCode != `` && name != `` && name == cf.Search.InvitationCode { // 输入邀请密令，解锁
+			user.Level = 5
+			user.Save()
+
+			catelog.Cards = append(
+				catelog.Cards,
+				reader.Card{
+					Title:  `成功解锁`,
+					WxTo:   ``,
+					Intro:  `请重新加载小程序`,
+					Type:   `card`,
+					Cover:  ``,
+					Images: nil,
+					From:   `admin`,
+				})
+		}
 	}
-	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
-	// fmt.Println(`Title`, catelog.Title)
-	// user, _ := getUser(openID)
-	cf := cpi.GetConf()
+
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
 		posts = cpi.GetPostsByNameLimitLevel(name, 2)
@@ -96,7 +112,7 @@ func SearchPosts(c echo.Context) error {
 		//
 
 	}
-	if version != cf.Search.DevVersion {
+	if version != cf.Search.DevVersion && level > 2 {
 
 		catelog.Cards = append(
 			catelog.Cards,
@@ -176,10 +192,25 @@ func SearchPosts(c echo.Context) error {
 
 // SearchMoreAction 更多搜索方法
 func SearchMoreAction(c echo.Context) error {
+
 	var catelog reader.Catalog
 	name := c.QueryParam("drive") // 注： 小程序页面 pages/transfer 无法将name参数传上来
 
 	catelog.Title = fmt.Sprintf(`更多“%v”搜索结果`, name)
+
+	// 对受限制的应用进行过滤
+	cf := cpi.GetConf()
+	if cf.Search.LimitInvitation {
+		openID := getOpenID(c)
+		if openID == `` {
+			return c.JSON(http.StatusOK, catelog)
+		}
+		user, _ := getUser(openID)
+		if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
+			return c.JSON(http.StatusOK, catelog)
+		}
+	}
+
 	// catelog.Title = `更多相关搜索结果`
 
 	catelog.Cards = append(

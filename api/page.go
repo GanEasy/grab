@@ -276,17 +276,20 @@ func GetNewCatelogLinks(c echo.Context) error {
 // GetExploreLinks 获取首页(广场)列表内容
 func GetExploreLinks(c echo.Context) error {
 
-	openID := getOpenID(c)
-	if openID == `` {
-		return c.HTML(http.StatusOK, "wxto empty")
-	}
-	user, _ := getUser(openID)
-	// fmt.Println(user)
-	if user.LoginTotal >= 10 { //老用户给直通
-		// return c.JSON(http.StatusOK, GetGuideExploreLinks())
-	}
-
 	cf := cpi.GetConf()
+	if cf.Search.LimitInvitation {
+
+		openID := getOpenID(c)
+		if openID == `` {
+			return c.HTML(http.StatusOK, "wxto empty")
+		}
+		user, _ := getUser(openID)
+		if user.Level < 3 {
+
+			return c.JSON(http.StatusOK, GetWaitExamineExplore())
+		}
+
+	}
 
 	version := c.QueryParam("version")
 	provider := c.QueryParam("provider")

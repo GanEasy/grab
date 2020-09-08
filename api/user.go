@@ -24,17 +24,31 @@ type JwtCustomClaims struct {
 	jwt.StandardClaims
 }
 
-// GetToken 获取 jwt token
+// GetToken 获取 jwt token 2020新版接口
 func GetToken(c echo.Context) error {
+
+	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	code := c.QueryParam("code")
+	provider := c.QueryParam("provider")
 	ret, _ := cpi.GetOpenID(code)
+
+	cf := cpi.GetConf()
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)
-		// if err != nil {
-		// 	return err
-		// }
-		log.Println(ret)
-		// Set custom claims
+		if fans.Provider == `` {
+			fans.Provider = provider
+		}
+
+		// 增加用户被邀请次数
+		if fromid > 0 && uint(fromid) != fans.ID {
+			fans.InvitationTotal++
+			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
+				fans.Level = 5
+			}
+		}
+
+		fans.LoginTotal++ // 增加一次访问登录次数
+		fans.Save()
 		claims := &JwtCustomClaims{
 			fans.ID,
 			ret.OpenID,
@@ -53,37 +67,70 @@ func GetToken(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-		cf := cpi.GetConf()
 		return c.JSON(http.StatusOK, echo.Map{
-			"token":       t,
-			"uid":         fans.ID,
-			"level":       fans.Level,
-			"score":       fans.Score,
-			"total":       fans.Total,
-			"home_screen": cf.Ad.HomeScreen,
-			"list_screen": cf.Ad.ListScreen,
-			"info_screen": cf.Ad.InfoScreen,
+			"jumpappid":  "wxee417b8bd32f29cc", // 强制跳转其它小程序
+			"token":      t,
+			"uid":        fans.ID,
+			"level":      fans.Level,
+			"can_create": fans.Level, // 允许创建内容
+			// "list_screen": cf.Ad.ListScreen,
+			// "info_screen": cf.Ad.InfoScreen,
+			// // "cata_screen": cf.Ad.CataScreen,
+			// // "screen":      cf.Ad.Screen,
+			// // "reward":      cf.Ad.Reward,
+			// // "pre_video":   cf.Ad.PreVideo,
 
-			"screen":      cf.Ad.Screen,
-			"reward":      cf.Ad.Reward,
-			"pre_video":   cf.Ad.PreVideo,
-			"home_banner": cf.Ad.HomeBanner,
-			"list_banner": cf.Ad.ListBanner,
-			"info_banner": cf.Ad.InfoBanner,
+			// // "top_home_banner": cf.Ad.TopHomeBanner,
+			// // "top_list_banner": cf.Ad.HomeBanner,
+			// // "home_banner":     cf.Ad.HomeBanner,
+			// // "list_banner": cf.Ad.ListBanner,
+			// // "cata_banner": cf.Ad.CataBanner,
+			// "info_banner": cf.Ad.InfoBanner,
+			// // "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+			// // "info_tips_grid": info_tips_grid, // 详细页格子广告
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			// // "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
-			"home_video": cf.Ad.HomeVideo,
+			// "top_home_video": cf.Ad.TopHomeVideo,
+			// // "top_list_video": cf.Ad.HomeVideo,
+			// // "home_video":     cf.Ad.HomeVideo,
 			// "list_video": cf.Ad.ListVideo,
-			"info_video": cf.Ad.InfoVideo,
-			// "home_pre_video": cf.Ad.PreVideo,
-			// "list_pre_video": cf.Ad.PreVideo,
-			// "info_pre_video": cf.Ad.PreVideo,
+			// "cata_video": cf.Ad.CataVideo,
+			// "info_video": cf.Ad.InfoVideo,
 
-			// "home_reward": cf.Ad.Reward,
-			// "list_reward": cf.Ad.Reward,
+			// // "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// // "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// // "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+			// // "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+			// // "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+			// // "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// // "home_pre_video": cf.Ad.PreVideo,
+			// // "list_pre_video": cf.Ad.PreVideo,
+			// // "info_pre_video": cf.Ad.PreVideo,
+
+			// // "home_reward": cf.Ad.Reward,
+			// // "list_reward": cf.Ad.Reward,
 			// "info_reward": cf.Ad.Reward,
-		})
-	}
 
+			// 定义首页分享标题
+			"share_title": cf.ReaderMinApp.AppTitle,
+			// 定义首页分享图片
+			"share_cover":       cf.ReaderMinApp.AppCover,
+			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
+			"online_service":    false,
+			"info_force_reward": false, // 强制广告
+			// "info_video_adlt":   2,    //详情页面视频轮循总数
+			// "info_video_adlm":   0,    //详情页面视频轮循开始余量
+			// // "info_grid_adlt":    2,    //详情页面格子广告轮循总数
+			// // "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
+			// "info_banner_adlt": 2, //详情页面Banner轮循总数
+			// "info_banner_adlm": 1, //详情页面Banner轮循开始余量
+			// "info_screen_adlt": 3, //详情页面插屏广告轮循总数
+			// "info_screen_adlm": 2, //详情页面插屏广告轮循开始余量
+		})
+
+	}
 	return echo.ErrUnauthorized
 }
 

@@ -24,6 +24,9 @@ type Search struct {
 	LimitLevel       bool   `toml:"limit_level"`
 	LimiterStageShow bool   `toml:"limiter_stage_show"`
 	DevVersion       string `toml:"dev_version"`
+	LimitInvitation  bool   `toml:"limit_invitation"` // 必须受邀请用户才能搜索和查看目录
+	InvitationCode   string `toml:"invitation_code"`  // 邀请密令，输入密令解锁邀请
+	InvitationNo     int    `toml:"invitation_no"`    // 邀请编号，从分享页面进来，必须为指定编号
 }
 
 //Ad 配置

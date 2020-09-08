@@ -28,6 +28,7 @@ func GetActivities(c echo.Context) error {
 	var level int32
 	level = 3 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 
+	// 对受限制的应用进行过滤
 	cf := cpi.GetConf()
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		if provider == `weixin` {
@@ -40,6 +41,20 @@ func GetActivities(c echo.Context) error {
 			level = 5
 		}
 	}
+
+	if cf.Search.LimitInvitation {
+		openID := getOpenID(c)
+		if openID == `` {
+			level = 2
+		} else {
+			user, _ := getUser(openID)
+			level = user.Level
+			if level < 2 {
+				level = 2
+			}
+		}
+	}
+
 	var rows = cpi.GetActivities()
 	if len(rows) > 0 {
 		var rp = map[string]int{}
