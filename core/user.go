@@ -63,6 +63,40 @@ func GetOpenID(code string) (OpenIDData, error) {
 	return OpenIDData{ret.ErrCode, ret.OpenID, ret.SessionKey}, err
 }
 
+//GetOpenIDForApp 获取微信小程序上报的openid 此ID暂不加密处理
+func GetOpenIDForApp(code, appid, secret string) (OpenIDData, error) {
+	//
+	type Ret struct {
+		ErrCode    int64  `json:"errcode"`
+		ErrMSG     string `json:"errmsg"`
+		SessionKey string `json:"session_key"`
+		ExpiresIn  int64  `json:"expires_in"`
+		OpenID     string `json:"openid"`
+	}
+	var ret Ret
+
+	if appid == `` {
+		appid = config.ReaderMinApp.AppID
+	}
+	if secret == `` {
+		secret = config.ReaderMinApp.AppSecret
+	}
+	url := fmt.Sprintf(`https://api.weixin.qq.com/sns/jscode2session?appid=%v&secret=%v&js_code=%v&grant_type=authorization_code`,
+		appid,
+		secret,
+		code,
+	)
+
+	HTTPGetJSON(url, &ret)
+	var err error
+
+	if ret.ErrCode != 0 {
+		err = errors.New(string(ret.ErrCode))
+	}
+
+	return OpenIDData{ret.ErrCode, ret.OpenID, ret.SessionKey}, err
+}
+
 //SendPostUpdateMSG 发送更新通知
 func SendPostUpdateMSG(openID, formID, title, page string) error {
 	//

@@ -318,6 +318,9 @@ func GetExploreLinks(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
+	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线
+		return c.JSON(http.StatusOK, GetSemiOpenExamineExplore()) // 被举报了，半开放状态
+	}
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
@@ -632,6 +635,42 @@ func GetPublishExploreLinks() []Link {
 	}
 
 	return links
+}
+
+// GetSemiOpenExamineExplore 半开放列表
+func GetSemiOpenExamineExplore() []Link {
+
+	var links = []Link{
+
+		Link{
+			Title: `小程序被举报了，资源不能在本程序上直接展示！`,
+			Icon:  `cuIcon-notification`,
+			Type:  `text`,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
+			Title: `免费看书请点击进入支线`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx7543142ce921d8e3`,
+		},
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
 }
 
 //GetGuideExploreLinks  新版，引导转化

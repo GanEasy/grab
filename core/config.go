@@ -17,6 +17,7 @@ type ReaderMinApp struct {
 	AppTitle  string `toml:"app_title"`
 	AppCover  string `toml:"app_cover"`
 	AppSearch string `toml:"app_search"`
+	JumpAppID string `toml:"jump_app_id"`
 }
 
 //Search 配置
