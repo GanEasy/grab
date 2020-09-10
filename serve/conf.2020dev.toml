@@ -1,0 +1,51 @@
+# This is a TOML document. Boom.
+
+[readerMinApp]
+app_id = "wx4d466242a9ecc265"
+app_secret = "0e353a37bcc03dea9ec30926173834e0"
+
+[database]
+type = "postgres"
+host = "119.23.237.215"
+user = "xiaoyi"
+password = "123456"
+sslmode = "disable"
+dbname = "readerminapp"
+port = 5432
+
+
+
+[search]
+limit_level = false
+limiter_stage_show = true
+dev_version = "1.0.10"
+
+[ad]
+screen = "adunit-da16d0f32013ecb0"
+reward = "adunit-c269e8732f5ae00c"
+pre_video = "adunit-1c8adb51667c8652"
+home_banner = "adunit-97bfa88d1c446274"
+list_banner = "adunit-a7438aa03206231f"
+info_banner = "adunit-1b169a05a6785147"
+cata_banner = "adunit-1b169a05a6785147"
+home_video = "adunit-2f7190abab0323b1"
+list_video = "adunit-3b89982cba1ecd7e"
+info_video = "adunit-d5b4a862d8daadf3"
+cata_video = "adunit-d5b4a862d8daadf3"
+home_grid = "adunit-05cccd4271ee203f"
+list_grid = "adunit-05cccd4271ee203f"
+info_grid = "adunit-05cccd4271ee203f"
+cata_grid = "adunit-05cccd4271ee203f"
+home_screen = "adunit-da16d0f32013ecb0"
+list_screen = "adunit-da16d0f32013ecb0"
+info_screen = "adunit-da16d0f32013ecb0"
+cata_screen = "adunit-da16d0f32013ecb0"
+
+info_video_adlt = 3
+info_video_adlm = 0
+info_banner_adlt = 3
+info_banner_adlm = 1
+info_grid_adlt = 3
+info_grid_adlm = 2
+info_screen_adlt = 12
+info_screen_adlm = 10

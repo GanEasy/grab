@@ -1,0 +1,41 @@
+# This is a TOML document. Boom.
+
+[readerMinApp]
+# app_id = "wx7543142ce921d8e3"
+# app_secret = "170394ae66866bb390c786be68f1a31e"
+# app_id = "wxee417b8bd32f29cc"
+# app_secret = "dfd3f5c94c354e25a9ec6ce9a717e5cf"
+app_id = "wx90dee998347266dd"
+app_secret = "cd037cc34eafe0db8006deb3e32cec6e"
+app_title = "好看小说推荐阅读，免费小说阅读工具"
+app_search = "请输入小说名称"
+
+[database]
+type = "postgres"
+host = "119.23.237.215"
+user = "xiaoyi"
+password = "123456"
+sslmode = "disable"
+dbname = "readerminapp"
+port = 5432
+
+
+[search]
+limit_level = true
+dev_version = "1.0.3"
+limit_invitation = true
+invitation_code = 11223
+invitation_no = 123
+
+[ad]
+
+[adx]
+screen = "adunit-da16d0f32013ecb0"
+reward = "adunit-c269e8732f5ae00c"
+home_banner = "adunit-97bfa88d1c446274"
+list_banner = "adunit-a7438aa03206231f"
+info_banner = "adunit-1b169a05a6785147"
+home_video = "adunit-2f7190abab0323b1"
+list_video = "adunit-3b89982cba1ecd7e"
+info_video = "adunit-d5b4a862d8daadf3"
+pre_video = "adunit-1c8adb51667c8652"
