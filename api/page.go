@@ -276,20 +276,17 @@ func GetNewCatelogLinks(c echo.Context) error {
 // GetExploreLinks 获取首页(广场)列表内容
 func GetExploreLinks(c echo.Context) error {
 
-	cf := cpi.GetConf()
-	if cf.Search.LimitInvitation {
-
-		openID := getOpenID(c)
-		if openID == `` {
-			return c.HTML(http.StatusOK, "wxto empty")
-		}
-		user, _ := getUser(openID)
-		if user.Level < 3 {
-
-			return c.JSON(http.StatusOK, GetWaitExamineExplore())
-		}
-
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "wxto empty")
 	}
+	user, _ := getUser(openID)
+	// fmt.Println(user)
+	if user.LoginTotal >= 10 { //老用户给直通
+		// return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	}
+
+	cf := cpi.GetConf()
 
 	version := c.QueryParam("version")
 	provider := c.QueryParam("provider")
@@ -317,9 +314,6 @@ func GetExploreLinks(c echo.Context) error {
 
 	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	}
-	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线
-		return c.JSON(http.StatusOK, GetSemiOpenExamineExplore()) // 被举报了，半开放状态
 	}
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
@@ -383,37 +377,11 @@ func GetWaitExamineExplore() []Link {
 		// 	Style: ``,
 		// },
 		Link{
-			Title: `全部编程学习资料`,
+			Title: `编程学习资料`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `微信小程序开发入门系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `从学徒到工匠精校版`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `从入门到精通系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
 			Style: `arrow`,
 		},
 
@@ -635,42 +603,6 @@ func GetPublishExploreLinks() []Link {
 	}
 
 	return links
-}
-
-// GetSemiOpenExamineExplore 半开放列表
-func GetSemiOpenExamineExplore() []Link {
-
-	var links = []Link{
-
-		Link{
-			Title: `本程序因类目内容违规，已移除小说类目相关内容！`,
-			Icon:  `cuIcon-notification`,
-			Type:  `text`,
-			Image: ``,
-			WxTo:  ``,
-			Style: ``,
-		},
-		Link{
-			Title: `新老读者请进入支线>>笔趣阁plus`,
-			Icon:  ``,
-			Type:  `jumpapp`,
-			Image: ``,
-			WxTo:  `/pages/index`,
-			Style: ``,
-			Appid: `wx7543142ce921d8e3`, // 笔趣阁plus
-		},
-
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
-	}
-	return links
-
 }
 
 //GetGuideExploreLinks  新版，引导转化
