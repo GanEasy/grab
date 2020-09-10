@@ -6,6 +6,7 @@ import "github.com/BurntSushi/toml"
 type Config struct {
 	ReaderMinApp ReaderMinApp
 	ReaderMinAppTwo ReaderMinAppTwo
+	ReaderMinAppThree ReaderMinAppThree
 	Database     Database
 	Search       Search
 	Ad           Ad
