@@ -112,6 +112,16 @@ func SearchPosts(c echo.Context) error {
 		//
 
 	}
+	// if version != cf.Search.DevVersion && level <3 {
+	// 	catelog.Cards = append(
+	// 		catelog.Cards,
+	// 		reader.Card{
+	// 			Title:  `╅╅╅>>本程序暂不支持搜索，立即前往分支搜索<<╅╆╆`,
+	// 			WxTo:   `/pages/search`,
+	// 			Type:   `jumpapp`,
+	// 			Appid: `wx7543142ce921d8e3`,
+	// 		})
+	// }
 	if version != cf.Search.DevVersion && level > 2 {
 
 		catelog.Cards = append(
@@ -150,8 +160,7 @@ func SearchPosts(c echo.Context) error {
 				From:   ``,
 			})
 
-		// 	Card{`全部`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
-
+		
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
@@ -186,7 +195,6 @@ func SearchPosts(c echo.Context) error {
 				From:   ``,
 			})
 	}
-
 	return c.JSON(http.StatusOK, catelog)
 }
 
@@ -198,18 +206,25 @@ func SearchMoreAction(c echo.Context) error {
 
 	catelog.Title = fmt.Sprintf(`更多“%v”搜索结果`, name)
 
-	// 对受限制的应用进行过滤
+	
 	cf := cpi.GetConf()
-	if cf.Search.LimitInvitation {
-		openID := getOpenID(c)
-		if openID == `` {
-			return c.JSON(http.StatusOK, catelog)
-		}
-		user, _ := getUser(openID)
-		if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
-			return c.JSON(http.StatusOK, catelog)
+	var req = c.Request()
+
+	// 先兼容一下，不过滤二号小程序搜索功能先
+	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) {
+		// 对受限制的应用进行过滤
+		if cf.Search.LimitInvitation {
+			openID := getOpenID(c)
+			if openID == `` {
+				return c.JSON(http.StatusOK, catelog)
+			}
+			user, _ := getUser(openID)
+			if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
+				return c.JSON(http.StatusOK, catelog)
+			}
 		}
 	}
+	
 
 	// catelog.Title = `更多相关搜索结果`
 
