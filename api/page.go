@@ -643,7 +643,7 @@ func GetSemiOpenExamineExplore() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `小程序被举报了，资源不能在本程序上直接展示！`,
+			Title: `本程序因类目内容违规，已移除小说类目相关内容！`,
 			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
@@ -651,13 +651,13 @@ func GetSemiOpenExamineExplore() []Link {
 			Style: ``,
 		},
 		Link{
-			Title: `免费看书请点击进入支线`,
+			Title: `新老读者请进入支线>>笔趣阁plus`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
 			WxTo:  `/pages/index`,
 			Style: ``,
-			Appid: `wx7543142ce921d8e3`,
+			Appid: `wx7543142ce921d8e3`, // 笔趣阁plus
 		},
 
 		Link{
