@@ -332,17 +332,34 @@ func GetAPIToken(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-//GetAPIToken2 获取 jwt token
+//GetAPIToken2 获取 jwt token 搜书大师
 func GetAPIToken2(c echo.Context) error {
+	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
+	code := c.QueryParam("code")
+	provider := c.QueryParam("provider")
+	cf := cpi.GetConf()
+	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppTwo.AppID, cf.ReaderMinAppTwo.AppSecret)
+	if code != "" && ret.OpenID != "" {
+		fans, err := cpi.GetFansByOpenID(ret.OpenID)
+		if fans.Provider == `` {
+			fans.Provider = provider
+		}
 
-	// fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
-	// 直接给 -1(不经过验证用户openid)
-	if true {
+		// 增加用户被邀请次数
+		if fromid > 0 && uint(fromid) != fans.ID {
+			fans.InvitationTotal++
+			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
+				fans.Level = 5
+			}
+		}
+
+		fans.LoginTotal++ // 增加一次访问登录次数
+		fans.Save()
 		claims := &JwtCustomClaims{
-			1,
-			`visitor.OpenID`,
-			``,
-			``,
+			fans.ID,
+			ret.OpenID,
+			code,
+			ret.SessionKey,
 			jwt.StandardClaims{
 				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
 			},
@@ -356,8 +373,9 @@ func GetAPIToken2(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-		cf := cpi.GetConf()
+		
 		return c.JSON(http.StatusOK, echo.Map{
+			"jumpappid":    cf.ReaderMinAppTwo.JumpAppID, // 强制跳转其它小程序
 			"token":          t,
 			"uid":            -1,
 			"level":          0,
