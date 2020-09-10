@@ -86,6 +86,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	e.GET("/gettoken", a.GetToken)
 	e.GET("/getapitoken", a.GetAPIToken)
 	e.GET("/getapitoken2", a.GetAPIToken2)
+	e.GET("/getapitoken3", a.GetAPIToken3)
 	// 解密数据内容(保存数据到库)
 	e.GET("/crypt", a.Crypt)
 

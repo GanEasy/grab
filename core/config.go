@@ -31,6 +31,16 @@ type ReaderMinAppTwo struct {
 	JumpAppID string `toml:"jump_app_id"`
 }
 
+//ReaderMinAppThree 配置
+type ReaderMinAppThree struct {
+	AppID     string `toml:"app_id"`
+	AppSecret string `toml:"app_secret"`
+	AppTitle  string `toml:"app_title"`
+	AppCover  string `toml:"app_cover"`
+	AppSearch string `toml:"app_search"`
+	JumpAppID string `toml:"jump_app_id"`
+}
+
 //Search 配置
 type Search struct {
 	LimitLevel       bool   `toml:"limit_level"`
