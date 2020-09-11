@@ -315,6 +315,9 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {// 暂时给搜索搜书大师		
+		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	}
 	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
@@ -635,6 +638,44 @@ func GetPublishExploreLinks() []Link {
 	}
 
 	return links
+}
+
+
+// GuideJumpAppOrSearce 
+// 引导 跳转或者搜索资源
+func GuideJumpAppOrSearce() []Link {
+
+	var links = []Link{
+
+		Link{
+			Title: `请输入书名搜索相关资源阅读`,
+			Icon:  `cuIcon-notification`,
+			Type:  `text`,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+		},
+		Link{
+			Title: `或进入支线查看资源目录>>笔趣阁plus`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx7543142ce921d8e3`, // 笔趣阁plus
+		},
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
 }
 
 // GetSemiOpenExamineExplore 半开放列表
