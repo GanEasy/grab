@@ -277,8 +277,13 @@ func GetNewCatelogLinks(c echo.Context) error {
 func GetExploreLinks(c echo.Context) error {
 
 	cf := cpi.GetConf()
+	var req = c.Request()
 	if cf.Search.LimitInvitation {
 
+		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师		
+			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+		}
+		
 		openID := getOpenID(c)
 		if openID == `` {
 			return c.HTML(http.StatusOK, "wxto empty")
@@ -286,6 +291,7 @@ func GetExploreLinks(c echo.Context) error {
 		user, _ := getUser(openID)
 		if user.Level < 3 {
 
+		
 			return c.JSON(http.StatusOK, GetWaitExamineExplore())
 		}
 
@@ -294,13 +300,8 @@ func GetExploreLinks(c echo.Context) error {
 	version := c.QueryParam("version")
 	provider := c.QueryParam("provider")
 
-	var req = c.Request()
 
 	
-	if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师		
-		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-	}
-
 	if provider == `` { //兼容一下先
 		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
 			provider = `weixin`
