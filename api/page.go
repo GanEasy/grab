@@ -295,6 +295,12 @@ func GetExploreLinks(c echo.Context) error {
 	provider := c.QueryParam("provider")
 
 	var req = c.Request()
+
+	
+	if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师		
+		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	}
+
 	if provider == `` { //兼容一下先
 		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
 			provider = `weixin`
@@ -304,9 +310,6 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {// 暂时给搜索搜书大师		
-		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-	}
 	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
 	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	// }
