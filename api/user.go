@@ -473,10 +473,10 @@ func GetAPIToken3(c echo.Context) error {
 		"info_reward": cf.Ad.Reward,
 
 		// 定义首页分享标题
-		"share_title": cf.ReaderMinApp.AppTitle,
+		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinApp.AppCover,
-		"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
+		"share_cover":       cf.ReaderMinAppThree.AppCover,
+		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    true,
 		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   2,    //详情页面视频轮循总数
