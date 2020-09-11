@@ -377,7 +377,7 @@ func GetAPIToken2(c echo.Context) error {
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":    cf.ReaderMinAppTwo.JumpAppID, // 强制跳转其它小程序
 			"token":          t,
-			"uid":            -1,
+			"uid":            fans.ID,
 			"level":          0,
 			"ismini":         0,
 			"show_tips_next": 0,
