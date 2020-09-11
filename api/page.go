@@ -283,7 +283,7 @@ func GetExploreLinks(c echo.Context) error {
 		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师		
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
-		
+
 		openID := getOpenID(c)
 		if openID == `` {
 			return c.HTML(http.StatusOK, "wxto empty")
@@ -666,7 +666,7 @@ func GuideJumpAppOrSearce() []Link {
 			Image: ``,
 			WxTo:  `/pages/index`,
 			Style: ``,
-			Appid: `wx7543142ce921d8e3`, // 笔趣阁plus
+			Appid: `wx331f3c3e2761f080`, // 笔趣阁plus
 		},
 
 		Link{
