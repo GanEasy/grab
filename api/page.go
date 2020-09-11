@@ -417,7 +417,7 @@ func GuideJumpApp() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `VIP通道暂未对外开放。`,
+			Title: `服务暂不可用。`,
 			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
@@ -425,7 +425,7 @@ func GuideJumpApp() []Link {
 			Style: ``,
 		},
 		Link{
-			Title: `请进入支线进行阅读>>笔趣阁plus`,
+			Title: `读者请进支线>>笔趣阁plus`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
