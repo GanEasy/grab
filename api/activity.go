@@ -30,7 +30,8 @@ func GetActivities(c echo.Context) error {
 
 	// 对受限制的应用进行过滤
 	cf := cpi.GetConf()
-	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+	
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查或者当前版本在审核模式
 		if provider == `weixin` {
 			level = 2
 		} else if provider == `qq` {
@@ -62,6 +63,12 @@ func GetActivities(c echo.Context) error {
 		for _, v := range rows {
 			// 只显示拥有权限的级别
 			itemlevel = reader.GetPathLevel(v.WxTo)
+
+			// 过滤掉做审核的内容
+			if level > 2 && itemlevel==1 {
+				itemlevel = 0
+			}
+
 			if level > itemlevel && itemlevel > 0 {
 				//  过滤掉相同 title 的资源（重复的只显示最新一个）
 				if _, ok := rp[v.Title]; !ok {
