@@ -92,8 +92,8 @@ func SearchPosts(c echo.Context) error {
 	var req = c.Request()
 	
 	
-	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) { //  && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID )
-		version = `1.0.0` // 暂时给搜索搜书大师和plus
+	if strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) { //  && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID )
+		version = `1.0.0` // 暂时给搜索搜书大师和笔趣阁在线
 		level = 4
 	}
 
