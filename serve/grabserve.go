@@ -83,10 +83,10 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	})
 
 	// 获取用户签名
-	e.GET("/gettoken", a.GetToken)
+	e.GET("/gettoken", a.GetToken)  //笔趣阁Pro
 	e.GET("/getapitoken", a.GetAPIToken)
-	e.GET("/getapitoken2", a.GetAPIToken2)
-	e.GET("/getapitoken3", a.GetAPIToken3)
+	e.GET("/getapitoken2", a.GetAPIToken2) //搜书大师
+	e.GET("/getapitoken3", a.GetAPIToken3) //笔趣阁Plus
 	// 解密数据内容(保存数据到库)
 	e.GET("/crypt", a.Crypt)
 

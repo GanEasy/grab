@@ -30,7 +30,7 @@ func GetActivities(c echo.Context) error {
 
 	// 对受限制的应用进行过滤
 	cf := cpi.GetConf()
-	
+
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查或者当前版本在审核模式
 		if provider == `weixin` {
 			level = 2
@@ -43,6 +43,7 @@ func GetActivities(c echo.Context) error {
 		}
 	}
 
+	// 推荐内容，如果是隐藏邀请模式的，严格隐藏
 	if cf.Search.LimitInvitation {
 		openID := getOpenID(c)
 		if openID == `` {

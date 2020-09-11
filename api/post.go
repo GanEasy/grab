@@ -64,6 +64,7 @@ func SearchPosts(c echo.Context) error {
 					Images: nil,
 					From:   `admin`,
 				})
+				return c.JSON(http.StatusOK, catelog)
 		}
 		
 		if  name != `` && name == `000000` { // 固定输入6个0加锁
@@ -81,6 +82,7 @@ func SearchPosts(c echo.Context) error {
 					Images: nil,
 					From:   `admin`,
 				})
+				return c.JSON(http.StatusOK, catelog)
 		}
 	}
 	
@@ -89,8 +91,9 @@ func SearchPosts(c echo.Context) error {
 	// 临时
 	var req = c.Request()
 	
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {
-		version = `1.0.0` // 暂时给搜索搜书大师
+	
+	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) ) { //  && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID
+		version = `1.0.0` // 暂时给搜索搜书大师和plus
 		level = 4
 	}
 
@@ -238,10 +241,10 @@ func SearchMoreAction(c echo.Context) error {
 	cf := cpi.GetConf()
 	var req = c.Request()
 
-	// 先兼容一下，不过滤二号小程序搜索功能先
-	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) {
-		// 对受限制的应用进行过滤
-		if cf.Search.LimitInvitation {
+	// 对受限制的应用进行过滤
+	if cf.Search.LimitInvitation {
+		// 先兼容一下，不过滤二号和三号小程序搜索功能先
+		if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID ) {
 			openID := getOpenID(c)
 			if openID == `` {
 				return c.JSON(http.StatusOK, catelog)
