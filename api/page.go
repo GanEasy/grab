@@ -282,7 +282,7 @@ func GetExploreLinks(c echo.Context) error {
 	}
 	user, _ := getUser(openID)
 	// fmt.Println(user)
-	if user.LoginTotal >= 3 { //老用户，使用超过20次了
+	if user.LoginTotal >= 30 { //老用户，使用超过20次了
 		return c.JSON(http.StatusOK, GetGuideExploreLinksAndJumpVipApp())
 	}
 
