@@ -276,32 +276,27 @@ func GetNewCatelogLinks(c echo.Context) error {
 // GetExploreLinks 获取首页(广场)列表内容
 func GetExploreLinks(c echo.Context) error {
 
-	cf := cpi.GetConf()
-	var req = c.Request()
-	if cf.Search.LimitInvitation {
-
-		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师		
-			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-		}
-
-		openID := getOpenID(c)
-		if openID == `` {
-			return c.HTML(http.StatusOK, "wxto empty")
-		}
-		user, _ := getUser(openID)
-		if user.Level < 3 {
-
-		
-			return c.JSON(http.StatusOK, GetWaitExamineExplore())
-		}
-
-	}
-
 	version := c.QueryParam("version")
 	provider := c.QueryParam("provider")
 
+	cf := cpi.GetConf()
+	var req = c.Request()
 
-	
+	// 特例显示列表
+	// if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) {// 暂时给搜索搜书大师 api2
+	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	// }
+
+	// if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
+	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
+	// }
+
+
+	// if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
+	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	// }
+
+
 	if provider == `` { //兼容一下先
 		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
 			provider = `weixin`
@@ -311,22 +306,19 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
-	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
-	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	// }
-	// if provider == `qq` { //特例
-	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	// }
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
-
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
-
-	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
-		return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	}
-	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线
-		return c.JSON(http.StatusOK, GetSemiOpenExamineExplore()) // 被举报了，半开放状态
+	
+	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
+		openID := getOpenID(c)
+		if openID == `` {
+			return c.HTML(http.StatusOK, "wxto empty")
+		}
+		user, _ := getUser(openID)
+		if user.Level < 3 { // 小于3级用户，不允许显示资源列表
+			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+		}
 	}
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
@@ -682,41 +674,6 @@ func GuideJumpAppOrSearce() []Link {
 
 }
 
-// GetSemiOpenExamineExplore 半开放列表
-func GetSemiOpenExamineExplore() []Link {
-
-	var links = []Link{
-
-		Link{
-			Title: `本程序因类目内容违规，已移除小说类目相关内容！`,
-			Icon:  `cuIcon-notification`,
-			Type:  `text`,
-			Image: ``,
-			WxTo:  ``,
-			Style: ``,
-		},
-		Link{
-			Title: `新老读者请进入支线>>笔趣阁plus`,
-			Icon:  ``,
-			Type:  `jumpapp`,
-			Image: ``,
-			WxTo:  `/pages/index`,
-			Style: ``,
-			Appid: `wx7543142ce921d8e3`, // 笔趣阁plus
-		},
-
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
-	}
-	return links
-
-}
 
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {

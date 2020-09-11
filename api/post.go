@@ -65,6 +65,23 @@ func SearchPosts(c echo.Context) error {
 					From:   `admin`,
 				})
 		}
+		
+		if  name != `` && name == `000000` { // 固定输入6个0加锁
+			user.Level = 1
+			user.Save()
+
+			catelog.Cards = append(
+				catelog.Cards,
+				reader.Card{
+					Title:  `成功上锁`,
+					WxTo:   ``,
+					Intro:  `请重新加载小程序！`,
+					Type:   `card`,
+					Cover:  ``,
+					Images: nil,
+					From:   `admin`,
+				})
+		}
 	}
 	
 
