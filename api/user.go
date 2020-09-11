@@ -447,7 +447,7 @@ func GetAPIToken3(c echo.Context) error {
 		"info_banner": cf.Ad.InfoBanner,
 		// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 		// "info_tips_grid": info_tips_grid, // 详细页格子广告
-		"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+		// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 		// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 		"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
@@ -478,15 +478,15 @@ func GetAPIToken3(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    true,
-		"info_force_reward": true, // 强制广告
+		"info_force_reward": false, // 强制广告
 		"info_video_adlt":   2,    //详情页面视频轮循总数
 		"info_video_adlm":   0,    //详情页面视频轮循开始余量
 		// "info_grid_adlt":    2,    //详情页面格子广告轮循总数
 		// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
 		"info_banner_adlt": 2, //详情页面Banner轮循总数
 		"info_banner_adlm": 1, //详情页面Banner轮循开始余量
-		"info_screen_adlt": 3, //详情页面插屏广告轮循总数
-		"info_screen_adlm": 2, //详情页面插屏广告轮循开始余量
+		"info_screen_adlt": 5, //详情页面插屏广告轮循总数
+		"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
 	})
 }
 //CheckOpenID 获取签名里面的信息
