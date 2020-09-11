@@ -304,6 +304,9 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {// 暂时给搜索搜书大师		
+		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	}
 	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
 	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	// }
@@ -315,9 +318,6 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {// 暂时给搜索搜书大师		
-		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-	}
 	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
