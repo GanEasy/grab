@@ -889,11 +889,11 @@ func GetGuideExploreLinks() []Link {
 func GetGuideExploreLinksAndJumpVipApp() []Link {
 	var links = []Link{
 		Link{
-			Title: `您获得VIP稳定高速无弹窗阅读通道访问权限`,
+			Title: `VIP稳定高速阅读通道`,
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index`,
+			WxTo:  `/pages/index?formid=123`,
 			Style: `arrow`,
 			Appid: `wx90dee998347266dd`,
 		},
