@@ -379,25 +379,25 @@ func GetAPIToken2(c echo.Context) error {
 			"token":          t,
 			"uid":            -1,
 			"level":          0,
-			"ismini":         1,
+			"ismini":         0,
 			"show_tips_next": 0,
 			"can_create":     0, // 允许创建内容
 
 			// 定义首页分享标题
-			"share_title": cf.ReaderMinApp.AppTitle,
+			"share_title": cf.ReaderMinAppTwo.AppTitle,
 			// 定义首页分享图片
-			"share_cover":       cf.ReaderMinApp.AppCover,
-			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
-			"online_service":    true,
-			"info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
-			"info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
-			"info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
-			"info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
-			"info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
-			"info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
-			"info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-			"info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-			"info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+			"share_cover":       cf.ReaderMinAppTwo.AppCover,
+			"placeholder":       cf.ReaderMinAppTwo.AppSearch, // 小说名
+			"online_service":    false,
+			// "info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
+			// "info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
+			// "info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
+			// "info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
+			// "info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
+			// "info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
+			// "info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
+			// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
+			// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
 		})
 	}
 
