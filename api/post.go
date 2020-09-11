@@ -66,6 +66,16 @@ func SearchPosts(c echo.Context) error {
 				})
 		}
 	}
+	
+
+
+	// 临时
+	var req = c.Request()
+	
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) {
+		version = `1.0.0` // 暂时给搜索搜书大师
+		level = 4
+	}
 
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
