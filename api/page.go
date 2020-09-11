@@ -893,7 +893,7 @@ func GetGuideExploreLinksAndJumpVipApp() []Link {
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index?formid=123`,
+			WxTo:  `/pages/index?uid=123`,
 			Style: `arrow`,
 			Appid: `wx90dee998347266dd`,
 		},
