@@ -317,10 +317,13 @@ func GetExploreLinks(c echo.Context) error {
 		}
 		user, _ := getUser(openID)
 		if user.Level < 3 { // 小于3级用户，不允许显示资源列表
+			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {// VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问 
+				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
+			}
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
 	}
-	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
+	
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
@@ -355,32 +358,7 @@ func GetBDZCExplore() []Link {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		// Link{
-		// 	Title: `主线路`,
-		// 	Icon:  ``,
-		// 	Type:  `jumpapp`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/index`,
-		// 	Style: ``,
-		// 	Appid: `wx7543142ce921d8e3`,
-		// },
-		// Link{
-		// 	Title: `备用线路`,
-		// 	Icon:  ``,
-		// 	Type:  `jumpapp`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/index`,
-		// 	Style: ``,
-		// 	Appid: `wx7c30b98c7f42f651`,
-		// },
-		// Link{
-		// 	Title: `列表更新维护中，请使用搜索找资源`,
-		// 	Icon:  `cuIcon-notification`,
-		// 	Type:  `text`,
-		// 	Image: ``,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
+		
 		Link{
 			Title: `全部编程学习资料`,
 			Icon:  ``,
@@ -416,14 +394,6 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		// Link{
-		// 	Title: `使用介绍`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
-		// 	Style: `arrow`,
-		// },
 
 		Link{
 			Title: `免责声明`,
@@ -434,206 +404,39 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		// Link{
-		// 	Title: `交流群`,
-		// 	Icon:  `cuIcon-group`,
-		// 	Type:  `image`,
-		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
 	}
 	return links
 
 }
 
-// GetWaitExamineExploreWx2 微信小程序临时应付一下
-func GetWaitExamineExploreWx2() []Link {
+
+// GuideJumpApp 
+// 引导 跳转或者搜索资源
+func GuideJumpApp() []Link {
 
 	var links = []Link{
 
 		Link{
-			Title: `编程学习资料`,
-			Icon:  ``,
-			Type:  `link`,
+			Title: `VIP通道暂未对外开放。`,
+			Icon:  `cuIcon-notification`,
+			Type:  `text`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
-			Style: `arrow`,
+			WxTo:  ``,
+			Style: ``,
 		},
-
 		Link{
-			Title: `使用教程`,
+			Title: `请进入支线进行阅读>>笔趣阁plus`,
 			Icon:  ``,
-			Type:  `link`,
+			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/guide.html?`),
-			Style: `arrow`,
+			WxTo:  `/pages/index`,
+			Style: ``,
+			Appid: `wx331f3c3e2761f080`, // 笔趣阁plus
 		},
 
-		Link{
-			Title: `关于`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/about.html`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `帮助`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/help.html`),
-			Style: `arrow`,
-		},
-		// Link{
-		// 	Title: `从学徒到工匠精校版`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `从入门到精通系列教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
-		// 	Style: `arrow`,
-		// },
-		Link{
-			Title: `Go语言入门教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/golang-tutorials`),
-			Style: `arrow`,
-		},
-		// Link{
-		// 	Title: `德哥博客-最佳实践`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/24.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `德哥博客-经典案例`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/digoal/blog/blob/master/class/15.md`),
-		// 	Style: `arrow`,
-		// },
-
-		Link{
-			Title: `Laravel 项目开发规范`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-			Style: `arrow`,
-		},
-		// Link{
-		// 	Title: `Laravel5.5开发文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel-specification/5.5`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Laravel 5.5 中文文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/laravel/5.5`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `Dingo API 2.0.0 中文文档`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
-		// 	Style: `arrow`,
-		// },
-
-		Link{
-			Title: `所有资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
 	}
 	return links
 
-}
-
-//GetPublishExploreLinks 获取公开发布的内容
-func GetPublishExploreLinks() []Link {
-	var links = []Link{
-
-		Link{
-			Title: `小说资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `漫画资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `编程学习资料`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `使用介绍`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
-
-		// Link{
-		// 	Title: `阅读交流群`,
-		// 	Icon:  `cuIcon-group`,
-		// 	Type:  `image`,
-		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
-	}
-
-	return links
 }
 
 
@@ -678,54 +481,7 @@ func GuideJumpAppOrSearce() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-		// Link{
-		// 	Title: `小说资源`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `漫画资源`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `广告策略与用户组`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v4/ads.html`),
-		// 	Style: `arrow text-red`,
-		// },
-
-		//
-
-		// Link{
-		// 	Title: `评书、推书、同人作品征稿`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://mp.weixin.qq.com/s/RszJ-ibBDR9Np7GJkRKyjQ`),
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `请同学们以学业、工作、生活为重!`,
-		// 	Type:  `link`,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
-		// Link{
-		// 	Title: `备用线路(无广告)`,
-		// 	Type:  `image`,
-		// 	Image: `https://iblog.wechatrank.com/images/r2.jpg`,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
+		
 		// Link{
 		// 	Title: `-----------------------------`,
 		// 	Type:  `link`,

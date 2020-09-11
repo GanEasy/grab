@@ -24,7 +24,7 @@ type JwtCustomClaims struct {
 	jwt.StandardClaims
 }
 
-// GetToken 获取 jwt token 2020新版接口
+// GetToken 获取 jwt token 2020新版接口 笔趣阁Pro最最最稳定通道
 func GetToken(c echo.Context) error {
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
