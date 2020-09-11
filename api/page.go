@@ -282,8 +282,8 @@ func GetExploreLinks(c echo.Context) error {
 	}
 	user, _ := getUser(openID)
 	// fmt.Println(user)
-	if user.LoginTotal >= 10 { //老用户给直通
-		// return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	if user.LoginTotal >= 3 { //老用户，使用超过20次了
+		return c.JSON(http.StatusOK, GetGuideExploreLinksAndJumpVipApp())
 	}
 
 	cf := cpi.GetConf()
@@ -883,6 +883,24 @@ func GetGuideExploreLinks() []Link {
 	}
 
 	return links
+}
+
+//GetGuideExploreLinksAndJumpVipApp  新版，引导转化
+func GetGuideExploreLinksAndJumpVipApp() []Link {
+	var links = []Link{
+		Link{
+			Title: `您获得VIP稳定高速无弹窗阅读通道访问权限`,
+			Icon:  `notice`,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index`,
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+	}
+	var links2 = GetGuideExploreLinks()
+
+	return append(links, links2...)
 }
 
 //GetAllResources 获取所有资源
