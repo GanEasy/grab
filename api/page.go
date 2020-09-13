@@ -291,11 +291,9 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-
 	// if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
 	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	// }
-
 
 	if provider == `` { //兼容一下先
 		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
@@ -306,10 +304,6 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
-	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
-		return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	}
-	
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
 		openID := getOpenID(c)
 		if openID == `` {
@@ -317,13 +311,17 @@ func GetExploreLinks(c echo.Context) error {
 		}
 		user, _ := getUser(openID)
 		if user.Level < 3 { // 小于3级用户，不允许显示资源列表
-			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {// VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问 
+			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
 				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
 			}
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
 	}
-	
+
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
+
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
@@ -358,7 +356,7 @@ func GetBDZCExplore() []Link {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		
+
 		Link{
 			Title: `全部编程学习资料`,
 			Icon:  ``,
@@ -394,7 +392,6 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,
@@ -403,15 +400,12 @@ func GetWaitExamineExplore() []Link {
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: `arrow`,
 		},
-
 	}
 	return links
 
 }
 
-
-// GuideJumpApp 
-// 引导 跳转或者搜索资源
+// GuideJumpApp  引导跳转或者搜索资源
 func GuideJumpApp() []Link {
 
 	var links = []Link{
@@ -429,19 +423,16 @@ func GuideJumpApp() []Link {
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index`,
+			WxTo:  `/pages/index?uid=321`,
 			Style: ``,
 			Appid: `wx331f3c3e2761f080`, // 笔趣阁plus
 		},
-
 	}
 	return links
 
 }
 
-
-// GuideJumpAppOrSearce 
-// 引导 跳转或者搜索资源
+// GuideJumpAppOrSearce 引导 跳转或者搜索资源
 func GuideJumpAppOrSearce() []Link {
 
 	var links = []Link{
@@ -459,7 +450,7 @@ func GuideJumpAppOrSearce() []Link {
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index`,
+			WxTo:  `/pages/index?uid=321`,
 			Style: ``,
 			Appid: `wx331f3c3e2761f080`, // 笔趣阁plus
 		},
@@ -477,11 +468,10 @@ func GuideJumpAppOrSearce() []Link {
 
 }
 
-
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-		
+
 		// Link{
 		// 	Title: `-----------------------------`,
 		// 	Type:  `link`,
