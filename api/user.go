@@ -450,7 +450,7 @@ func GetAPIToken3(c echo.Context) error {
 			"token":      t,
 			"uid":        -1,
 			"level":      0,
-			"ismini":     0,
+			"ismini":     1,
 			"can_create": 0, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
