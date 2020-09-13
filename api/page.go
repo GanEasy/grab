@@ -304,6 +304,10 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
+
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
 		openID := getOpenID(c)
 		if openID == `` {
@@ -316,10 +320,6 @@ func GetExploreLinks(c echo.Context) error {
 			}
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
-	}
-
-	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
-		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
@@ -392,14 +392,14 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `免责声明`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+		// 	Style: `arrow`,
+		// },
 	}
 	return links
 
