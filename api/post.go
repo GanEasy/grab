@@ -84,6 +84,10 @@ func SearchPosts(c echo.Context) error {
 				})
 				return c.JSON(http.StatusOK, catelog)
 		}
+
+		if user.Level<=2 && user.LoginTotal >= 10 {
+			user.Level = 3
+		}
 	}
 	
 
