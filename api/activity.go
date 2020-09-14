@@ -54,11 +54,11 @@ func GetActivities(c echo.Context) error {
 			if level < 2 {
 				level = 2
 			}
+			if user.Level<=2 && user.LoginTotal >= 10 {
+				user.Level = 3
+			}
 		}
 		
-		if user.Level<=2 && user.LoginTotal >= 10 {
-			user.Level = 3
-		}
 	}
 
 	var rows = cpi.GetActivities()
