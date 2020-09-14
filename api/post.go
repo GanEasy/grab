@@ -95,7 +95,7 @@ func SearchPosts(c echo.Context) error {
 
 	// 临时 给搜书大师和笔趣阁在线搜索小说功能
 	var req = c.Request()
-	if strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID) || strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID ) ) { //  
+	if strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) || strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID )  { //  
 		level = 4
 	}
 
