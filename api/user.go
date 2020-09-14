@@ -409,7 +409,7 @@ func GetAPIToken3(c echo.Context) error {
 	code := c.QueryParam("code")
 	provider := c.QueryParam("provider")
 	cf := cpi.GetConf()
-	ret, err := cpi.GetOpenIDForApp(code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
+	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
 	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)
