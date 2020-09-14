@@ -410,7 +410,7 @@ func GetAPIToken3(c echo.Context) error {
 	provider := c.QueryParam("provider")
 	cf := cpi.GetConf()
 	ret, err := cpi.GetOpenIDForApp(code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
-	fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
+	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)
 		if fans.Provider == `` {
@@ -444,14 +444,17 @@ func GetAPIToken3(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-
+		var can_create = 0
+		if fan.Level>2{
+			can_create = 1
+		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  ``, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
-			"uid":        -1,
-			"level":      0,
-			"ismini":     1,
-			"can_create": 0, // 允许创建内容
+			"uid":        fan.ID,
+			"level":       fan.Level,
+			"ismini":     0,
+			"can_create": can_create, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
 			// "cata_screen": cf.Ad.CataScreen,
@@ -467,7 +470,7 @@ func GetAPIToken3(c echo.Context) error {
 			"info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
@@ -498,7 +501,7 @@ func GetAPIToken3(c echo.Context) error {
 			"share_cover":       cf.ReaderMinAppThree.AppCover,
 			"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": false, // 强制广告
+			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   2,     //详情页面视频轮循总数
 			"info_video_adlm":   0,     //详情页面视频轮循开始余量
 			// "info_grid_adlt":    2,    //详情页面格子广告轮循总数
