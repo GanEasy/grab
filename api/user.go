@@ -445,14 +445,14 @@ func GetAPIToken3(c echo.Context) error {
 			return err
 		}
 		var can_create = 0
-		if fan.Level>2{
+		if fans.Level>2{
 			can_create = 1
 		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  ``, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
-			"uid":        fan.ID,
-			"level":       fan.Level,
+			"uid":        fans.ID,
+			"level":       fans.Level,
 			"ismini":     0,
 			"can_create": can_create, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
