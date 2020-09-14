@@ -69,6 +69,7 @@ func SearchPosts(c echo.Context) error {
 		
 		if  name != `` && name == `000000` { // 固定输入6个0加锁
 			user.Level = 1
+			user.LoginTotal = 1
 			user.Save()
 
 			catelog.Cards = append(
