@@ -444,17 +444,23 @@ func GetAPIToken3(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-		var can_create = 0
+		var canCreate = 0
 		if fans.Level > 2 {
-			can_create = 1
+			canCreate = 1
 		}
+
+		var jumpappid = cf.ReaderMinAppTwo.AppID
+		if fans.LoginTotal > 3 {
+			jumpappid = cf.ReaderMinAppTwo.AppID
+		}
+
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":  ``, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
+			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
 			"ismini":     0,
-			"can_create": can_create, // 允许创建内容
+			"can_create": canCreate, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
 			// "cata_screen": cf.Ad.CataScreen,
