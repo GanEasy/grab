@@ -413,7 +413,126 @@ func GetAPIToken3(c echo.Context) error {
 	code := c.QueryParam("code")
 	provider := c.QueryParam("provider")
 	cf := cpi.GetConf()
-	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
+	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppFour.AppSecret)
+	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
+	if code != "" && ret.OpenID != "" {
+		fans, err := cpi.GetFansByOpenID(ret.OpenID)
+		if fans.Provider == `` {
+			fans.Provider = provider
+		}
+
+		// 增加用户被邀请次数
+		if fromid > 0 && uint(fromid) != fans.ID {
+			fans.InvitationTotal++
+			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
+				fans.Level = 5
+			}
+		}
+		fans.LoginTotal++ // 增加一次访问登录次数
+		fans.Save()
+		claims := &JwtCustomClaims{
+			fans.ID,
+			ret.OpenID,
+			code,
+			ret.SessionKey,
+			jwt.StandardClaims{
+				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+			},
+		}
+
+		// Create token with claims
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+		// Generate encoded token and send it as response.
+		t, err := token.SignedString([]byte("secret"))
+		if err != nil {
+			return err
+		}
+		var canCreate = 0
+		if fans.Level > 2 {
+			// canCreate = 1
+		}
+
+		var jumpappid = ``
+		// if fans.LoginTotal > 3 {
+		// 	jumpappid = cf.ReaderMinAppTwo.AppID
+		// }
+
+		return c.JSON(http.StatusOK, echo.Map{
+			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
+			"token":      t,
+			"uid":        fans.ID,
+			"level":      fans.Level,
+			"ismini":     1,
+			"can_create": canCreate, // 允许创建内容
+			// "list_screen": cf.Ad.ListScreen,
+			"info_screen": cf.Ad.InfoScreen,
+			// "cata_screen": cf.Ad.CataScreen,
+			// "screen":      cf.Ad.Screen,
+			// "reward":      cf.Ad.Reward,
+			// "pre_video":   cf.Ad.PreVideo,
+
+			// "top_home_banner": cf.Ad.TopHomeBanner,
+			// "top_list_banner": cf.Ad.HomeBanner,
+			// "home_banner":     cf.Ad.HomeBanner,
+			// "list_banner": cf.Ad.ListBanner,
+			// "cata_banner": cf.Ad.CataBanner,
+			"info_banner": cf.Ad.InfoBanner,
+			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+			// "info_tips_grid": info_tips_grid, // 详细页格子广告
+			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			"autoload_tips": `开启到底部自动加载更多功能`,
+			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+
+			"top_home_video": cf.Ad.TopHomeVideo,
+			// "top_list_video": cf.Ad.HomeVideo,
+			// "home_video":     cf.Ad.HomeVideo,
+			"list_video": cf.Ad.ListVideo,
+			"cata_video": cf.Ad.CataVideo,
+			"info_video": cf.Ad.InfoVideo,
+
+			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
+			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
+			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
+			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
+			// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// "home_pre_video": cf.Ad.PreVideo,
+			// "list_pre_video": cf.Ad.PreVideo,
+			// "info_pre_video": cf.Ad.PreVideo,
+
+			// "home_reward": cf.Ad.Reward,
+			// "list_reward": cf.Ad.Reward,
+			"info_reward": cf.Ad.Reward,
+
+			// 定义首页分享标题
+			"share_title": cf.ReaderMinAppFour.AppTitle,
+			// 定义首页分享图片
+			"share_cover":       cf.ReaderMinAppFour.AppCover,
+			"placeholder":       cf.ReaderMinAppFour.AppSearch, // 小说名
+			"online_service":    true,
+			"info_force_reward": false, // 强制广告
+			"info_video_adlt":   2,     //详情页面视频轮循总数
+			"info_video_adlm":   0,     //详情页面视频轮循开始余量
+			// "info_grid_adlt":    2,    //详情页面格子广告轮循总数
+			// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
+			"info_banner_adlt": 2, //详情页面Banner轮循总数
+			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
+			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
+			"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
+		})
+	}
+	return echo.ErrUnauthorized
+}
+
+//GetAPIToken4 获取 jwt token 笔趣阁plus
+func GetAPIToken4(c echo.Context) error {
+	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
+	code := c.QueryParam("code")
+	provider := c.QueryParam("provider")
+	cf := cpi.GetConf()
+	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppThree.AppSecret)
 	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)

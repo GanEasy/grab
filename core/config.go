@@ -4,12 +4,13 @@ import "github.com/BurntSushi/toml"
 
 // Config 配置
 type Config struct {
-	ReaderMinApp ReaderMinApp
-	ReaderMinAppTwo ReaderMinAppTwo
+	ReaderMinApp      ReaderMinApp
+	ReaderMinAppTwo   ReaderMinAppTwo
 	ReaderMinAppThree ReaderMinAppThree
-	Database     Database
-	Search       Search
-	Ad           Ad
+	ReaderMinAppFour  ReaderMinAppFour
+	Database          Database
+	Search            Search
+	Ad                Ad
 }
 
 //ReaderMinApp 配置
@@ -41,6 +42,7 @@ type ReaderMinAppThree struct {
 	AppSearch string `toml:"app_search"`
 	JumpAppID string `toml:"jump_app_id"`
 }
+
 //ReaderMinAppFour 配置
 type ReaderMinAppFour struct {
 	AppID     string `toml:"app_id"`
