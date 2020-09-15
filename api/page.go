@@ -314,7 +314,7 @@ func GetExploreLinks(c echo.Context) error {
 			return c.HTML(http.StatusOK, "wxto empty")
 		}
 		user, _ := getUser(openID)
-		if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
+		if user.Level < 3 && user.LoginTotal < 5 { // 小于3级用户，不允许显示资源列表
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
 				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
 			}
@@ -709,7 +709,7 @@ func GetJumpTipsAndGuideExploreLinks() []Link {
 
 	var links = []Link{
 		Link{
-			Title: `进入VIP稳定版>>笔趣阁Pro`,
+			Title: `进入VIP稳定版>>笔趣阁Pro>>搜索112233解锁`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
@@ -718,7 +718,7 @@ func GetJumpTipsAndGuideExploreLinks() []Link {
 			Appid: `wx90dee998347266dd`, // 笔趣阁Pro
 		},
 		Link{
-			Title: `-----------------------------`,
+			Title: `----------------------------`,
 			Type:  `link`,
 			WxTo:  ``,
 			Style: ``,
