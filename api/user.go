@@ -285,7 +285,7 @@ func GetAPIToken(c echo.Context) error {
 			"info_banner": cf.Ad.InfoBanner,
 			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
