@@ -373,8 +373,12 @@ func GetAPIToken2(c echo.Context) error {
 			return err
 		}
 
+		var jumpappid = ``
+		if fans.LoginTotal > 3 {
+			jumpappid = cf.ReaderMinApp.AppID
+		}
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":      cf.ReaderMinAppTwo.JumpAppID, // 强制跳转其它小程序
+			"jumpappid":      jumpappid, // 强制跳转其它小程序
 			"token":          t,
 			"uid":            fans.ID,
 			"level":          0,
