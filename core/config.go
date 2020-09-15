@@ -5,8 +5,6 @@ import "github.com/BurntSushi/toml"
 // Config 配置
 type Config struct {
 	ReaderMinApp ReaderMinApp
-	ReaderMinAppTwo ReaderMinAppTwo
-	ReaderMinAppThree ReaderMinAppThree
 	Database     Database
 	Search       Search
 	Ad           Ad
@@ -19,27 +17,6 @@ type ReaderMinApp struct {
 	AppTitle  string `toml:"app_title"`
 	AppCover  string `toml:"app_cover"`
 	AppSearch string `toml:"app_search"`
-	JumpAppID string `toml:"jump_app_id"`
-}
-
-//ReaderMinAppTwo 配置
-type ReaderMinAppTwo struct {
-	AppID     string `toml:"app_id"`
-	AppSecret string `toml:"app_secret"`
-	AppTitle  string `toml:"app_title"`
-	AppCover  string `toml:"app_cover"`
-	AppSearch string `toml:"app_search"`
-	JumpAppID string `toml:"jump_app_id"`
-}
-
-//ReaderMinAppThree 配置
-type ReaderMinAppThree struct {
-	AppID     string `toml:"app_id"`
-	AppSecret string `toml:"app_secret"`
-	AppTitle  string `toml:"app_title"`
-	AppCover  string `toml:"app_cover"`
-	AppSearch string `toml:"app_search"`
-	JumpAppID string `toml:"jump_app_id"`
 }
 
 //Search 配置
@@ -47,9 +24,6 @@ type Search struct {
 	LimitLevel       bool   `toml:"limit_level"`
 	LimiterStageShow bool   `toml:"limiter_stage_show"`
 	DevVersion       string `toml:"dev_version"`
-	LimitInvitation  bool   `toml:"limit_invitation"` // 必须受邀请用户才能搜索和查看目录
-	InvitationCode   string `toml:"invitation_code"`  // 邀请密令，输入密令解锁邀请
-	InvitationNo     int    `toml:"invitation_no"`    // 邀请编号，从分享页面进来，必须为指定编号
 }
 
 //Ad 配置

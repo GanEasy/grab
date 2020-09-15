@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"strings"
 
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/db"
@@ -26,47 +25,31 @@ func SyncPosts(list reader.Catalog, cate int32) {
 func SearchPosts(c echo.Context) error {
 	var catelog reader.Catalog
 	name := c.QueryParam("name")
-	// provider := c.QueryParam("provider")
+	provider := c.QueryParam("provider")
 	version := c.QueryParam("version")
+	// openID := getOpenID(c)
+	// if openID == `` {
+	// 	return c.HTML(http.StatusOK, "openid empty")
+	// }
 
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
-
-	cerr := cpi.MSGSecCHECK(name)
-	if cerr != nil { //&& cerr.Message == `87014`
-		catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
-		return c.JSON(http.StatusOK, catelog)
-	}
-
-	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
-
-	// 对受限制的应用进行过滤
-	cf := cpi.GetConf()
-	if cf.Search.LimitInvitation {
-		openID := getOpenID(c)
-		if openID == `` {
+	if provider == `weixin` {
+		level = 4
+		cerr := cpi.MSGSecCHECK(name)
+		if cerr != nil { //&& cerr.Message == `87014`
+			catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
 			return c.JSON(http.StatusOK, catelog)
 		}
-		user, _ := getUser(openID)
-		level = int(user.Level)
 
-		if cf.Search.InvitationCode != `` && name != `` && name == cf.Search.InvitationCode { // 输入邀请密令，解锁
-			user.Level = 5
-			user.Save()
-
-			catelog.Cards = append(
-				catelog.Cards,
-				reader.Card{
-					Title:  `成功解锁`,
-					WxTo:   ``,
-					Intro:  `请重新加载小程序！`,
-					Type:   `card`,
-					Cover:  ``,
-					Images: nil,
-					From:   `admin`,
-				})
-		}
+	} else if provider == `qq` {
+		level = 2
+	} else if provider == `web` {
+		level = 4
 	}
-
+	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
+	// fmt.Println(`Title`, catelog.Title)
+	// user, _ := getUser(openID)
+	cf := cpi.GetConf()
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
 		posts = cpi.GetPostsByNameLimitLevel(name, 2)
@@ -113,17 +96,7 @@ func SearchPosts(c echo.Context) error {
 		//
 
 	}
-	// if version != cf.Search.DevVersion && level <3 {
-	// 	catelog.Cards = append(
-	// 		catelog.Cards,
-	// 		reader.Card{
-	// 			Title:  `╅╅╅>>本程序暂不支持搜索，立即前往分支搜索<<╅╆╆`,
-	// 			WxTo:   `/pages/search`,
-	// 			Type:   `jumpapp`,
-	// 			Appid: `wx7543142ce921d8e3`,
-	// 		})
-	// }
-	if version != cf.Search.DevVersion && level > 2 {
+	if version != cf.Search.DevVersion {
 
 		catelog.Cards = append(
 			catelog.Cards,
@@ -161,7 +134,8 @@ func SearchPosts(c echo.Context) error {
 				From:   ``,
 			})
 
-		
+		// 	Card{`全部`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", `link`, ``, nil, ``},
+
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
@@ -196,37 +170,16 @@ func SearchPosts(c echo.Context) error {
 				From:   ``,
 			})
 	}
+
 	return c.JSON(http.StatusOK, catelog)
 }
 
 // SearchMoreAction 更多搜索方法
 func SearchMoreAction(c echo.Context) error {
-
 	var catelog reader.Catalog
 	name := c.QueryParam("drive") // 注： 小程序页面 pages/transfer 无法将name参数传上来
 
 	catelog.Title = fmt.Sprintf(`更多“%v”搜索结果`, name)
-
-	
-	cf := cpi.GetConf()
-	var req = c.Request()
-
-	// 先兼容一下，不过滤二号小程序搜索功能先
-	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) {
-		// 对受限制的应用进行过滤
-		if cf.Search.LimitInvitation {
-			openID := getOpenID(c)
-			if openID == `` {
-				return c.JSON(http.StatusOK, catelog)
-			}
-			user, _ := getUser(openID)
-			if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
-				return c.JSON(http.StatusOK, catelog)
-			}
-		}
-	}
-	
-
 	// catelog.Title = `更多相关搜索结果`
 
 	catelog.Cards = append(
