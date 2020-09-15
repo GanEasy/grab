@@ -320,6 +320,8 @@ func GetExploreLinks(c echo.Context) error {
 			}
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
+
+		return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
 	}
 
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
@@ -411,7 +413,7 @@ func GuideJumpApp() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `服务暂不可用。`,
+			Title: `服务暂未开放。`,
 			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
@@ -419,7 +421,7 @@ func GuideJumpApp() []Link {
 			Style: ``,
 		},
 		Link{
-			Title: `读者请进支线>>笔趣阁plus`,
+			Title: `请进支线阅读>>笔趣阁plus`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
@@ -698,6 +700,31 @@ func GetGuideExploreLinks() []Link {
 		},
 	}
 
+	return links
+}
+
+//GetJumpTipsAndGuideExploreLinks 引导跳转
+func GetJumpTipsAndGuideExploreLinks() []Link {
+	var links2 = GetGuideExploreLinks()
+
+	var links = []Link{
+		Link{
+			Title: `进入VIP稳定版>>笔趣阁Pro`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index?uid=112233`,
+			Style: ``,
+			Appid: `wx90dee998347266dd`, // 笔趣阁Pro
+		},
+		Link{
+			Title: `-----------------------------`,
+			Type:  `link`,
+			WxTo:  ``,
+			Style: ``,
+		},
+	}
+	links = append(links, links2...)
 	return links
 }
 
