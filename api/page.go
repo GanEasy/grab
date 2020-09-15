@@ -320,8 +320,9 @@ func GetExploreLinks(c echo.Context) error {
 			}
 			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
-
-		return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+		if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
+			return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+		}
 	}
 
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
