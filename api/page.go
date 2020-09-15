@@ -413,7 +413,7 @@ func GuideJumpApp() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `服务暂未开放。`,
+			Title: `请输入密令搜索解锁。`,
 			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
