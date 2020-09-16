@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+	"strings"
 
 	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
@@ -27,6 +28,7 @@ type JwtCustomClaims struct {
 // GetToken 获取 jwt token 2020新版接口 笔趣阁Pro最最最稳定通道
 func GetToken(c echo.Context) error {
 
+	cf := cpi.GetConf()
 	var req = c.Request()
 	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token
 		return  GetOpenToken(c)
@@ -37,7 +39,6 @@ func GetToken(c echo.Context) error {
 	provider := c.QueryParam("provider")
 	ret, _ := cpi.GetOpenID(code)
 
-	cf := cpi.GetConf()
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)
 		if fans.Provider == `` {
