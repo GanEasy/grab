@@ -30,6 +30,7 @@ func GetToken(c echo.Context) error {
 	code := c.QueryParam("code")
 	version := c.QueryParam("version")
 
+	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	ret, _ := cpi.GetOpenID(code)
 	if code != "" && ret.OpenID != "" {
 		fans, err := cpi.GetFansByOpenID(ret.OpenID)
