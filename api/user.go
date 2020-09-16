@@ -169,6 +169,7 @@ func GetOpenToken(c echo.Context) error {
 		"uid":        -1,
 		"level":      0,
 		"can_create": 1, // 允许创建内容
+		"ismini": 1,
 		
 
 		// 定义首页分享标题
