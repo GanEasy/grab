@@ -350,66 +350,57 @@ func GetBDZCExplore() []Link {
 func GetWaitExamineExplore() []Link {
 
 	var links = []Link{
-		// Link{
-		// 	Title: `主线路`,
-		// 	Icon:  ``,
-		// 	Type:  `jumpapp`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/index`,
-		// 	Style: ``,
-		// 	Appid: `wx7543142ce921d8e3`,
-		// },
-		// Link{
-		// 	Title: `备用线路`,
-		// 	Icon:  ``,
-		// 	Type:  `jumpapp`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/index`,
-		// 	Style: ``,
-		// 	Appid: `wx7c30b98c7f42f651`,
-		// },
-		// Link{
-		// 	Title: `列表更新维护中，请使用搜索找资源`,
-		// 	Icon:  `cuIcon-notification`,
-		// 	Type:  `text`,
-		// 	Image: ``,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
+
 		Link{
-			Title: `编程学习资料`,
+			Title: `全部编程学习资料`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
 			Style: `arrow`,
 		},
-
-		// Link{
-		// 	Title: `使用介绍`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/about.html`),
-		// 	Style: `arrow`,
-		// },
-
 		Link{
-			Title: `免责声明`,
+			Title: `微信小程序开发入门系列教程`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `从学徒到工匠精校版`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `从入门到精通系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `学习心得`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/index.md`),
+			Style: `arrow`,
+		},
 		// Link{
-		// 	Title: `交流群`,
-		// 	Icon:  `cuIcon-group`,
-		// 	Type:  `image`,
-		// 	Image: `https://aireadhelper.github.io/static/images/group.png`,
-		// 	WxTo:  ``,
-		// 	Style: ``,
+		// 	Title: `免责声明`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+		// 	Style: `arrow`,
 		// },
 	}
 	return links
