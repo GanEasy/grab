@@ -69,7 +69,7 @@ func GetToken(c echo.Context) error {
 		}
 	
 		var jumpappid = ``
-		if fans.LoginTotal < 5 { // 如果访问次数少于5次，强制跳转到其它小程序阅读(测试下)
+		if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于5次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 		
@@ -87,22 +87,10 @@ func GetToken(c echo.Context) error {
 			"jumpappid":      jumpappid, // 强制跳转其它小程序
 			"token": t,
 			"uid":   fans.ID,
-
 			"level":      0,
 			"can_create": canCreate, // 允许创建内容
 			"ismini": ismini, // 允许创建内容
-			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
-			// "cata_screen": cf.Ad.CataScreen,
-			// "screen":      cf.Ad.Screen,
-			// "reward":      cf.Ad.Reward,
-			// "pre_video":   cf.Ad.PreVideo,
-
-			// "top_home_banner": cf.Ad.TopHomeBanner,
-			// "top_list_banner": cf.Ad.HomeBanner,
-			// "home_banner":     cf.Ad.HomeBanner,
-			// "list_banner": cf.Ad.ListBanner,
-			// "cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
 			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 			"info_tips_grid": info_tips_grid, // 详细页格子广告
@@ -116,21 +104,8 @@ func GetToken(c echo.Context) error {
 			"list_video": cf.Ad.ListVideo,
 			"cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
-
-			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
 			"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			// "home_pre_video": cf.Ad.PreVideo,
-			// "list_pre_video": cf.Ad.PreVideo,
-			// "info_pre_video": cf.Ad.PreVideo,
-
-			// "home_reward": cf.Ad.Reward,
-			// "list_reward": cf.Ad.Reward,
 			"info_reward": cf.Ad.Reward,
-
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
 			// 定义首页分享图片
