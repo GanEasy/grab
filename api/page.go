@@ -304,6 +304,10 @@ func GetExploreLinks(c echo.Context) error {
 		}
 	}
 
+	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
+		return  GuideJumpApp()
+	}
+
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
@@ -414,7 +418,7 @@ func GuideJumpApp() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `请输入密令搜索解锁。`,
+			Title: `资源目录暂未开放。`,
 			Icon:  `cuIcon-notification`,
 			Type:  `text`,
 			Image: ``,
