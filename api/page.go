@@ -880,7 +880,7 @@ func GetGuideExploreLinks() []Link {
 func GetGuideExploreLinksAndJumpVipApp() []Link {
 	var links = []Link{
 		Link{
-			Title: `》》》进入VIP通道笔趣阁Pro，搜索“112233”`,
+			Title: `老铁进VIP通道搜“112233”`,
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
