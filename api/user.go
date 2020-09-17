@@ -67,13 +67,13 @@ func GetToken(c echo.Context) error {
 			canCreate = 0
 			ismini = 1
 		}
-		var jumpAppID = ``
-		if(fans.LoginTotal<5){
-			jumpAppID = ``
+	
+		var jumpappid = ``
+		if fans.LoginTotal < 5 {
+			jumpappid = ``
 		}
-
-
 		return c.JSON(http.StatusOK, echo.Map{
+			"jumpappid":      jumpappid, // 强制跳转其它小程序
 			"token": t,
 			"uid":   fans.ID,
 
