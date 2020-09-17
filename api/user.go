@@ -30,6 +30,9 @@ func GetToken(c echo.Context) error {
 
 	cf := cpi.GetConf()
 	var req = c.Request()
+	if !strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
+		return  GetAPIToken6(c)
+	}
 	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token
 		return  GetOpenToken(c)
 	}
@@ -78,7 +81,7 @@ func GetToken(c echo.Context) error {
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
-			"can_create": fans.Level, // 允许创建内容
+			"can_create": 1, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			// "info_screen": cf.Ad.InfoScreen,
 			// // "cata_screen": cf.Ad.CataScreen,
@@ -229,6 +232,7 @@ func GetAPIToken(c echo.Context) error {
 			"token":       t,
 			"uid":         fans.ID,
 			"level":       fans.Level,
+			"ismini":0,
 			"can_create":  fans.Level, // 允许创建内容
 			"list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
@@ -247,7 +251,7 @@ func GetAPIToken(c echo.Context) error {
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
 			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+			"autoload_tips": `观看6~15秒视频广告开启无弹窗自动加载功能`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
@@ -603,6 +607,72 @@ func GetAPIToken4(c echo.Context) error {
 		})
 	}
 	return echo.ErrUnauthorized
+}
+
+
+
+//GetAPIToken6 获取 jwt token 免版权图，暂时做个中转试试
+func GetAPIToken6(c echo.Context) error {
+
+	claims := &JwtCustomClaims{
+		1,
+		`visitor.OpenID`,
+		``,
+		``,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+		},
+	}
+
+	// Create token with claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	// Generate encoded token and send it as response.
+	t, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+	cf := cpi.GetConf()
+
+
+
+	return c.JSON(http.StatusOK, echo.Map{
+		
+		"jumpappid":  ``, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
+		"token":      t,
+		"uid":        -1,
+		"level":      0,
+		"ismini":     0,
+		"can_create": 1, // 允许创建内容
+		"info_screen": cf.Ad.InfoScreen,
+		"info_banner": `adunit-a237f95dd4ce9ae7`,
+		// "info_tips_banner": `adunit-a237f95dd4ce9ae7`,, // 点击广告开启自动加载更多功能
+		"info_tips_grid": `adunit-3c272cbddafa4789`, // 详细页格子广告
+		"autoload_tips": `开启到底部自动加载更多功能`,
+		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+		"top_home_video": `adunit-8d6906f779544df6`,
+		"list_video": `adunit-8d6906f779544df6`,
+		"cata_video": `adunit-8d6906f779544df6`,
+		"info_video": `adunit-8d6906f779544df6`,
+		"info_reward": `adunit-37d73c4714563ea5`,
+		// 定义首页分享标题
+		"share_title": cf.ReaderMinAppThree.AppTitle,
+		// 定义首页分享图片
+		"share_cover":       cf.ReaderMinAppThree.AppCover,
+		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
+		"online_service":    false,
+		"info_force_reward": true, // 强制广告
+		"info_video_adlt":   3,    //详情页面视频轮循总数
+		"info_video_adlm":   0,    //详情页面视频轮循开始余量
+		"info_grid_adlt":    3,    //详情页面格子广告轮循总数
+		"info_grid_adlm":    2,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt": 3, //详情页面Banner轮循总数
+		"info_banner_adlm": 1, //详情页面Banner轮循开始余量
+		"info_screen_adlt": 5, //详情页面插屏广告轮循总数
+		"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
+
+	})
+
 }
 
 //CheckOpenID 获取签名里面的信息
