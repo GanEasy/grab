@@ -50,7 +50,7 @@ func GetActivities(c echo.Context) error {
 			level = 2
 		} else {
 			user, _ := getUser(openID)
-			level = user.Level
+			// level = user.Level
 			if level < 2 {
 				level = 2
 			}
