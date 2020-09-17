@@ -30,7 +30,7 @@ func GetToken(c echo.Context) error {
 
 	cf := cpi.GetConf()
 	var req = c.Request()
-	if !strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
+	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
 		return  GetAPIToken6(c)
 	}
 	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token
