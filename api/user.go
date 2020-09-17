@@ -422,6 +422,16 @@ func GetAPIToken3(c echo.Context) error {
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 
+		var info_tips_banner,info_tips_grid string
+		if fans.LoginTotal > 3 { // 大于3（老用户了，随机给广告点击）
+			rand.Seed(time.Now().UnixNano())
+			inum := rand.Intn(3) // 先搞低些广告出现机率
+			if inum==1 {
+				info_tips_banner =  cf.Ad.InfoBanner
+			}else if inum==2{
+				info_tips_grid =  cf.Ad.InfoGrid
+			}
+		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
@@ -442,11 +452,11 @@ func GetAPIToken3(c echo.Context) error {
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
-			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": info_tips_grid, // 详细页格子广告
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
+			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+			"info_tips_grid": info_tips_grid, // 详细页格子广告
+			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `开启到底部自动加载更多功能`,
+			"autoload_tips": `观看视频开启自动加载无弹窗模式`,
 			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
