@@ -141,9 +141,9 @@ func GetToken(c echo.Context) error {
 			"info_video_adlt":   2,    //详情页面视频轮循总数
 			"info_video_adlm":   0,    //详情页面视频轮循开始余量
 			"info_grid_adlt":    4,    //详情页面格子广告轮循总数
-			"info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
+			"info_grid_adlm":    3,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt": 4, //详情页面Banner轮循总数
-			"info_banner_adlm": 3, //详情页面Banner轮循开始余量
+			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
 			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
 			"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
 		})
