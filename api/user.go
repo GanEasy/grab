@@ -418,7 +418,7 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``
-		if fans.LoginTotal < 4 { // 如果访问次数少于4次，跳转到其它小程序阅读(测试下)
+		if fans.LoginTotal < 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 

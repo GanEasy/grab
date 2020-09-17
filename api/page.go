@@ -291,18 +291,6 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-	// if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
-	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	// }
-
-	if provider == `` { //兼容一下先
-		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
-			provider = `weixin`
-		}
-		if strings.Contains(req.Referer(), `1109864069`) {
-			provider = `qq`
-		}
-	}
 
 	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
 		return   c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
@@ -318,46 +306,21 @@ func GetExploreLinks(c echo.Context) error {
 			return c.HTML(http.StatusOK, "wxto empty")
 		}
 		user, _ := getUser(openID)
-		if user.Level < 3 && user.LoginTotal < 5 { // 小于3级用户，不允许显示资源列表
+
+		if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
 				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
 			}
-			return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+			// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
 		if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
-			return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+			// return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
 		}
 	}
 
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-// GetBDZCExplore 霸道总裁专题小说 推荐页
-func GetBDZCExplore() []Link {
-
-	var links = []Link{
-		Link{
-			Title: `发现更多免费小说资源`,
-			Icon:  ``,
-			Type:  `jumpapp`,
-			Image: ``,
-			WxTo:  `/pages/index`,
-			Style: ``,
-			Appid: `wx7543142ce921d8e3`,
-		},
-
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
-	}
-	return links
-
-}
 
 // GetWaitExamineExplore 用于审核的内容列表
 func GetWaitExamineExplore() []Link {

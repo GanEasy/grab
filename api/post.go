@@ -47,7 +47,7 @@ func SearchPosts(c echo.Context) error {
 			return c.JSON(http.StatusOK, catelog)
 		}
 		user, _ := getUser(openID)
-		level = int(user.Level)
+		// level = int(user.Level) 这里不限制用户等级了，前面加了强制跳转就行了
 
 		if cf.Search.InvitationCode != `` && name != `` && name == cf.Search.InvitationCode { // 输入邀请密令，解锁
 			user.Level = 5
