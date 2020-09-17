@@ -67,6 +67,11 @@ func GetToken(c echo.Context) error {
 			canCreate = 0
 			ismini = 1
 		}
+		var jumpAppID = ``
+		if(fans.LoginTotal<5){
+			jumpAppID = ``
+		}
+
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"token": t,
