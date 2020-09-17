@@ -292,13 +292,12 @@ func GetExploreLinks(c echo.Context) error {
 	// }
 
 
-	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
-		return   c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
-	}
-
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
+
+
+	
 
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
 		openID := getOpenID(c)
@@ -307,6 +306,17 @@ func GetExploreLinks(c echo.Context) error {
 		}
 		user, _ := getUser(openID)
 
+		if( user.LoginTotal < 5 ){
+
+			if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 免版权图
+				return   c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
+			}
+
+			if strings.Contains( req.Referer(), cf.ReaderMinAppFour.AppID ) { // 笔趣阁在线引导跳转 
+				return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+			}
+
+		}
 		if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
 				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
