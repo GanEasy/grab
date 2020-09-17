@@ -72,6 +72,16 @@ func GetToken(c echo.Context) error {
 		if fans.LoginTotal < 5 { // 如果访问次数少于5次，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
+		
+		rand.Seed(time.Now().UnixNano())
+		inum := rand.Intn(3) // 先搞低些广告出现机率
+
+		var info_tips_banner,info_tips_grid string
+		if inum==1 {
+			info_tips_banner =  cf.Ad.InfoBanner
+		}else if inum==2{
+			info_tips_grid =  cf.Ad.InfoGrid
+		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":      jumpappid, // 强制跳转其它小程序
 			"token": t,
@@ -93,8 +103,8 @@ func GetToken(c echo.Context) error {
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
 			"info_banner": cf.Ad.InfoBanner,
-			// "info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": info_tips_grid, // 详细页格子广告
+			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
+			"info_tips_grid": info_tips_grid, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看激励视频开启自动加载无弹窗模式`,
