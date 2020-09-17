@@ -27,10 +27,10 @@ func SearchPosts(c echo.Context) error {
 	name := c.QueryParam("name")
 	provider := c.QueryParam("provider")
 	version := c.QueryParam("version")
-	// openID := getOpenID(c)
-	// if openID == `` {
-	// 	return c.HTML(http.StatusOK, "openid empty")
-	// }
+	openID := getOpenID(c)
+	if openID == `` {
+		return c.HTML(http.StatusOK, "openid empty")
+	}
 
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 	if provider == `weixin` {
@@ -48,8 +48,48 @@ func SearchPosts(c echo.Context) error {
 	}
 	catelog.Title = fmt.Sprintf(`%v - 搜索结果`, name)
 	// fmt.Println(`Title`, catelog.Title)
-	// user, _ := getUser(openID)
+	user, _ := getUser(openID)
 	cf := cpi.GetConf()
+
+	if  name != `` && name == `332211` { // 输入邀请密令，解锁
+		user.Level = 5
+		user.Save()
+
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `所有资源已解锁！`,
+				WxTo:   ``,
+				Intro:  `请重新加载小程序！`,
+				Type:   `card`,
+				Cover:  ``,
+				Images: nil,
+				From:   `admin`,
+			})
+			return c.JSON(http.StatusOK, catelog)
+	}
+	
+	if  name != `` && name == `000000` { // 固定输入6个0加锁
+		user.Level = 1
+		user.LoginTotal = 1
+		user.Save()
+
+		catelog.Cards = append(
+			catelog.Cards,
+			reader.Card{
+				Title:  `资源已上锁`,
+				WxTo:   ``,
+				Intro:  `请重新加载小程序！`,
+				Type:   `card`,
+				Cover:  ``,
+				Images: nil,
+				From:   `admin`,
+			})
+			return c.JSON(http.StatusOK, catelog)
+	}
+
+
+
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
 		posts = cpi.GetPostsByNameLimitLevel(name, 2)
