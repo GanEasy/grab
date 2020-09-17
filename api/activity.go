@@ -50,7 +50,9 @@ func GetActivities(c echo.Context) error {
 			level = 2
 		} else {
 			user, _ := getUser(openID)
-			// level = user.Level
+			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
+				level = user.Level
+			}
 			if level < 2 {
 				level = 2
 			}

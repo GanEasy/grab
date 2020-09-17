@@ -33,7 +33,7 @@ func GetToken(c echo.Context) error {
 	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
 		return  GetAPIToken6(c)
 	}
-	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token
+	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token 非笔趣阁Pro
 		return  GetOpenToken(c)
 	}
 
