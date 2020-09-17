@@ -666,6 +666,7 @@ func GetAPIToken6(c echo.Context) error {
 		"can_create": 1, // 允许创建内容
 		"info_screen": cf.Ad.InfoScreen,
 		"info_banner": `adunit-a237f95dd4ce9ae7`,
+		"info_grid": `adunit-3c272cbddafa4789`,
 		"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 		"info_tips_grid": info_tips_grid, // 详细页格子广告
 		"autoload_tips": `开启到底部自动加载更多功能`,
