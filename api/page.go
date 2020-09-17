@@ -277,7 +277,7 @@ func GetNewCatelogLinks(c echo.Context) error {
 func GetExploreLinks(c echo.Context) error {
 
 	version := c.QueryParam("version")
-	provider := c.QueryParam("provider")
+	// provider := c.QueryParam("provider")
 
 	cf := cpi.GetConf()
 	var req = c.Request()
