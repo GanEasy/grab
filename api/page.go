@@ -305,7 +305,7 @@ func GetExploreLinks(c echo.Context) error {
 	}
 
 	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
-		return  GuideJumpApp()
+		return   c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
 	}
 
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
