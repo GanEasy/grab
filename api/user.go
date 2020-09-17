@@ -69,8 +69,8 @@ func GetToken(c echo.Context) error {
 		}
 	
 		var jumpappid = ``
-		if fans.LoginTotal < 5 {
-			jumpappid = ``
+		if fans.LoginTotal < 5 { // 如果访问次数少于5次，强制跳转到其它小程序阅读(测试下)
+			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":      jumpappid, // 强制跳转其它小程序
