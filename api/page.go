@@ -282,7 +282,7 @@ func GetExploreLinks(c echo.Context) error {
 	}
 	user, _ := getUser(openID)
 	// fmt.Println(user)
-	if user.LoginTotal >= 30 { //老用户，使用超过20次了
+	if user.LoginTotal >= 20 { //老用户，使用超过20次了
 		return c.JSON(http.StatusOK, GetGuideExploreLinksAndJumpVipApp())
 	}
 
@@ -880,7 +880,7 @@ func GetGuideExploreLinks() []Link {
 func GetGuideExploreLinksAndJumpVipApp() []Link {
 	var links = []Link{
 		Link{
-			Title: `VIP稳定高速阅读通道`,
+			Title: `》》》进入VIP通道笔趣阁Pro，搜索“112233”`,
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
