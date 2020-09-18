@@ -69,22 +69,35 @@ func GetToken(c echo.Context) error {
 		}
 	
 		var jumpappid = ``
-		if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于5次，等级小于3，强制跳转到其它小程序阅读(测试下)
+		if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 		
 		var info_tips_banner,info_tips_grid string
-		if fans.LoginTotal > 3 { // 大于3（老用户了，随机给广告点击）
-			rand.Seed(time.Now().UnixNano())
-			inum := rand.Intn(3) // 先搞低些广告出现机率
-			if inum==1 {
-				info_tips_banner =  cf.Ad.InfoBanner
+
+		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
+			// rand.Seed(time.Now().UnixNano())
+			// inum := rand.Intn(3) // 先搞低些广告出现机率
+			// if inum==1 {
+			// 	info_tips_banner =  cf.Ad.InfoBanner
+			// }else if inum==2{
+			// 	info_tips_grid =  cf.Ad.InfoGrid
+			// }
+			
+			day:=time.Now().Day()
+			var uid = int(fans.ID)
+			var inum = (day+uid) % 10  //机率控制
+			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
+				info_tips_banner = cf.Ad.InfoBanner
+			}else if inum==1{
+				info_tips_grid = cf.Ad.InfoGrid
 			}else if inum==2{
-				info_tips_grid =  cf.Ad.InfoGrid
+				
 			}
 		}
+
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":      jumpappid, // 强制跳转其它小程序
+			"jumpappid":jumpappid, // 强制跳转其它小程序
 			"token": t,
 			"uid":   fans.ID,
 			"level":      0,
@@ -96,8 +109,7 @@ func GetToken(c echo.Context) error {
 			"info_tips_grid": info_tips_grid, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看激励视频开启自动加载无弹窗模式`,
-
+			"autoload_tips": `观看激励视频广告无弹窗加载更多`,
 			"top_home_video": cf.Ad.TopHomeVideo,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
