@@ -878,6 +878,9 @@ func GetGuideExploreLinks() []Link {
 
 //GetGuideExploreLinksAndJumpVipApp  新版，引导转化
 func GetGuideExploreLinksAndJumpVipApp() []Link {
+	if true  {
+		return GetGuideExploreLinks()
+	}
 	var links = []Link{
 		Link{
 			Title: `老铁请进VIP通道搜“112233”`,
