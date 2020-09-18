@@ -418,20 +418,25 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``
-		if fans.LoginTotal < 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
+		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 
 		var info_tips_banner,info_tips_grid string
-		if fans.LoginTotal > 3 { // 大于3（老用户了，随机给广告点击）
-			rand.Seed(time.Now().UnixNano())
-			inum := rand.Intn(3) // 先搞低些广告出现机率
-			if inum==1 {
-				info_tips_banner =  cf.Ad.InfoBanner
+		
+		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
+			day:=time.Now().Day()
+			var uid = int(fans.ID)
+			var inum = (day+uid) % 5  //机率控制
+			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
+				info_tips_banner = cf.Ad.InfoBanner
+			}else if inum==1{
+				info_tips_grid = cf.Ad.InfoGrid
 			}else if inum==2{
-				info_tips_grid =  cf.Ad.InfoGrid
+				
 			}
 		}
+
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
