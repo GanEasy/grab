@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 	"log"
-	"math/rand"
+	// "math/rand"
 	"net/http"
 	"strconv"
 	"time"
