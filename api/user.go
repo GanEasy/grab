@@ -63,14 +63,16 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``
+		var jumpappid = `` // 强制跳 
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
 		}else if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wxe70eee58e64c7ac7` // 强制跳去搜书大师
 		}
-		
+		if fans.LoginTotal > 3  { // 大于3次，强制跳转
+			jumpappid = `wx90dee998347266dd` // 强制跳去Pro搜书大师
+		}
 		var info_tips_banner,info_tips_custom string
 
 		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
