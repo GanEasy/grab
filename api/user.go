@@ -685,7 +685,6 @@ func GetAPIToken6(c echo.Context) error {
 		"top_home_custom": `adunit-ade0b17378833a01`,
 		"list_custom": `adunit-ade0b17378833a01`,
 		"cata_custom": `adunit-ade0b17378833a01`,
-		"info_custom": `adunit-ade0b17378833a01`,
 		"info_reward": `adunit-37d73c4714563ea5`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
