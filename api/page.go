@@ -296,9 +296,6 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-
-	
-
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
 		openID := getOpenID(c)
 		if openID == `` {

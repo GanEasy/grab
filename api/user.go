@@ -422,7 +422,7 @@ func GetAPIToken3(c echo.Context) error {
 
 		var jumpappid = ``
 		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
+			jumpappid = `wxe70eee58e64c7ac7` // cf.ReaderMinAppTwo.AppID
 		}
 
 		var info_tips_banner,info_tips_grid string
@@ -593,7 +593,7 @@ func GetAPIToken4(c echo.Context) error {
 			// "info_tips_grid": info_tips_grid, // 详细页格子广告
 			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `开启到底部自动加载更多功能`,
+			"autoload_tips": `观看视频开启自动加载无弹窗模式`,
 			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 
 			"top_home_video": cf.Ad.TopHomeVideo,
@@ -664,7 +664,7 @@ func GetAPIToken6(c echo.Context) error {
 
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
+	inum := rand.Intn(5) // 先搞低些广告出现机率
 
 	var info_tips_banner,info_tips_custom string
 	info_tips_banner =`adunit-a237f95dd4ce9ae7`
@@ -683,12 +683,12 @@ func GetAPIToken6(c echo.Context) error {
 		"level":      0,
 		"ismini":     0,
 		"can_create": 1, // 允许创建内容
-		"info_screen": cf.Ad.InfoScreen,
+		"info_screen": ``,
 		"info_banner": `adunit-a237f95dd4ce9ae7`,
 		"info_custom": `adunit-ade0b17378833a01`,
 		"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": info_tips_custom, // 详细页格子广告
-		"autoload_tips": `开启到底部自动加载更多功能`,
+		"autoload_tips": `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-8d6906f779544df6`,
 		// "list_video": `adunit-8d6906f779544df6`,
