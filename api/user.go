@@ -86,7 +86,7 @@ func GetToken(c echo.Context) error {
 			
 			day:=time.Now().Day()
 			var uid = int(fans.ID)
-			var inum = (day+uid) % 3  //机率控制
+			var inum = (day+uid) % 2  //机率控制
 			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
 				info_tips_banner = cf.Ad.InfoBanner
 			}else if inum==1{
