@@ -692,7 +692,7 @@ func GetAPIToken6(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    false,
-		"info_force_reward": true, // 强制广告
+		"info_force_reward": false, // 强制广告
 		"info_video_adlt":   2,    //详情页面视频轮循总数
 		"info_video_adlm":   0,    //详情页面视频轮循开始余量
 		"info_custom_adlt":    4,    //详情页面格子广告轮循总数
