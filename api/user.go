@@ -680,7 +680,7 @@ func GetAPIToken6(c echo.Context) error {
 		// "top_home_video": `adunit-8d6906f779544df6`,
 		// "list_video": `adunit-8d6906f779544df6`,
 		// "cata_video": `adunit-8d6906f779544df6`,
-		// "info_video": `adunit-8d6906f779544df6`,
+		"info_video": `adunit-8d6906f779544df6`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
 		"top_home_custom": `adunit-ade0b17378833a01`,
 		"list_custom": `adunit-ade0b17378833a01`,
