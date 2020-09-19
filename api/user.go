@@ -460,7 +460,7 @@ func GetAPIToken3(c echo.Context) error {
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
-			"ismini":     0,
+			"ismini":     ismini,
 			"can_create": canCreate, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
