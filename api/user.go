@@ -30,6 +30,9 @@ func GetToken(c echo.Context) error {
 
 	cf := cpi.GetConf()
 	var req = c.Request()
+	if strings.Contains( req.Referer(),  `wx331f3c3e2761f080` )  { // 获取 token plus版
+		return  GetAPIToken4(c)
+	}
 	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
 		return  GetAPIToken6(c)
 	}
@@ -510,6 +513,7 @@ func GetAPIToken4(c echo.Context) error {
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	code := c.QueryParam("code")
 	provider := c.QueryParam("provider")
+	version := c.QueryParam("version")
 	cf := cpi.GetConf()
 	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppThree.AppSecret)
 	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
@@ -547,21 +551,30 @@ func GetAPIToken4(c echo.Context) error {
 			return err
 		}
 		var canCreate = 0
-		if fans.Level > 2 {
+		if fans.LoginTotal > 5 {
 			canCreate = 1
 		}
 
+		var ismini = 0
+		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+			if fans.LoginTotal < 10 {
+				ismini = 1
+				canCreate = 0
+			}
+		}
+
 		var jumpappid = cf.ReaderMinAppTwo.AppID
-		if fans.LoginTotal > 3 {
+		if fans.LoginTotal < 3 {
 			jumpappid = cf.ReaderMinAppTwo.AppID
 		}
+		
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
-			"ismini":     0,
+			"ismini":     ismini,
 			"can_create": canCreate, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
