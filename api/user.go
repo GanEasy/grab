@@ -63,19 +63,17 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
+		var jumpappid = ``
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
-		}
-	
-		var jumpappid = ``
-		if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
+		}else if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
 		}
 		
-		var info_tips_banner,info_tips_grid string
+		var info_tips_banner,info_tips_custom string
 
-		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
+		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
 			// rand.Seed(time.Now().UnixNano())
 			// inum := rand.Intn(3) // 先搞低些广告出现机率
 			// if inum==1 {
@@ -86,11 +84,12 @@ func GetToken(c echo.Context) error {
 			
 			day:=time.Now().Day()
 			var uid = int(fans.ID)
-			var inum = (day+uid) % 2  //机率控制
+			var inum = (day+uid) % 5  //机率控制
 			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
 				info_tips_banner = cf.Ad.InfoBanner
 			}else if inum==1{
-				info_tips_grid = cf.Ad.InfoGrid
+				// info_tips_grid = cf.Ad.InfoGrid
+				info_tips_custom = `adunit-9bb55eb7ddd541d4`
 			}else if inum==2{
 				
 			}
@@ -106,17 +105,18 @@ func GetToken(c echo.Context) error {
 			"info_screen": cf.Ad.InfoScreen,
 			"info_banner": cf.Ad.InfoBanner,
 			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
-			"info_tips_grid": info_tips_grid, // 详细页格子广告
+			"info_tips_custom": info_tips_custom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看激励视频广告无弹窗加载更多`,
-			"top_home_video": cf.Ad.TopHomeVideo,
+			// "top_home_video": cf.Ad.TopHomeVideo,
+			"top_home_custom": `adunit-9bb55eb7ddd541d4`,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
 			"list_video": cf.Ad.ListVideo,
 			"cata_video": cf.Ad.CataVideo,
 			"info_video": cf.Ad.InfoVideo,
-			"info_grid": cf.Ad.InfoGrid, // 详细页格子广告
+			"info_custom": cf.Ad.InfoGrid, // 详细页格子广告
 			"info_reward": cf.Ad.Reward,
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
@@ -124,11 +124,11 @@ func GetToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": true, // 强制广告
+			"info_force_reward": false, // 强制广告
 			"info_video_adlt":   2,    //详情页面视频轮循总数
 			"info_video_adlm":   0,    //详情页面视频轮循开始余量
-			"info_grid_adlt":    4,    //详情页面格子广告轮循总数
-			"info_grid_adlm":    3,    //详情页面格子广告轮循开始余量
+			"info_custom_adlt":    4,    //详情页面格子广告轮循总数
+			"info_custom_adlm":    3,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt": 4, //详情页面Banner轮循总数
 			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
 			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
