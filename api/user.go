@@ -68,7 +68,7 @@ func GetToken(c echo.Context) error {
 			canCreate = 0
 			ismini = 1
 		}else if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wx8664d56a896e375b` // cf.ReaderMinAppTwo.AppID
+			jumpappid = `wxe70eee58e64c7ac7` // 强制跳去搜书大师
 		}
 		
 		var info_tips_banner,info_tips_custom string
