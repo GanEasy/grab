@@ -36,6 +36,9 @@ func GetToken(c echo.Context) error {
 	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
 		return  GetAPIToken6(c)
 	}
+	if strings.Contains( req.Referer(),  cf.ReaderMinAppFour.AppID )  { // 获取 token 笔趣阁在线
+		return  GetAPIToken3(c)
+	}
 	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token 非笔趣阁Pro
 		return  GetOpenToken(c)
 	}
@@ -379,6 +382,7 @@ func GetAPIToken3(c echo.Context) error {
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	code := c.QueryParam("code")
 	provider := c.QueryParam("provider")
+	version := c.QueryParam("version")
 	cf := cpi.GetConf()
 	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppFour.AppSecret)
 	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
@@ -420,9 +424,20 @@ func GetAPIToken3(c echo.Context) error {
 			// canCreate = 1
 		}
 
+		
+		var ismini = 0
+		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+			if fans.LoginTotal < 10 {
+				ismini = 1
+				canCreate = 0
+			}
+		}
+
+		
+
 		var jumpappid = ``
 		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wxe70eee58e64c7ac7` // cf.ReaderMinAppTwo.AppID
+			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师
 		}
 
 		var info_tips_banner,info_tips_grid string
@@ -508,7 +523,7 @@ func GetAPIToken3(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-//GetAPIToken4 获取 jwt token 笔趣阁plus
+//GetAPIToken4 获取 jwt token 笔趣阁plus 未接入的
 func GetAPIToken4(c echo.Context) error {
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	code := c.QueryParam("code")
@@ -674,10 +689,9 @@ func GetAPIToken6(c echo.Context) error {
 		info_tips_custom = `adunit-ade0b17378833a01`
 	}
 
-
 	return c.JSON(http.StatusOK, echo.Map{
 		
-		"jumpappid":  ``, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
+		"jumpappid":  ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
 		"token":      t,
 		"uid":        -1,
 		"level":      0,
