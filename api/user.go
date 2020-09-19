@@ -427,13 +427,13 @@ func GetAPIToken3(c echo.Context) error {
 		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
 			day:=time.Now().Day()
 			var uid = int(fans.ID)
-			var inum = (day+uid) % 5  //机率控制
+			var inum = (day+uid) % 3  //机率控制
 			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
 				info_tips_banner = cf.Ad.InfoBanner
 			}else if inum==1{
 				info_tips_grid = cf.Ad.InfoGrid
 			}else if inum==2{
-				
+				info_tips_banner = cf.Ad.InfoBanner
 			}
 		}
 
@@ -491,7 +491,7 @@ func GetAPIToken3(c echo.Context) error {
 			"share_cover":       cf.ReaderMinAppFour.AppCover,
 			"placeholder":       cf.ReaderMinAppFour.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": false, // 强制广告
+			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   2,     //详情页面视频轮循总数
 			"info_video_adlm":   0,     //详情页面视频轮循开始余量
 			"info_grid_adlt":    4,    //详情页面格子广告轮循总数
@@ -654,6 +654,7 @@ func GetAPIToken6(c echo.Context) error {
 	inum := rand.Intn(3) // 先搞低些广告出现机率
 
 	var info_tips_banner,info_tips_grid string
+	info_tips_banner =`adunit-a237f95dd4ce9ae7`
 	if inum==1 {
 		info_tips_banner =`adunit-a237f95dd4ce9ae7`
 	}else if inum==2{
