@@ -6,8 +6,8 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
-	"time"
 	"strings"
+	"time"
 
 	"github.com/GanEasy/grab"
 	cpi "github.com/GanEasy/grab/core"
@@ -30,17 +30,17 @@ func GetToken(c echo.Context) error {
 
 	cf := cpi.GetConf()
 	var req = c.Request()
-	if strings.Contains( req.Referer(),  `wx331f3c3e2761f080` )  { // 获取 token plus版
-		return  GetAPIToken4(c)
+	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // 获取 token plus版
+		return GetAPIToken4(c)
 	}
-	if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 获取通用 token 免版本图
-		return  GetAPIToken6(c)
+	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 获取通用 token 免版本图
+		return GetAPIToken6(c)
 	}
-	if strings.Contains( req.Referer(),  cf.ReaderMinAppFour.AppID )  { // 获取 token 笔趣阁在线
-		return  GetAPIToken3(c)
+	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
+		return GetAPIToken3(c)
 	}
-	if !strings.Contains( req.Referer(),  cf.ReaderMinApp.AppID )  { // 获取通用 token 非笔趣阁Pro
-		return  GetOpenToken(c)
+	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token 非笔趣阁Pro
+		return GetOpenToken(c)
 	}
 
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
@@ -178,15 +178,14 @@ func GetOpenToken(c echo.Context) error {
 		"uid":        -1,
 		"level":      0,
 		"can_create": 1, // 允许创建内容
-		"ismini": 1,
-		
+		"ismini":     1,
 
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinApp.AppTitle,
 		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinApp.AppCover,
-		"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
-		"online_service":    true,
+		"share_cover":    cf.ReaderMinApp.AppCover,
+		"placeholder":    cf.ReaderMinApp.AppSearch, // 小说名
+		"online_service": true,
 	})
 }
 
@@ -238,7 +237,7 @@ func GetAPIToken(c echo.Context) error {
 			"token":       t,
 			"uid":         fans.ID,
 			"level":       fans.Level,
-			"ismini":0,
+			"ismini":      0,
 			"can_create":  fans.Level, // 允许创建内容
 			"list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
@@ -424,7 +423,6 @@ func GetAPIToken3(c echo.Context) error {
 			// canCreate = 1
 		}
 
-		
 		var ismini = 0
 		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 			if fans.LoginTotal < 10 {
@@ -433,24 +431,22 @@ func GetAPIToken3(c echo.Context) error {
 			}
 		}
 
-		
-
 		var jumpappid = ``
 		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师
 		}
 
-		var info_tips_banner,info_tips_grid string
-		
+		var info_tips_banner, info_tips_grid string
+
 		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
-			day:=time.Now().Day()
+			day := time.Now().Day()
 			var uid = int(fans.ID)
-			var inum = (day+uid) % 3  //机率控制
-			if inum==0 { // 日期加uid求余 为0 给banner 为 1 给grid
+			var inum = (day + uid) % 3 //机率控制
+			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
 				info_tips_banner = cf.Ad.InfoBanner
-			}else if inum==1{
+			} else if inum == 1 {
 				info_tips_grid = cf.Ad.InfoGrid
-			}else if inum==2{
+			} else if inum == 2 {
 				info_tips_banner = cf.Ad.InfoBanner
 			}
 		}
@@ -474,9 +470,9 @@ func GetAPIToken3(c echo.Context) error {
 			// "home_banner":     cf.Ad.HomeBanner,
 			// "list_banner": cf.Ad.ListBanner,
 			// "cata_banner": cf.Ad.CataBanner,
-			"info_banner": cf.Ad.InfoBanner,
+			"info_banner":      cf.Ad.InfoBanner,
 			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
-			"info_tips_grid": info_tips_grid, // 详细页格子广告
+			"info_tips_grid":   info_tips_grid,   // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看视频开启自动加载无弹窗模式`,
@@ -510,14 +506,14 @@ func GetAPIToken3(c echo.Context) error {
 			"placeholder":       cf.ReaderMinAppFour.AppSearch, // 小说名
 			"online_service":    true,
 			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,     //详情页面视频轮循总数
-			"info_video_adlm":   0,     //详情页面视频轮循开始余量
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
 			"info_grid_adlt":    4,    //详情页面格子广告轮循总数
 			"info_grid_adlm":    3,    //详情页面格子广告轮循开始余量
-			"info_banner_adlt": 4, //详情页面Banner轮循总数
-			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
-			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
-			"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
+			"info_banner_adlt":  4,    //详情页面Banner轮循总数
+			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 	}
 	return echo.ErrUnauthorized
@@ -582,7 +578,6 @@ func GetAPIToken4(c echo.Context) error {
 		if fans.LoginTotal < 3 {
 			jumpappid = cf.ReaderMinAppTwo.AppID
 		}
-		
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
@@ -652,8 +647,6 @@ func GetAPIToken4(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-
-
 //GetAPIToken6 获取 jwt token 免版权图，暂时做个中转试试
 func GetAPIToken6(c echo.Context) error {
 
@@ -677,41 +670,40 @@ func GetAPIToken6(c echo.Context) error {
 	}
 	cf := cpi.GetConf()
 
-
 	rand.Seed(time.Now().UnixNano())
 	inum := rand.Intn(5) // 先搞低些广告出现机率
 
-	var info_tips_banner,info_tips_custom string
-	info_tips_banner =`adunit-a237f95dd4ce9ae7`
-	if inum==1 {
-		info_tips_banner =`adunit-a237f95dd4ce9ae7`
-	}else if inum==2{
+	var info_tips_banner, info_tips_custom string
+	info_tips_banner = `adunit-a237f95dd4ce9ae7`
+	if inum == 1 {
+		info_tips_banner = `adunit-a237f95dd4ce9ae7`
+	} else if inum == 2 {
 		info_tips_custom = `adunit-ade0b17378833a01`
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
-		
-		"jumpappid":  ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
-		"token":      t,
-		"uid":        -1,
-		"level":      0,
-		"ismini":     0,
-		"can_create": 1, // 允许创建内容
-		"info_screen": ``,
-		"info_banner": `adunit-a237f95dd4ce9ae7`,
-		"info_custom": `adunit-ade0b17378833a01`,
+
+		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"token":            t,
+		"uid":              -1,
+		"level":            0,
+		"ismini":           0,
+		"can_create":       1, // 允许创建内容
+		"info_screen":      ``,
+		"info_banner":      `adunit-a237f95dd4ce9ae7`,
+		"info_custom":      `adunit-ade0b17378833a01`,
 		"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": info_tips_custom, // 详细页格子广告
-		"autoload_tips": `观看视频开启自动加载无弹窗模式`,
+		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-8d6906f779544df6`,
-		// "list_video": `adunit-8d6906f779544df6`,
-		// "cata_video": `adunit-8d6906f779544df6`,
-		"info_video":  `adunit-8d6906f779544df6`,
+		"top_home_video": `adunit-8d6906f779544df6`,
+		"list_video":     `adunit-8d6906f779544df6`,
+		"cata_video":     `adunit-8d6906f779544df6`,
+		"info_video":     `adunit-8d6906f779544df6`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
-		"top_home_custom": `adunit-ade0b17378833a01`,
-		"list_custom": `adunit-ade0b17378833a01`,
-		"cata_custom": `adunit-ade0b17378833a01`,
+		// "top_home_custom": `adunit-ade0b17378833a01`,
+		// "list_custom": `adunit-ade0b17378833a01`,
+		// "cata_custom": `adunit-ade0b17378833a01`,
 		"info_reward": `adunit-37d73c4714563ea5`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
@@ -720,14 +712,14 @@ func GetAPIToken6(c echo.Context) error {
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    false,
 		"info_force_reward": false, // 强制广告
-		"info_video_adlt":   2,    //详情页面视频轮循总数
-		"info_video_adlm":   0,    //详情页面视频轮循开始余量
-		"info_custom_adlt":    4,    //详情页面格子广告轮循总数
-		"info_custom_adlm":    3,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt": 4, //详情页面Banner轮循总数
-		"info_banner_adlm": 1, //详情页面Banner轮循开始余量
-		"info_screen_adlt": 5, //详情页面插屏广告轮循总数
-		"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
+		"info_video_adlt":   2,     //详情页面视频轮循总数
+		"info_video_adlm":   0,     //详情页面视频轮循开始余量
+		"info_custom_adlt":  4,     //详情页面格子广告轮循总数
+		"info_custom_adlm":  3,     //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,     //详情页面Banner轮循总数
+		"info_banner_adlm":  1,     //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
+		"info_screen_adlm":  3,     //详情页面插屏广告轮循开始余量
 
 	})
 
