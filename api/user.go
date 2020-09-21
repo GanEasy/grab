@@ -105,7 +105,7 @@ func GetToken(c echo.Context) error {
 			// // "list_banner": cf.Ad.ListBanner,
 			// // "cata_banner": cf.Ad.CataBanner,
 			// "info_banner": cf.Ad.InfoBanner,
-			// // "info_tips_banner": infoTipsanner, // 点击广告开启自动加载更多功能
+			// // "info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 			// // "info_tips_grid": infoTipsGrid, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// // "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
