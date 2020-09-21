@@ -291,6 +291,10 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
+	
+	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
+		return c.JSON(http.StatusOK, CloseAppTips())
+	}
 
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
@@ -500,6 +504,25 @@ func GuideJumpAppOrSearce() []Link {
 	return links
 
 }
+
+// CloseAppTips 准备关闭站点
+func CloseAppTips() []Link {
+
+	var links = []Link{
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
+}
+
 
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
