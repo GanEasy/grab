@@ -63,6 +63,7 @@ func GetActivities(c echo.Context) error {
 		}
 		
 	}
+	var req = c.Request()
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
 		level = 2
 	}
