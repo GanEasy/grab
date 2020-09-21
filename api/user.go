@@ -770,7 +770,7 @@ func GetAPIToken7(c echo.Context) error {
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
-		"can_create":       0, // 允许创建内容
+		"can_create":       1, // 允许创建内容
 		"info_screen":      ``,
 		"info_banner":      `adunit-0d62bae54bcefd36`,
 		"info_custom":      `adunit-6b354d2130f204aa`,
@@ -786,7 +786,7 @@ func GetAPIToken7(c echo.Context) error {
 		// "top_home_custom": `adunit-6b354d2130f204aa`,
 		// "list_custom": `adunit-6b354d2130f204aa`,
 		// "cata_custom": `adunit-6b354d2130f204aa`,
-		"info_reward": `adunit-37d73c4714563ea5`,
+		"info_reward": `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
