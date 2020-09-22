@@ -75,7 +75,7 @@ func GetToken(c echo.Context) error {
 		}
 		var info_tips_banner, info_tips_custom string
 
-		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
+		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
 			// rand.Seed(time.Now().UnixNano())
 			// inum := rand.Intn(3) // 先搞低些广告出现机率
 			// if inum==1 {
@@ -126,7 +126,7 @@ func GetToken(c echo.Context) error {
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
-			"info_force_reward": false, // 强制广告
+			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   2,     //详情页面视频轮循总数
 			"info_video_adlm":   0,     //详情页面视频轮循开始余量
 			"info_custom_adlt":  4,     //详情页面格子广告轮循总数
