@@ -422,7 +422,7 @@ func GetAPIToken3(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-		var canCreate = 0
+		var canCreate = 1
 		if fans.Level > 2 {
 			// canCreate = 1
 		}
@@ -435,9 +435,9 @@ func GetAPIToken3(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx8ffa5a58c0bb3589`
-		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师
+		var jumpappid = ``
+		if fans.LoginTotal > 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
+			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
 		}
 
 		var infoTipsBanner, infoTipsGrid string
