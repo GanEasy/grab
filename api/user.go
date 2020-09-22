@@ -435,9 +435,9 @@ func GetAPIToken3(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx8ffa5a58c0bb3589`
-		if fans.LoginTotal < 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师
+		var jumpappid = ``
+		if fans.LoginTotal > 5 { // 如果访问次数大于5次
+			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -675,7 +675,7 @@ func GetAPIToken6(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(5) // 先搞低些广告出现机率
+	inum := rand.Intn(3) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
@@ -687,7 +687,7 @@ func GetAPIToken6(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        `wx8ffa5a58c0bb3589`, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"jumpappid":        `wx8ffa5a58c0bb3589`, // wxe70eee58e64c7ac7  // 强制跳转， 这个准备不做了，怕被抓鸡脚
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
