@@ -87,7 +87,7 @@ func GetToken(c echo.Context) error {
 			return err
 		}
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":  "", // 强制跳转其它小程序
+			"jumpappid":  "wxe70eee58e64c7ac7", // 强制跳转其它小程序
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
