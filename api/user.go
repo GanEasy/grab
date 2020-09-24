@@ -63,7 +63,7 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `` // 强制跳
+		var jumpappid = `wxe70eee58e64c7ac7` // 强制跳 暂时去搜书大师
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
@@ -71,15 +71,15 @@ func GetToken(c echo.Context) error {
 			// jumpappid = `wx8ffa5a58c0bb3589` // 强制跳去搜书大师
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳去 新推荐阅读
+			// jumpappid = `wx8ffa5a58c0bb3589` // 强制跳去 新推荐阅读
 		}
-		var info_tips_banner, info_tips_custom string
+		var infoTipsBanner, infoTipsCustom string
 
 		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
 			// rand.Seed(time.Now().UnixNano())
 			// inum := rand.Intn(3) // 先搞低些广告出现机率
 			// if inum==1 {
-			// 	info_tips_banner =  cf.Ad.InfoBanner
+			// 	infoTipsBanner =  cf.Ad.InfoBanner
 			// }else if inum==2{
 			// 	info_tips_grid =  cf.Ad.InfoGrid
 			// }
@@ -88,10 +88,10 @@ func GetToken(c echo.Context) error {
 			var uid = int(fans.ID)
 			var inum = (day + uid) % 5 //机率控制
 			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-				info_tips_banner = cf.Ad.InfoBanner
+				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
 				// info_tips_grid = cf.Ad.InfoGrid
-				info_tips_custom = `adunit-9bb55eb7ddd541d4`
+				infoTipsCustom = `adunit-9bb55eb7ddd541d4`
 			} else if inum == 2 {
 
 			}
@@ -106,8 +106,8 @@ func GetToken(c echo.Context) error {
 			"ismini":           ismini,    // 允许创建内容
 			"info_screen":      cf.Ad.InfoScreen,
 			"info_banner":      cf.Ad.InfoBanner,
-			"info_tips_banner": info_tips_banner, // 点击广告开启自动加载更多功能
-			"info_tips_custom": info_tips_custom, // 详细页格子广告
+			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+			"info_tips_custom": infoTipsCustom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看激励视频广告无弹窗加载更多`,
@@ -127,14 +127,14 @@ func GetToken(c echo.Context) error {
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
 			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,     //详情页面视频轮循总数
-			"info_video_adlm":   0,     //详情页面视频轮循开始余量
-			"info_custom_adlt":  4,     //详情页面格子广告轮循总数
-			"info_custom_adlm":  3,     //详情页面格子广告轮循开始余量
-			"info_banner_adlt":  4,     //详情页面Banner轮循总数
-			"info_banner_adlm":  1,     //详情页面Banner轮循开始余量
-			"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
-			"info_screen_adlm":  3,     //详情页面插屏广告轮循开始余量
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_custom_adlt":  4,    //详情页面格子广告轮循总数
+			"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
+			"info_banner_adlt":  4,    //详情页面Banner轮循总数
+			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 
 	}
