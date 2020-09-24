@@ -70,7 +70,7 @@ func GetToken(c echo.Context) error {
 		} else if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// jumpappid = `wx8ffa5a58c0bb3589` // 强制跳去搜书大师
 		}
-		if fans.LoginTotal > 3 { // 大于3次，强制跳转
+		if fans.LoginTotal > 10 { // 大于10次，强制跳转
 			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳去 新推荐阅读
 		}
 		var info_tips_banner, info_tips_custom string
