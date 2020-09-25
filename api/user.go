@@ -63,7 +63,7 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `wxe70eee58e64c7ac7` // 强制跳 暂时去搜书大师
+		var jumpappid = `` // 强制跳 暂时去搜书大师
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
