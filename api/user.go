@@ -40,6 +40,9 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 获取通用 token 免版本图
 		return GetAPIToken6(c)
 	}
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
+		return GetAPIToken2(c)
+	}
 	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
 		return GetAPIToken3(c)
 	}
