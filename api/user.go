@@ -87,7 +87,7 @@ func GetToken(c echo.Context) error {
 			return err
 		}
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":  "wxe70eee58e64c7ac7", // 强制跳转其它小程序
+			"jumpappid":  "", // 强制跳转其它小程序
 			"token":      t,
 			"uid":        fans.ID,
 			"level":      fans.Level,
@@ -434,9 +434,9 @@ func GetAPIToken3(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wxe70eee58e64c7ac7`
-		if fans.LoginTotal > 5 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			// jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
+		var jumpappid = ``
+		if fans.LoginTotal > 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
+			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
 		}
 
 		var infoTipsBanner, infoTipsGrid string
