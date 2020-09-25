@@ -349,30 +349,60 @@ func GetAPIToken2(c echo.Context) error {
 		if fans.LoginTotal > 3 {
 			// jumpappid = `wx8ffa5a58c0bb3589`
 		}
-		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":      jumpappid, // 强制跳转其它小程序
-			"token":          t,
-			"uid":            fans.ID,
-			"level":          0,
-			"ismini":         0,
-			"show_tips_next": 0,
-			"can_create":     0, // 允许创建内容
 
+		var infoTipsBanner, infoTipsCustom string
+		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
+			day := time.Now().Day()
+			var uid = int(fans.ID)
+			var inum = (day + uid) % 3 //机率控制
+			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
+				infoTipsBanner = `adunit-80ab5cf805e61964`
+			} else if inum == 1 {
+				infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
+			} else if inum == 2 {
+				infoTipsBanner = `adunit-80ab5cf805e61964`
+			}
+		}
+
+		return c.JSON(http.StatusOK, echo.Map{
+			"jumpappid":        jumpappid, // 强制跳转其它小程序
+			"token":            t,
+			"uid":              fans.ID,
+			"level":            0,
+			"ismini":           0,
+			"show_tips_next":   0,
+			"can_create":       1, // 允许创建内容
+			"info_screen":      ``,
+			"info_banner":      `adunit-80ab5cf805e61964`,
+			"info_custom":      `adunit-c0a4c9c06c1bfb27`,
+			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+			"info_tips_custom": infoTipsCustom, // 详细页格子广告
+			"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
+			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+			"top_home_video": `adunit-6a6203ae9a1f4252`,
+			"list_video":     `adunit-4d779b9509cfa7a8`,
+			"cata_video":     `adunit-61660192b3436fe7`,
+			"info_video":     `adunit-e21a2857faff7fba`,
+			// "info_reward": `adunit-37d73c4714563ea5`,
+			// "top_home_custom": `adunit-ade0b17378833a01`,
+			// "list_custom": `adunit-ade0b17378833a01`,
+			// "cata_custom": `adunit-ade0b17378833a01`,
+			"info_reward": `adunit-790a8d650d5c71b2`,
 			// 定义首页分享标题
-			"share_title": cf.ReaderMinAppTwo.AppTitle,
+			"share_title": cf.ReaderMinAppThree.AppTitle,
 			// 定义首页分享图片
-			"share_cover":    cf.ReaderMinAppTwo.AppCover,
-			"placeholder":    cf.ReaderMinAppTwo.AppSearch, // 小说名
-			"online_service": false,
-			// "info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
-			// "info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
-			// "info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
-			// "info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
-			// "info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
-			// "info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
-			// "info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-			// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-			// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+			"share_cover":       cf.ReaderMinAppThree.AppCover,
+			"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
+			"online_service":    false,
+			"info_force_reward": true, // 强制广告
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_custom_adlt":  4,    //详情页面格子广告轮循总数
+			"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
+			"info_banner_adlt":  4,    //详情页面Banner轮循总数
+			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 	}
 
