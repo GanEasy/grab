@@ -118,7 +118,7 @@ func GetToken(c echo.Context) error {
 			"list_video":  cf.Ad.ListVideo,
 			"cata_video":  cf.Ad.CataVideo,
 			"info_video":  cf.Ad.InfoVideo,
-			"info_custom": cf.Ad.InfoGrid, // 详细页格子广告
+			"info_custom": `adunit-9bb55eb7ddd541d4`, // 详细页格子广告
 			"info_reward": cf.Ad.Reward,
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
