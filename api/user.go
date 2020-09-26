@@ -810,12 +810,12 @@ func GetAPIToken7(c echo.Context) error {
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		"top_home_video": `adunit-997349cedbfe172f`,
+		// "top_home_video": `adunit-997349cedbfe172f`,
 		"list_video":     `adunit-997349cedbfe172f`,
 		"cata_video":     `adunit-997349cedbfe172f`,
 		"info_video":     `adunit-b528ceb7836c247f`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
-		// "top_home_custom": `adunit-6b354d2130f204aa`,
+		"top_home_custom": `adunit-7931b9985beaf4db`,
 		// "list_custom": `adunit-6b354d2130f204aa`,
 		// "cata_custom": `adunit-6b354d2130f204aa`,
 		"info_reward": `adunit-756e936e72536645`,
@@ -826,12 +826,12 @@ func GetAPIToken7(c echo.Context) error {
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    false,
 		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   2,    //详情页面视频轮循总数
-		"info_video_adlm":   0,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  4,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
+		"info_video_adlt":   4,    //详情页面视频轮循总数
+		"info_video_adlm":   1,    //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
 		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 
