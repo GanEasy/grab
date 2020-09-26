@@ -40,6 +40,9 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 获取通用 token 免版本图
 		return GetAPIToken6(c)
 	}
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
+		return GetAPIToken2(c)
+	}
 	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
 		return GetAPIToken3(c)
 	}
@@ -182,8 +185,7 @@ func GetOpenToken(c echo.Context) error {
 		"uid":        -1,
 		"level":      0,
 		"can_create": 1, // 允许创建内容
-		"ismini":     1,
-
+		"ismini":     0,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinApp.AppTitle,
 		// 定义首页分享图片
@@ -346,34 +348,64 @@ func GetAPIToken2(c echo.Context) error {
 			return err
 		}
 
-		var jumpappid = `wx8ffa5a58c0bb3589`
+		var jumpappid = ``
 		if fans.LoginTotal > 3 {
-			jumpappid = `wx8ffa5a58c0bb3589`
+			// jumpappid = `wx8ffa5a58c0bb3589`
 		}
-		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":      jumpappid, // 强制跳转其它小程序
-			"token":          t,
-			"uid":            fans.ID,
-			"level":          0,
-			"ismini":         0,
-			"show_tips_next": 0,
-			"can_create":     0, // 允许创建内容
 
+		var infoTipsBanner, infoTipsCustom string
+		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
+			day := time.Now().Day()
+			var uid = int(fans.ID)
+			var inum = (day + uid) % 3 //机率控制
+			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
+				infoTipsBanner = `adunit-80ab5cf805e61964`
+			} else if inum == 1 {
+				infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
+			} else if inum == 2 {
+				infoTipsBanner = `adunit-80ab5cf805e61964`
+			}
+		}
+
+		return c.JSON(http.StatusOK, echo.Map{
+			"jumpappid":        jumpappid, // 强制跳转其它小程序
+			"token":            t,
+			"uid":              fans.ID,
+			"level":            0,
+			"ismini":           0,
+			"show_tips_next":   0,
+			"can_create":       1, // 允许创建内容
+			"info_screen":      ``,
+			"info_banner":      `adunit-80ab5cf805e61964`,
+			"info_custom":      `adunit-c0a4c9c06c1bfb27`,
+			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+			"info_tips_custom": infoTipsCustom, // 详细页格子广告
+			"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
+			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+			"top_home_video": `adunit-6a6203ae9a1f4252`,
+			"list_video":     `adunit-4d779b9509cfa7a8`,
+			"cata_video":     `adunit-61660192b3436fe7`,
+			"info_video":     `adunit-e21a2857faff7fba`,
+			// "info_reward": `adunit-37d73c4714563ea5`,
+			// "top_home_custom": `adunit-ade0b17378833a01`,
+			// "list_custom": `adunit-ade0b17378833a01`,
+			// "cata_custom": `adunit-ade0b17378833a01`,
+			"info_reward": `adunit-790a8d650d5c71b2`,
 			// 定义首页分享标题
-			"share_title": cf.ReaderMinAppTwo.AppTitle,
+			"share_title": cf.ReaderMinAppThree.AppTitle,
 			// 定义首页分享图片
-			"share_cover":    cf.ReaderMinAppTwo.AppCover,
-			"placeholder":    cf.ReaderMinAppTwo.AppSearch, // 小说名
-			"online_service": false,
-			// "info_force_reward": cf.Ad.ForceReward,    // 看小说下一章强制要点视频广告
-			// "info_video_adlt":   cf.Ad.InfoVideoAdlt,  //详情页面视频轮循总数
-			// "info_video_adlm":   cf.Ad.InfoVideoAdlm,  //详情页面视频轮循开始余量
-			// "info_banner_adlt":  cf.Ad.InfoBannerAdlt, //详情页面Banner轮循总数
-			// "info_banner_adlm":  cf.Ad.InfoBannerAdlm, //详情页面Banner轮循开始余量
-			// "info_grid_adlt":    cf.Ad.InfoGridAdlt,   //详情页面格子广告轮循总数
-			// "info_grid_adlm":    cf.Ad.InfoGridAdlm,   //详情页面格子广告轮循开始余量
-			// "info_screen_adlt":  cf.Ad.InfoScreenAdlt, //详情页面插屏广告轮循总数
-			// "info_screen_adlm":  cf.Ad.InfoScreenAdlm, //详情页面插屏广告轮循开始余量
+			"share_cover":       cf.ReaderMinAppThree.AppCover,
+			"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
+			"online_service":    false,
+			"info_force_reward": true, // 强制广告
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_custom_adlt":  4,    //详情页面格子广告轮循总数
+			"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
+			"info_banner_adlt":  4,    //详情页面Banner轮循总数
+			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 	}
 
@@ -422,7 +454,7 @@ func GetAPIToken3(c echo.Context) error {
 		if err != nil {
 			return err
 		}
-		var canCreate = 0
+		var canCreate = 1
 		if fans.Level > 2 {
 			// canCreate = 1
 		}
@@ -436,7 +468,7 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``
-		if fans.LoginTotal > 5 { // 如果访问次数大于5次
+		if fans.LoginTotal > 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
 		}
 
@@ -675,7 +707,7 @@ func GetAPIToken6(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
+	inum := rand.Intn(5) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
@@ -686,8 +718,8 @@ func GetAPIToken6(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
-
-		"jumpappid":        `wx8ffa5a58c0bb3589`, // wxe70eee58e64c7ac7  // 强制跳转， 这个准备不做了，怕被抓鸡脚
+		// wx8ffa5a58c0bb3589 推荐阅读
+		"jumpappid":        `wxe70eee58e64c7ac7`, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
