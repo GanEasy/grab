@@ -112,7 +112,7 @@ func GetToken(c echo.Context) error {
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看激励视频广告无弹窗加载更多`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
-			"top_home_custom": `adunit-9bb55eb7ddd541d4`,
+			"top_home_custom": `adunit-08789216e1cca5be`,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
 			"list_video":  cf.Ad.ListVideo,
