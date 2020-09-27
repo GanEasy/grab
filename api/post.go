@@ -64,10 +64,10 @@ func SearchPosts(c echo.Context) error {
 					Images: nil,
 					From:   `admin`,
 				})
-				return c.JSON(http.StatusOK, catelog)
+			return c.JSON(http.StatusOK, catelog)
 		}
-		
-		if  name != `` && name == `000000` { // 固定输入6个0加锁
+
+		if name != `` && name == `000000` { // 固定输入6个0加锁
 			user.Level = 1
 			user.LoginTotal = 1
 			user.Save()
@@ -83,19 +83,17 @@ func SearchPosts(c echo.Context) error {
 					Images: nil,
 					From:   `admin`,
 				})
-				return c.JSON(http.StatusOK, catelog)
+			return c.JSON(http.StatusOK, catelog)
 		}
 
-		if user.Level<=2 && user.LoginTotal >= 10 {
+		if user.Level <= 2 && user.LoginTotal >= 10 {
 			user.Level = 3
 		}
 	}
-	
-
 
 	// 临时 给搜书大师和笔趣阁在线搜索小说功能
 	var req = c.Request()
-	if strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) || strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID )  { //  
+	if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) || strings.Contains(req.Referer(), cf.ReaderMinAppThree.AppID) { //
 		level = 4
 	}
 
@@ -193,7 +191,6 @@ func SearchPosts(c echo.Context) error {
 				From:   ``,
 			})
 
-		
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
@@ -239,25 +236,23 @@ func SearchMoreAction(c echo.Context) error {
 
 	catelog.Title = fmt.Sprintf(`更多“%v”搜索结果`, name)
 
-	
-	cf := cpi.GetConf()
-	var req = c.Request()
+	// cf := cpi.GetConf()
+	// var req = c.Request()
 
 	// 对受限制的应用进行过滤
-	if cf.Search.LimitInvitation {
-		// 先兼容一下，不过滤二号和三号小程序搜索功能先
-		if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID ) {
-			openID := getOpenID(c)
-			if openID == `` {
-				return c.JSON(http.StatusOK, catelog)
-			}
-			user, _ := getUser(openID)
-			if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
-				return c.JSON(http.StatusOK, catelog)
-			}
-		}
-	}
-	
+	// if cf.Search.LimitInvitation {
+	// 	// 先兼容一下，不过滤二号和三号小程序搜索功能先
+	// 	if !strings.Contains( req.Referer(),  cf.ReaderMinAppTwo.AppID ) && !strings.Contains( req.Referer(),  cf.ReaderMinAppThree.AppID ) {
+	// 		openID := getOpenID(c)
+	// 		if openID == `` {
+	// 			return c.JSON(http.StatusOK, catelog)
+	// 		}
+	// 		user, _ := getUser(openID)
+	// 		if user.LoginTotal < 10 || user.Level < 1 { //限制用户不返回搜索结果
+	// 			return c.JSON(http.StatusOK, catelog)
+	// 		}
+	// 	}
+	// }
 
 	// catelog.Title = `更多相关搜索结果`
 

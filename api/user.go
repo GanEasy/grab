@@ -354,12 +354,12 @@ func GetAPIToken2(c echo.Context) error {
 		}
 
 		var infoTipsBanner, infoTipsCustom string
-		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
+		if fans.LoginTotal > 3 { // 大于3（老用户了，随机给广告点击）
 			day := time.Now().Day()
 			var uid = int(fans.ID)
 			var inum = (day + uid) % 3 //机率控制
 			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-				// infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
+				infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
 			} else if inum == 1 {
 				infoTipsBanner = `adunit-80ab5cf805e61964`
 			} else if inum == 2 {
@@ -383,9 +383,9 @@ func GetAPIToken2(c echo.Context) error {
 			"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 			// "top_home_video": `adunit-6a6203ae9a1f4252`,
-			"list_video":     `adunit-4d779b9509cfa7a8`,
-			"cata_video":     `adunit-61660192b3436fe7`,
-			"info_video":     `adunit-e21a2857faff7fba`,
+			"list_video": `adunit-4d779b9509cfa7a8`,
+			"cata_video": `adunit-61660192b3436fe7`,
+			"info_video": `adunit-e21a2857faff7fba`,
 			// "info_reward": `adunit-37d73c4714563ea5`,
 			"top_home_custom": `adunit-6b3c3877de16d635`,
 			// "list_custom": `adunit-ade0b17378833a01`,
@@ -469,7 +469,7 @@ func GetAPIToken3(c echo.Context) error {
 
 		var jumpappid = ``
 		if fans.LoginTotal > 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳转 搜书大师
+			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -733,9 +733,9 @@ func GetAPIToken6(c echo.Context) error {
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-8d6906f779544df6`,
-		"list_video":     `adunit-8d6906f779544df6`,
-		"cata_video":     `adunit-8d6906f779544df6`,
-		"info_video":     `adunit-8d6906f779544df6`,
+		"list_video": `adunit-8d6906f779544df6`,
+		"cata_video": `adunit-8d6906f779544df6`,
+		"info_video": `adunit-8d6906f779544df6`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
 		"top_home_custom": `adunit-44122f4a8ef3d7d0`,
 		// "list_custom": `adunit-ade0b17378833a01`,
@@ -811,9 +811,9 @@ func GetAPIToken7(c echo.Context) error {
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-997349cedbfe172f`,
-		"list_video":     `adunit-997349cedbfe172f`,
-		"cata_video":     `adunit-997349cedbfe172f`,
-		"info_video":     `adunit-b528ceb7836c247f`,
+		"list_video": `adunit-997349cedbfe172f`,
+		"cata_video": `adunit-997349cedbfe172f`,
+		"info_video": `adunit-b528ceb7836c247f`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
 		"top_home_custom": `adunit-7931b9985beaf4db`,
 		// "list_custom": `adunit-6b354d2130f204aa`,
