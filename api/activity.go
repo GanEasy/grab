@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 	"strings"
+
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/reader"
 	"github.com/labstack/echo"
@@ -49,20 +50,20 @@ func GetActivities(c echo.Context) error {
 		if openID == `` {
 			level = 2
 		} else {
-			level = user.Level
 			var req = c.Request()
 			user, _ := getUser(openID)
-			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
+			// level = user.Level
+			if true || strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
 				level = user.Level
 			}
 			if level < 2 {
 				level = 2
 			}
-			if user.Level<=2 && user.LoginTotal >= 10 {
+			if user.Level <= 2 && user.LoginTotal >= 10 {
 				user.Level = 3
 			}
 		}
-		
+
 	}
 	var req = c.Request()
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
@@ -77,7 +78,7 @@ func GetActivities(c echo.Context) error {
 			itemlevel = reader.GetPathLevel(v.WxTo)
 
 			// 过滤掉做审核的内容
-			if level > 2 && itemlevel==1 {
+			if level > 2 && itemlevel == 1 {
 				itemlevel = 0
 			}
 
