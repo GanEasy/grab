@@ -291,7 +291,6 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-	
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
 		return c.JSON(http.StatusOK, CloseAppTips())
 	}
@@ -307,13 +306,13 @@ func GetExploreLinks(c echo.Context) error {
 		}
 		user, _ := getUser(openID)
 
-		if( user.LoginTotal < 5 ){
+		if user.LoginTotal < 5 {
 
-			if strings.Contains( req.Referer(),  `wx8664d56a896e375b` )  { // 免版权图
-				return   c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
+			if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图
+				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
 			}
 
-			if strings.Contains( req.Referer(), cf.ReaderMinAppFour.AppID ) { // 笔趣阁在线引导跳转 
+			if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 笔趣阁在线引导跳转
 				return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 			}
 
@@ -332,7 +331,6 @@ func GetExploreLinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-
 // GetWaitExamineExplore 用于审核的内容列表
 func GetWaitExamineExplore() []Link {
 
@@ -347,7 +345,6 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-
 		// Link{
 		// 	Title: `------------><------------`,
 		// 	Icon:  ``,
@@ -356,7 +353,7 @@ func GetWaitExamineExplore() []Link {
 		// 	WxTo:  ``,
 		// 	Style: ``,
 		// },
-		
+
 		// Link{
 		// 	Title: `在邮件中内联CSS`,
 		// 	Icon:  ``,
@@ -523,7 +520,6 @@ func CloseAppTips() []Link {
 
 }
 
-
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
@@ -633,14 +629,14 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `新18小说网0335jjlm`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=xin18&url=` + grab.EncodeURL(`https://www.0335jjlm.com/`),
-			Style: `arrow`,
-		},
 		// Link{
-		// 	Title: `去看书qkshu6`,
+		// 	Title: `新18小说网0335jjlm`, // 文字转码了
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=xin18&url=` + grab.EncodeURL(`https://www.0335jjlm.com/`),
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `去看书qkshu6`, // 涉黄
 		// 	Type:  `link`,
 		// 	WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
 		// 	Style: `arrow`,

@@ -1,12 +1,16 @@
 package reader
 
 import (
+	"context"
 	"fmt"
+	"log"
 	"net/url"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/yizenghui/chromedp"
 )
 
 //Xin18Reader www.jininggeyin.com (盗版小说网站)
@@ -231,7 +235,8 @@ func (r Xin18Reader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, ``)
+	// html, err := GetHTML(urlStr, ``)
+	html, body, err := r.GetInfoBodyText(urlStr)
 	if err != nil {
 		return ret, err
 	}
@@ -253,6 +258,9 @@ func (r Xin18Reader) GetInfo(urlStr string) (ret Content, err error) {
 
 	// article.ReadContent = reg.ReplaceAllString(article.ReadContent, "")
 
+	if body != `` {
+		article.ReadContent = body
+	}
 	reg2 := regexp.MustCompile(`<h1([^<]*)<\/h1>`)
 
 	article.ReadContent = reg2.ReplaceAllString(article.ReadContent, "")
@@ -279,5 +287,32 @@ func (r Xin18Reader) GetInfo(urlStr string) (ret Content, err error) {
 		ret.Next.URL = EncodeURL(ret.Next.URL)
 	}
 	return ret, nil
+
+}
+
+// GetInfoBodyText 获取详细内容
+func (r Xin18Reader) GetInfoBodyText(urlStr string) (html, body string, err error) {
+
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	// run task list
+	// var res, res1 string
+	var res2 []string
+	err = chromedp.Run(ctx,
+		chromedp.Navigate(urlStr),
+		chromedp.Sleep(time.Second*2),
+		//$('#content').find('span').remove();
+		chromedp.Evaluate(`Object.keys(window);`, &res2),
+		// chromedp.Body(`html`, &res),
+
+		// chromedp.Text(`html`, &res1, chromedp.NodeVisible, chromedp.ByQuery),
+		chromedp.Text(`#chapterbody`, &body, chromedp.NodeVisible, chromedp.ByID),
+		chromedp.OuterHTML("html", &html),
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return html, body, err
 
 }
