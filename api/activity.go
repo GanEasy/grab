@@ -91,7 +91,8 @@ func GetActivities(c echo.Context) error {
 
 			var linkType = `jumpapp`
 			var appid = `wx8ffa5a58c0bb3589`
-			if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) {
+			// 小程序端暂不支持推荐跳转
+			if true || strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) {
 				// 不是新推荐阅读的，全部推荐跳新推荐阅读去
 				appid = ``
 				linkType = `link`
