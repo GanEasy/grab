@@ -83,7 +83,9 @@ func GetActivities(c echo.Context) error {
 		for _, v := range rows {
 			// 只显示拥有权限的级别
 			itemlevel = reader.GetPathLevel(v.WxTo)
-
+			if v.Level > 3 {
+				itemlevel = v.Level
+			}
 			// 过滤掉做审核的内容
 			if level > 2 && itemlevel == 1 {
 				itemlevel = 0
