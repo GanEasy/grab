@@ -388,7 +388,7 @@ func AddActivity(title, wxto string) (activity db.Activity) {
 func RemoveActivity(url string) (activity db.Activity) {
 	if url != `` {
 		activity.GetActivityByResource(url)
-		activity.Level = 4
+		activity.Level = 14
 		activity.Save()
 	}
 	return activity
