@@ -83,7 +83,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	})
 
 	// 获取用户签名
-	e.GET("/gettoken", a.GetToken)  //笔趣阁Pro
+	e.GET("/gettoken", a.GetToken) //笔趣阁Pro
 	e.GET("/getapitoken", a.GetAPIToken)
 	e.GET("/getapitoken2", a.GetAPIToken2) //搜书大师
 	e.GET("/getapitoken3", a.GetAPIToken3) //笔趣阁Plus
@@ -183,8 +183,10 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/allcartoonroesoures", a.GetAllCartoonResources)
 	api.GET("/alllearnresources", a.GetAllLearnResources)
 
-	api.GET("/newactivity", a.NewActivity)  //新号召令
-	api.GET("/activities", a.GetActivities) //所有号召令(100条)
+	api.GET("/newactivity", a.NewActivity)       //新号召令
+	api.GET("/ra", a.RemoveActivity)             //移除召令
+	api.GET("/removeactivity", a.RemoveActivity) //移除召令
+	api.GET("/activities", a.GetActivities)      //所有号召令(100条)
 
 	//  自定义分类
 	api.GET("/classify", func(c echo.Context) error {

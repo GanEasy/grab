@@ -384,6 +384,16 @@ func AddActivity(title, wxto string) (activity db.Activity) {
 	return activity
 }
 
+// RemoveActivity 移除号召
+func RemoveActivity(url string) (activity db.Activity) {
+	if url != `` {
+		activity.GetActivityByResource(url)
+		activity.Level = 4
+		activity.Save()
+	}
+	return activity
+}
+
 // GetActivities 搜索post
 func GetActivities() (activities []db.Activity) {
 	var activity db.Activity

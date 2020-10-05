@@ -18,6 +18,13 @@ func NewActivity(c echo.Context) error {
 	return c.JSON(http.StatusOK, activity)
 }
 
+//RemoveActivity 新推荐
+func RemoveActivity(c echo.Context) error {
+	url := c.QueryParam("url")
+	activity := cpi.RemoveActivity(url)
+	return c.JSON(http.StatusOK, activity)
+}
+
 //GetActivities 获取100条推荐
 func GetActivities(c echo.Context) error {
 	var links = []Link{}
@@ -53,7 +60,7 @@ func GetActivities(c echo.Context) error {
 			var req = c.Request()
 			user, _ := getUser(openID)
 			// level = user.Level
-			if true || strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
+			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
 				level = user.Level
 			}
 			if level < 2 {
@@ -82,6 +89,14 @@ func GetActivities(c echo.Context) error {
 				itemlevel = 0
 			}
 
+			var linkType = `jumpapp`
+			var appid = `wx8ffa5a58c0bb3589`
+			if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) {
+				// 不是新推荐阅读的，全部推荐跳新推荐阅读去
+				appid = ``
+				linkType = `link`
+			}
+
 			if level > itemlevel && itemlevel > 0 {
 				//  过滤掉相同 title 的资源（重复的只显示最新一个）
 				if _, ok := rp[v.Title]; !ok {
@@ -89,11 +104,12 @@ func GetActivities(c echo.Context) error {
 					links = append(links,
 						Link{
 							Title: v.Title,
-							Icon:  ``, // cuIcon-new
-							Type:  `link`,
+							Icon:  ``,       // cuIcon-new
+							Type:  linkType, //  link
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
+							Appid: appid, //推荐阅读内容全部跳走
 						})
 				}
 
