@@ -106,7 +106,7 @@ func GetActivities(c echo.Context) error {
 					rp[v.Title] = 1
 					links = append(links,
 						Link{
-							Title: v.Title,
+							Title: v.Title + string(itemlevel),
 							Icon:  ``,       // cuIcon-new
 							Type:  linkType, //  link
 							Image: ``,
