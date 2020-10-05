@@ -49,6 +49,7 @@ func GetActivities(c echo.Context) error {
 		if openID == `` {
 			level = 2
 		} else {
+			level = user.Level
 			var req = c.Request()
 			user, _ := getUser(openID)
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
