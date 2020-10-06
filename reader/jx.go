@@ -28,23 +28,23 @@ func (r JxReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`-全部分类`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/1_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/2_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/3_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/4_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/5_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/6_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/7_1.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`-全部分类`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/lishixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/nvshengxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 
-		Card{`\全部排行`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month4.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month5.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month6.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month7.html`), "", `link`, ``, nil, ``, ``},
+		Card{`热门`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/paihangbang/`), "", `link`, ``, nil, ``, ``},
+		// Card{`\玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month4.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month5.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month6.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`\女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month7.html`), "", `link`, ``, nil, ``, ``},
 	}
 	list.SearchSupport = true
 	return list, nil
@@ -57,7 +57,7 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.recommend`)
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
@@ -67,14 +67,22 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 	if e != nil {
 		return list, e
 	}
-	list.Title = FindString(`(?P<title>(.)+),`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_好看的`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
 
 	link, _ := url.Parse(urlStr)
 
-	var links = GetLinks(g, link)
+	html2, _ := g.Find(`.layout-col2`).Eq(1).Html()
+
+	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
+
+	var links = GetLinks(g2, link)
+
+	if len(links) == 0 {
+		links = GetLinks(g, link)
+	}
 
 	var needLinks []Link
 	var state bool
@@ -183,6 +191,13 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
+
+	// 补丁，修正url地址
+	var bookid = FindString(`https://m.jx.la/booklist/(?P<bookid>(\d)+).html`, urlStr, "bookid")
+	if bookid != `` {
+		urlStr = fmt.Sprintf(`https://m.jx.la/book/%v/`, bookid)
+	}
+
 	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
@@ -195,14 +210,15 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 偷心透视小村医最新章节,
-	list.Title = FindString(`(?P<title>(.)+)全文阅读_`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := FindContentHTML(html, `#chapterlist`)
+	html2, _ := g.Find(`.section-box`).Eq(1).Html()
+	// html2, _ := FindContentHTML(html, `#chapterlist`)
 
 	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
