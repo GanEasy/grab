@@ -591,6 +591,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 		Link{
+			Title: `笔趣阁soe8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+			Style: `arrow`,
+		},
+		Link{
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
@@ -641,12 +647,6 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
 		// 	Style: `arrow`,
 		// },
-		Link{
-			Title: `笔趣阁soe8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
-			Style: `arrow`,
-		},
 
 		// Link{
 		// 	Title: `U小说阅读网`,
