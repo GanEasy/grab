@@ -572,22 +572,9 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
-			Title: `笔趣阁jxla`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
-			Style: `arrow`,
-		},
-		Link{
 			Title: `笔趣阁mcmssc`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `笔趣阁paoshu8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
 			Style: `arrow`,
 		},
 
@@ -603,12 +590,12 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
 			Style: `arrow`,
 		},
-		// Link{
-		// 	Title: `笔趣阁biqugeinfo`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+			Style: `arrow`,
+		},
 		Link{
 			Title: `顶点小说booktxt`,
 			Type:  `link`,
@@ -629,6 +616,19 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `笔趣阁jxla`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
+			Style: `arrow`,
+		},
+		Link{
+			Title: `笔趣阁paoshu8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+			Style: `arrow`,
+		},
+
 		// Link{
 		// 	Title: `新18小说网0335jjlm`, // 文字转码了
 		// 	Type:  `link`,
@@ -641,12 +641,12 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=qkshu6&url=` + grab.EncodeURL(`https://www.qkshu6.com/`),
 		// 	Style: `arrow`,
 		// },
-		// Link{
-		// 	Title: `笔趣阁soe8`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `笔趣阁soe8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+			Style: `arrow`,
+		},
 
 		// Link{
 		// 	Title: `U小说阅读网`,
