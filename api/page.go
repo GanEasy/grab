@@ -883,7 +883,7 @@ func GetGuideExploreLinksAndJumpVipApp() []Link {
 	}
 	var links = []Link{
 		Link{
-			Title: `进VIP通道搜“112233”解锁资源权限`,
+			Title: `老铁进VIP通道搜“112233”解锁`,
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
