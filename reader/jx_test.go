@@ -12,6 +12,8 @@ func Test_JxReaderGetBooks(t *testing.T) {
 	urlStr = "https://m.jx.la/waptop/week3.html"
 	urlStr = "https://m.jx.la/wapsort/0_1.html"
 	urlStr = "https://m.jx.la/waptop/month.html"
+	urlStr = "https://m.jx.la/xuanhuanxiaoshuo/"
+	// urlStr = "https://m.jx.la/paihangbang/"
 	reader := JxReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()
@@ -35,6 +37,7 @@ func Test_JxReaderGetChapters(t *testing.T) {
 	// http://book.zongheng.com/chapter/777234/43415281.html
 	urlStr := "https://m.uxiaoshuo.com/282/282134/all.html"
 	urlStr = "https://m.jx.la/booklist/142095.html"
+	// urlStr = "https://m.jx.la/book/142095/"
 	reader := JxReader{}
 	list, err := reader.GetCatalog(urlStr)
 	// list, err = reader.GetCategories()
