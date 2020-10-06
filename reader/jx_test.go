@@ -13,7 +13,7 @@ func Test_JxReaderGetBooks(t *testing.T) {
 	urlStr = "https://m.jx.la/wapsort/0_1.html"
 	urlStr = "https://m.jx.la/waptop/month.html"
 	urlStr = "https://m.jx.la/xuanhuanxiaoshuo/"
-	urlStr = "https://m.jx.la/paihangbang/"
+	// urlStr = "https://m.jx.la/paihangbang/"
 	reader := JxReader{}
 	list, err := reader.GetList(urlStr)
 	// list, err = reader.GetCategories()

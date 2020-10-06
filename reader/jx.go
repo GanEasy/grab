@@ -80,7 +80,7 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 
 	var links = GetLinks(g2, link)
 
-	if len(links) == 0 {
+	if len(links) == 0 || true {
 		links = GetLinks(g, link)
 	}
 

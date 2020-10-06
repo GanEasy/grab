@@ -26,7 +26,7 @@ func (r Soe8Reader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/0/1.html`), "", `link`, ``, nil, ``, ``},
+		// Card{`全部`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/0/1.html`), "", `link`, ``, nil, ``, ``},
 		Card{`玄幻奇幻`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/1_1/`), "", `link`, ``, nil, ``, ``},
 		Card{`武侠仙侠`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/2_1/`), "", `link`, ``, nil, ``, ``},
 		Card{`都市言情`, `/pages/list?action=list&drive=soe8&url=` + EncodeURL(`http://m.soe8.com/sort/3_1/`), "", `link`, ``, nil, ``, ``},
