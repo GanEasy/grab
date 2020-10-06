@@ -282,8 +282,8 @@ func GetExploreLinks(c echo.Context) error {
 	}
 	user, _ := getUser(openID)
 	// fmt.Println(user)
-	if user.LoginTotal >= 20 { //老用户，使用超过20次了
-		// return c.JSON(http.StatusOK, GetGuideExploreLinksAndJumpVipApp())
+	if user.LoginTotal >= 10 { //老用户，使用超过20次了
+		return c.JSON(http.StatusOK, GetGuideExploreLinksAndJumpVipApp())
 	}
 
 	cf := cpi.GetConf()
@@ -878,12 +878,12 @@ func GetGuideExploreLinks() []Link {
 
 //GetGuideExploreLinksAndJumpVipApp  新版，引导转化
 func GetGuideExploreLinksAndJumpVipApp() []Link {
-	if true  {
-		return GetGuideExploreLinks()
+	if true {
+		// return GetGuideExploreLinks()
 	}
 	var links = []Link{
 		Link{
-			Title: `老铁请进VIP通道搜“112233”`,
+			Title: `进VIP通道搜“112233”解锁资源权限`,
 			Icon:  `notice`,
 			Type:  `jumpapp`,
 			Image: ``,
