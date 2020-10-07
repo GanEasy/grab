@@ -71,7 +71,7 @@ func GetToken(c echo.Context) error {
 			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳新推荐阅读
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx90dee998347266dd` // 强制跳去 VIP通道
+			jumpappid = `wxe70eee58e64c7ac7` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 		var infoTipsBanner, infoTipsCustom string
 
@@ -88,7 +88,7 @@ func GetToken(c echo.Context) error {
 			var uid = int(fans.ID)
 			var inum = (day + uid) % 5 //机率控制
 			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-				// infoTipsBanner = cf.Ad.InfoBanner
+				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
 				// info_tips_grid = cf.Ad.InfoGrid
 				infoTipsCustom = `adunit-9bb55eb7ddd541d4`
