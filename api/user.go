@@ -468,8 +468,8 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
-		if fans.LoginTotal > 10 { // 如果访问次数少于10次，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师 wxe70eee58e64c7ac7
+		if fans.LoginTotal > 5 { // 访问次数大于5去Pro
+			jumpappid = `wx90dee998347266dd` // 强制跳转 搜书大师 wxe70eee58e64c7ac7  去VIP通道pro
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -785,7 +785,7 @@ func GetAPIToken7(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(5) // 先搞低些广告出现机率
+	inum := rand.Intn(3) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = ``
