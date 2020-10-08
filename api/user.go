@@ -140,7 +140,7 @@ func GetToken(c echo.Context) error {
 			// 定义首页分享图片
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
-			"online_service":    false,
+			"online_service":    true,
 			"info_force_reward": false, // 强制广告
 			// "info_video_adlt":   2,    //详情页面视频轮循总数
 			// "info_video_adlm":   0,    //详情页面视频轮循开始余量
@@ -467,7 +467,7 @@ func GetAPIToken3(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
+		var jumpappid = ``        // wx8ffa5a58c0bb3589 新推荐阅读
 		if fans.LoginTotal > 5 { // 访问次数大于5去Pro
 			jumpappid = `wx90dee998347266dd` // 强制跳转 搜书大师 wxe70eee58e64c7ac7  去VIP通道pro
 		}
