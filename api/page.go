@@ -291,9 +291,6 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
-		return c.JSON(http.StatusOK, CloseAppTips())
-	}
 
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
@@ -308,10 +305,6 @@ func GetExploreLinks(c echo.Context) error {
 
 		if user.LoginTotal < 5 {
 
-			if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图
-				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
-			}
-
 			if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 笔趣阁在线引导跳转
 				return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 			}
@@ -323,8 +316,10 @@ func GetExploreLinks(c echo.Context) error {
 			}
 			// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 		}
-		if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
-			// return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+		if user.LoginTotal > 10 { // 小于3级用户，不允许显示资源列表
+			if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
+				return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+			}
 		}
 	}
 
