@@ -268,7 +268,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
 		if len(list.Contents)==0 {
-			list.Contents = append(list.Contents, `----------`, `暂无内容，请返回上级目录或重新加载。`, `----------`)
+			list.Contents = append(list.Contents, `----------`, `暂无内容或页面出错，请返回上级目录或重新加载。`, `----------`)
 		}else if len(list.Contents)<10 {
 			list.Contents = append(list.Contents, `----------`, `请返回首页发现更多精彩内容。`, `----------`)
 			// list.Contents = append(list.Contents,`---------- `,`---------- `,`---------`,`---------`,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
