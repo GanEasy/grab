@@ -267,9 +267,12 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		drive := c.QueryParam("drive")
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
-		if len(list.Contents)<10{
-			list.Contents = append(list.Contents, `----------`, `若内容不是最新最全的，请返回首页搜索其它同名资源。`, `----------`)
+		if len(list.Contents)==0 {
+			list.Contents = append(list.Contents, `----------`, `暂无内容，请返回上级目录或重新加载。`, `----------`)
+		}else if len(list.Contents)<10 {
+			list.Contents = append(list.Contents, `----------`, `请返回首页发现更多精彩内容。`, `----------`)
 			// list.Contents = append(list.Contents,`---------- `,`---------- `,`---------`,`---------`,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
+		
 		}
 		return c.JSON(http.StatusOK, list)
 	})
