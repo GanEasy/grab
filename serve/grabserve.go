@@ -271,7 +271,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
 		if len(list.Contents)<10{
-			list.Contents = append(list.Contents,` `,`------ `,` `,` `,` `,` `,` `,` `,` `)
+			list.Contents = append(list.Contents,`---------- `,`---------- `,`---------`,`---------`,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
 		}
 		return c.JSON(http.StatusOK, list)
 	})
