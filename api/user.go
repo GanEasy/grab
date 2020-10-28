@@ -358,11 +358,11 @@ func GetAPIToken8(c echo.Context) error {
 		var uid = int(fans.ID)
 		var inum = (day + uid) % 3 //机率控制
 		if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-			infoTipsCustom = `adunit-eb46e70f80c319ff`
+			// infoTipsCustom = `adunit-eb46e70f80c319ff`
 		} else if inum == 1 {
-			infoTipsBanner = `adunit-8ff0e12978abbb22`
+			// infoTipsBanner = `adunit-8ff0e12978abbb22`
 		} else if inum == 2 {
-			infoTipsBanner = `adunit-8ff0e12978abbb22`
+			// infoTipsBanner = `adunit-8ff0e12978abbb22`
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
@@ -462,11 +462,11 @@ func GetAPIToken2(c echo.Context) error {
 		var uid = int(fans.ID)
 		var inum = (day + uid) % 3 //机率控制
 		if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-			infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
+			// infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
 		} else if inum == 1 {
-			infoTipsBanner = `adunit-80ab5cf805e61964`
+			// infoTipsBanner = `adunit-80ab5cf805e61964`
 		} else if inum == 2 {
-			infoTipsBanner = `adunit-80ab5cf805e61964`
+			// infoTipsBanner = `adunit-80ab5cf805e61964`
 		}
 		// }
 
@@ -582,11 +582,11 @@ func GetAPIToken3(c echo.Context) error {
 			var uid = int(fans.ID)
 			var inum = (day + uid) % 3 //机率控制
 			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-				infoTipsBanner = cf.Ad.InfoBanner
+				// infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
-				infoTipsGrid = cf.Ad.InfoGrid
+				// infoTipsGrid = cf.Ad.InfoGrid
 			} else if inum == 2 {
-				infoTipsBanner = cf.Ad.InfoBanner
+				// infoTipsBanner = cf.Ad.InfoBanner
 			}
 		}
 
@@ -815,9 +815,9 @@ func GetAPIToken6(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	if inum == 1 {
-		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+		// infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-ade0b17378833a01`
+		// infoTipsCustom = `adunit-ade0b17378833a01`
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
@@ -893,9 +893,9 @@ func GetAPIToken7(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = ``
 	if inum == 1 {
-		infoTipsBanner = `adunit-0d62bae54bcefd36`
+		// infoTipsBanner = `adunit-0d62bae54bcefd36`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-6b354d2130f204aa`
+		// infoTipsCustom = `adunit-6b354d2130f204aa`
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
