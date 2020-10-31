@@ -71,7 +71,7 @@ func GetToken(c echo.Context) error {
 			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳新推荐阅读
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			// jumpappid = `wxe70eee58e64c7ac7` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
+			jumpappid = `wx90dee998347266dd` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 		var infoTipsBanner, infoTipsCustom string
 
