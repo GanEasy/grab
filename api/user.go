@@ -383,7 +383,7 @@ func GetAPIToken8(c echo.Context) error {
 			// "top_home_video": `adunit-6a6203ae9a1f4252`,
 			// "list_video": `adunit-4d779b9509cfa7a8`,
 			// "cata_video": `adunit-61660192b3436fe7`,
-			// "info_video": `adunit-e21a2857faff7fba`,
+			"info_video": `adunit-e57f377ec7c59a5d`,
 			// "info_reward": `adunit-37d73c4714563ea5`,
 			"top_home_custom": `adunit-29d916b6d72e9aef`,
 			"list_custom":     `adunit-18a4d557507b274b`,
