@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 	"log"
-	// "math/rand"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
@@ -63,35 +63,35 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `wxe70eee58e64c7ac7` // 强制跳 暂时去搜书大师
+		var jumpappid = `` // 强制跳 暂时去搜书大师
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
-		} else if fans.LoginTotal < 3 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
+		} else if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳新推荐阅读
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx90dee998347266dd` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
+			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 		var infoTipsBanner, infoTipsCustom string
 
-		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
-			// rand.Seed(time.Now().UnixNano())
-			// inum := rand.Intn(3) // 先搞低些广告出现机率
+		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
+			rand.Seed(time.Now().UnixNano())
+			inum := rand.Intn(3) // 先搞低些广告出现机率
 			// if inum==1 {
 			// 	infoTipsBanner =  cf.Ad.InfoBanner
 			// }else if inum==2{
 			// 	info_tips_grid =  cf.Ad.InfoGrid
 			// }
 
-			day := time.Now().Day()
-			var uid = int(fans.ID)
-			var inum = (day + uid) % 3 //机率控制 2/3 banner
+			// day := time.Now().Day()
+			// var uid = int(fans.ID)
+			// var inum = (day + uid) % 3 //机率控制 2/3 banner
 			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
 				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
 				// info_tips_grid = cf.Ad.InfoGrid
-				infoTipsCustom = `adunit-9bb55eb7ddd541d4`
+				infoTipsCustom = `` // adunit-9bb55eb7ddd541d4
 			} else if inum == 2 {
 				infoTipsBanner = cf.Ad.InfoBanner
 			}
