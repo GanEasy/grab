@@ -46,6 +46,9 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
 		return GetAPIToken2(c)
 	}
+	if strings.Contains(req.Referer(), `wxf2ce77bb93e1b076`) { // 获取通用 token 全本txt  
+		return GetAPIToken9(c)
+	}
 	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
 		return GetAPIToken3(c)
 	}
@@ -949,6 +952,83 @@ func GetAPIToken7(c echo.Context) error {
 
 }
 
+//GetAPIToken9 获取 jwt token 全本txt
+func GetAPIToken9(c echo.Context) error {
+
+	claims := &JwtCustomClaims{
+		1,
+		`visitor.OpenID`,
+		``,
+		``,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+		},
+	}
+
+	// Create token with claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	// Generate encoded token and send it as response.
+	t, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+	cf := cpi.GetConf()
+
+	rand.Seed(time.Now().UnixNano())
+	inum := rand.Intn(3) // 先搞低些广告出现机率
+
+	var infoTipsBanner, infoTipsCustom string
+	infoTipsBanner = ``
+	if inum == 1 {
+		// infoTipsBanner = `adunit-0d62bae54bcefd36`
+	} else if inum == 2 {
+		// infoTipsCustom = `adunit-6b354d2130f204aa`
+	}
+
+	return c.JSON(http.StatusOK, echo.Map{
+
+		"jumpappid":        ``, //
+		"token":            t,
+		"uid":              -1,
+		"level":            0,
+		"ismini":           0,
+		"can_create":       1, // 允许创建内容
+		"info_screen":      ``,
+		// "info_banner":      `adunit-0d62bae54bcefd36`,
+		"info_custom":      `adunit-75f729118d4cb5f5`,
+		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+		"info_tips_custom": infoTipsCustom, // 详细页格子广告
+		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
+		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+		// "top_home_video": `adunit-997349cedbfe172f`,
+		// "list_video": `adunit-997349cedbfe172f`,
+		// "cata_video": `adunit-997349cedbfe172f`,
+		// "info_video": `adunit-b528ceb7836c247f`,
+		// "info_reward": `adunit-37d73c4714563ea5`,
+		"top_home_custom": `adunit-75f729118d4cb5f5`,
+		"list_custom": `adunit-75f729118d4cb5f5`,
+		"cata_custom": `adunit-75f729118d4cb5f5`,
+		// "info_reward": `adunit-756e936e72536645`,
+		// 定义首页分享标题
+		"share_title": cf.ReaderMinAppThree.AppTitle,
+		// 定义首页分享图片
+		"share_cover":       cf.ReaderMinAppThree.AppCover,
+		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
+		"online_service":    false,
+		"info_force_reward": true, // 强制广告
+		"info_video_adlt":   4,    //详情页面视频轮循总数
+		"info_video_adlm":   1,    //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,    //详情页面Banner轮循总数
+		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
+
+	})
+
+}
 //CheckOpenID 获取签名里面的信息
 func CheckOpenID(c echo.Context) error {
 	user := c.Get("user").(*jwt.Token)
