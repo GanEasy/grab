@@ -993,20 +993,20 @@ func GetAPIToken9(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = ``
 	if inum == 1 {
-		// infoTipsBanner = `adunit-0edf62f9cfbf0336`
+		infoTipsBanner = `adunit-0edf62f9cfbf0336`
 	} else if inum == 2 {
-		// infoTipsCustom = `adunit-6b354d2130f204aa`
+		infoTipsCustom = `adunit-6b354d2130f204aa`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":   ``, //
-		"token":       t,
-		"uid":         -1,
-		"level":       0,
-		"ismini":      0,
-		"can_create":  1, // 允许创建内容
-		"info_screen": `adunit-b44d21e5dd1ef254`,
-		// "info_banner":      `adunit-0edf62f9cfbf0336`,
+		"jumpappid":        ``, //
+		"token":            t,
+		"uid":              -1,
+		"level":            0,
+		"ismini":           0,
+		"can_create":       1, // 允许创建内容
+		"info_screen":      `adunit-b44d21e5dd1ef254`,
+		"info_banner":      `adunit-0edf62f9cfbf0336`,
 		"info_custom":      `adunit-75f729118d4cb5f5`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
