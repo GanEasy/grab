@@ -32,7 +32,7 @@ func GetToken(c echo.Context) error {
 	var req = c.Request()
 
 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token  Pro
-		return GetAPIToken8(c)
+		return GetOpenToken(c)
 	}
 	if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
 		return GetAPIToken7(c)
