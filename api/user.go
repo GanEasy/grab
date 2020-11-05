@@ -182,13 +182,20 @@ func GetOpenToken(c echo.Context) error {
 	}
 	cf := cpi.GetConf()
 
+	
+	version := c.QueryParam("version")
+	var ismini = 0
+	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+		ismini = 1
+	}
+
 	return c.JSON(http.StatusOK, echo.Map{
 		"jumpappid":  cf.ReaderMinApp.JumpAppID, // 强制跳转其它小程序
 		"token":      t,
 		"uid":        -1,
 		"level":      0,
 		"can_create": 1, // 允许创建内容
-		"ismini":     0,
+		"ismini":     ismini,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinApp.AppTitle,
 		// 定义首页分享图片
