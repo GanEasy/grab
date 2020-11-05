@@ -68,7 +68,7 @@ func GetToken(c echo.Context) error {
 			canCreate = 0
 			ismini = 1
 		} else if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
-			jumpappid = `wx8ffa5a58c0bb3589` // 强制跳新推荐阅读
+			jumpappid = `wxf2ce77bb93e1b076` // 强制跳新推荐阅读  wx8ffa5a58c0bb3589
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
 			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
