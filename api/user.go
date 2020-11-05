@@ -32,7 +32,7 @@ func GetToken(c echo.Context) error {
 	var req = c.Request()
 
 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token  Pro
-		return GetOpenToken(c)
+		return GetAPIToken8(c)
 	}
 	if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
 		return GetAPIToken7(c)
@@ -368,21 +368,33 @@ func GetAPIToken8(c echo.Context) error {
 		var uid = int(fans.ID)
 		var inum = (day + uid) % 3 //机率控制
 		if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-			infoTipsCustom = `adunit-eb46e70f80c319ff`
+			// infoTipsCustom = `adunit-eb46e70f80c319ff`
 		} else if inum == 1 {
-			infoTipsBanner = `adunit-8ff0e12978abbb22`
+			// infoTipsBanner = `adunit-8ff0e12978abbb22`
 		} else if inum == 2 {
-			infoTipsBanner = `adunit-8ff0e12978abbb22`
+			// infoTipsBanner = `adunit-8ff0e12978abbb22`
 		}
 
+		var canCreate = 1
+		if fans.Level > 2 {
+			// canCreate = 1
+		}
+
+		var ismini = 0
+		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
+			if fans.LoginTotal < 20 {
+				ismini = 1
+				canCreate = 0
+			}
+		}
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":        ``, // 强制跳转其它小程序
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
-			"ismini":           0,
+			"ismini":           ismini,
 			"show_tips_next":   0,
-			"can_create":       1, // 允许创建内容
+			"can_create":       canCreate, // 允许创建内容
 			"info_screen":      ``,
 			"info_banner":      `adunit-8ff0e12978abbb22`,
 			"info_custom":      `adunit-eb46e70f80c319ff`,
