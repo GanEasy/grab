@@ -380,6 +380,7 @@ func GetAPIToken8(c echo.Context) error {
 			// canCreate = 1
 		}
 
+		version := c.QueryParam("version")
 		var ismini = 0
 		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 			if fans.LoginTotal < 20 {
