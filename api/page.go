@@ -310,17 +310,18 @@ func GetExploreLinks(c echo.Context) error {
 			}
 
 		}
-		if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
-			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
-				return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
-			}
-			// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-		}
-		if user.LoginTotal > 10 { // 小于3级用户，不允许显示资源列表
-			if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
-				return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
-			}
-		}
+		// 被举报，流量主封10年了
+		// if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
+		// 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
+		// 		return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
+		// 	}
+		// 	// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+		// }
+		// if user.LoginTotal > 10 { // 小于3级用户，不允许显示资源列表
+		// 	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
+		// 		return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+		// 	}
+		// }
 	}
 
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
@@ -752,24 +753,24 @@ func GetGuideExploreLinks() []Link {
 func GetJumpTipsAndGuideExploreLinks() []Link {
 	var links2 = GetGuideExploreLinks()
 
-	var links = []Link{
-		Link{
-			Title: `进入VIP稳定版>>笔趣阁Pro>>搜索112233解锁`,
-			Icon:  ``,
-			Type:  `jumpapp`,
-			Image: ``,
-			WxTo:  `/pages/index?uid=112233`,
-			Style: ``,
-			Appid: `wx90dee998347266dd`, // 笔趣阁Pro
-		},
-		Link{
-			Title: `----------------------------`,
-			Type:  `link`,
-			WxTo:  ``,
-			Style: ``,
-		},
-	}
-	links = append(links, links2...)
+	// var links = []Link{
+	// 	Link{
+	// 		Title: `进入VIP稳定版>>笔趣阁Pro>>搜索112233解锁`,
+	// 		Icon:  ``,
+	// 		Type:  `jumpapp`,
+	// 		Image: ``,
+	// 		WxTo:  `/pages/index?uid=112233`,
+	// 		Style: ``,
+	// 		Appid: `wx90dee998347266dd`, // 笔趣阁Pro
+	// 	},
+	// 	Link{
+	// 		Title: `----------------------------`,
+	// 		Type:  `link`,
+	// 		WxTo:  ``,
+	// 		Style: ``,
+	// 	},
+	// }
+	// links = append(links, links2...)
 	return links
 }
 
