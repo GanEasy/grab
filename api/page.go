@@ -291,7 +291,6 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
@@ -753,24 +752,27 @@ func GetGuideExploreLinks() []Link {
 func GetJumpTipsAndGuideExploreLinks() []Link {
 	var links2 = GetGuideExploreLinks()
 
-	// var links = []Link{
-	// 	Link{
-	// 		Title: `进入VIP稳定版>>笔趣阁Pro>>搜索112233解锁`,
-	// 		Icon:  ``,
-	// 		Type:  `jumpapp`,
-	// 		Image: ``,
-	// 		WxTo:  `/pages/index?uid=112233`,
-	// 		Style: ``,
-	// 		Appid: `wx90dee998347266dd`, // 笔趣阁Pro
-	// 	},
-	// 	Link{
-	// 		Title: `----------------------------`,
-	// 		Type:  `link`,
-	// 		WxTo:  ``,
-	// 		Style: ``,
-	// 	},
-	// }
-	// links = append(links, links2...)
+	if true {
+		return links2
+	}
+	var links = []Link{
+		Link{
+			Title: `进入VIP稳定版>>笔趣阁Pro>>搜索112233解锁`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index?uid=112233`,
+			Style: ``,
+			Appid: `wx90dee998347266dd`, // 笔趣阁Pro
+		},
+		Link{
+			Title: `----------------------------`,
+			Type:  `link`,
+			WxTo:  ``,
+			Style: ``,
+		},
+	}
+	links = append(links, links2...)
 	return links
 }
 
