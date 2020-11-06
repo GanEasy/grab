@@ -879,7 +879,7 @@ func GetGuideExploreLinks() []Link {
 //GetGuideExploreLinksAndJumpVipApp  新版，引导转化
 func GetGuideExploreLinksAndJumpVipApp() []Link {
 	if true {
-		// return GetGuideExploreLinks()
+		return GetGuideExploreLinks()
 	}
 	var links = []Link{
 		Link{
