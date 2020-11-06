@@ -388,7 +388,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        ``, // 强制跳转其它小程序
+			"jumpappid":        `wxf2ce77bb93e1b076`, // 强制跳转其它小程序 全文txt
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
@@ -594,7 +594,7 @@ func GetAPIToken3(c echo.Context) error {
 
 		var jumpappid = ``       // wx90dee998347266dd 新推荐阅读
 		if fans.LoginTotal > 5 { // 访问次数大于5去Pro
-			jumpappid = `wx90dee998347266dd` // 强制跳转 搜书大师 wxe70eee58e64c7ac7  去VIP通道pro
+			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师 wxe70eee58e64c7ac7  去VIP通道pro
 		}
 
 		var infoTipsBanner, infoTipsGrid string
