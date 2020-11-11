@@ -835,7 +835,7 @@ func GetAPIToken6(c echo.Context) error {
 	inum := rand.Intn(5) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+	// infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	if inum == 1 {
 		// infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	} else if inum == 2 {
