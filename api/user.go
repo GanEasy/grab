@@ -73,7 +73,7 @@ func GetToken(c echo.Context) error {
 			var juid = int(fans.ID)
 			var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 			if janum == 0 {
-				jumpappid = `wxf2ce77bb93e1b076` // 强制去 全本txt wxf2ce77bb93e1b076
+				jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
 				jumpwebpage = `https://aireadhelper.github.io`
 			} else {
 				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589
