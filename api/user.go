@@ -63,7 +63,8 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `` // 强制跳 暂时去搜书大师
+		var jumpappid = ``   // 强制跳 暂时去搜书大师
+		var jumpwebpage = `` // 强制跳 网站阅读
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
@@ -73,8 +74,9 @@ func GetToken(c echo.Context) error {
 			var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 			if janum == 0 {
 				jumpappid = `wxf2ce77bb93e1b076` // 强制去 全本txt wxf2ce77bb93e1b076
-			}else{
-				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589   
+				jumpwebpage = `https://aireadhelper.github.io`
+			} else {
+				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589
 			}
 		}
 		if fans.LoginTotal > 10 { // 大于10次，强制跳转
@@ -94,7 +96,7 @@ func GetToken(c echo.Context) error {
 			// day := time.Now().Day()
 			// var uid = int(fans.ID)
 			// var inum = (day + uid) % 3 //机率控制 2/3 banner
-			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
+			if inum == 0 { // 日期加uid求余 为0 给banner 为 1 给grid
 				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
 				// info_tips_grid = cf.Ad.InfoGrid
@@ -105,7 +107,8 @@ func GetToken(c echo.Context) error {
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        jumpappid, // 强制跳转其它小程序
+			"jumpappid":        jumpappid,   // 强制跳转其它小程序
+			"jumpwebpage":      jumpwebpage, // 强制跳转网站阅读
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
@@ -147,6 +150,33 @@ func GetToken(c echo.Context) error {
 	}
 
 	return echo.ErrUnauthorized
+}
+
+// GetOpenToken 获取 开放的 token
+func GetOpenToken(c echo.Context) error {
+	claims := &JwtCustomClaims{
+		1,
+		`visitor.OpenID`,
+		``,
+		``,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+		},
+	}
+
+	// Create token with claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	// Generate encoded token and send it as response.
+	t, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+	return c.JSON(http.StatusOK, echo.Map{
+		"token": t,
+		"uid":   -1,
+		"level": 0,
+	})
 }
 
 //GetAPIToken 获取 jwt token
