@@ -837,14 +837,14 @@ func GetAPIToken6(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	if inum == 1 {
-		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+		// infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-ade0b17378833a01`
+		// infoTipsCustom = `adunit-ade0b17378833a01`
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        `wxe70eee58e64c7ac7`, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
