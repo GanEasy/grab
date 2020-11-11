@@ -388,7 +388,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        `wxf2ce77bb93e1b076`, // 强制跳转其它小程序 全文txt
+			"jumpappid":        `wx8664d56a896e375b`, // 强制跳转其它小程序 全文txt
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
@@ -999,7 +999,7 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``, //
+		"jumpappid":        `wx8664d56a896e375b`, //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
