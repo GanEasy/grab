@@ -587,9 +587,10 @@ func getOpenID(c echo.Context) string {
 }
 
 // 获取最后一个用户信息
-func GetLastUser(c echo.Context) string {
+func GetLastUser(c echo.Context) error {
 	var fans db.Fans
-	return fans.GetLastUser()
+	fans.GetLastUser()
+	return c.JSON(http.StatusOK, fans)
 }
 
 // 获取用户信息
