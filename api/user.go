@@ -114,6 +114,7 @@ func GetToken(c echo.Context) error {
 			"level":            0,
 			"can_create":       canCreate, // 允许创建内容
 			"ismini":           ismini,    // 允许创建内容
+			"home_screen":      `adunit-95a902f9c0312945`, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen,
 			"info_banner":      cf.Ad.InfoBanner,
 			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
