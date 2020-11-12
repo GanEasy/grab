@@ -39,6 +39,11 @@ func (fans *Fans) GetFansByID(id uint) {
 	DB().First(&fans, id)
 }
 
+// GetFansByID  通过ID获取粉丝信息
+func (fans *Fans) GetLastUser() {
+	DB().Last(&fans)
+}
+
 // Save 保存粉丝信息
 func (fans *Fans) Save() {
 	DB().Save(&fans)

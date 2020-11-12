@@ -586,6 +586,12 @@ func getOpenID(c echo.Context) string {
 	return claims.OpenID
 }
 
+// 获取最后一个用户信息
+func GetLastUser(c echo.Context) string {
+	var fans db.Fans
+	return fans.GetLastUser()
+}
+
 // 获取用户信息
 func getUser(openID string) (*db.Fans, error) {
 	fans, err := cpi.GetFansByOpenID(openID)
