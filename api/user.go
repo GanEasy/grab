@@ -852,7 +852,7 @@ func GetAPIToken6(c echo.Context) error {
 		"level":            0,
 		"ismini":           0,
 		"can_create":       1, // 允许创建内容
-		"home_screen":      `adunit-44763f52c54f72f9`,
+		"home_screen_adid":      `adunit-44763f52c54f72f9`,
 		"info_screen":      `adunit-44763f52c54f72f9`,
 		"info_banner":      `adunit-a237f95dd4ce9ae7`,
 		"info_custom":      `adunit-ade0b17378833a01`,
