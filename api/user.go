@@ -63,7 +63,7 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `wx8664d56a896e375b`   // 强制跳 暂时去 免版权图
+		var jumpappid = ``   // 强制跳 暂时去 免版权图
 		var jumpwebpage = `` // 强制跳 网站阅读
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
@@ -88,7 +88,7 @@ func GetToken(c echo.Context) error {
 				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589
 			}
 		}else if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx8664d56a896e375b` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
+			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 		var infoTipsBanner, infoTipsCustom string
 
