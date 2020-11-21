@@ -77,7 +77,7 @@ func GetToken(c echo.Context) error {
 					jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
 				}else{
 					if version == `1.0.27` || version == `1.0.28`{
-						jumpwebpage = `https://aireadhelper.github.io`
+						// jumpwebpage = `https://aireadhelper.github.io`
 						jumpappid = `wx8664d56a896e375b`
 					}else{
 						jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
