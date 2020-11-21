@@ -587,9 +587,9 @@ func GetAPIToken3(c echo.Context) error {
 		var ismini = 0
 		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 			if fans.LoginTotal < 10 {
-				ismini = 1
 				canCreate = 0
 			}
+			ismini = 1
 		}
 
 		var jumpappid = ``       // wx90dee998347266dd 新推荐阅读
