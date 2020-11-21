@@ -63,11 +63,12 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``   // 强制跳 暂时去搜书大师
+		var jumpappid = `wx8664d56a896e375b`   // 强制跳 暂时去 免版权图
 		var jumpwebpage = `` // 强制跳 网站阅读
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
+			jumpappid = `` 
 		} else if fans.LoginTotal < 10 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
 			var juid = int(fans.ID)
