@@ -594,7 +594,7 @@ func GetAPIToken3(c echo.Context) error {
 
 		var jumpappid = ``       // wx90dee998347266dd 新推荐阅读
 		if fans.LoginTotal > 5 { // 访问次数大于5去Pro
-			jumpappid = `wxe70eee58e64c7ac7` // 强制跳转 搜书大师 wxe70eee58e64c7ac7  去VIP通道pro
+			jumpappid = `wx8664d56a896e375b` //免费版权图  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
 		var infoTipsBanner, infoTipsGrid string
