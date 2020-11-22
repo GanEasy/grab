@@ -66,8 +66,8 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = `wx8664d56a896e375b` // 强制跳 暂时去 免版权图
-		var jumpwebpage = ``                 // 强制跳 网站阅读
+		var jumpappid = ``   // 强制跳 暂时去 免版权图
+		var jumpwebpage = `` // 强制跳 网站阅读
 
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
@@ -119,22 +119,22 @@ func GetToken(c echo.Context) error {
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        jumpappid,        // 强制跳转其它小程序
-			"jumpwebpage":      jumpwebpage,      // 强制跳转网站阅读
-			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-			"token":            t,
-			"uid":              fans.ID,
-			"level":            0,
-			"can_create":       canCreate,        // 允许创建内容
-			"ismini":           ismini,           // 允许创建内容
-			"home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
-			"info_screen":      cf.Ad.InfoScreen,
+			"jumpappid":   jumpappid,        // 强制跳转其它小程序
+			"jumpwebpage": jumpwebpage,      // 强制跳转网站阅读
+			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+			"token":       t,
+			"uid":         fans.ID,
+			"level":       0,
+			"can_create":  canCreate, // 允许创建内容
+			"ismini":      ismini,    // 允许创建内容
+			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
+			// "info_screen":      cf.Ad.InfoScreen, //插屏
 			"info_banner":      cf.Ad.InfoBanner,
 			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 			"info_tips_custom": infoTipsCustom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看激励视频广告无弹窗加载更多`,
+			"autoload_tips": `观看激励广告无弹窗自动加载更多`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
 			"top_home_custom": `adunit-08789216e1cca5be`,
 			// "top_list_video": cf.Ad.HomeVideo,
@@ -151,14 +151,14 @@ func GetToken(c echo.Context) error {
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
 			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   4,    //详情页面视频轮循总数
-			"info_video_adlm":   1,    //详情页面视频轮循开始余量
-			"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-			"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
+			"info_video_adlt":   2,    //详情页面视频轮循总数
+			"info_video_adlm":   0,    //详情页面视频轮循开始余量
+			"info_custom_adlt":  4,    //详情页面格子广告轮循总数
+			"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
-			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
+			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			// "info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			// "info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 
 	}
