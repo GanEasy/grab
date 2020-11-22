@@ -513,9 +513,9 @@ func GetAPIToken2(c echo.Context) error {
 			"info_video": `adunit-e21a2857faff7fba`,
 			// "info_reward": `adunit-37d73c4714563ea5`,
 			"top_home_custom": `adunit-6b3c3877de16d635`,
-			"list_custom": `adunit-c0a4c9c06c1bfb27`,
-			"cata_custom": `adunit-c0a4c9c06c1bfb27`,
-			"info_reward": `adunit-790a8d650d5c71b2`,
+			"list_custom":     `adunit-c0a4c9c06c1bfb27`,
+			"cata_custom":     `adunit-c0a4c9c06c1bfb27`,
+			"info_reward":     `adunit-790a8d650d5c71b2`,
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinAppThree.AppTitle,
 			// 定义首页分享图片
@@ -839,8 +839,8 @@ func GetAPIToken6(c echo.Context) error {
 	if inum == 1 {
 		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-ade0b17378833a01`
-	}else if inum == 2 {
+		infoTipsCustom = ``
+	} else if inum == 2 {
 		infoTipsCustom = `adunit-ade0b17378833a01`
 	}
 
@@ -852,7 +852,7 @@ func GetAPIToken6(c echo.Context) error {
 		"level":            0,
 		"ismini":           0,
 		"can_create":       1, // 允许创建内容
-		"home_screen_adid":      `adunit-44763f52c54f72f9`,
+		"home_screen_adid": `adunit-44763f52c54f72f9`,
 		"info_screen":      `adunit-44763f52c54f72f9`,
 		"info_banner":      `adunit-a237f95dd4ce9ae7`,
 		"info_custom":      `adunit-ade0b17378833a01`,
@@ -863,11 +863,11 @@ func GetAPIToken6(c echo.Context) error {
 		// "top_home_video": `adunit-8d6906f779544df6`,
 		// "list_video": `adunit-8d6906f779544df6`,
 		// "cata_video": `adunit-8d6906f779544df6`,
-		"info_video": `adunit-8d6906f779544df6`,
+		"info_video":      `adunit-8d6906f779544df6`,
 		"top_home_custom": `adunit-44122f4a8ef3d7d0`,
-		"list_custom": `adunit-ade0b17378833a01`,
-		"cata_custom": `adunit-ade0b17378833a01`,
-		"info_reward": `adunit-37d73c4714563ea5`,
+		"list_custom":     `adunit-ade0b17378833a01`,
+		"cata_custom":     `adunit-ade0b17378833a01`,
+		"info_reward":     `adunit-37d73c4714563ea5`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
@@ -875,14 +875,14 @@ func GetAPIToken6(c echo.Context) error {
 		"placeholder":       `请输入关键字搜索`, // 小说名
 		"online_service":    false,
 		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,     //详情页面视频轮循总数
-		"info_video_adlm":   3,     //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,     //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,     //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,     //详情页面Banner轮循总数
-		"info_banner_adlm":  1,     //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,     //详情页面插屏广告轮循开始余量
+		"info_video_adlt":   4,    //详情页面视频轮循总数
+		"info_video_adlm":   3,    //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,    //详情页面Banner轮循总数
+		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
 
 	})
 
@@ -943,9 +943,9 @@ func GetAPIToken7(c echo.Context) error {
 		"info_video": `adunit-b528ceb7836c247f`,
 		// "info_reward": `adunit-37d73c4714563ea5`,
 		"top_home_custom": `adunit-7931b9985beaf4db`,
-		"list_custom": `adunit-6b354d2130f204aa`,
-		"cata_custom": `adunit-6b354d2130f204aa`,
-		"info_reward": `adunit-756e936e72536645`,
+		"list_custom":     `adunit-6b354d2130f204aa`,
+		"cata_custom":     `adunit-6b354d2130f204aa`,
+		"info_reward":     `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
