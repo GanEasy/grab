@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/yizenghui/chromedp"
+	"github.com/chromedp/chromedp"
 	"golang.org/x/net/html/charset"
 )
 
