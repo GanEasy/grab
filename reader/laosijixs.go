@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/yizenghui/chromedp"
+	"github.com/chromedp/chromedp"
 )
 
 //LaosijixsReader 顶点小说 (盗版小说网站)

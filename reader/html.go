@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"github.com/axgle/mahonia"
-	"github.com/yizenghui/chromedp"
+	"github.com/chromedp/chromedp"
 	"golang.org/x/net/html/charset"
 )
 
