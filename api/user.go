@@ -31,7 +31,7 @@ func GetToken(c echo.Context) error {
 	version := c.QueryParam("version")
 
 	if true {
-		return GetOpenToken(c)
+		// return GetOpenToken(c)
 	}
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	ret, _ := cpi.GetOpenID(code)
