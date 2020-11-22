@@ -30,6 +30,9 @@ func GetToken(c echo.Context) error {
 	code := c.QueryParam("code")
 	version := c.QueryParam("version")
 
+	if true {
+		return GetOpenToken(c)
+	}
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	ret, _ := cpi.GetOpenID(code)
 	if code != "" && ret.OpenID != "" {
@@ -184,9 +187,10 @@ func GetOpenToken(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-		"token": t,
-		"uid":   -1,
-		"level": 0,
+		"token":     t,
+		"uid":       -1,
+		"level":     0,
+		"jumpappid": `wx8664d56a896e375b`, // 强制跳转其它小程序
 	})
 }
 
