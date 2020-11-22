@@ -63,23 +63,31 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``   // 强制跳 暂时去搜书大师
+		var jumpappid = ``   // 强制跳 暂时去 免版权图
 		var jumpwebpage = `` // 强制跳 网站阅读
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
-		} else if fans.LoginTotal < 8 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
+			jumpappid = `` 
+		} else if fans.LoginTotal < 10 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
 			var juid = int(fans.ID)
 			var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 			if janum == 0 {
-				jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
-				jumpwebpage = `https://aireadhelper.github.io`
+				if  juid > 27572 { // 待post新版本后，隔离掉老用户
+					jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+				}else{
+					if version == `1.0.27` || version == `1.0.28`{
+						// jumpwebpage = `https://aireadhelper.github.io`
+						jumpappid = `wx8664d56a896e375b`
+					}else{
+						jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+					}
+				}
 			} else {
 				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589
 			}
-		}
-		if fans.LoginTotal > 10 { // 大于10次，强制跳转
+		}else if fans.LoginTotal > 10 { // 大于10次，强制跳转
 			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 		var infoTipsBanner, infoTipsCustom string
@@ -109,11 +117,13 @@ func GetToken(c echo.Context) error {
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":        jumpappid,   // 强制跳转其它小程序
 			"jumpwebpage":      jumpwebpage, // 强制跳转网站阅读
+			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
 			"can_create":       canCreate, // 允许创建内容
 			"ismini":           ismini,    // 允许创建内容
+			"home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen,
 			"info_banner":      cf.Ad.InfoBanner,
 			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
@@ -583,6 +593,13 @@ func getOpenID(c echo.Context) string {
 	user := c.Get("user").(*jwt.Token)
 	claims := user.Claims.(*JwtCustomClaims)
 	return claims.OpenID
+}
+
+// 获取最后一个用户信息
+func GetLastUser(c echo.Context) error {
+	var fans db.Fans
+	fans.GetLastUser()
+	return c.JSON(http.StatusOK, fans)
 }
 
 // 获取用户信息
