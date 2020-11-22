@@ -151,12 +151,12 @@ func GetToken(c echo.Context) error {
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
 			"online_service":    true,
 			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,    //详情页面视频轮循总数
-			"info_video_adlm":   0,    //详情页面视频轮循开始余量
-			"info_custom_adlt":  4,    //详情页面格子广告轮循总数
-			"info_custom_adlm":  3,    //详情页面格子广告轮循开始余量
+			"info_video_adlt":   4,    //详情页面视频轮循总数
+			"info_video_adlm":   1,    //详情页面视频轮循开始余量
+			"info_custom_adlt":  2,    //详情页面格子广告轮循总数
+			"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
-			"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 			// "info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 			// "info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
