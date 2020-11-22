@@ -12,10 +12,10 @@ func Test_GetOpenID(t *testing.T) {
 	t.Fatal(u2)
 }
 
-func Test_SendPostUpdateMSG(t *testing.T) {
-	u2 := SendPostUpdateMSG("oe9Hq0GwS4umXENTCn4lJgxaNVog", "af1a0cdf6adfbf4030358fc2b4264d24", "tttt", "")
-	t.Fatal(u2)
-}
+// func Test_SendPostUpdateMSG(t *testing.T) {
+// 	u2 := SendPostUpdateMSG("oe9Hq0GwS4umXENTCn4lJgxaNVog", "af1a0cdf6adfbf4030358fc2b4264d24", "tttt", "")
+// 	t.Fatal(u2)
+// }
 
 func Test_GetwxCodeUnlimit(t *testing.T) {
 	u2, err := GetwxCodeUnlimit("123", "")
