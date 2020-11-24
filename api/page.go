@@ -610,12 +610,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `笔下看书阁jininggeyin`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=bxks&url=` + grab.EncodeURL(`https://www.jininggeyin.com/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔下看书阁jininggeyin`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=bxks&url=` + grab.EncodeURL(`https://www.jininggeyin.com/`),
+		// 	Style: `arrow`,
+		// },
 
 		Link{
 			Title: `笔趣阁jxla`,

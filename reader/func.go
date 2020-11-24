@@ -393,7 +393,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2 //
 	}
 	if b := strings.Contains(wxto, string("drive=paoshu8")); b == true {
-		return 2 //
+		return 7 // 个别内容带色情
 	}
 	if b := strings.Contains(wxto, string("drive=qkshu6")); b == true {
 		return 14 // 内容带色情
@@ -402,7 +402,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2 //
 	}
 	if b := strings.Contains(wxto, string("drive=bxks")); b == true {
-		return 2
+		return 9 //内容转码了
 	}
 	if b := strings.Contains(wxto, string("drive=bxwx")); b == true {
 		return 9 //网站打不开了
@@ -424,13 +424,13 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=xin18")); b == true {
-		return 2
+		return 9 //内容转码了
 	}
 	if b := strings.Contains(wxto, string("drive=hongxiu")); b == true {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=laosijixs")); b == true {
-		return 2
+		return 7 //内容带色情
 	}
 	if b := strings.Contains(wxto, string("drive=text")); b == true {
 		return 2
