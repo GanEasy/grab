@@ -402,7 +402,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2 //
 	}
 	if b := strings.Contains(wxto, string("drive=bxks")); b == true {
-		return 2
+		return 14 //内容转码
 	}
 	if b := strings.Contains(wxto, string("drive=bxwx")); b == true {
 		return 9 //网站打不开了
@@ -424,7 +424,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=xin18")); b == true {
-		return 2
+		return 14 // 内容转码
 	}
 	if b := strings.Contains(wxto, string("drive=hongxiu")); b == true {
 		return 2
