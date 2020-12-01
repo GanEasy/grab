@@ -94,6 +94,9 @@ func GetToken(c echo.Context) error {
 		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
 			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
+
+		// .Header.Get("User-Agent")
+
 		var infoTipsBanner, infoTipsCustom string
 
 		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
