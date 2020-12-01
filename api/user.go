@@ -593,7 +593,8 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
-		if fans.LoginTotal > 10 { // 访问次数大于5去Pro
+		if fans.LoginTotal < 10 { // 访问次数大于5去Pro
+			ismini = 1
 			jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
