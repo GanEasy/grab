@@ -590,6 +590,8 @@ func GetAPIToken3(c echo.Context) error {
 				canCreate = 0
 			}
 			ismini = 1
+		} else {
+			// .Header.Get("User-Agent")
 		}
 
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
