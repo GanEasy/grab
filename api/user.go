@@ -1004,7 +1004,9 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``, //
+		"jumpappid":        ``,               //
+		"jumpwebpage":      ``,               // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
