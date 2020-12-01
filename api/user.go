@@ -128,7 +128,7 @@ func GetToken(c echo.Context) error {
 			"can_create":  canCreate, // 允许创建内容
 			"ismini":      ismini,    // 允许创建内容
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
-			// "info_screen":      cf.Ad.InfoScreen, //插屏
+			"info_screen":      cf.Ad.InfoScreen, //插屏
 			"info_banner":      cf.Ad.InfoBanner,
 			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 			"info_tips_custom": infoTipsCustom, // 详细页格子广告
@@ -157,8 +157,8 @@ func GetToken(c echo.Context) error {
 			"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
 			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-			// "info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			// "info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
+			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+			"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
 		})
 
 	}
