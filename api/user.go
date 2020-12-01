@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/GanEasy/grab"
@@ -95,7 +96,12 @@ func GetToken(c echo.Context) error {
 			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
 		}
 
-		// .Header.Get("User-Agent")
+		// 蜘蛛来的，给采集相关内容
+		var req = c.Request()
+		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+			jumpappid = ``
+			jumpwebpage = ``
+		}
 
 		var infoTipsBanner, infoTipsCustom string
 
