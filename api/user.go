@@ -530,7 +530,7 @@ func GetAPIToken2(c echo.Context) error {
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
 			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 	}
 
