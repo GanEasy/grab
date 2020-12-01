@@ -389,7 +389,7 @@ func GetAPIToken8(c echo.Context) error {
 		}
 		//
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        `wx359657b0849ee636`, // 强制跳转其它小程序 驴友记
+			"jumpappid":        ``, // 强制跳转其它小程序 驴友记 wx359657b0849ee636
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
