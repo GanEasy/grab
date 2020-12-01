@@ -305,7 +305,7 @@ func GetExploreLinks(c echo.Context) error {
 		if user.LoginTotal < 5 {
 
 			if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 笔趣阁在线引导跳转
-				return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+				// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 			}
 
 		}

@@ -583,9 +583,6 @@ func GetAPIToken3(c echo.Context) error {
 			return err
 		}
 		var canCreate = 1
-		if fans.Level > 2 {
-			// canCreate = 1
-		}
 
 		var ismini = 0
 		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
@@ -595,9 +592,9 @@ func GetAPIToken3(c echo.Context) error {
 			ismini = 1
 		}
 
-		var jumpappid = ``       // wx90dee998347266dd 新推荐阅读
-		if fans.LoginTotal > 5 { // 访问次数大于5去Pro
-			jumpappid = `wxe70eee58e64c7ac7` //免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
+		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
+		if fans.LoginTotal > 10 { // 访问次数大于5去Pro
+			jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -616,12 +613,14 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
-			"token":      t,
-			"uid":        fans.ID,
-			"level":      fans.Level,
-			"ismini":     ismini,
-			"can_create": canCreate, // 允许创建内容
+			"jumpappid":   jumpappid,        // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
+			"jumpwebpage": ``,               // 强制跳转网站阅读
+			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+			"token":       t,
+			"uid":         fans.ID,
+			"level":       fans.Level,
+			"ismini":      ismini,
+			"can_create":  canCreate, // 允许创建内容
 			// "list_screen": cf.Ad.ListScreen,
 			"info_screen": cf.Ad.InfoScreen,
 			// "cata_screen": cf.Ad.CataScreen,
