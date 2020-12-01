@@ -46,7 +46,7 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
 		return GetAPIToken2(c)
 	}
-	if strings.Contains(req.Referer(), `wxf2ce77bb93e1b076`) { // 获取通用 token 全本txt
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取通用 token 驴友记
 		return GetAPIToken9(c)
 	}
 	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
@@ -319,7 +319,7 @@ func GetAPIToken(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-//GetAPIToken8 获取 jwt token PRO
+//GetAPIToken8 获取 jwt token PRO  被举报了没广告了
 func GetAPIToken8(c echo.Context) error {
 	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
 	code := c.QueryParam("code")
@@ -387,8 +387,9 @@ func GetAPIToken8(c echo.Context) error {
 				canCreate = 0
 			}
 		}
+		//
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        `wx8664d56a896e375b`, // 强制跳转其它小程序 全文txt
+			"jumpappid":        `wx359657b0849ee636`, // 强制跳转其它小程序 驴友记
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
@@ -966,7 +967,7 @@ func GetAPIToken7(c echo.Context) error {
 
 }
 
-//GetAPIToken9 获取 jwt token 全本txt
+//GetAPIToken9 获取 jwt token 驴友记
 func GetAPIToken9(c echo.Context) error {
 
 	claims := &JwtCustomClaims{
@@ -1001,7 +1002,7 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        `wx8664d56a896e375b`, //
+		"jumpappid":        ``, //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1029,15 +1030,15 @@ func GetAPIToken9(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    false,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   1,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+		"info_force_reward": false, // 强制广告
+		"info_video_adlt":   4,     //详情页面视频轮循总数
+		"info_video_adlm":   1,     //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,     //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,     //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,     //详情页面Banner轮循总数
+		"info_banner_adlm":  3,     //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
+		"info_screen_adlm":  4,     //详情页面插屏广告轮循开始余量
 
 	})
 
