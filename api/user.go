@@ -387,11 +387,19 @@ func GetAPIToken8(c echo.Context) error {
 				canCreate = 0
 			}
 		}
+
+		var jumpappid = `wx359657b0849ee636`
+
+		// 蜘蛛来的，给采集相关内容
+		var req = c.Request()
+		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+			jumpappid = `` // 蜘蛛给访问所有数据
+		}
 		//
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        `wx359657b0849ee636`, // 强制跳转其它小程序 驴友记 wx359657b0849ee636
-			"jumpwebpage":      ``,                   // 强制跳转网站阅读
-			"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
+			"jumpappid":        jumpappid,        // 强制跳转其它小程序 驴友记 wx359657b0849ee636
+			"jumpwebpage":      ``,               // 强制跳转网站阅读
+			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
@@ -495,9 +503,18 @@ func GetAPIToken2(c echo.Context) error {
 		}
 		// }
 
+		// 蜘蛛来的，给采集相关内容
+		version := c.QueryParam("version")
+		var req = c.Request()
+		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+			jumpappid = `` // 蜘蛛给访问所有数据
+		}
+
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":        jumpappid, // 强制跳转其它小程序
 			"token":            t,
+			"jumpwebpage":      ``,               // 强制跳转网站阅读
+			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"uid":              fans.ID,
 			"level":            0,
 			"ismini":           0,
@@ -613,6 +630,13 @@ func GetAPIToken3(c echo.Context) error {
 			} else if inum == 2 {
 				infoTipsBanner = cf.Ad.InfoBanner
 			}
+		}
+
+		// 蜘蛛来的，给采集相关内容
+		version := c.QueryParam("version")
+		var req = c.Request()
+		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+			jumpappid = `` // 蜘蛛给访问所有数据
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
