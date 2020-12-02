@@ -73,8 +73,8 @@ func GetActivities(c echo.Context) error {
 
 	}
 	var req = c.Request()
-	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 免版权图 退场中
-		// level = 2
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 驴友记
+		level = 5
 	}
 	var rows = cpi.GetActivities()
 	if len(rows) > 0 {
