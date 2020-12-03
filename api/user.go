@@ -254,6 +254,7 @@ func GetCheckModeToken(c echo.Context) error {
 		"share_cover":    ``,
 		"placeholder":    `请输入关键字搜索`, // 小说名
 		"online_service": true,
+		"top_home_custom": `adunit-6b3c3877de16d635`,
 	})
 }
 
