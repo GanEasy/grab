@@ -312,9 +312,12 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-	if strings.Contains(req.Referer(), `wx68b4501bfd0c7624`) { // 霸道总裁专题小说
-		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // plus
+		if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+			return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
+		}
 	}
+
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
@@ -853,6 +856,121 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=manwuyu&url=` + grab.EncodeURL(`http://www.manwuyu.com/`),
 		// 	Style: `arrow`,
 		// },
+
+		Link{
+			Title: `编程学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `关于&声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v3/about.html`),
+			Style: `arrow`,
+		},
+	}
+
+	return links
+}
+
+//GetGuideExploreJumpLinks  改，跳转列表
+func GetGuideExploreJumpLinks() []Link {
+	var links = []Link{
+
+		Link{
+			Title: `起点小说网`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `纵横小说网`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `17K文学`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `红袖添香`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=hongxiu&url=` + grab.EncodeURL(`https://www.hongxiu.com`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `潇湘书院`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+
+		Link{
+			Title: `笔趣阁jxla`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `笔趣阁mcmssc`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+
+		Link{
+			Title: `笔趣阁paoshu8`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+
+		Link{
+			Title: `顶点小说280xs`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `笔趣阁xbiquge`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+
+		Link{
+			Title: `顶点小说booktxt`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
+		Link{
+			Title: `书阁小说网shugela`,
+			Type:  `jumpapp`,
+			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			Style: `arrow`,
+			Appid: `wx90dee998347266dd`,
+		},
 
 		Link{
 			Title: `编程学习资料`,
