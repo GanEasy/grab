@@ -298,7 +298,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 目录改跳
+	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 	}
 
