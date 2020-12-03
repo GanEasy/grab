@@ -63,6 +63,9 @@ func GetActivities(c echo.Context) error {
 			// level = user.Level
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
 				level = user.Level
+				if level > 3 { // 暂时过滤动漫
+					level = 3
+				}
 			}
 			if level < 2 {
 				level = 2
@@ -93,7 +96,7 @@ func GetActivities(c echo.Context) error {
 
 			var linkType = `link`
 			var appid = ``
-			if strings.Contains( req.Referer(), `wxe70eee58e64c7ac7` ){ //sodu 去 新推荐阅读
+			if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { //sodu 去 新推荐阅读
 				// 不是新推荐阅读的，全部推荐跳新推荐阅读去
 				linkType = `jumpapp`
 				appid = `wx8ffa5a58c0bb3589`
@@ -118,7 +121,6 @@ func GetActivities(c echo.Context) error {
 			}
 		}
 	}
-
 
 	// if strings.Contains( req.Referer(), `wxe70eee58e64c7ac7` ){ //sodu 去 新推荐阅读
 	// 	// 不是新推荐阅读的，全部推荐跳新推荐阅读去
