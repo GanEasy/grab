@@ -1044,8 +1044,9 @@ func GetAPIToken7(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
-
 		"jumpappid":        ``, //
+		"jumpwebpage": 	``,               // 强制跳转网站阅读
+		"jumpwebtips": 	`已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1081,7 +1082,7 @@ func GetAPIToken7(c echo.Context) error {
 		"info_banner_adlt":  4,    //详情页面Banner轮循总数
 		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
+		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量（进去给就插屏）
 
 	})
 
