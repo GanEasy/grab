@@ -119,6 +119,22 @@ func GetActivities(c echo.Context) error {
 		}
 	}
 
+
+	if strings.Contains( req.Referer(), `wxe70eee58e64c7ac7` ){ //sodu 去 新推荐阅读
+		// 不是新推荐阅读的，全部推荐跳新推荐阅读去
+		var links2 = []Link{}
+		links = append(links2,
+		Link{
+			Title: `推荐数据正在维护中`,
+			Icon:  ``, // cuIcon-new
+			Type:  ``,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+		})
+		return c.JSON(http.StatusOK, links)
+	}
+
 	// if len(links) == 0 {
 	// 	links = append(links,
 	// 		Link{
