@@ -312,10 +312,8 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // plus
-		if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
-			return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
-		}
+	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
+		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 	}
 
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
