@@ -319,8 +319,8 @@ func GetExploreLinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-// GetBDZCExplore 霸道总裁专题小说 推荐页
-func GetBDZCExplore() []Link {
+// SafeMenu 霸道总裁专题小说 推荐页
+func SafeMenu() []Link {
 
 	var links = []Link{
 		Link{
@@ -1282,3 +1282,4 @@ func GetAllLearnResources(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, list)
 }
+
