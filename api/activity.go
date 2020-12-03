@@ -55,10 +55,11 @@ func GetActivities(c echo.Context) error {
 						Link{
 							Title: v.Title,
 							Icon:  ``, // cuIcon-new
-							Type:  `link`,
+							Type:  `jumpapp`,
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
+							Appid: `wx8ffa5a58c0bb3589`, //推荐阅读内容全部跳走
 							// wx8664d56a896e375b
 						})
 				}
