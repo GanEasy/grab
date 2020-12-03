@@ -90,7 +90,7 @@ func GetToken(c echo.Context) error {
 					}
 				}
 			} else {
-				jumpappid = `wx8664d56a896e375b` // 强制去 驴友记  wx8664d56a896e375b
+				jumpappid = `wx359657b0849ee636` // 强制去 驴友记  wx359657b0849ee636
 			}
 		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
 			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
