@@ -59,6 +59,7 @@ func GetActivities(c echo.Context) error {
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
+							// wx8664d56a896e375b
 						})
 				}
 
