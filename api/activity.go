@@ -29,6 +29,8 @@ func RemoveActivity(c echo.Context) error {
 func GetActivities(c echo.Context) error {
 	var links = []Link{}
 
+	var req = c.Request()
+
 	version := c.QueryParam("version")
 
 	provider := c.QueryParam("provider")
@@ -57,7 +59,6 @@ func GetActivities(c echo.Context) error {
 		if openID == `` {
 			level = 2
 		} else {
-			var req = c.Request()
 			user, _ := getUser(openID)
 			// level = user.Level
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
@@ -72,9 +73,8 @@ func GetActivities(c echo.Context) error {
 		}
 
 	}
-	var req = c.Request()
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 驴友记
-		level = 5
+		// level = 3
 	}
 	var rows = cpi.GetActivities()
 	if len(rows) > 0 {
@@ -91,13 +91,12 @@ func GetActivities(c echo.Context) error {
 				itemlevel = 0
 			}
 
-			var linkType = `jumpapp`
-			var appid = `wx8ffa5a58c0bb3589`
-			// 小程序端暂不支持推荐跳转
-			if true || strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) {
+			var linkType = `link`
+			var appid = ``
+			if strings.Contains( req.Referer(), `wxe70eee58e64c7ac7` ){ //sodu 去 新推荐阅读
 				// 不是新推荐阅读的，全部推荐跳新推荐阅读去
-				appid = ``
-				linkType = `link`
+				linkType = `jumpapp`
+				appid = `wx8ffa5a58c0bb3589`
 			}
 
 			if level > itemlevel && itemlevel > 0 {
