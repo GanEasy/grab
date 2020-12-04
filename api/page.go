@@ -477,35 +477,35 @@ func GetGuideExploreJumpLinks() []Link {
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `纵横小说网`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `17K文学`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `红袖添香`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=hongxiu&url=` + grab.EncodeURL(`https://www.hongxiu.com`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `潇湘书院`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 
 		Link{
@@ -513,14 +513,14 @@ func GetGuideExploreJumpLinks() []Link {
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `笔趣阁mcmssc`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 
 		Link{
@@ -528,7 +528,7 @@ func GetGuideExploreJumpLinks() []Link {
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 
 		Link{
@@ -536,14 +536,14 @@ func GetGuideExploreJumpLinks() []Link {
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `笔趣阁xbiquge`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 
 		Link{
@@ -551,14 +551,14 @@ func GetGuideExploreJumpLinks() []Link {
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 		Link{
 			Title: `书阁小说网shugela`,
 			Type:  `jumpapp`,
 			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
 			Style: `arrow`,
-			Appid: `wx8664d56a896e375b`,
+			Appid: `wx359657b0849ee636`,
 		},
 
 		Link{
