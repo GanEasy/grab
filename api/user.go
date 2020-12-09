@@ -57,7 +57,7 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取通用 token 驴友记
 		return GetAPIToken9(c)
 	}
-	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线
+	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线 wx7c30b98c7f42f651
 		return GetAPIToken3(c)
 	}
 	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token 非笔趣阁Pro
@@ -241,6 +241,7 @@ func GetCheckModeToken(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		"jumpappid":  ``, // 强制跳转其它小程序
+		"bookjumpappid":   `wx7c30b98c7f42f651`,               //
 		"jumpwebpage":      ``,               //
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, //
 		"token":      t,
@@ -704,8 +705,8 @@ func GetAPIToken3(c echo.Context) error {
 		}
 
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
-		if fans.LoginTotal < 10 { // 访问次数大于5去Pro
-			ismini = 1
+		if fans.LoginTotal > 10 { // 访问次数大于5去Pro
+			// ismini = 1
 			jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
@@ -956,13 +957,15 @@ func GetAPIToken6(c echo.Context) error {
 	inum := rand.Intn(5) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = `adunit-a237f95dd4ce9ae7`
-	if inum == 1 {
+	if false {
 		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
-	} else if inum == 2 {
-		infoTipsCustom = ``
-	} else if inum == 2 {
-		infoTipsCustom = `adunit-ade0b17378833a01`
+		if inum == 1 {
+			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+		} else if inum == 2 {
+			infoTipsCustom = ``
+		} else if inum == 3 {
+			infoTipsCustom = ``
+		}
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
