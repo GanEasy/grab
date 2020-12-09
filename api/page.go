@@ -298,6 +298,10 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
+	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
+		return c.JSON(http.StatusOK, CloseAppTips())
+	}
+	
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 	}
@@ -624,6 +628,15 @@ func CloseAppTips() []Link {
 
 	var links = []Link{
 
+		Link{
+			Title: `请进支线阅读>>笔趣阁在线`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  `/pages/index?uid=321`,
+			Style: ``,
+			Appid: `wx7c30b98c7f42f651`, // 笔趣阁plus
+		},
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,

@@ -241,7 +241,6 @@ func GetCheckModeToken(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		"jumpappid":  ``, // 强制跳转其它小程序
-		"bookjumpappid":   `wx7c30b98c7f42f651`,               //
 		"jumpwebpage":      ``,               //
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, //
 		"token":      t,
@@ -971,6 +970,8 @@ func GetAPIToken6(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
 		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"bookjumpappid":   `wx7c30b98c7f42f651`,    
+		"articlejumpappid":  `wx7c30b98c7f42f651`,             //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
