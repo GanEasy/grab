@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"sync"
 	"time"
+	"strings"
 
 	"github.com/GanEasy/grab"
 	a "github.com/GanEasy/grab/api"
@@ -272,11 +273,12 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		list, _ := reader.GetInfo(urlStr)
 
 		cf := cpi.GetConf()
+		var req = c.Request()
 		
 		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) { // 获取通用 token  Pro
 			list.Contents = append(list.Contents, `----------`,`本账号被封了，请使用笔趣阁Pro或笔趣阁在线继续访问------`)
 		}
-		
+
 		if len(list.Contents) < 10 {
 			// `---------- `,`---------- `,`---------`,`---------`,
 			// list.Contents = append(list.Contents,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
