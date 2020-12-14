@@ -470,7 +470,7 @@ func GetAPIToken2(c echo.Context) error {
 			return err
 		}
 
-		var jumpappid = ``
+		var jumpappid = `wx331f3c3e2761f080`
 		if fans.LoginTotal > 3 {
 			// jumpappid = `wx8ffa5a58c0bb3589`
 		}
