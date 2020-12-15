@@ -129,11 +129,13 @@ func GetToken(c echo.Context) error {
 				infoTipsBanner = cf.Ad.InfoBanner
 			}
 		}
+		if jumpappid == `` {
+		}
 
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":   ``,        // 强制跳转其它小程序
-			"bookjumpappid":   jumpappid,        // 强制跳转其它小程序
-			"articlejumpappid":   jumpappid,        // 强制跳转其它小程序
+			"jumpappid": ``, // 强制跳转其它小程序
+			// "bookjumpappid":   jumpappid,        // 强制跳转其它小程序
+			// "articlejumpappid":   jumpappid,        // 强制跳转其它小程序
 			"jumpwebpage": jumpwebpage,      // 强制跳转网站阅读
 			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":       t,
