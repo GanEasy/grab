@@ -76,24 +76,27 @@ func GetToken(c echo.Context) error {
 			jumpappid = ``
 		} else if fans.LoginTotal < 10 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
-			var juid = int(fans.ID)
-			var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
-			if janum == 0 {
-				if juid > 27572 { // 待post新版本后，隔离掉老用户
-					jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
-				} else {
-					if version == `1.0.27` || version == `1.0.28` {
-						// jumpwebpage = `https://aireadhelper.github.io`
-						jumpappid = `wx8664d56a896e375b`
-					} else {
+			if false { // 要不要新用户强制跳转
+				var juid = int(fans.ID)
+				var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
+				if janum == 0 {
+					if juid > 27572 { // 待post新版本后，隔离掉老用户
 						jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+					} else {
+						if version == `1.0.27` || version == `1.0.28` {
+							// jumpwebpage = `https://aireadhelper.github.io`
+							jumpappid = `wx8664d56a896e375b`
+						} else {
+							jumpappid = `wx8664d56a896e375b` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+						}
 					}
+				} else {
+					jumpappid = `wx359657b0849ee636` // 强制去 驴友记  wx359657b0849ee636
 				}
-			} else {
-				jumpappid = `wx8ffa5a58c0bb3589` // 强制去 新推荐阅读 wx8ffa5a58c0bb3589
 			}
+
 		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `` // 强制跳去 搜书大师 wxe70eee58e64c7ac7 VIP通道 wx90dee998347266dd
+			jumpappid = `` // 强制跳去
 		}
 
 		// 蜘蛛来的，给采集相关内容
@@ -105,7 +108,7 @@ func GetToken(c echo.Context) error {
 
 		var infoTipsBanner, infoTipsCustom string
 
-		if fans.LoginTotal > 3 { // 大于x（随机给广告点击）
+		if fans.LoginTotal > 0 { // 大于x（随机给广告点击）
 			rand.Seed(time.Now().UnixNano())
 			inum := rand.Intn(3) // 先搞低些广告出现机率
 			// if inum==1 {
