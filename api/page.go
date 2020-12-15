@@ -299,7 +299,7 @@ func GetExploreLinks(c echo.Context) error {
 	}
 
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
-		return c.JSON(http.StatusOK, CloseAppTips())
+		// return c.JSON(http.StatusOK, CloseAppTips())
 	}
 	
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
