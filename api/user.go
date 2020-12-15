@@ -76,7 +76,7 @@ func GetToken(c echo.Context) error {
 			jumpappid = ``
 		} else if fans.LoginTotal < 10 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
-			if true { // 要不要新用户强制跳转
+			if false { // 要不要新用户强制跳转
 				var juid = int(fans.ID)
 				var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 				if janum == 0 {
@@ -96,7 +96,7 @@ func GetToken(c echo.Context) error {
 			}
 
 		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx8664d56a896e375b` // 强制跳去
+			jumpappid = `wx359657b0849ee636` // 强制跳去
 		}
 
 		// 蜘蛛来的，给采集相关内容
