@@ -59,7 +59,7 @@ func GetActivities(c echo.Context) error {
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
-							Appid: `wx359657b0849ee636`, //推荐阅读内容全部跳走
+							Appid: `wx8664d56a896e375b`, //推荐阅读内容全部跳走wx359657b0849ee636
 							// wx8664d56a896e375b
 						})
 				}
