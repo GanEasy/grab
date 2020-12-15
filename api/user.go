@@ -847,15 +847,14 @@ func GetAPIToken6(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(5) // 先搞低些广告出现机率
+	inum := rand.Intn(3) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
 	if true {
-		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 		if inum == 1 {
 			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 		} else if inum == 2 {
-			infoTipsCustom = ``
+			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 		} else if inum == 3 {
 			infoTipsCustom = ``
 		}
