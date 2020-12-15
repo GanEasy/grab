@@ -956,7 +956,7 @@ func GetAPIToken6(c echo.Context) error {
 	inum := rand.Intn(5) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
-	if false {
+	if true {
 		infoTipsBanner = `adunit-a237f95dd4ce9ae7`
 		if inum == 1 {
 			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
@@ -970,8 +970,8 @@ func GetAPIToken6(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
 		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
-		"bookjumpappid":   `wx7c30b98c7f42f651`,    
-		"articlejumpappid":  `wx7c30b98c7f42f651`,             //
+		"bookjumpappid":   ``,    // wx7c30b98c7f42f651
+		"articlejumpappid":  ``,  // wx7c30b98c7f42f651
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1007,7 +1007,7 @@ func GetAPIToken6(c echo.Context) error {
 		"info_banner_adlt":  4,    //详情页面Banner轮循总数
 		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 
 	})
 
