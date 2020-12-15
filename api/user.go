@@ -67,8 +67,10 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``   // 强制跳 暂时去 免版权图
-		var jumpwebpage = `` // 强制跳 网站阅读
+		var jumpappid = ``                          // 强制跳
+		var bookjumpappid = `wx8664d56a896e375b`    //
+		var articlejumpappid = `wx8664d56a896e375b` //
+		var jumpwebpage = ``                        //
 
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
@@ -95,8 +97,8 @@ func GetToken(c echo.Context) error {
 				}
 			}
 
-		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `` // 强制跳去
+		} else if fans.LoginTotal > 20 { // 大于10次，强制跳转
+			jumpappid = `wx359657b0849ee636` // 强制跳去
 		}
 
 		// 蜘蛛来的，给采集相关内容
@@ -104,6 +106,8 @@ func GetToken(c echo.Context) error {
 		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
 			jumpappid = ``
 			jumpwebpage = ``
+			bookjumpappid = ``
+			articlejumpappid = ``
 		}
 
 		var infoTipsBanner, infoTipsCustom string
@@ -133,16 +137,16 @@ func GetToken(c echo.Context) error {
 		}
 
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid": ``, // 强制跳转其它小程序
-			"bookjumpappid":   jumpappid,        // 强制跳转其它小程序
-			"articlejumpappid":   jumpappid,        // 强制跳转其它小程序
-			"jumpwebpage": jumpwebpage,      // 强制跳转网站阅读
-			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-			"token":       t,
-			"uid":         fans.ID,
-			"level":       0,
-			"can_create":  canCreate, // 允许创建内容
-			"ismini":      ismini,    // 允许创建内容
+			"jumpappid":        jumpappid,        // 强制跳转其它小程序
+			"bookjumpappid":    bookjumpappid,    // 文本强制跳转其它小程序
+			"articlejumpappid": articlejumpappid, // 文章强制跳转其它小程序
+			"jumpwebpage":      jumpwebpage,      // 强制跳转网站阅读
+			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+			"token":            t,
+			"uid":              fans.ID,
+			"level":            0,
+			"can_create":       canCreate, // 允许创建内容
+			"ismini":           ismini,    // 允许创建内容
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
 			"info_banner":      cf.Ad.InfoBanner,
