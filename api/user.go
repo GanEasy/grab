@@ -96,7 +96,7 @@ func GetToken(c echo.Context) error {
 			}
 
 		} else if fans.LoginTotal > 10 { // 大于10次，强制跳转
-			jumpappid = `wx359657b0849ee636` // 强制跳去
+			jumpappid = `` // 强制跳去
 		}
 
 		// 蜘蛛来的，给采集相关内容
@@ -134,8 +134,8 @@ func GetToken(c echo.Context) error {
 
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid": ``, // 强制跳转其它小程序
-			// "bookjumpappid":   jumpappid,        // 强制跳转其它小程序
-			// "articlejumpappid":   jumpappid,        // 强制跳转其它小程序
+			"bookjumpappid":   jumpappid,        // 强制跳转其它小程序
+			"articlejumpappid":   jumpappid,        // 强制跳转其它小程序
 			"jumpwebpage": jumpwebpage,      // 强制跳转网站阅读
 			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":       t,
