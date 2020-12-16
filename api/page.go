@@ -291,11 +291,11 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
-	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token  Pro
-		return c.JSON(http.StatusOK, GetGuideExploreLinks())
-	}
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
+	}
+	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token  Pro
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
 	}
 
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
