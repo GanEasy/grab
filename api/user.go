@@ -1027,6 +1027,8 @@ func GetAPIToken9(c echo.Context) error {
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
+		"hiderec":          1,
+		"hidelog":          1,
 		"can_create":       1, // 允许创建内容
 		"info_screen":      `adunit-6584f905ac888622`,
 		"info_banner":      `adunit-c0d2320d02a94006`,
