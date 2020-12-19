@@ -142,7 +142,9 @@ func GetCheckModeToken(c echo.Context) error {
 		"uid":         -1,
 		"level":       0,
 		"can_create":  0, // 允许创建内容
-		"ismini":      1,
+		"ismini":           0,
+		"hiderec":          1,
+		"hidelog":          1,
 		// 定义首页分享标题
 		"share_title": ``,
 		// 定义首页分享图片
