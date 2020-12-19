@@ -374,7 +374,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx359657b0849ee636`
+		var jumpappid = `wx8664d56a896e375b` // mbqt wx8664d56a896e375b
 
 		// 蜘蛛来的，给采集相关内容
 		var req = c.Request()
@@ -383,7 +383,7 @@ func GetAPIToken8(c echo.Context) error {
 		}
 		//
 		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        jumpappid,        // 强制跳转其它小程序 驴友记 wx359657b0849ee636
+			"jumpappid":        jumpappid,        // 强制跳转其它小程序 lyj wx359657b0849ee636
 			"jumpwebpage":      ``,               // 强制跳转网站阅读 http://r.1x7q.cn/#
 			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":            t,
@@ -600,7 +600,7 @@ func GetAPIToken3(c echo.Context) error {
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
 		if fans.LoginTotal > 10 { // 访问次数大于5去Pro
 			// ismini = 1
-			jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
+			// jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -1020,7 +1020,9 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``,               //
+		"jumpappid":        ``,   
+		"bookjumpappid":    `wx8664d56a896e375b`,
+		"articlejumpappid": `wx8664d56a896e375b`, //
 		"jumpwebpage":      ``,               // 强制跳转网站阅读
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 		"token":            t,
