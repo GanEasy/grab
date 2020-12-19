@@ -384,7 +384,7 @@ func GetAPIToken8(c echo.Context) error {
 		//
 		return c.JSON(http.StatusOK, echo.Map{
 			"jumpappid":        jumpappid,        // 强制跳转其它小程序 驴友记 wx359657b0849ee636
-			"jumpwebpage":      ``,               // 强制跳转网站阅读
+			"jumpwebpage":      ``,               // 强制跳转网站阅读 http://r.1x7q.cn/#
 			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 			"token":            t,
 			"uid":              fans.ID,
