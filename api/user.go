@@ -51,6 +51,10 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 获取通用 token 免版本图
 		return GetAPIToken6(c)
 	}
+	//
+	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // 获取通用 手气旺 1e37898802af518d4317d0b41a173eb2
+		return GetAPIToken11(c)
+	}
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
 		return GetAPIToken2(c)
 	}
@@ -142,9 +146,9 @@ func GetCheckModeToken(c echo.Context) error {
 		"uid":         -1,
 		"level":       0,
 		"can_create":  0, // 允许创建内容
-		"ismini":           0,
-		"hiderec":          1,
-		"hidelog":          1,
+		"ismini":      0,
+		"hiderec":     1,
+		"hidelog":     1,
 		// 定义首页分享标题
 		"share_title": ``,
 		// 定义首页分享图片
@@ -1022,11 +1026,11 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``,   
+		"jumpappid":        ``,
 		"bookjumpappid":    `wx8664d56a896e375b`,
 		"articlejumpappid": `wx8664d56a896e375b`, //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+		"jumpwebpage":      ``,                   // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1105,20 +1109,21 @@ func GetAPIToken11(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``,               //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"token":            t,
-		"uid":              -1,
-		"level":            0,
-		"ismini":           0,
-		"can_create":       1, // 允许创建内容
-		"info_screen":      `adunit-6584f905ac888622`,
-		"info_banner":      `adunit-c0d2320d02a94006`,
-		"info_custom":      `adunit-c9618bd19a0ed146`,
-		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
+		"jumpappid":          ``,                   //
+		"jumpwebpage":        ``,                   // 强制跳转网站阅读
+		"jumparticlewebpage": `http://r.1x7q.cn/#`, // web内容强制跳转
+		"jumpwebtips":        `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
+		"token":              t,
+		"uid":                -1,
+		"level":              0,
+		"ismini":             0,
+		"can_create":         1, // 允许创建内容
+		"info_screen":        `adunit-6584f905ac888622`,
+		"info_banner":        `adunit-c0d2320d02a94006`,
+		"info_custom":        `adunit-c9618bd19a0ed146`,
+		"info_tips_banner":   infoTipsBanner, // 点击广告开启自动加载更多功能
+		"info_tips_custom":   infoTipsCustom, // 详细页格子广告
+		"autoload_tips":      `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
 		// "list_video": `adunit-cc2f19cdc09c7a48`,
