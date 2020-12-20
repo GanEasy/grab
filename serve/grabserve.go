@@ -6,13 +6,15 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
-	"strings"
 
 	"github.com/GanEasy/grab"
 	a "github.com/GanEasy/grab/api"
 	cpi "github.com/GanEasy/grab/core"
+
+	rd "github.com/GanEasy/grab/reader"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -272,11 +274,17 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
 
+		var itemlevel = rd.GetPathLevel(urlStr)
+		if itemlevel > 2 {
+			list.JumpWebPage = `http://r.1x7q.cn/#`
+		}
+		list.JumpWebPage = `http://r.1x7q.cn/#`
+
 		cf := cpi.GetConf()
 		var req = c.Request()
-		
+
 		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) { // 获取通用 token  Pro
-			list.Contents = append(list.Contents, `----------`,`本账号已停用，请使用笔趣阁Pro或笔趣阁在线继续访问------`)
+			list.Contents = append(list.Contents, `----------`, `本账号已停用，请使用笔趣阁Pro或笔趣阁在线继续访问------`)
 			list.Content = `----------本账号已停用，请使用笔趣阁Pro或笔趣阁在线继续访问------`
 		}
 

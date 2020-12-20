@@ -36,17 +36,19 @@ type Link struct {
 
 //Content reader 返回正文
 type Content struct {
-	Title     string   `json:"title"`      // 内容标题
-	SourceURL string   `json:"source_url"` // 数据来源
-	Author    string   `json:"author"`
-	PubAt     string   `json:"pub_at"`   //发布时间
-	Previous  Link     `json:"previous"` // 上一章
-	Next      Link     `json:"next"`     // 下一章
-	Contents  []string `json:"contents"` // text正文
-	Content   string   `json:"content"`  //新闻(图文)类内容正文
-	Images    string   `json:"images"`
-	SRC       string   `json:"src"`
-	Typw      string   `json:"type"`
+	Title       string   `json:"title"`      // 内容标题
+	SourceURL   string   `json:"source_url"` // 数据来源
+	Author      string   `json:"author"`
+	PubAt       string   `json:"pub_at"`   //发布时间
+	Previous    Link     `json:"previous"` // 上一章
+	Next        Link     `json:"next"`     // 下一章
+	Contents    []string `json:"contents"` // text正文
+	Content     string   `json:"content"`  //新闻(图文)类内容正文
+	Images      string   `json:"images"`
+	SRC         string   `json:"src"`
+	Typw        string   `json:"type"`
+	JumpAppid   string   `json:"jumpappid"`
+	JumpWebPage string   `json:"jumpwebpage"`
 }
 
 // List 列表数据
