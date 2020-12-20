@@ -68,37 +68,37 @@ func GetToken(c echo.Context) error {
 		var canCreate = 1
 		var ismini = 0
 		var jumpappid = ``                          // 强制跳
-		var bookjumpappid = `wx8664d56a896e375b`    //
-		var articlejumpappid = `wx8664d56a896e375b` //
+		var bookjumpappid = ``                      //wx8664d56a896e375b
+		var articlejumpappid = `wxa94ddd94358b2d1d` //
 		var jumpwebpage = ``                        //
 
 		if version != `` && version == cf.Search.DevVersion {
 			canCreate = 0
 			ismini = 1
 			jumpappid = ``
-		} else if fans.LoginTotal < 10 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
+		} else if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
 			if true { // 要不要新用户强制跳转
 				var juid = int(fans.ID)
 				var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 				if janum == 0 {
 					if juid > 27572 { // 待post新版本后，隔离掉老用户
-						jumpappid = `wxa94ddd94358b2d1d` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+						jumpappid = `wxa94ddd94358b2d1d` // 强制去 免版权图
 					} else {
 						if version == `1.0.27` || version == `1.0.28` {
 							// jumpwebpage = `https://aireadhelper.github.io`
 							jumpappid = `wxa94ddd94358b2d1d`
 						} else {
-							jumpappid = `wxa94ddd94358b2d1d` // 强制去 免版权图 全本txt wxf2ce77bb93e1b076 被封
+							jumpappid = `wxa94ddd94358b2d1d` // 强制去 免版权图
 						}
 					}
 				} else {
-					jumpappid = `wx359657b0849ee636` // 强制去 驴友记  wx359657b0849ee636
+					jumpappid = `wxa94ddd94358b2d1d` // 强制去 驴友记  wx359657b0849ee636
 				}
 			}
 
 		} else if fans.LoginTotal > 20 { // 大于10次，强制跳转
-			jumpappid = `wx359657b0849ee636` // 强制跳去
+			jumpappid = `wxa94ddd94358b2d1d` // 强制跳去
 		}
 
 		// 蜘蛛来的，给采集相关内容
