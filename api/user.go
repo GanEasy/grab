@@ -67,7 +67,7 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``                          // 强制跳
+		var jumpappid = `wxa94ddd94358b2d1d`        // 强制跳
 		var bookjumpappid = ``                      //wx8664d56a896e375b
 		var articlejumpappid = `wxa94ddd94358b2d1d` //
 		var jumpwebpage = ``                        //

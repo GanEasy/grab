@@ -60,7 +60,6 @@ func GetActivities(c echo.Context) error {
 							WxTo:  v.WxTo,
 							Style: `arrow`,
 							Appid: `wx8ffa5a58c0bb3589`, //推荐阅读
-							// wx8664d56a896e375b mbqt
 						})
 				}
 
