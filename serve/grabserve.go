@@ -274,7 +274,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
 
-		var itemlevel = rd.GetPathLevel(urlStr)
+		var itemlevel = rd.GetPathLevel(`&drive=` + drive)
 		if itemlevel > 2 {
 			list.JumpWebPage = `http://r.1x7q.cn/#`
 		}
