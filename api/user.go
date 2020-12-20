@@ -1103,9 +1103,9 @@ func GetAPIToken11(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = ``
 	if inum == 1 {
-		infoTipsBanner = `adunit-c0d2320d02a94006`
+		infoTipsBanner = `adunit-2270edc5e426c55f`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-c9618bd19a0ed146`
+		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
@@ -1117,10 +1117,10 @@ func GetAPIToken11(c echo.Context) error {
 		"uid":                -1,
 		"level":              0,
 		"ismini":             0,
-		"can_create":         1, // 允许创建内容
-		"info_screen":        `adunit-6584f905ac888622`,
-		"info_banner":        `adunit-c0d2320d02a94006`,
-		"info_custom":        `adunit-c9618bd19a0ed146`,
+		"can_create":         0, // 允许创建内容
+		"info_screen":        `adunit-7e68b5d53011f37c`,
+		"info_banner":        `adunit-2270edc5e426c55f`,
+		"info_custom":        `adunit-ab5acd5ba7b2db05`,
 		"info_tips_banner":   infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom":   infoTipsCustom, // 详细页格子广告
 		"autoload_tips":      `观看视频开启自动加载无弹窗模式`,
@@ -1128,11 +1128,11 @@ func GetAPIToken11(c echo.Context) error {
 		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
 		// "list_video": `adunit-cc2f19cdc09c7a48`,
 		// "cata_video": `adunit-cc2f19cdc09c7a48`,
-		"info_video":      `adunit-a842a36d2700a76c`,
-		"info_reward":     `adunit-70cea938ef5025dc`,
-		"top_home_custom": `adunit-c9618bd19a0ed146`,
-		"list_custom":     `adunit-c9618bd19a0ed146`,
-		"cata_custom":     `adunit-c9618bd19a0ed146`,
+		"info_video":      `adunit-b043e39236e16e3d`,
+		"info_reward":     `adunit-4235083b4ad66a5b`,
+		"top_home_custom": `adunit-67f0197c87efa75b`,
+		"list_custom":     `adunit-67f0197c87efa75b`,
+		"cata_custom":     `adunit-67f0197c87efa75b`,
 		// "info_reward": `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
