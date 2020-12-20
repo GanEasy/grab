@@ -285,6 +285,11 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			list.JumpWebPage = `` // 蜘蛛给访问所有数据
 		}
 
+		// web 访问
+		if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+			list.JumpWebPage = ``
+		}
+
 		if len(list.Contents) < 5 {
 			// `---------- `,`---------- `,`---------`,`---------`,
 			// list.Contents = append(list.Contents,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
