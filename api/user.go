@@ -31,6 +31,10 @@ func GetToken(c echo.Context) error {
 	cf := cpi.GetConf()
 	var req = c.Request()
 
+	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+		return GetWebToken(c)
+	}
+
 	version := c.QueryParam("version")
 	if version == cf.Search.DevVersion { // 开启严格检查
 		return GetCheckModeToken(c)
@@ -196,6 +200,48 @@ func GetSafeToken(c echo.Context) error {
 		"share_cover":    ``,
 		"placeholder":    `请输入关键字搜索`, // 小说名
 		"online_service": true,
+	})
+}
+
+// GetWebToken Web访问
+func GetWebToken(c echo.Context) error {
+
+	claims := &JwtCustomClaims{
+		1,
+		`visitor.OpenID`,
+		``,
+		``,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
+		},
+	}
+
+	// Create token with claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	// Generate encoded token and send it as response.
+	t, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, echo.Map{
+		"jumpappid":   ``,               // 强制跳转其它小程序
+		"jumpwebpage": ``,               //
+		"jumpwebtips": `已复制网址，请使用浏览器访问`, //
+		"token":       t,
+		"uid":         -1,
+		"level":       0,
+		"can_create":  0, // 允许创建内容
+		"ismini":      0,
+		"hiderec":     1,
+		"hidelog":     0,
+		// 定义首页分享标题
+		"share_title": ``,
+		// 定义首页分享图片
+		"share_cover":    ``,
+		"placeholder":    `请输入书名搜索`, // 小说名
+		"online_service": false,
 	})
 }
 

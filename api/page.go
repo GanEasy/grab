@@ -291,6 +291,10 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
 	// }
 
+	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+		return c.JSON(http.StatusOK, FollowMedia())
+	}
+
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
@@ -653,6 +657,24 @@ func CloseAppTips() []Link {
 
 }
 
+// FollowMedia 给web站点使用的，提醒关注公众号
+func FollowMedia() []Link {
+
+	var links = []Link{
+		Link{
+			Title: `请从小程序获取资源目录`,
+			Icon:  ``,
+			Type:  `jumpapp`,
+			Image: ``,
+			WxTo:  ``,
+			Style: ``,
+			Appid: ``, // 笔趣阁plus
+		},
+	}
+	return links
+
+}
+
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
@@ -668,12 +690,6 @@ func GetGuideExploreLinks() []Link {
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
-			Style: `arrow`,
-		},
-		Link{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
 			Style: `arrow`,
 		},
 		Link{
@@ -768,6 +784,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
+		Link{
+			Title: `纵横小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `新18小说网0335jjlm`, // 文字转码了
 		// 	Type:  `link`,
