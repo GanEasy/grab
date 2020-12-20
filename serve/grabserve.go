@@ -279,19 +279,16 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			list.JumpWebPage = `http://r.1x7q.cn/#`
 		}
 
-		cf := cpi.GetConf()
 		var req = c.Request()
 
-		if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) { // 获取通用 token  Pro
-			list.Contents = append(list.Contents, `----------`, `本账号已停用，请使用笔趣阁Pro或笔趣阁在线继续访问------`)
-			list.Content = `----------本账号已停用，请使用笔趣阁Pro或笔趣阁在线继续访问------`
+		if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
+			list.JumpWebPage = `` // 蜘蛛给访问所有数据
 		}
 
-		if len(list.Contents) < 10 {
+		if len(list.Contents) < 5 {
 			// `---------- `,`---------- `,`---------`,`---------`,
 			// list.Contents = append(list.Contents,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
-			list.Contents = append(list.Contents, `----------`, `若内容不是最新最全的`, `请返回首页搜索其它同名资源。`, `----------`, `-------`, `-------`, `------`, `------`, `-----`, `-----`, `----`)
-			list.Contents = append(list.Contents, `---------- `, `向上拉加载更多内容`, `或回到顶部下拉重新加载`, `---------`, `--------`, `--------`, `-------`, `-------`, `------`, `------`, `-----`, `-----`, `----`, `----`, `---`, `---`, `--`, `--`, `-`, `-`)
+			list.Contents = append(list.Contents, `----------`, `若内容不是最新最全的`, `请返回首页搜索其它同名资源。`, `↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓`, `----------`, `-------`, `-------`, `------`, `------`, `-----`, `-----`, `----`)
 		}
 		return c.JSON(http.StatusOK, list)
 	})
