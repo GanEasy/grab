@@ -380,7 +380,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx8664d56a896e375b` // mbqt wx8664d56a896e375b
+		var jumpappid = `wxa94ddd94358b2d1d` // mbqt wx8664d56a896e375b
 
 		// 蜘蛛来的，给采集相关内容
 		var req = c.Request()
@@ -868,9 +868,9 @@ func GetAPIToken6(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
-		"bookjumpappid":    ``,
-		"articlejumpappid": ``, //
+		"jumpappid":        `wxa94ddd94358b2d1d`, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"bookjumpappid":    `wxa94ddd94358b2d1d`,
+		"articlejumpappid": `wxa94ddd94358b2d1d`, //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
