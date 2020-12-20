@@ -1027,8 +1027,8 @@ func GetAPIToken9(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{
 
 		"jumpappid":        ``,
-		"bookjumpappid":    `wx8664d56a896e375b`,
-		"articlejumpappid": `wx8664d56a896e375b`, //
+		"bookjumpappid":    `wxa94ddd94358b2d1d`,
+		"articlejumpappid": `wxa94ddd94358b2d1d`, //
 		"jumpwebpage":      ``,                   // 强制跳转网站阅读
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
 		"token":            t,
@@ -1036,7 +1036,7 @@ func GetAPIToken9(c echo.Context) error {
 		"level":            0,
 		"ismini":           0,
 		"hiderec":          1,
-		"hidelog":          1,
+		"hidelog":          0,
 		"can_create":       1, // 允许创建内容
 		"info_screen":      `adunit-6584f905ac888622`,
 		"info_banner":      `adunit-c0d2320d02a94006`,
@@ -1060,15 +1060,15 @@ func GetAPIToken9(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    true,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   1,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+		"info_force_reward": false, // 强制广告
+		"info_video_adlt":   4,     //详情页面视频轮循总数
+		"info_video_adlm":   1,     //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,     //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,     //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,     //详情页面Banner轮循总数
+		"info_banner_adlm":  3,     //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
+		"info_screen_adlm":  4,     //详情页面插屏广告轮循开始余量
 
 	})
 
@@ -1108,7 +1108,6 @@ func GetAPIToken11(c echo.Context) error {
 		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-
 		"jumpappid":          ``,                   //
 		"jumpwebpage":        ``,                   // 强制跳转网站阅读
 		"jumparticlewebpage": `http://r.1x7q.cn/#`, // web内容强制跳转
