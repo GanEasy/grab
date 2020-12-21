@@ -1154,9 +1154,10 @@ func GetAPIToken11(c echo.Context) error {
 		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid":          ``,                   //
+		"jumpappid":          ``, //
+		"bookjumpappid":    ``, // 
+		"articlejumpappid": ``, //
 		"jumpwebpage":        ``,                   // 强制跳转网站阅读
-		"jumparticlewebpage": `http://r.1x7q.cn/#`, // web内容强制跳转
 		"jumpwebtips":        `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
 		"token":              t,
 		"uid":                -1,
