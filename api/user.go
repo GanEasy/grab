@@ -1163,7 +1163,7 @@ func GetAPIToken11(c echo.Context) error {
 		"level":              0,
 		"ismini":             0,
 		"hiderec":     1,
-		"hidelog":     1,
+		"hidelog":     0,
 		"can_create":         0, // 允许创建内容
 		"info_screen":        `adunit-7e68b5d53011f37c`,
 		"info_banner":        `adunit-2270edc5e426c55f`,
