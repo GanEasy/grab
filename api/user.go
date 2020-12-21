@@ -1155,10 +1155,10 @@ func GetAPIToken11(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 		"jumpappid":          ``, //
-		"bookjumpappid":    ``, // 
-		"articlejumpappid": ``, //
-		"jumpwebpage":        ``,                   // 强制跳转网站阅读
-		"jumpwebtips":        `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
+		// "bookjumpappid":    `wxa94ddd94358b2d1d`,
+		// "articlejumpappid": `wxa94ddd94358b2d1d`, //
+		"jumpwebpage":      ``,                   // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
 		"token":              t,
 		"uid":                -1,
 		"level":              0,
