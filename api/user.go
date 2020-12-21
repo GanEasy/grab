@@ -1162,6 +1162,8 @@ func GetAPIToken11(c echo.Context) error {
 		"uid":                -1,
 		"level":              0,
 		"ismini":             0,
+		"hiderec":     1,
+		"hidelog":     1,
 		"can_create":         0, // 允许创建内容
 		"info_screen":        `adunit-7e68b5d53011f37c`,
 		"info_banner":        `adunit-2270edc5e426c55f`,
@@ -1184,7 +1186,7 @@ func GetAPIToken11(c echo.Context) error {
 		// 定义首页分享图片
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-		"online_service":    true,
+		"online_service":    false,
 		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   4,    //详情页面视频轮循总数
 		"info_video_adlm":   1,    //详情页面视频轮循开始余量

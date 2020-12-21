@@ -310,6 +310,9 @@ func GetExploreLinks(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
 	}
+	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // sqw
+		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	}
 
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
 		openID := getOpenID(c)
