@@ -351,7 +351,7 @@ func GetWaitExamineExplore() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `全部编程学习资料`,
+			Title: `全部资源`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
@@ -359,41 +359,41 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `微信小程序开发入门系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `从学徒到工匠精校版`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
-			Style: `arrow`,
-		},
-
-		Link{
-			Title: `从入门到精通系列教程`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
-			Style: `arrow`,
-		},
-
 		// Link{
-		// 	Title: `免责声明`,
+		// 	Title: `微信小程序开发入门系列教程`,
 		// 	Icon:  ``,
 		// 	Type:  `link`,
 		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
 		// 	Style: `arrow`,
 		// },
+
+		// Link{
+		// 	Title: `从学徒到工匠精校版`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+		// 	Style: `arrow`,
+		// },
+
+		// Link{
+		// 	Title: `从入门到精通系列教程`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+		// 	Style: `arrow`,
+		// },
+
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
 	}
 	return links
 
