@@ -155,7 +155,7 @@ func GetCheckModeToken(c echo.Context) error {
 		"can_create":  0, // 允许创建内容
 		"ismini":      0,
 		"hiderec":     1,
-		"hidelog":     1,
+		"hidelog":     0,
 		// 定义首页分享标题
 		"share_title": ``,
 		// 定义首页分享图片
@@ -1157,24 +1157,24 @@ func GetAPIToken11(c echo.Context) error {
 		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid":          ``, //
+		"jumpappid": ``, //
 		// "bookjumpappid":    `wx151b74959f898c5b`,
 		// "articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,                   // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
-		"token":              t,
-		"uid":                -1,
-		"level":              0,
-		"ismini":             0,
-		"hiderec":     1,
-		"hidelog":     0,
-		"can_create":         0, // 允许创建内容
-		"info_screen":        `adunit-7e68b5d53011f37c`,
-		"info_banner":        `adunit-2270edc5e426c55f`,
-		"info_custom":        `adunit-ab5acd5ba7b2db05`,
-		"info_tips_banner":   infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom":   infoTipsCustom, // 详细页格子广告
-		"autoload_tips":      `观看视频开启自动加载无弹窗模式`,
+		"jumpwebpage":      ``,               // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+		"token":            t,
+		"uid":              -1,
+		"level":            0,
+		"ismini":           0,
+		"hiderec":          1,
+		"hidelog":          0,
+		"can_create":       0, // 允许创建内容
+		"info_screen":      `adunit-7e68b5d53011f37c`,
+		"info_banner":      `adunit-2270edc5e426c55f`,
+		"info_custom":      `adunit-ab5acd5ba7b2db05`,
+		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+		"info_tips_custom": infoTipsCustom, // 详细页格子广告
+		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
 		// "list_video": `adunit-cc2f19cdc09c7a48`,
@@ -1204,7 +1204,6 @@ func GetAPIToken11(c echo.Context) error {
 	})
 
 }
-
 
 //GetAPIToken12  ggt
 func GetAPIToken12(c echo.Context) error {
@@ -1240,24 +1239,24 @@ func GetAPIToken12(c echo.Context) error {
 		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid":          ``, //
+		"jumpappid": ``, //
 		// "bookjumpappid":    `wx151b74959f898c5b`,
 		// "articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,                   // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
-		"token":              t,
-		"uid":                -1,
-		"level":              0,
-		"ismini":             0,
-		"hiderec":     1,
-		"hidelog":     0,
-		"can_create":         0, // 允许创建内容
-		"info_screen":        `adunit-7e68b5d53011f37c`,
-		"info_banner":        `adunit-2270edc5e426c55f`,
-		"info_custom":        `adunit-ab5acd5ba7b2db05`,
-		"info_tips_banner":   infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom":   infoTipsCustom, // 详细页格子广告
-		"autoload_tips":      `观看视频开启自动加载无弹窗模式`,
+		"jumpwebpage":      ``,               // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+		"token":            t,
+		"uid":              -1,
+		"level":            0,
+		"ismini":           0,
+		"hiderec":          1,
+		"hidelog":          0,
+		"can_create":       0, // 允许创建内容
+		"info_screen":      `adunit-7e68b5d53011f37c`,
+		"info_banner":      `adunit-2270edc5e426c55f`,
+		"info_custom":      `adunit-ab5acd5ba7b2db05`,
+		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
+		"info_tips_custom": infoTipsCustom, // 详细页格子广告
+		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
 		// "list_video": `adunit-cc2f19cdc09c7a48`,
@@ -1287,6 +1286,7 @@ func GetAPIToken12(c echo.Context) error {
 	})
 
 }
+
 //CheckOpenID 获取签名里面的信息
 func CheckOpenID(c echo.Context) error {
 	user := c.Get("user").(*jwt.Token)
