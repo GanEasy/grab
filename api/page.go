@@ -359,60 +359,6 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		// Link{
-		// 	Title: `------------><------------`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  ``,
-		// 	Style: ``,
-		// },
-
-		// Link{
-		// 	Title: `在邮件中内联CSS`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/1.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `laravel-feed是一个帮助开发者在laravel应用是快速创建feed订阅功能的组件。`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/2.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `laravel中实现邀请注册制`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/3.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `在laravel中使用uuid`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/article?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/4.md`),
-		// 	Style: `arrow`,
-		// },
-
-		// Link{
-		// 	Title: `更多`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=github&url=` + grab.EncodeURL(`https://github.com/aireadhelper/aireadhelper.github.io/blob/master/edudoc/index.md`),
-		// 	Style: `arrow`,
-		// },
-
 		Link{
 			Title: `微信小程序开发入门系列教程`,
 			Icon:  ``,
@@ -440,14 +386,14 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `免责声明`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `免责声明`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+		// 	Style: `arrow`,
+		// },
 	}
 	return links
 
