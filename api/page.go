@@ -299,7 +299,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)) { // 获取通用 token  Pro
-		return c.JSON(http.StatusOK, GetGuideExploreLinks())
+		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
 	
@@ -347,32 +347,33 @@ func GetExploreLinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-// GetWaitExamineExplore 用于审核的内容列表
-func GetListExplore() []Link {
+// SingleMenu 伪装给单一入口 
+func SingleMenu() []Link {
 
 	var links = []Link{
-
 		Link{
 			Title: `全部资源`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
 			Style: `arrow`,
+			Appid: ``, // wx7543142ce921d8e3
 		},
-
+		
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
+			Style: ``,
 		},
 	}
 	return links
 
 }
+
 // GetWaitExamineExplore 用于审核的内容列表
 func GetWaitExamineExplore() []Link {
 
