@@ -331,7 +331,7 @@ func SingleMenu() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-			Style: ``,
+			Style: `arrow`,
 			Appid: ``, // wx7543142ce921d8e3
 		},
 		
@@ -341,7 +341,7 @@ func SingleMenu() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
-			Style: `arrow`,
+			Style: ``,
 		},
 	}
 	return links
