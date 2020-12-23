@@ -445,6 +445,8 @@ func GetAPIToken8(c echo.Context) error {
 			"uid":              fans.ID,
 			"level":            0,
 			"ismini":           ismini,
+			"hiderec":          1,
+			"hidelog":          0,
 			"show_tips_next":   0,
 			"can_create":       canCreate, // 允许创建内容
 			"info_screen":      ``,
