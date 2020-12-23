@@ -1183,9 +1183,6 @@ func GetAllBookResources(c echo.Context) error {
 
 	list.Hash = ``
 
-	var links = []Link{
-
-
 	list.Cards = []reader.Card{
 		// reader.Card{
 		// 	Title: `备用线路`,
