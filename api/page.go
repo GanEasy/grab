@@ -561,7 +561,7 @@ func GuideJumpAppOrSearce() []Link {
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index?uid=321`,
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
 			Style: ``,
 			Appid: `wx331f3c3e2761f080`, // 笔趣阁plus
 		},
