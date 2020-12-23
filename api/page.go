@@ -298,7 +298,7 @@ func GetExploreLinks(c echo.Context) error {
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
-	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)) { // 获取通用 token  Pro
+	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
