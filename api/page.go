@@ -320,6 +320,33 @@ func GetExploreLinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
+// SingleMenu 伪装给单一入口 
+func SingleMenu() []Link {
+
+	var links = []Link{
+		Link{
+			Title: `全部资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+			Style: ``,
+			Appid: ``, // wx7543142ce921d8e3
+		},
+		
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
+}
+
 // SafeMenu 霸道总裁专题小说 推荐页
 func SafeMenu() []Link {
 
@@ -1156,75 +1183,78 @@ func GetAllBookResources(c echo.Context) error {
 
 	list.Hash = ``
 
+	var links = []Link{
+
+
 	list.Cards = []reader.Card{
-		reader.Card{
-			Title: `备用线路`,
-			Type:  `jumpapp`,
-			WxTo:  `/pages/index`,
-			AppID: `wx7c30b98c7f42f651`,
-		},
-		reader.Card{
-			Title: `起点小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
-		},
+		// reader.Card{
+		// 	Title: `备用线路`,
+		// 	Type:  `jumpapp`,
+		// 	WxTo:  `/pages/index`,
+		// 	AppID: `wx7c30b98c7f42f651`,
+		// },
 		reader.Card{
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
-		},
-		reader.Card{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 		reader.Card{
 			Title: `17K文学`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 		reader.Card{
 			Title: `红袖添香`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=hongxiu&url=` + grab.EncodeURL(`https://www.hongxiu.com`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 		reader.Card{
 			Title: `潇湘书院`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
-		// reader.Card{
-		// 	Title: `笔下文学`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=bxwx&url=` + grab.EncodeURL(`https://www.bxwx.la`),
-		// },
 		reader.Card{
-			Title: `U小说阅读网`,
+			Title: `笔趣阁jxla`,
 			Type:  `link`,
-			WxTo:  `/pages/categories?drive=uxiaoshuo&url=` + grab.EncodeURL(`https://m.uxiaoshuo.com/`),
+			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
-		// reader.Card{
-		// 	Title: `笔趣阁biquyun`,
-		// 	Type:  `link`,
-		// 	WxTo:  `/pages/categories?drive=biquyun&url=` + grab.EncodeURL(`https://m.biquyun.com`),
-		// },
-
 		reader.Card{
-			Title: `顶点小说`,
+			Title: `笔趣阁mcmssc`,
 			Type:  `link`,
-			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			// Appid: `wxa94ddd94358b2d1d`,
+		},
+		reader.Card{
+			Title: `笔趣阁paoshu8`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 
 		reader.Card{
-			Title: `笔趣阁soe8`,
+			Title: `顶点小说280xs`,
 			Type:  `link`,
-			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+			WxTo:  `/pages/categories?drive=xs280&url=` + grab.EncodeURL(`https://www.280xs.com/`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 
 		reader.Card{
 			Title: `笔趣阁xbiquge`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+			// Appid: `wxa94ddd94358b2d1d`,
+		},
+
+		reader.Card{
+			Title: `顶点小说booktxt`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 
 		reader.Card{
@@ -1233,14 +1263,21 @@ func GetAllBookResources(c echo.Context) error {
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
 		reader.Card{
+			Title: `书阁小说网shugela`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+			// Appid: `wxa94ddd94358b2d1d`,
+		},
+		reader.Card{
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
 		},
 		reader.Card{
-			Title: `笔趣阁mcmssc`,
+			Title: `纵横小说网`,
 			Type:  `link`,
-			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+			// Appid: `wxa94ddd94358b2d1d`,
 		},
 		// reader.Card{
 		// 	Title: `老司机小说`,
@@ -1250,7 +1287,7 @@ func GetAllBookResources(c echo.Context) error {
 	}
 
 	cf := cpi.GetConf()
-	if cf.Search.LimiterStageShow { //受显示限制给资源控制
+	if cf.Search.LimiterStageShow && false { //受显示限制给资源控制
 		list.Cards = append(list.Cards,
 			reader.Card{
 				Title: `老司机小说`,
