@@ -316,8 +316,9 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 	}
 
+	return c.JSON(http.StatusOK, SingleMenu())
 	// return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
-	return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
 // SingleMenu 伪装给单一入口 
