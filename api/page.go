@@ -354,11 +354,11 @@ func SingleMenu() []Link {
 		Link{
 			Title: `全部资源`,
 			Icon:  ``,
-			Type:  `link`,
+			Type:  `jumpapp`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
 			Style: `arrow`,
-			Appid: ``, // wx7543142ce921d8e3
+			Appid: `wx331f3c3e2761f080`, // wx7543142ce921d8e3
 		},
 		
 		Link{
