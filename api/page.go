@@ -301,6 +301,9 @@ func GetExploreLinks(c echo.Context) error {
 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
+	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+		return c.JSON(http.StatusOK, SingleMenu())
+	}
 
 	
 

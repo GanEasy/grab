@@ -50,14 +50,14 @@ func GetToken(c echo.Context) error {
 		return GetAPIToken7(c)
 	}
 	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token  xjjggt
-		return GetAPIToken12(c)
+		return GetAPIToken6(c)
 	}
 	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // 获取 token plus版
 		return GetWebToken(c)
 	}
-	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token mzt
-		return GetAPIToken6(c)
-	}
+	// if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token mzt
+	// 	return GetAPIToken6(c)
+	// }
 	//
 	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // 获取通用 手气旺 1e37898802af518d4317d0b41a173eb2
 		return GetAPIToken11(c)
