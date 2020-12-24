@@ -55,7 +55,7 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // 获取 token plus版
 		return GetWebToken(c)
 	}
-	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) { // 获取通用 token 免版本图
+	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token mzt
 		return GetAPIToken6(c)
 	}
 	//
@@ -429,7 +429,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx151b74959f898c5b` // mbqt wx8664d56a896e375b
+		var jumpappid = `wx151b74959f898c5b` // mzt wx151b74959f898c5b
 
 		// 蜘蛛来的，给采集相关内容
 		var req = c.Request()
@@ -657,7 +657,7 @@ func GetAPIToken3(c echo.Context) error {
 		var jumpappid = ``        // wx90dee998347266dd 新推荐阅读
 		if fans.LoginTotal > 10 { // 访问次数大于5去Pro
 			// ismini = 1
-			// jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  免费版权图 wx8664d56a896e375b  强制跳转 搜书大师 wxe70eee58e64c7ac7
+			// jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  mzt wx151b74959f898c5b  强制跳转 搜书大师 wxe70eee58e64c7ac7
 		}
 
 		var infoTipsBanner, infoTipsGrid string
@@ -909,9 +909,9 @@ func GetAPIToken6(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	if true {
 		if inum == 1 {
-			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+			infoTipsBanner = `adunit-f25496d0c79a21ec`
 		} else if inum == 2 {
-			infoTipsBanner = `adunit-a237f95dd4ce9ae7`
+			infoTipsBanner = `adunit-f25496d0c79a21ec`
 		} else if inum == 3 {
 			infoTipsCustom = ``
 		}
@@ -919,35 +919,35 @@ func GetAPIToken6(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        `wx151b74959f898c5b`, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
-		"bookjumpappid":    `wx151b74959f898c5b`,
-		"articlejumpappid": `wx151b74959f898c5b`, //
+		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"bookjumpappid":    ``,
+		"articlejumpappid": ``, //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
 		"can_create":       1, // 允许创建内容
-		"home_screen_adid": `adunit-44763f52c54f72f9`,
-		"info_screen":      `adunit-44763f52c54f72f9`,
-		"info_banner":      `adunit-a237f95dd4ce9ae7`,
-		"info_custom":      `adunit-ade0b17378833a01`,
+		"home_screen_adid": ``,
+		"info_screen":      `adunit-ccabd13119f9c1ef`,
+		"info_banner":      `adunit-f25496d0c79a21ec`,
+		"info_custom":      `adunit-e3d1254655efb8c9`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-8d6906f779544df6`,
-		// "list_video": `adunit-8d6906f779544df6`,
-		// "cata_video": `adunit-8d6906f779544df6`,
-		"info_video":      `adunit-8d6906f779544df6`,
-		"top_home_custom": `adunit-44122f4a8ef3d7d0`,
-		"list_custom":     `adunit-ade0b17378833a01`,
-		"cata_custom":     `adunit-ade0b17378833a01`,
-		"info_reward":     `adunit-37d73c4714563ea5`,
+		// "top_home_video": `adunit-68628fd0d0c730c3`,
+		// "list_video": `adunit-68628fd0d0c730c3`,
+		// "cata_video": `adunit-68628fd0d0c730c3`,
+		"info_video":      `adunit-68628fd0d0c730c3`,
+		"top_home_custom": `adunit-940f8c6057d625d1`,
+		"list_custom":     `adunit-e3d1254655efb8c9`,
+		"cata_custom":     `adunit-e3d1254655efb8c9`,
+		"info_reward":     `adunit-06e16f75725ae20d`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       `请输入关键字搜索`, // 小说名
+		"placeholder":       `请输入书名搜索`, // 小说名
 		"online_service":    false,
 		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   4,    //详情页面视频轮循总数
