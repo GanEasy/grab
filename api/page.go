@@ -305,7 +305,9 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
-	
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+		return c.JSON(http.StatusOK, SingleMenu())
+	}
 
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
 		// return c.JSON(http.StatusOK, CloseAppTips())
@@ -350,7 +352,7 @@ func GetExploreLinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-// SingleMenu 伪装给单一入口 
+// SingleMenu 伪装给单一入口
 func SingleMenu() []Link {
 
 	var links = []Link{
@@ -363,7 +365,7 @@ func SingleMenu() []Link {
 			Style: `arrow`,
 			Appid: `wx331f3c3e2761f080`, // wx7543142ce921d8e3
 		},
-		
+
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,
