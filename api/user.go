@@ -880,7 +880,7 @@ func GetAPIToken4(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-//GetAPIToken6 获取 jwt token 免版权图，暂时做个中转试试
+//GetAPIToken6 获取 jwt token xjjggt，暂时做个中转试试
 func GetAPIToken6(c echo.Context) error {
 
 	claims := &JwtCustomClaims{
@@ -1078,10 +1078,10 @@ func GetAPIToken9(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{
 
 		"jumpappid":        ``,
-		"bookjumpappid":    `wx151b74959f898c5b`,
-		"articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,                   // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`,     // 强制跳转网站阅读
+		"bookjumpappid":    ``,
+		"articlejumpappid": ``,               //
+		"jumpwebpage":      ``,               // 强制跳转网站阅读
+		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1111,15 +1111,15 @@ func GetAPIToken9(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    true,
-		"info_force_reward": false, // 强制广告
-		"info_video_adlt":   4,     //详情页面视频轮循总数
-		"info_video_adlm":   1,     //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,     //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,     //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,     //详情页面Banner轮循总数
-		"info_banner_adlm":  3,     //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,     //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,     //详情页面插屏广告轮循开始余量
+		"info_force_reward": true, // 强制广告
+		"info_video_adlt":   4,    //详情页面视频轮循总数
+		"info_video_adlm":   1,    //详情页面视频轮循开始余量
+		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,    //详情页面Banner轮循总数
+		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
+		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
 
 	})
 
