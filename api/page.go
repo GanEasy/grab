@@ -476,13 +476,13 @@ func GetGuideExploreJumpLinks(jumpappid, linktype string) []Link {
 			Style: `arrow`,
 			Appid: jumpappid,
 		},
-		Link{
-			Title: `纵横小说网`,
-			Type:  linktype,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-			Style: `arrow`,
-			Appid: jumpappid,
-		},
+		// Link{
+		// 	Title: `纵横小说网`,
+		// 	Type:  linktype,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// 	Style: `arrow`,
+		// 	Appid: jumpappid,
+		// },
 		Link{
 			Title: `17K文学`,
 			Type:  linktype,
@@ -770,12 +770,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `新18小说网0335jjlm`, // 文字转码了
 		// 	Type:  `link`,
@@ -938,11 +938,11 @@ func GetAllResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
 		},
-		reader.Card{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-		},
+		// reader.Card{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// },
 		reader.Card{
 			Title: `17K文学`,
 			Type:  `link`,
@@ -1082,11 +1082,11 @@ func GetAllBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
 		},
-		reader.Card{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-		},
+		// reader.Card{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// },
 		reader.Card{
 			Title: `17K文学`,
 			Type:  `link`,

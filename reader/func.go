@@ -366,7 +366,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2
 	}
 	if b := strings.Contains(wxto, string("drive=zongheng")); b == true {
-		return 2
+		return 9
 	}
 	if b := strings.Contains(wxto, string("drive=17k")); b == true {
 		return 2
