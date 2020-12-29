@@ -305,10 +305,10 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
-	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 驴友记
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
-	if strings.Contains(req.Referer(), `wx96830e80b331c267`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+	if strings.Contains(req.Referer(), `wx96830e80b331c267`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 sszs
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
