@@ -929,7 +929,7 @@ func GetAPIToken6(c echo.Context) error {
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
-		"can_create":       1, // 允许创建内容
+		"can_create":       0, // 允许创建内容
 		"home_screen_adid": ``,
 		"info_screen":      `adunit-ccabd13119f9c1ef`,
 		"info_banner":      `adunit-f25496d0c79a21ec`,
@@ -1091,7 +1091,7 @@ func GetAPIToken9(c echo.Context) error {
 		"ismini":           0,
 		"hiderec":          1,
 		"hidelog":          0,
-		"can_create":       1, // 允许创建内容
+		"can_create":       0, // 允许创建内容
 		"info_screen":      `adunit-6584f905ac888622`,
 		"info_banner":      `adunit-c0d2320d02a94006`,
 		"info_custom":      `adunit-c9618bd19a0ed146`,
