@@ -317,11 +317,15 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
+	if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
+		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
+		return c.JSON(http.StatusOK, GetPublishExploreLinks())
+	}
 	return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
 	// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
-// SingleMenu 伪装给单一入口 
+// SingleMenu 伪装给单一入口
 func SingleMenu() []Link {
 
 	var links = []Link{
@@ -330,11 +334,11 @@ func SingleMenu() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`, // allbookroesoures
 			Style: `arrow`,
 			Appid: ``, // wx7543142ce921d8e3
 		},
-		
+
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,
