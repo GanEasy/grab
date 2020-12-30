@@ -367,7 +367,7 @@ func SingleMenu() []Link {
 			Image: ``,
 			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
 			Style: `arrow`,
-			Appid: `wx359657b0849ee636`, // wx7543142ce921d8e3
+			Appid: `wx66fb08f47a6447a8`, // wx7543142ce921d8e3
 		},
 
 		Link{
