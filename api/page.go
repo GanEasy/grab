@@ -312,7 +312,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
 
-	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
+	if strings.Contains(req.Referer(), `wx66fb08f47a6447a8`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
 		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
@@ -321,7 +321,7 @@ func GetExploreLinks(c echo.Context) error {
 		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 		return c.JSON(http.StatusOK, GetPublishExploreLinks())
 	}
-	return c.JSON(http.StatusOK, GetPublishExploreLinks()) // 2019年12月26日 09:02:19 放到列表试试
+	return c.JSON(http.StatusOK, SingleMenu()) // 2019年12月26日 09:02:19 放到列表试试
 	// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
