@@ -306,8 +306,9 @@ func GetExploreLinks(c echo.Context) error {
 	}
 
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 驴友记
-		return c.JSON(http.StatusOK, SingleMenu())
+		return c.JSON(http.StatusOK, HideMenu())
 	}
+
 	if strings.Contains(req.Referer(), `wx96830e80b331c267`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 sszs
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
@@ -321,7 +322,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
 	}
 	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // sqw
-		return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+		return c.JSON(http.StatusOK, SingleMenu()) // 引导跳转
 	}
 
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
@@ -366,7 +367,7 @@ func SingleMenu() []Link {
 			Image: ``,
 			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
 			Style: `arrow`,
-			Appid: `wx331f3c3e2761f080`, // wx7543142ce921d8e3
+			Appid: `wx359657b0849ee636`, // wx7543142ce921d8e3
 		},
 
 		Link{
@@ -376,6 +377,23 @@ func SingleMenu() []Link {
 			Image: ``,
 			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
 			Style: ``,
+		},
+	}
+	return links
+
+}
+
+// HideMenu 隐藏目录入口
+func HideMenu() []Link {
+
+	var links = []Link{
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
 		},
 	}
 	return links
