@@ -67,8 +67,8 @@ func GetToken(c echo.Context) error {
 
 		var canCreate = 1
 		var ismini = 0
-		var jumpappid = ``        // 强制跳
-		var bookjumpappid = `wxa94ddd94358b2d1d`  	//wx8664d56a896e375b
+		var jumpappid = ``                          // 强制跳
+		var bookjumpappid = `wxa94ddd94358b2d1d`    //wx8664d56a896e375b
 		var articlejumpappid = `wxa94ddd94358b2d1d` //
 		var jumpwebpage = ``                        //
 
@@ -76,6 +76,8 @@ func GetToken(c echo.Context) error {
 			canCreate = 0
 			ismini = 1
 			jumpappid = ``
+			bookjumpappid = ``
+			articlejumpappid = ``
 		} else if fans.LoginTotal < 5 && fans.Level < 3 { // 如果访问次数少于3次，等级小于3，强制跳转到其它小程序阅读(测试下)
 			// day := time.Now().Day()
 			if false { // 要不要新用户强制跳转
