@@ -329,15 +329,15 @@ func GetExploreLinks(c echo.Context) error {
 func SingleMenu() []Link {
 
 	var links = []Link{
-		Link{
-			Title: `全部资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`, // allbookroesoures
-			Style: `arrow`,
-			Appid: ``, // wx7543142ce921d8e3
-		},
+		// Link{
+		// 	Title: `全部资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`, // allbookroesoures
+		// 	Style: `arrow`,
+		// 	Appid: ``, // wx7543142ce921d8e3
+		// },
 
 		Link{
 			Title: `免责声明`,
