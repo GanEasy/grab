@@ -1072,11 +1072,11 @@ func GetAPIToken9(c echo.Context) error {
 	inum := rand.Intn(3) // 先搞低些广告出现机率
 
 	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = ``
+	infoTipsBanner = `adunit-c0d2320d02a94006`
 	if inum == 1 {
 		infoTipsBanner = `adunit-c0d2320d02a94006`
 	} else if inum == 2 {
-		infoTipsCustom = `adunit-c9618bd19a0ed146`
+		infoTipsBanner = ``
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
