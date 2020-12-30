@@ -922,7 +922,7 @@ func GetAPIToken6(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        ``, // wxe70eee58e64c7ac7  // 强制跳转搜书大师  // 这个准备不做了，怕被抓鸡脚
+		"jumpappid":        `wx96830e80b331c267`, // xjj 转 sszs
 		"bookjumpappid":    ``,
 		"articlejumpappid": ``, //
 		"token":            t,
