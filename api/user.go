@@ -65,16 +65,12 @@ func GetToken(c echo.Context) error {
 			return err
 		}
 
-		var canCreate = 1
-		var ismini = 0
 		var jumpappid = ``                          // 强制跳
 		var bookjumpappid = `wxa94ddd94358b2d1d`    //wx8664d56a896e375b
 		var articlejumpappid = `wxa94ddd94358b2d1d` //
 		var jumpwebpage = ``                        //
 
 		if version != `` && version == cf.Search.DevVersion {
-			canCreate = 0
-			ismini = 1
 			jumpappid = ``
 			bookjumpappid = ``
 			articlejumpappid = ``
@@ -147,8 +143,10 @@ func GetToken(c echo.Context) error {
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
-			"can_create":       canCreate, // 允许创建内容
-			"ismini":           ismini,    // 允许创建内容
+			"can_create":       0, // 允许创建内容
+			"ismini":      0,
+			"hiderec":     1,
+			"hidelog":     0,
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
 			"info_banner":      cf.Ad.InfoBanner,
