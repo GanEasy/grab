@@ -916,7 +916,7 @@ func GetAPIToken6(c echo.Context) error {
 		} else if inum == 2 {
 			infoTipsBanner = `adunit-f25496d0c79a21ec`
 		} else if inum == 3 {
-			infoTipsCustom = ``
+			infoTipsBanner = ``
 		}
 	}
 
@@ -924,7 +924,7 @@ func GetAPIToken6(c echo.Context) error {
 		// wx8ffa5a58c0bb3589 推荐阅读
 		"jumpappid":        `wx96830e80b331c267`, // xjj 转 sszs
 		"bookjumpappid":    ``,
-		"articlejumpappid": ``, //
+		"articlejumpappid": `wx96830e80b331c267`, //
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
