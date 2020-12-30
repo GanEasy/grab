@@ -432,7 +432,7 @@ func GetAPIToken8(c echo.Context) error {
 			}
 		}
 
-		var jumpappid = `wx151b74959f898c5b` // mzt wx151b74959f898c5b
+		var jumpappid = `wx359657b0849ee636` // mzt wx151b74959f898c5b
 
 		// 蜘蛛来的，给采集相关内容
 		var req = c.Request()
