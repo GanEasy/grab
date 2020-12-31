@@ -302,9 +302,12 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		}
 		if strings.Contains(req.Referer(),`wx90dee998347266dd`) { // 获取通用 token  Pro
 			list.JumpAppid = `wx359657b0849ee636`
+			list.Contents = append(list.Contents, `---------小程序下架通知：请搜索“夜色趣读”继续阅读------------`)
 		}
 		if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
 			list.JumpAppid = `wx359657b0849ee636`
+			list.Contents = append(list.Contents, `---------小程序下架通知：请搜索“夜色趣读”继续阅读------------`)
+		
 		}
 
 		return c.JSON(http.StatusOK, list)
