@@ -295,6 +295,18 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			// list.Contents = append(list.Contents,`--------`,`--------`,`-------`,`-------`,`------`,`------`,`-----`,`-----`,`----`,`----`,`---`,`---`,`--`,`--`,`-`,`-`)
 			list.Contents = append(list.Contents, `----------`, `若内容不是最新最全的`, `请返回首页搜索其它同名资源。`, `↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓`, `----------`, `-------`, `-------`, `------`, `------`, `-----`, `-----`, `----`)
 		}
+		
+		// web 访问
+		if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
+			list.JumpWebPage = ``
+		}
+		if strings.Contains(req.Referer(),`wx90dee998347266dd`) { // 获取通用 token  Pro
+			list.JumpAppid = `wx359657b0849ee636`
+		}
+		if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
+			list.JumpAppid = `wx359657b0849ee636`
+		}
+
 		return c.JSON(http.StatusOK, list)
 	})
 	//  get book demo
