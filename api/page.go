@@ -414,32 +414,32 @@ func GetWaitExamineExplore() []Link {
 			Style: `arrow`,
 		},
 
-		// Link{
-		// 	Title: `微信小程序开发入门系列教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `微信小程序开发入门系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-from-appreciate-to-artisan`),
+			Style: `arrow`,
+		},
 
-		// Link{
-		// 	Title: `从学徒到工匠精校版`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `从学徒到工匠精校版`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/wechat-miniprogram-tutorial`),
+			Style: `arrow`,
+		},
 
-		// Link{
-		// 	Title: `从入门到精通系列教程`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `从入门到精通系列教程`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+			Style: `arrow`,
+		},
 
 		Link{
 			Title: `免责声明`,
