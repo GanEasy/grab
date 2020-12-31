@@ -406,15 +406,6 @@ func GetWaitExamineExplore() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `全部资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
-			Style: `arrow`,
-		},
-
-		Link{
 			Title: `微信小程序开发入门系列教程`,
 			Icon:  ``,
 			Type:  `link`,
@@ -438,6 +429,15 @@ func GetWaitExamineExplore() []Link {
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/catalog?drive=blog&url=` + grab.EncodeURL(`https://xueyuanjun.com/laravel-tutorial-5_7`),
+			Style: `arrow`,
+		},
+
+		Link{
+			Title: `更多资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
 			Style: `arrow`,
 		},
 
