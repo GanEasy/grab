@@ -657,7 +657,7 @@ func GetAPIToken3(c echo.Context) error {
 			// .Header.Get("User-Agent")
 		}
 
-		var jumpappid = `wx72a2a482881fd47a` // wx90dee998347266dd 新推荐阅读
+		var jumpappid = `wxa94ddd94358b2d1d` // wx90dee998347266dd 新推荐阅读
 		if fans.LoginTotal > 10 {            // 访问次数大于5去Pro
 			// ismini = 1
 			// jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  mzt wx151b74959f898c5b  强制跳转 搜书大师 wxe70eee58e64c7ac7
