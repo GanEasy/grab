@@ -310,7 +310,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		}
 
 		if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // xjj
-			if drive == `` && list.SourceURL == `https://aireadhelper.github.io/doc/v2/exemption.html` {
+			if drive == `` && urlStr == `https://aireadhelper.github.io/doc/v2/exemption.html` {
 				list.JumpAppid = ``
 			} else {
 				list.JumpAppid = `wx96830e80b331c267`
