@@ -361,7 +361,7 @@ func SingleMenu() []Link {
 
 	var links = []Link{
 		Link{
-			Title: `全部资源`,
+			Title: `免费阅读`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
@@ -943,7 +943,7 @@ func GetJumpTipsAndGuideExploreLinks() []Link {
 //GetAllResources 获取所有资源
 func GetAllResources(c echo.Context) error {
 	var list = reader.Catalog{}
-	list.Title = `全部资源`
+	list.Title = `免费阅读`
 
 	list.SourceURL = ``
 
