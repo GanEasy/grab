@@ -305,7 +305,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			list.Contents = append(list.Contents, `---------小程序下架通知：请搜索“夜色趣读”继续阅读------------`)
 		}
 		if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // xjj
-			if drive == `` {
+			if drive == `` && list.SourceURL == `https://aireadhelper.github.io/doc/v2/exemption.html` {
 				list.JumpAppid = ``
 			} else {
 				list.JumpAppid = `wx96830e80b331c267`

@@ -922,8 +922,8 @@ func GetAPIToken6(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        `wx96830e80b331c267`, // xjj 转 sszs wx96830e80b331c267
-		"bookjumpappid":    ``,
+		"jumpappid":        ``, // xjj 转 sszs wx96830e80b331c267
+		"bookjumpappid":    `wx96830e80b331c267`,
 		"articlejumpappid": ``, //wx96830e80b331c267
 		"token":            t,
 		"uid":              -1,
