@@ -287,9 +287,9 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 	// }
 
-	// if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
-	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 被举报了，半开放状态
-	// }
+	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
+		return c.JSON(http.StatusOK, HideMenu()) // 被举报了，半开放状态
+	}
 
 	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
 		return c.JSON(http.StatusOK, FollowMedia())
