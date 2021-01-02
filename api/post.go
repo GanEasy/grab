@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"strings"
 
 	cpi "github.com/GanEasy/grab/core"
 	"github.com/GanEasy/grab/db"
@@ -92,10 +91,10 @@ func SearchPosts(c echo.Context) error {
 	}
 
 	// 临时 给搜书大师和笔趣阁在线搜索小说功能
-	var req = c.Request()
-	if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) || strings.Contains(req.Referer(), cf.ReaderMinAppThree.AppID) { //
-		level = 4
-	}
+	// var req = c.Request()
+	// if strings.Contains(req.Referer(), cf.ReaderMinAppTwo.AppID) || strings.Contains(req.Referer(), cf.ReaderMinAppThree.AppID) { //
+	// 	level = 4
+	// }
 
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
