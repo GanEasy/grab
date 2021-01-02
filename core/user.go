@@ -24,7 +24,7 @@ var TokenServe *DefaultAccessTokenServer
 
 func init() {
 
-	TokenServe = NewDefaultAccessTokenServer(config.ReaderMinApp.AppID, config.ReaderMinApp.AppSecret)
+	TokenServe = NewDefaultAccessTokenServer(`wx96830e80b331c267`, `e72aed927a8ccda32c2573705c7d098f`)
 
 }
 
