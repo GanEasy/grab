@@ -276,7 +276,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 
 		var itemlevel = rd.GetPathLevel(`&drive=` + drive)
 		if itemlevel > 2 {
-			list.JumpWebPage = `http://r.1x7q.cn/#`
+			list.JumpWebPage = `# http://r.1x7q.cn/#`
 		}
 
 		var req = c.Request()
