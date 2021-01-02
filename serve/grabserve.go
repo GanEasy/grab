@@ -274,12 +274,15 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetInfo(urlStr)
 
+		var req = c.Request()
 		var itemlevel = rd.GetPathLevel(`&drive=` + drive)
 		if itemlevel > 2 {
 			list.JumpWebPage = `# http://r.1x7q.cn/#`
+			if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
+				// list.Contents = []`内容未通过审核，暂不支持显示`
+				list.Content = `内容未通过审核，暂不支持转码`
+			}
 		}
-
-		var req = c.Request()
 
 		if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
 			list.JumpWebPage = `` // 蜘蛛给访问所有数据
