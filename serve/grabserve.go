@@ -278,14 +278,20 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		var itemlevel = rd.GetPathLevel(`&drive=` + drive)
 		if itemlevel > 2 {
 			list.JumpWebPage = `# http://r.1x7q.cn/#`
-			if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) && strings.Contains(req.Referer(), `servicewechat.com`) { //
-				// list.Contents = []`内容未通过审核，暂不支持显示`
-				list.Content = `内容未通过审核，暂不支持转码`
+			if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
+				if strings.Contains(req.Referer(), `servicewechat.com`) { // 小程序访问
+					// 屏蔽内容
+					list.Content = `内容未通过审核，暂不支持转码`
+					var contents []string
+					list.Contents = append(contents, `内容未通过审核，暂不支持转码`)
+					list.SourceURL = `#` + list.SourceURL
+				}
 			}
 		}
 
+		// 蜘蛛给访问所有数据
 		if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
-			list.JumpWebPage = `` // 蜘蛛给访问所有数据
+			list.JumpWebPage = ``
 		}
 
 		// web 访问
@@ -299,26 +305,6 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 			list.Contents = append(list.Contents, `----------`, `若内容不是最新最全的`, `请返回首页搜索其它同名资源。`, `↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓`, `----------`, `-------`, `-------`, `------`, `------`, `-----`, `-----`, `----`)
 		}
 
-		// web 访问
-		if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
-			list.JumpWebPage = ``
-		}
-		if strings.Contains(req.Referer(), `wx90dee998347266dd`) { // 获取通用 token  Pro
-			list.JumpAppid = `wx359657b0849ee636`
-			list.Contents = append(list.Contents, `---------小程序下架通知：请搜索“夜色趣读”继续阅读------------`)
-		}
-		if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
-			list.JumpAppid = `wx359657b0849ee636`
-			list.Contents = append(list.Contents, `---------小程序下架通知：请搜索“夜色趣读”继续阅读------------`)
-		}
-
-		if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // xjj
-			if urlStr == `https://aireadhelper.github.io/doc/v2/exemption.html` || list.SourceURL == `https://aireadhelper.github.io/doc/v2/exemption.html` {
-				list.JumpAppid = ``
-			} else {
-				list.JumpAppid = `wx96830e80b331c267`
-			}
-		}
 		return c.JSON(http.StatusOK, list)
 	})
 	//  get book demo
