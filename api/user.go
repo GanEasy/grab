@@ -1333,6 +1333,7 @@ func GetAPIToken13(c echo.Context) error {
 		// "articlejumpappid": `wx151b74959f898c5b`, //
 		"jumpwebpage":      ``,               // 强制跳转网站阅读
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+		"report_api" :		`https://tongji.readfollow.com/api/report`,
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
