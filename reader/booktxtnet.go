@@ -172,9 +172,12 @@ func (r BooktxtnetReader) GetCatalog(urlStr string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)全文免费阅读`, g.Find("title").Text(), "title")
 	if list.Title == `` {
-		list.Title = g.Find("title").Text()
+		list.Title = FindString(`(?P<title>(.)+)最新章节`, g.Find("title").Text(), "title")
+		if list.Title == `` {
+			list.Title = g.Find("title").Text()
+		}
 	}
 
 	link, _ := url.Parse(urlStr)
