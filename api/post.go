@@ -28,7 +28,7 @@ func SearchPosts(c echo.Context) error {
 	// provider := c.QueryParam("provider")
 	version := c.QueryParam("version")
 
-	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
+	var level = 3 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 
 	cerr := cpi.MSGSecCHECK(name)
 	if cerr != nil { //&& cerr.Message == `87014`
@@ -49,7 +49,7 @@ func SearchPosts(c echo.Context) error {
 		// level = int(user.Level) 这里不限制用户等级了，前面加了强制跳转就行了
 
 		if cf.Search.InvitationCode != `` && name != `` && name == cf.Search.InvitationCode { // 输入邀请密令，解锁
-			user.Level = 5
+			user.Level = 3
 			user.Save()
 
 			catelog.Cards = append(
