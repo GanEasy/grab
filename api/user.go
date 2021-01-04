@@ -1371,9 +1371,9 @@ func GetAPIToken13(c echo.Context) error {
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = ``
 	if inum == 1 {
-		// infoTipsBanner = `adunit-6acc767c1798c960`
+		infoTipsBanner = `adunit-6acc767c1798c960`
 	} else if inum == 2 {
-		// infoTipsBanner = `adunit-6acc767c1798c960`
+		infoTipsBanner = `adunit-6acc767c1798c960`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 		"jumpappid": ``, //
@@ -1410,7 +1410,7 @@ func GetAPIToken13(c echo.Context) error {
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    true,
-		"info_force_reward": false, // 强制广告
+		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   4,    // 详情页面视频轮循总数
 		"info_video_adlm":   1,    // 详情页面视频轮循开始余量
 		"info_custom_adlt":  2,    // 详情页面格子广告轮循总数
