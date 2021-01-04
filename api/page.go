@@ -309,11 +309,11 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
-	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 驴友记
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取 驴友记 && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) 
 		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
-	if strings.Contains(req.Referer(), `wx96830e80b331c267`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 sszs
+	if strings.Contains(req.Referer(), `wx96830e80b331c267`)  { // 获取 sszs && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
 		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
