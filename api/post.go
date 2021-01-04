@@ -112,7 +112,7 @@ func SearchPosts(c echo.Context) error {
 		for _, v := range posts {
 
 			itemlevel = reader.GetPathLevel(v.WxTo)
-			if level >= int(itemlevel) {
+			if level > int(itemlevel) { // 需大于
 				// intro :=
 				link, err := url.Parse(v.From)
 
