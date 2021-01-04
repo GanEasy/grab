@@ -326,7 +326,7 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
 	}
 	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // sqw
-		return c.JSON(http.StatusOK, SingleMenu()) // 引导跳转
+		return c.JSON(http.StatusOK, CloseAppTips()) // 引导跳转
 	}
 
 	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
@@ -711,13 +711,13 @@ func CloseAppTips() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `请进支线阅读>>笔趣阁在线`,
+			Title: `即将关服，请进支线`,
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/index?uid=321`,
+			WxTo:  `/pages/index`,
 			Style: ``,
-			Appid: `wx7c30b98c7f42f651`, // 笔趣阁plus
+			Appid: `wx359657b0849ee636`, // 笔趣阁plus
 		},
 		Link{
 			Title: `免责声明`,
