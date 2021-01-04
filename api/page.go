@@ -310,11 +310,11 @@ func GetExploreLinks(c echo.Context) error {
 	}
 
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 驴友记
-		return c.JSON(http.StatusOK, HideMenu())
+		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
 	if strings.Contains(req.Referer(), `wx96830e80b331c267`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取 sszs
-		return c.JSON(http.StatusOK, SingleMenu())
+		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
 	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
@@ -391,6 +391,40 @@ func SingleMenu() []Link {
 func HideMenu() []Link {
 
 	var links = []Link{
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
+}
+
+// GetOpenMenu 开放目录
+func GetOpenMenu() []Link {
+
+	var links = []Link{
+		
+		Link{
+			Title: `免费小说`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`, 
+			Style: `arrow`,
+		},
+		Link{
+			Title: `学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
 		Link{
 			Title: `免责声明`,
 			Icon:  ``,
@@ -780,12 +814,12 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `笔趣阁soe8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔趣阁soe8`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
+		// 	Style: `arrow`,
+		// },
 		Link{
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
