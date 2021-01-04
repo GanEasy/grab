@@ -182,6 +182,7 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 	api.GET("/explorelinks", a.GetExploreLinks)
 	api.GET("/newcateloghelps", a.GetNewCatelogLinks)
 	api.GET("/allroesoures", a.GetAllResources)
+	api.GET("/freebookroesoures", a.GetFreeBookResources)
 	api.GET("/allbookroesoures", a.GetAllBookResources)
 	api.GET("/allcartoonroesoures", a.GetAllCartoonResources)
 	api.GET("/alllearnresources", a.GetAllLearnResources)

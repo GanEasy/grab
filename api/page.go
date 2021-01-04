@@ -287,6 +287,10 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 	// }
 
+	if strings.Contains(req.Referer(), `wx50c86fdb3fbf5f74`) { // test
+		return c.JSON(http.StatusOK, GetTestMenu()) // 测试
+	}
+
 	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
 		return c.JSON(http.StatusOK, HideMenu()) // 被举报了，半开放状态
 	}
@@ -400,6 +404,39 @@ func HideMenu() []Link {
 
 }
 
+// GetTestMenu 测试目录
+func GetTestMenu() []Link {
+
+	var links = []Link{
+		
+		Link{
+			Title: `学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+		Link{
+			Title: `免费小说`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`, 
+			Style: `arrow`,
+		},
+		Link{
+			Title: `免责声明`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/article?drive=blog&url=` + grab.EncodeURL(`https://aireadhelper.github.io/doc/v2/exemption.html`),
+			Style: `arrow`,
+		},
+	}
+	return links
+
+}
 // GetWaitExamineExplore 用于审核的内容列表
 func GetWaitExamineExplore() []Link {
 
@@ -1323,5 +1360,52 @@ func GetAllLearnResources(c echo.Context) error {
 			WxTo:  `/pages/catalog?drive=learnku&url=` + grab.EncodeURL(`https://learnku.com/docs/dingo-api/2.0.0`),
 		},
 	}
+	return c.JSON(http.StatusOK, list)
+}
+
+
+
+//GetFreeBookResources 免费（小说）资源
+func GetFreeBookResources(c echo.Context) error {
+	var list = reader.Catalog{}
+	list.Title = `免费资源`
+
+	list.SourceURL = ``
+
+	list.Hash = ``
+
+	list.Cards = []reader.Card{
+		
+		reader.Card{
+			Title: `顶点小说`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=booktxt&url=` + grab.EncodeURL(`http://www.booktxt.net`),
+		},
+
+		reader.Card{
+			Title: `笔趣阁xbiquge`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xbiquge&url=` + grab.EncodeURL(`http://www.xbiquge.la/`),
+		},
+
+		reader.Card{
+			Title: `笔趣阁qula`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
+		},
+		reader.Card{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		},
+		reader.Card{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+		},
+	}
+
+
+
 	return c.JSON(http.StatusOK, list)
 }
