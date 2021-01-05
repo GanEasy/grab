@@ -1212,7 +1212,7 @@ func GetAPIToken11(c echo.Context) error {
 		infoTipsBanner = `adunit-2270edc5e426c55f`
 	}
 	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid": `wx359657b0849ee636`, //
+		"jumpappid": `wxe70eee58e64c7ac7`, //
 		// "bookjumpappid":    `wx151b74959f898c5b`,
 		// "articlejumpappid": `wx151b74959f898c5b`, //
 		"jumpwebpage":      ``,               // 强制跳转网站阅读

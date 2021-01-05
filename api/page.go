@@ -717,7 +717,7 @@ func CloseAppTips() []Link {
 			Image: ``,
 			WxTo:  `/pages/index`,
 			Style: ``,
-			Appid: `wx359657b0849ee636`, // 笔趣阁plus
+			Appid: `wxe70eee58e64c7ac7`, // 笔趣阁plus 
 		},
 		Link{
 			Title: `免责声明`,
