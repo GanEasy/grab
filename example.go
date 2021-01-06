@@ -104,25 +104,25 @@ func GetResources() []Item {
 		Item{`笔趣阁xbiquge`, `/pages/categories?drive=xbiquge&url=` + EncodeURL(`http://www.xbiquge.la/`), "", "link"},
 		Item{`笔趣阁qula`, `/pages/categories?drive=qu&url=` + EncodeURL(`https://m.qu.la/`), "", "link"},
 
-		Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
-		Item{`韩漫窝(18禁)`, `/pages/list?action=list&drive=hanmanwo&url=` + EncodeURL(`http://www.hanmanwo.com/booklist`), "", "link"},
-		Item{`韩漫库(18禁)`, `/pages/list?action=list&drive=hanmanku&url=` + EncodeURL(`http://www.hanmanku.com/booklist`), "", "link"},
-		Item{`海猫吧(18禁)`, `/pages/list?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com/list/0/`), "", "link"},
-		Item{`我爱妹子漫画(18禁)`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", "link"},
-		// Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
-		Item{`腐漫漫画(18禁)`, `/pages/categories?drive=fuman&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
-		Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
+		// Item{`╅╅╅︺未满18岁禁止观看︺╅╆╆`, ``, "", "link"},
+		// Item{`韩漫窝(18禁)`, `/pages/list?action=list&drive=hanmanwo&url=` + EncodeURL(`http://www.hanmanwo.com/booklist`), "", "link"},
+		// Item{`韩漫库(18禁)`, `/pages/list?action=list&drive=hanmanku&url=` + EncodeURL(`http://www.hanmanku.com/booklist`), "", "link"},
+		// Item{`海猫吧(18禁)`, `/pages/list?action=list&drive=haimaoba&url=` + EncodeURL(`http://www.haimaoba.com/list/0/`), "", "link"},
+		// Item{`我爱妹子漫画(18禁)`, `/pages/list?action=list&drive=aimeizi5&url=` + EncodeURL(`https://5aimeizi.com/booklist`), "", "link"},
+		// // Item{`我爱妹子漫画(18禁)`, `/pages/categories?drive=aimeizi5&url=` + EncodeURL(`https://www.fuman.cc/`), "", "link"},
+		// Item{`腐漫漫画(18禁)`, `/pages/categories?drive=fuman&url=` + EncodeURL(`https://www.5aimeizi.com/`), "", "link"},
+		// Item{`漫画台(18禁)`, `/pages/categories?drive=manhwa&url=` + EncodeURL(`https://www.manhwa.cc/`), "", "link"},
 
-		Item{`看妹子漫画(18禁)`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", "link"},
-		// 绅士漫画网 图片有防盗链 加载不出来
-		// Item{`绅士漫画网(18禁)`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://www.ssmh.cc/booklist`), "", "link"},
-		Item{`伟叫兽漫画网(18禁)`, `/pages/categories?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn`), "", "link"},
+		// Item{`看妹子漫画(18禁)`, `/pages/list?action=list&drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/booklist`), "", "link"},
+		// // 绅士漫画网 图片有防盗链 加载不出来
+		// // Item{`绅士漫画网(18禁)`, `/pages/list?action=list&drive=ssmh&url=` + EncodeURL(`http://www.ssmh.cc/booklist`), "", "link"},
+		// Item{`伟叫兽漫画网(18禁)`, `/pages/categories?action=list&drive=weijiaoshou&url=` + EncodeURL(`http://www.weijiaoshou.cn`), "", "link"},
 
-		// Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
-		// Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
-		Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
-		// SeventeenKReader
-		// Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
+		// // Item{`看妹子漫画(18禁)`, `/pages/categories?drive=kanmeizi&url=` + EncodeURL(`https://www.kanmeizi.cc/`), "", "link"},
+		// // Item{`无双漫画(18禁)`, `/pages/categories?drive=r2hm&url=` + EncodeURL(`https://r2hm.com/`), "", "link"},
+		// Item{`漫物语(18禁)`, `/pages/categories?drive=manwuyu&url=` + EncodeURL(`http://www.manwuyu.com/`), "", "link"},
+		// // SeventeenKReader
+		// // Item{`17K文学`, `/pages/book/get?drive=book&url=` + EncodeURL(`http://www.17k.com`), "", "link"},
 	}
 	return list
 }
