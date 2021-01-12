@@ -295,69 +295,72 @@ func GetExploreLinks(c echo.Context) error {
 		return c.JSON(http.StatusOK, HideMenu()) // 被举报了，半开放状态
 	}
 
-	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
+	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // web访问，提醒关注公众号
 		return c.JSON(http.StatusOK, FollowMedia())
 	}
 
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
-	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
-		return c.JSON(http.StatusOK, SingleMenu())
-	}
-	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  Pro
-		return c.JSON(http.StatusOK, SingleMenu())
-	}
+	// if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // ReaderMinApp
+	// 	return c.JSON(http.StatusOK, SingleMenu())
+	// }
+	// if strings.Contains(req.Referer(), `wx151b74959f898c5b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // wx151b74959f898c5b
+	// 	return c.JSON(http.StatusOK, SingleMenu())
+	// }
 
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取 驴友记 && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) 
 		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
 	if strings.Contains(req.Referer(), `wx96830e80b331c267`)  { // 获取 sszs && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
+		// if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`){
+		// 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
+		// }
 		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
-	if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
-		// return c.JSON(http.StatusOK, CloseAppTips())
-		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
-	}
+	// if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
+	// 	// return c.JSON(http.StatusOK, CloseAppTips())
+	// 	return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
+	// }
 
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
-		return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
-	}
-	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // sqw
-		return c.JSON(http.StatusOK, CloseAppTips()) // 引导跳转
-	}
+	// if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
+	// 	return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx331f3c3e2761f080`, `jumpapp`))
+	// }
+	// if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // sqw
+	// 	return c.JSON(http.StatusOK, CloseAppTips()) // 引导跳转
+	// }
 
-	if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
-		openID := getOpenID(c)
-		if openID == `` {
-			return c.HTML(http.StatusOK, "wxto empty")
-		}
-		user, _ := getUser(openID)
+	// if cf.Search.LimitInvitation { // 小程序为限制邀请浏览模式
+	// 	openID := getOpenID(c)
+	// 	if openID == `` {
+	// 		return c.HTML(http.StatusOK, "wxto empty")
+	// 	}
+	// 	user, _ := getUser(openID)
 
-		if user.LoginTotal < 5 {
+	// 	if user.LoginTotal < 5 {
 
-			if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 笔趣阁在线引导跳转
-				// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-			}
+	// 		if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 笔趣阁在线引导跳转
+	// 			// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	// 		}
 
-		}
-		// 被举报，流量主封10年了
-		// if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
-		// 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
-		// 		return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
-		// 	}
-		// 	// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
-		// }
-		// if user.LoginTotal > 10 { // 小于3级用户，不允许显示资源列表
-		// 	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
-		// 		return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
-		// 	}
-		// }
-	}
-
-	return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	// 	}
+	// 	// 被举报，流量主封10年了
+	// 	// if user.Level < 3 && user.LoginTotal < 10 { // 小于3级用户，不允许显示资源列表
+	// 	// 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问
+	// 	// 		return c.JSON(http.StatusOK, GuideJumpApp()) // 引导跳转
+	// 	// 	}
+	// 	// 	// return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
+	// 	// }
+	// 	// if user.LoginTotal > 10 { // 小于3级用户，不允许显示资源列表
+	// 	// 	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) {
+	// 	// 		return c.JSON(http.StatusOK, GetJumpTipsAndGuideExploreLinks())
+	// 	// 	}
+	// 	// }
+	// }
+	return c.JSON(http.StatusOK, GetGuideExploreJumpLinks(`wx96830e80b331c267`, `jumpapp`))
+	// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
 
 // SingleMenu 伪装给单一入口
