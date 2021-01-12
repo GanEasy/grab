@@ -1386,7 +1386,7 @@ func GetAPIToken13(c echo.Context) error {
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
-		"hiderec":          1,
+		"hiderec":          0,
 		"hidelog":          0,
 		"can_create":       0, // 允许创建内容
 		"info_screen":      ``,

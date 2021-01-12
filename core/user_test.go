@@ -28,6 +28,11 @@ func Test_MSGSecCHECK(t *testing.T) {
 	// err := MSGSecCHECK(`点道`) //
 	t.Fatal(err)
 }
+func Test_WxAppSubmitPages(t *testing.T) {
+	err := WxAppSubmitPages(`李克强强奸性爱游戏`) //这个是违禁词
+	// err := MSGSecCHECK(`点道`) //
+	t.Fatal(err)
+}
 
 func Test_GetToken(t *testing.T) {
 

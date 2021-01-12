@@ -97,6 +97,59 @@ func GetOpenIDForApp(code, appid, secret string) (OpenIDData, error) {
 	return OpenIDData{ret.ErrCode, ret.OpenID, ret.SessionKey}, err
 }
 
+// SubmitPage 提交页面数据
+type SubmitPage struct {
+	Path int64  `json:"path"` //
+	Query  string `json:"query"` //
+}
+//WxAppSubmitPages 文本安全检查
+func WxAppSubmitPages(text string) error {
+	type Data struct {
+		Pages []SubmitPage `json:"pages"`
+	}
+
+	//
+	type Ret struct {
+		ErrCode int64  `json:"errcode"` //errCode
+		ErrMSG  string `json:"errmsg"` //errMsg
+	}
+	var ret Ret
+
+	var pages []SubmitPage
+
+
+	var data = Data{}
+	
+	data.Pages = append(data.Pages,
+		SubmitPage{
+			Path: `/pages/index/index`,
+			Query:  ``,
+		})
+	token, err2 := TokenServe.Token()
+	if err2 != nil {
+		return err2
+	}
+	// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
+	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/search/wxaapi_submitpages?access_token=%v`, token)
+
+	b, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	HTTPPostJSON(url, b, &ret)
+
+	if ret.ErrCode != 0 {
+		// err = errors.New(string(ret.ErrMSG))
+		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
+	}
+
+	return err
+}
+
+
+
+
 //SendPostUpdateMSG 发送更新通知
 func SendPostUpdateMSG(openID, formID, title, page string) error {
 	//
