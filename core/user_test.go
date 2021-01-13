@@ -1,6 +1,8 @@
 package core
 
 import (
+	"log"
+	"net/url"
 	"strconv"
 	"testing"
 
@@ -29,6 +31,12 @@ func Test_MSGSecCHECK(t *testing.T) {
 	t.Fatal(err)
 }
 func Test_WxAppSubmitPages(t *testing.T) {
+	var pages = `/pages/catalog?diver=xx&url=xasx`
+
+	link, _ := url.Parse(pages)
+
+	log.Println(link.ForceQuery, link.RawQuery)
+	t.Fatal(link.Path)
 	err := WxAppSubmitPages(`李克强强奸性爱游戏`) //这个是违禁词
 	// err := MSGSecCHECK(`点道`) //
 	t.Fatal(err)

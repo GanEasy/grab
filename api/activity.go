@@ -15,6 +15,9 @@ func NewActivity(c echo.Context) error {
 	wxto := c.QueryParam("wxto")
 
 	activity := cpi.AddActivity(title, wxto)
+
+	cpi.WxAppSubmitPage(wxto) //提交页面（望收录）
+
 	return c.JSON(http.StatusOK, activity)
 }
 
@@ -63,7 +66,7 @@ func GetActivities(c echo.Context) error {
 			// level = user.Level
 			if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // VIP稳定通道 笔趣阁Pro，必须邀请用户才能访问，才有推荐。
 				level = user.Level
-				
+
 				level = 3
 				if level > 3 { // 暂时过滤动漫
 				}

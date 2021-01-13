@@ -10,6 +10,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"strconv"
 
@@ -99,31 +100,33 @@ func GetOpenIDForApp(code, appid, secret string) (OpenIDData, error) {
 
 // SubmitPage 提交页面数据
 type SubmitPage struct {
-	Path int64  `json:"path"` //
-	Query  string `json:"query"` //
+	Path  string `json:"path"`  //
+	Query string `json:"query"` //
 }
-//WxAppSubmitPages 文本安全检查
-func WxAppSubmitPages(text string) error {
+
+//WxAppSubmitPage 提交页面单个页面（望收录）
+func WxAppSubmitPage(wxto string) error {
 	type Data struct {
 		Pages []SubmitPage `json:"pages"`
 	}
-
 	//
 	type Ret struct {
 		ErrCode int64  `json:"errcode"` //errCode
-		ErrMSG  string `json:"errmsg"` //errMsg
+		ErrMSG  string `json:"errmsg"`  //errMsg
 	}
 	var ret Ret
 
-	var pages []SubmitPage
-
-
 	var data = Data{}
-	
+
+	link, err3 := url.Parse(wxto)
+
+	if err3 != nil {
+		return err3
+	}
 	data.Pages = append(data.Pages,
 		SubmitPage{
-			Path: `/pages/index/index`,
-			Query:  ``,
+			Path:  link.Path,
+			Query: link.RawQuery,
 		})
 	token, err2 := TokenServe.Token()
 	if err2 != nil {
@@ -139,6 +142,7 @@ func WxAppSubmitPages(text string) error {
 
 	HTTPPostJSON(url, b, &ret)
 
+	// log.Println(`xx`, ret)
 	if ret.ErrCode != 0 {
 		// err = errors.New(string(ret.ErrMSG))
 		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
@@ -147,8 +151,52 @@ func WxAppSubmitPages(text string) error {
 	return err
 }
 
+//WxAppSubmitPages 提交页面（望收录）
+func WxAppSubmitPages(wxto string) error {
+	type Data struct {
+		Pages []SubmitPage `json:"pages"`
+	}
+	//
+	type Ret struct {
+		ErrCode int64  `json:"errcode"` //errCode
+		ErrMSG  string `json:"errmsg"`  //errMsg
+	}
+	var ret Ret
 
+	var data = Data{}
 
+	link, err3 := url.Parse(wxto)
+
+	if err3 != nil {
+		return err3
+	}
+	data.Pages = append(data.Pages,
+		SubmitPage{
+			Path:  link.Path,
+			Query: link.RawQuery,
+		})
+	token, err2 := TokenServe.Token()
+	if err2 != nil {
+		return err2
+	}
+	// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
+	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/search/wxaapi_submitpages?access_token=%v`, token)
+
+	b, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	HTTPPostJSON(url, b, &ret)
+
+	// log.Println(`xx`, ret)
+	if ret.ErrCode != 0 {
+		// err = errors.New(string(ret.ErrMSG))
+		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
+	}
+
+	return err
+}
 
 //SendPostUpdateMSG 发送更新通知
 func SendPostUpdateMSG(openID, formID, title, page string) error {
