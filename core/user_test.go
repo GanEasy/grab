@@ -1,12 +1,11 @@
 package core
 
 import (
-	"log"
-	"net/url"
 	"strconv"
 	"testing"
 
 	"github.com/GanEasy/grab/db"
+	"github.com/GanEasy/grab/reader"
 )
 
 func Test_GetOpenID(t *testing.T) {
@@ -31,13 +30,11 @@ func Test_MSGSecCHECK(t *testing.T) {
 	t.Fatal(err)
 }
 func Test_WxAppSubmitPages(t *testing.T) {
-	var pages = `/pages/catalog?diver=xx&url=xasx`
+	urlStr := "https://www.qidian.com/all?orderId=&page=1&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0"
+	r := reader.QidianReader{}
+	list, err := r.GetList(urlStr)
 
-	link, _ := url.Parse(pages)
-
-	log.Println(link.ForceQuery, link.RawQuery)
-	t.Fatal(link.Path)
-	err := WxAppSubmitPages(`李克强强奸性爱游戏`) //这个是违禁词
+	err = WxAppSubmitPages(list) //这个是违禁词
 	// err := MSGSecCHECK(`点道`) //
 	t.Fatal(err)
 }
