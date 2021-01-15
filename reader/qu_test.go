@@ -14,6 +14,7 @@ func Test_QuGetBooks(t *testing.T) {
 	// urlStr = "https://m.qu.la/waptop/month.html"
 	reader := QuReader{}
 	list, err := reader.GetList(urlStr)
+	// list, err = reader.Search(`点道`)
 	// list, err = reader.GetCategories()
 	if err != nil {
 

@@ -1170,11 +1170,6 @@ func GetAllBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
 		},
-		reader.Card{
-			Title: `起点小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
-		},
 		// reader.Card{
 		// 	Title: `纵横小说网`,
 		// 	Type:  `link`,
@@ -1404,13 +1399,39 @@ func GetAllLearnResources(c echo.Context) error {
 //GetFreeBookResources 免费（小说）资源
 func GetFreeBookResources(c echo.Context) error {
 	var list = reader.Catalog{}
-	list.Title = `免费资源`
+	list.Title = `免费阅读`
 
 	list.SourceURL = ``
 
 	list.Hash = ``
 
 	list.Cards = []reader.Card{
+
+		reader.Card{
+			Title: `起点小说网`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
+		},
+		// reader.Card{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// },
+		reader.Card{
+			Title: `17K文学`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=17k&url=` + grab.EncodeURL(`http://www.17k.com`),
+		},
+		reader.Card{
+			Title: `红袖添香`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=hongxiu&url=` + grab.EncodeURL(`https://www.hongxiu.com`),
+		},
+		reader.Card{
+			Title: `潇湘书院`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=xxsy&url=` + grab.EncodeURL(`https://www.xxsy.net`),
+		},
 
 		reader.Card{
 			Title: `笔趣阁mcmssc`,

@@ -2,6 +2,7 @@ package reader
 
 import (
 	"fmt"
+	"log"
 	"net/url"
 	"regexp"
 	"strings"
@@ -33,6 +34,7 @@ func (r QuReader) GetCategories(urlStr string) (list Catalog, err error) {
 		Card{`-网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 		Card{`-女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/nvshengxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 	}
+	list.SearchSupport = true
 	return list, nil
 }
 
@@ -43,12 +45,17 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.txt-list-row5`)
+
+	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
 	}
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	html2, _ := g.Find(`.txt-list-row5`).Html()
+
+	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
 	if e != nil {
 		return list, e
@@ -60,7 +67,7 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	var links = GetLinks(g, link)
+	var links = GetLinks(g2, link)
 
 	var needLinks []Link
 	var state bool
@@ -76,7 +83,8 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 
 	list.SourceURL = urlStr
 
-	list.Next = GetNextLink(links)
+	var links2 = GetLinks(g, link)
+	list.Next = GetNextLink(links2)
 	if list.Next.URL != `` {
 		list.Next.URL = EncodeURL(list.Next.URL)
 	}
@@ -89,7 +97,56 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 
 // Search 搜索资源
 func (r QuReader) Search(keyword string) (list Catalog, err error) {
-	return
+	urlStr := `https://m.qu.la/ar.php?keyWord=` + keyword
+	err = CheckStrIsLink(urlStr)
+	if err != nil {
+		return
+	}
+	html, err := GetHTML(urlStr, ``)
+	if err != nil {
+		return
+	}
+
+	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+	if e != nil {
+		return list, e
+	}
+
+	list.Title = fmt.Sprintf(`%v - 搜索结果-笔趣阁qu.la`, keyword)
+
+	link, _ := url.Parse(urlStr)
+
+	var links = GetLinks(g, link)
+
+	if len(links) == 0 {
+
+		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+
+		if e2 != nil {
+			return list, e2
+		}
+
+		links = GetLinks(g2, link)
+	}
+
+	var needLinks []Link
+	var state bool
+	for _, l := range links {
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.qu.la/book/175443/`, `https://m.qu.la/book/142095/`, ``)
+		if state {
+			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
+			needLinks = append(needLinks, l)
+		}
+	}
+
+	list.Cards = LinksToCards(Cleaning(needLinks), `/pages/catalog`, `qu`)
+
+	list.SourceURL = urlStr
+
+	list.Hash = GetCatalogHash(list)
+
+	return list, nil
 }
 
 // GetCatalog 获取章节列表
@@ -147,11 +204,11 @@ func (r QuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var links2 = GetLinks(g, link)
 
 	list.Next = GetNextLink(links2)
+	log.Println(list.Next.URL)
 	if list.Next.URL != `` {
 		list.Next.URL = EncodeURL(list.Next.URL)
 	}
 	list.Hash = GetCatalogHash(list)
-
 	return list, nil
 
 }
