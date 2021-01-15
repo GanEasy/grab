@@ -309,11 +309,11 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, SingleMenu())
 	// }
 
-	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取 驴友记 && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) 
+	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取 驴友记 && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
 		return c.JSON(http.StatusOK, GetOpenMenu())
 	}
 
-	if strings.Contains(req.Referer(), `wx96830e80b331c267`)  { // 获取 sszs && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
+	if strings.Contains(req.Referer(), `wx96830e80b331c267`) { // 获取 sszs && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
 		// if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`){
 		// 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 		// }
@@ -411,13 +411,13 @@ func HideMenu() []Link {
 func GetOpenMenu() []Link {
 
 	var links = []Link{
-		
+
 		Link{
-			Title: `免费小说`,
+			Title: `免费阅读`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`, 
+			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`,
 			Style: `arrow`,
 		},
 		Link{
@@ -445,7 +445,7 @@ func GetOpenMenu() []Link {
 func GetTestMenu() []Link {
 
 	var links = []Link{
-		
+
 		Link{
 			Title: `学习资料`,
 			Icon:  ``,
@@ -459,7 +459,7 @@ func GetTestMenu() []Link {
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`, 
+			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`,
 			Style: `arrow`,
 		},
 		Link{
@@ -474,6 +474,7 @@ func GetTestMenu() []Link {
 	return links
 
 }
+
 // GetWaitExamineExplore 用于审核的内容列表
 func GetWaitExamineExplore() []Link {
 
@@ -720,7 +721,7 @@ func CloseAppTips() []Link {
 			Image: ``,
 			WxTo:  `/pages/index`,
 			Style: ``,
-			Appid: `wxe70eee58e64c7ac7`, // 笔趣阁plus 
+			Appid: `wxe70eee58e64c7ac7`, // 笔趣阁plus
 		},
 		Link{
 			Title: `免责声明`,
@@ -1400,8 +1401,6 @@ func GetAllLearnResources(c echo.Context) error {
 	return c.JSON(http.StatusOK, list)
 }
 
-
-
 //GetFreeBookResources 免费（小说）资源
 func GetFreeBookResources(c echo.Context) error {
 	var list = reader.Catalog{}
@@ -1412,7 +1411,17 @@ func GetFreeBookResources(c echo.Context) error {
 	list.Hash = ``
 
 	list.Cards = []reader.Card{
-		
+
+		reader.Card{
+			Title: `笔趣阁mcmssc`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
+		},
+		reader.Card{
+			Title: `笔趣阁biqugeinfo`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		},
 		reader.Card{
 			Title: `顶点小说`,
 			Type:  `link`,
@@ -1430,19 +1439,7 @@ func GetFreeBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
-		reader.Card{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-		},
-		reader.Card{
-			Title: `笔趣阁mcmssc`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
-		},
 	}
-
-
 
 	return c.JSON(http.StatusOK, list)
 }

@@ -444,7 +444,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 3
 	}
 	if b := strings.Contains(wxto, string("drive=biqugeinfo")); b == true {
-		return 7
+		return 2 // 7 未知什么原因过滤，放回先
 	}
 	if b := strings.Contains(wxto, string("drive=haimaoba")); b == true {
 		return 3

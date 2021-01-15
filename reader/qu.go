@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"fmt"
 	"net/url"
 	"regexp"
 	"strings"
@@ -24,23 +25,13 @@ func (r QuReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`-全部分类`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/1_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/2_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/3_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/4_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/5_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/6_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wapsort/7_1.html`), "", `link`, ``, nil, ``, ``},
-
-		Card{`\全部排行`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month4.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month5.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month6.html`), "", `link`, ``, nil, ``, ``},
-		Card{`\女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/waptop/month7.html`), "", `link`, ``, nil, ``, ``},
+		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-武侠仙侠`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-都市言情`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-历史军事`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/lishixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-科幻灵异`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-网游竞技`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-女生频道`, `/pages/list?action=book&drive=qu&url=` + EncodeURL(`https://m.qu.la/nvshengxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }
@@ -52,7 +43,7 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
-	html, err := GetHTML(urlStr, `.recommend`)
+	html, err := GetHTML(urlStr, `.txt-list-row5`)
 	if err != nil {
 		return
 	}
@@ -62,7 +53,7 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 	if e != nil {
 		return list, e
 	}
-	list.Title = FindString(`(?P<title>(.)+),`, g.Find("title").Text(), "title")
+	list.Title = FindString(`(?P<title>(.)+)_好看`, g.Find("title").Text(), "title")
 	if list.Title == `` {
 		list.Title = g.Find("title").Text()
 	}
@@ -74,7 +65,7 @@ func (r QuReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.qu.la/book/175443/`, `https://m.qu.la/book/142095/`, `https://m.qu.la/booklist/175443.html`)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://m.qu.la/book/175443/`, `https://m.qu.la/book/142095/`, ``)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -108,6 +99,13 @@ func (r QuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	if err != nil {
 		return
 	}
+
+	// 补丁，修正url地址
+	var bookid = FindString(`https://m.qu.la/booklist/(?P<bookid>(\d)+).html`, urlStr, "bookid")
+	if bookid != `` {
+		urlStr = fmt.Sprintf(`https://m.qu.la/book/%v/`, bookid)
+	}
+
 	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return
@@ -127,7 +125,7 @@ func (r QuReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
 	link, _ := url.Parse(urlStr)
 
-	html2, _ := FindContentHTML(html, `#chapterlist`)
+	html2, _ := g.Find(`.section-list`).Eq(1).Html()
 
 	g2, e := goquery.NewDocumentFromReader(strings.NewReader(html2))
 
