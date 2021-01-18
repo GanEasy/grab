@@ -1438,6 +1438,14 @@ func GetFreeBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 		},
+
+		
+		reader.Card{
+			Title: `书阁小说网shugela`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
+		},
+
 		reader.Card{
 			Title: `笔趣阁biqugeinfo`,
 			Type:  `link`,
