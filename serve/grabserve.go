@@ -252,6 +252,10 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 
 		if drive == `qidian` || drive == `zongheng` || drive == `jx` || drive == `paoshu8` || drive == `shuge` || drive == `qkshu6` || drive == `xs280` || drive == `hongxiu` || drive == `xxsy` || drive == `biqugeinfo` || drive == `mcmssc` || drive == `17k` || drive == `xbiquge` || drive == `luoqiu` || drive == `booktxt` || drive == `bxks` || drive == `xin18` || drive == `bxwx` || drive == `uxiaoshuo` || drive == `biquyun` || drive == `soe8` {
 			go a.SyncPosts(list, 1)
+			var req = c.Request()
+			if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 过滤蜘蛛
+				go cpi.WxAppSubmitPages(list) //批量提交页面
+			}
 		} else if drive == `manhwa` || drive == `kanmeizi` || drive == `haimaoba` || drive == `hanmanwo` || drive == `hanmanku` || drive == `ssmh` || drive == `fuman` || drive == `aimeizi5` {
 			go a.SyncPosts(list, 2)
 		}
@@ -266,10 +270,6 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetCatalog(urlStr)
 
-		var req = c.Request()
-		if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 过滤蜘蛛
-			go cpi.WxAppSubmitPages(list) //批量提交页面
-		}
 
 		return c.JSON(http.StatusOK, list)
 	})
