@@ -270,7 +270,6 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		reader := grab.GetReader(drive)
 		list, _ := reader.GetCatalog(urlStr)
 
-
 		return c.JSON(http.StatusOK, list)
 	})
 
@@ -284,14 +283,14 @@ drive sup: qidian,zongheng,17k,luoqiu,booktxt,bxwx,uxiaoshuo,soe8,manhwa,r2hm,xb
 		var req = c.Request()
 		var itemlevel = rd.GetPathLevel(`&drive=` + drive)
 		if itemlevel > 2 {
-			list.JumpWebPage = `#`                                            //`# http://r.1x7q.cn/#`
+			list.JumpWebPage = `# http://r.1x7q.cn/#`                         //`# http://r.1x7q.cn/#`
 			if !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { //
 				if strings.Contains(req.Referer(), `servicewechat.com`) { // 小程序访问
 					// 屏蔽内容
-					list.Content = `内容未通过审核，暂不支持转码`
-					var contents []string
-					list.Contents = append(contents, `内容未通过审核，暂不支持转码`)
-					list.SourceURL = `#` //+ list.SourceURL
+					// list.Content = `内容未通过审核，暂不支持转码`
+					// var contents []string
+					// list.Contents = append(contents, `内容未通过审核，暂不支持转码`)
+					// list.SourceURL = `#` + list.SourceURL //
 				}
 			}
 		}
