@@ -34,7 +34,7 @@ func SearchPosts(c echo.Context) error {
 
 	var level = 5 // 4已经支持所有了(小说和漫画) 3支持小说，2什么都不支持
 	if provider == `weixin` {
-		level = 4
+		level = 3
 		cerr := cpi.MSGSecCHECK(name)
 		if cerr != nil { //&& cerr.Message == `87014`
 			catelog.Title = fmt.Sprintf(`暂不支持该关键字搜索`)
@@ -51,7 +51,7 @@ func SearchPosts(c echo.Context) error {
 	user, _ := getUser(openID)
 	cf := cpi.GetConf()
 
-	if  name != `` && name == `332211` { // 输入邀请密令，解锁
+	if name != `` && name == `332211` { // 输入邀请密令，解锁
 		user.Level = 5
 		user.Save()
 
@@ -66,10 +66,10 @@ func SearchPosts(c echo.Context) error {
 				Images: nil,
 				From:   `admin`,
 			})
-			return c.JSON(http.StatusOK, catelog)
+		return c.JSON(http.StatusOK, catelog)
 	}
-	
-	if  name != `` && name == `000000` { // 固定输入6个0加锁
+
+	if name != `` && name == `000000` { // 固定输入6个0加锁
 		user.Level = 1
 		user.LoginTotal = 1
 		user.Save()
@@ -85,10 +85,8 @@ func SearchPosts(c echo.Context) error {
 				Images: nil,
 				From:   `admin`,
 			})
-			return c.JSON(http.StatusOK, catelog)
+		return c.JSON(http.StatusOK, catelog)
 	}
-
-
 
 	var posts []db.Post
 	if version != `` && version == cf.Search.DevVersion { // 开启严格检查 || 审核版本
@@ -100,13 +98,14 @@ func SearchPosts(c echo.Context) error {
 	} else {
 		posts = cpi.GetPostsByName(name)
 	}
+	level = 3
 	var intro string
 	if len(posts) > 0 {
 		var itemlevel int32
 		for _, v := range posts {
 
 			itemlevel = reader.GetPathLevel(v.WxTo)
-			if level >= int(itemlevel) {
+			if level > int(itemlevel) {
 				// intro :=
 				link, err := url.Parse(v.From)
 

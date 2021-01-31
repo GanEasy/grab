@@ -629,22 +629,22 @@ func GetPublishExploreLinks() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-		Link{
-			Title: `小说资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
-			Title: `漫画资源`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `小说资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
+		// Link{
+		// 	Title: `漫画资源`,
+		// 	Icon:  ``,
+		// 	Type:  `link`,
+		// 	Image: ``,
+		// 	WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+		// 	Style: `arrow`,
+		// },
 		// Link{
 		// 	Title: `广告策略与用户组`,
 		// 	Icon:  ``,
@@ -690,12 +690,12 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `纵横小说网`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// 	Style: `arrow`,
+		// },
 		Link{
 			Title: `17K文学`,
 			Type:  `link`,

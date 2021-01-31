@@ -140,7 +140,7 @@ func GetToken(c echo.Context) error {
 			"articlejumpappid": articlejumpappid, // 文章强制跳转其它小程序
 			"jumpwebpage":      jumpwebpage,      // 强制跳转网站阅读
 			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-			"report_api":       `https://tongji.readfollow.com/api`,
+			"report_api":       `https://tongji.readfollow.com/api/report`,
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
