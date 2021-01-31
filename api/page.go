@@ -296,12 +296,8 @@ func GetExploreLinks(c echo.Context) error {
 
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
-	if true {
 
-		return c.JSON(http.StatusOK, GetGuideExploreLinks())
-	}
-
-	// 采集器
+	//
 	if strings.Contains(req.Referer(), `wx72a2a482881fd47a`) && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) {
 		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 		// return c.JSON(http.StatusOK, SingleMenu())
