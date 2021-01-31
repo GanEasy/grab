@@ -54,8 +54,8 @@ func GetActivities(c echo.Context) error {
 					links = append(links,
 						Link{
 							Title: v.Title,
-							Icon:  ``,     // cuIcon-new
-							Type:  `link`, // jumpapp
+							Icon:  ``,        // cuIcon-new
+							Type:  `jumpapp`, // link
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
