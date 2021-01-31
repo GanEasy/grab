@@ -613,13 +613,13 @@ func GetGuideExploreJumpLinks(jumpappid, linktype string) []Link {
 			Appid: jumpappid,
 		},
 
-		Link{
-			Title: `笔趣阁paoshu8`,
-			Type:  linktype,
-			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
-			Style: `arrow`,
-			Appid: jumpappid,
-		},
+		// Link{
+		// 	Title: `笔趣阁paoshu8`,
+		// 	Type:  linktype,
+		// 	WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+		// 	Style: `arrow`,
+		// 	Appid: jumpappid,
+		// },
 
 		Link{
 			Title: `顶点小说280xs`,
@@ -856,12 +856,12 @@ func GetGuideExploreLinks() []Link {
 			WxTo:  `/pages/categories?drive=jx&url=` + grab.EncodeURL(`https://m.jx.la/`),
 			Style: `arrow`,
 		},
-		Link{
-			Title: `笔趣阁paoshu8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔趣阁paoshu8`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+		// 	Style: `arrow`,
+		// },
 
 		// Link{
 		// 	Title: `纵横小说网`,
