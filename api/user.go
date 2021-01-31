@@ -65,10 +65,10 @@ func GetToken(c echo.Context) error {
 			return err
 		}
 
-		var jumpappid = ``                          // 强制跳
-		var bookjumpappid = `wxa94ddd94358b2d1d`    //wx8664d56a896e375b
-		var articlejumpappid = `wxa94ddd94358b2d1d` //
-		var jumpwebpage = ``                        //
+		var jumpappid = ``        // 强制跳
+		var bookjumpappid = ``    //wx8664d56a896e375b
+		var articlejumpappid = `` //
+		var jumpwebpage = ``      //
 
 		if version != `` && version == cf.Search.DevVersion {
 			jumpappid = ``
@@ -96,7 +96,7 @@ func GetToken(c echo.Context) error {
 			}
 
 		} else if fans.LoginTotal > 20 { // 大于10次，强制跳转
-			jumpappid = `wxa94ddd94358b2d1d` // 强制跳去
+			jumpappid = `` // 强制跳去 wxa94ddd94358b2d1d
 		}
 
 		// 蜘蛛来的，给采集相关内容
@@ -140,13 +140,14 @@ func GetToken(c echo.Context) error {
 			"articlejumpappid": articlejumpappid, // 文章强制跳转其它小程序
 			"jumpwebpage":      jumpwebpage,      // 强制跳转网站阅读
 			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+			"report_api":       `https://tongji.readfollow.com/api`,
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
 			"can_create":       0, // 允许创建内容
-			"ismini":      0,
-			"hiderec":     1,
-			"hidelog":     0,
+			"ismini":           0,
+			"hiderec":          1,
+			"hidelog":          0,
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
 			"info_banner":      cf.Ad.InfoBanner,

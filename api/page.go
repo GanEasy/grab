@@ -289,38 +289,35 @@ func GetExploreLinks(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	version := c.QueryParam("version")
-	provider := c.QueryParam("provider")
 
 	var req = c.Request()
-	if provider == `` { //兼容一下先
-		if strings.Contains(req.Referer(), `wx4d466242a9ecc265`) {
-			provider = `weixin`
-		}
-		if strings.Contains(req.Referer(), `1109864069`) {
-			provider = `qq`
-		}
-	}
 
-	// if provider == `weixin` && (cf.Search.LimitLevel || version == cf.Search.DevVersion) { //特例
-	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	// }
-	// if provider == `qq` { //特例
-	// 	return c.JSON(http.StatusOK, GetWaitExamineExplore())
-	// }
 	if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
 
 		return c.JSON(http.StatusOK, GetWaitExamineExplore())
 	}
+	if true {
 
-	if strings.Contains(req.Referer(), `wx66fb08f47a6447a8`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
+	}
+
+	// 采集器
+	if strings.Contains(req.Referer(), `wx72a2a482881fd47a`) && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) {
+		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
+		// return c.JSON(http.StatusOK, SingleMenu())
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
+
+	}
+
+	if strings.Contains(req.Referer(), `wx72a2a482881fd47a`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
 		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
 		return c.JSON(http.StatusOK, SingleMenu())
 	}
 
-	if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
-		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
-		return c.JSON(http.StatusOK, GetPublishExploreLinks())
-	}
+	// if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
+	// 	// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
+	// 	return c.JSON(http.StatusOK, GetPublishExploreLinks())
+	// }
 	return c.JSON(http.StatusOK, SingleMenu()) // 2019年12月26日 09:02:19 放到列表试试
 	// return c.JSON(http.StatusOK, GetGuideExploreLinks())
 }
@@ -632,22 +629,22 @@ func GetPublishExploreLinks() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
-		// Link{
-		// 	Title: `小说资源`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
-		// 	Style: `arrow`,
-		// },
-		// Link{
-		// 	Title: `漫画资源`,
-		// 	Icon:  ``,
-		// 	Type:  `link`,
-		// 	Image: ``,
-		// 	WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
-		// 	Style: `arrow`,
-		// },
+		Link{
+			Title: `小说资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+			Style: `arrow`,
+		},
+		Link{
+			Title: `漫画资源`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=allcartoonroesoures&drive=&url=`,
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `广告策略与用户组`,
 		// 	Icon:  ``,
