@@ -327,7 +327,8 @@ func SingleMenu() []Link {
 			Icon:  ``,
 			Type:  `jumpapp`,
 			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`, // allbookroesoures
+			WxTo:  `/pages/transfer?action=allbookroesoures&drive=&url=`,
+			// WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`, // allbookroesoures
 			Style: `arrow`,
 			Appid: `wx96830e80b331c267`, // wx7543142ce921d8e3
 		},
