@@ -413,19 +413,19 @@ func GetOpenMenu() []Link {
 	var links = []Link{
 
 		Link{
-			Title: `免费阅读`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`,
-			Style: `arrow`,
-		},
-		Link{
 			Title: `学习资料`,
 			Icon:  ``,
 			Type:  `link`,
 			Image: ``,
 			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
+		Link{
+			Title: `免费阅读`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=freebookroesoures&drive=&url=`,
 			Style: `arrow`,
 		},
 		Link{
