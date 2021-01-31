@@ -157,13 +157,13 @@ func GetToken(c echo.Context) error {
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
 			"autoload_tips": `观看激励广告无弹窗自动加载更多`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
-			"top_home_custom": `adunit-08789216e1cca5be`,
+			"top_home_custom": `adunit-04fe1b3d519b9299`,
 			// "top_list_video": cf.Ad.HomeVideo,
 			// "home_video":     cf.Ad.HomeVideo,
 			"list_video":  cf.Ad.ListVideo,
 			"cata_video":  cf.Ad.CataVideo,
 			"info_video":  cf.Ad.InfoVideo,
-			"info_custom": `adunit-9bb55eb7ddd541d4`, // 详细页格子广告
+			"info_custom": `adunit-107ff5514ca1654a`, // 详细页格子广告
 			"info_reward": cf.Ad.Reward,
 			// 定义首页分享标题
 			"share_title": cf.ReaderMinApp.AppTitle,
@@ -179,7 +179,7 @@ func GetToken(c echo.Context) error {
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
 			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 
 	}
