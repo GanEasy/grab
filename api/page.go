@@ -317,7 +317,7 @@ func GetExploreLinks(c echo.Context) error {
 		// if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`){
 		// 	return c.JSON(http.StatusOK, GetGuideExploreLinks())
 		// }
-		return c.JSON(http.StatusOK, GetOpenMenu())
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
 	}
 
 	// if strings.Contains(req.Referer(), `wx8664d56a896e375b`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 不是搜索引擎目录改跳
@@ -824,12 +824,12 @@ func GetGuideExploreLinks() []Link {
 		// 	WxTo:  `/pages/categories?drive=soe8&url=` + grab.EncodeURL(`http://m.soe8.com/`),
 		// 	Style: `arrow`,
 		// },
-		Link{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-			Style: `arrow`,
-		},
+		// Link{ // 已转备用域名
+		// 	Title: `笔趣阁biqugeinfo`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		// 	Style: `arrow`,
+		// },
 		Link{
 			Title: `顶点小说booktxt`,
 			Type:  `link`,
@@ -1439,7 +1439,6 @@ func GetFreeBookResources(c echo.Context) error {
 			WxTo:  `/pages/categories?drive=mcmssc&url=` + grab.EncodeURL(`https://www.mcmssc.com/`),
 		},
 
-		
 		reader.Card{
 			Title: `书阁小说网shugela`,
 			Type:  `link`,

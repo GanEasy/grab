@@ -444,7 +444,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 3
 	}
 	if b := strings.Contains(wxto, string("drive=biqugeinfo")); b == true {
-		return 2 // 7 未知什么原因过滤，放回先
+		return 7 // 2 已转备用域名
 	}
 	if b := strings.Contains(wxto, string("drive=haimaoba")); b == true {
 		return 3
