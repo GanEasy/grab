@@ -65,8 +65,8 @@ func GetToken(c echo.Context) error {
 			return err
 		}
 
-		var jumpappid = ``        // 强制跳
-		var bookjumpappid = ``    //wx8664d56a896e375b
+		var jumpappid = `` // 强制跳
+		var bookjumpappid = `wx96830e80b331c267`
 		var articlejumpappid = `` //
 		var jumpwebpage = ``      //
 
@@ -146,7 +146,7 @@ func GetToken(c echo.Context) error {
 			"level":            0,
 			"can_create":       0, // 允许创建内容
 			"ismini":           0,
-			"hiderec":          1,
+			"hiderec":          0,
 			"hidelog":          0,
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
