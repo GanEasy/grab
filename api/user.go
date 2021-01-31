@@ -146,7 +146,7 @@ func GetToken(c echo.Context) error {
 			"level":            0,
 			"can_create":       0, // 允许创建内容
 			"ismini":           0,
-			"hiderec":          0,
+			"hiderec":          1,
 			"hidelog":          0,
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
