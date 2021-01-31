@@ -393,7 +393,7 @@ func GetPathLevel(wxto string) (level int32) {
 		return 2 //
 	}
 	if b := strings.Contains(wxto, string("drive=paoshu8")); b == true {
-		return 7 // 个别内容带色情
+		return 2 // 个别内容带色情
 	}
 	if b := strings.Contains(wxto, string("drive=qkshu6")); b == true {
 		return 14 // 内容带色情
