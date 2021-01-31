@@ -1080,11 +1080,11 @@ func GetAllResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
-		reader.Card{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-		},
+		// reader.Card{
+		// 	Title: `笔趣阁biqugeinfo`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		// },
 		reader.Card{
 			Title: `笔趣阁mcmssc`,
 			Type:  `link`,
@@ -1229,11 +1229,11 @@ func GetAllBookResources(c echo.Context) error {
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qu&url=` + grab.EncodeURL(`https://m.qu.la/`),
 		},
-		reader.Card{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-		},
+		// reader.Card{
+		// 	Title: `笔趣阁biqugeinfo`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		// },
 		reader.Card{
 			Title: `笔趣阁mcmssc`,
 			Type:  `link`,
@@ -1445,11 +1445,11 @@ func GetFreeBookResources(c echo.Context) error {
 			WxTo:  `/pages/categories?drive=shuge&url=` + grab.EncodeURL(`https://m.shuge.la/`),
 		},
 
-		reader.Card{
-			Title: `笔趣阁biqugeinfo`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
-		},
+		// reader.Card{
+		// 	Title: `笔趣阁biqugeinfo`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=biqugeinfo&url=` + grab.EncodeURL(`https://m.biquge.info/`),
+		// },
 		reader.Card{
 			Title: `顶点小说`,
 			Type:  `link`,
