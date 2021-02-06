@@ -287,13 +287,13 @@ func GetExploreLinks(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, GuideJumpAppOrSearce()) // 引导跳转
 	// }
 
-	if strings.Contains(req.Referer(), `wx50c86fdb3fbf5f74`) { // test
-		return c.JSON(http.StatusOK, GetTestMenu()) // 测试
-	}
+	// if strings.Contains(req.Referer(), `wx50c86fdb3fbf5f74`) { // test
+	// 	return c.JSON(http.StatusOK, GetTestMenu()) // 测试
+	// }
 
-	if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
-		return c.JSON(http.StatusOK, HideMenu()) // 被举报了，半开放状态
-	}
+	// if strings.Contains(req.Referer(), `wx7c30b98c7f42f651`) { // 笔趣阁在线 api3
+	// 	return c.JSON(http.StatusOK, HideMenu()) // 被举报了，半开放状态
+	// }
 
 	if !strings.Contains(req.Referer(), `servicewechat.com`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // web访问，提醒关注公众号
 		return c.JSON(http.StatusOK, FollowMedia())
@@ -310,7 +310,7 @@ func GetExploreLinks(c echo.Context) error {
 	// }
 
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取 驴友记 && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
-		return c.JSON(http.StatusOK, GetOpenMenu())
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
 	}
 
 	if strings.Contains(req.Referer(), `wx96830e80b331c267`) { // 获取 sszs && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`)
