@@ -307,7 +307,8 @@ func GetExploreLinks(c echo.Context) error {
 
 	if strings.Contains(req.Referer(), `wx72a2a482881fd47a`) && !strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
 		// return c.JSON(http.StatusOK, GetGuideExploreJumpLinks())
-		return c.JSON(http.StatusOK, SingleMenu())
+		return c.JSON(http.StatusOK, GetGuideExploreLinks())
+		// return c.JSON(http.StatusOK, SingleMenu())
 	}
 
 	// if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // plus
@@ -626,6 +627,14 @@ func GetPublishExploreLinks() []Link {
 //GetGuideExploreLinks  新版，引导转化
 func GetGuideExploreLinks() []Link {
 	var links = []Link{
+		Link{
+			Title: `编程学习资料`,
+			Icon:  ``,
+			Type:  `link`,
+			Image: ``,
+			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
+			Style: `arrow`,
+		},
 		// Link{
 		// 	Title: `小说资源`,
 		// 	Icon:  ``,
@@ -734,12 +743,12 @@ func GetGuideExploreLinks() []Link {
 			Style: `arrow`,
 		},
 
-		Link{
-			Title: `笔趣阁paoshu8`,
-			Type:  `link`,
-			WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
-			Style: `arrow`,
-		},
+		// Link{
+		// 	Title: `笔趣阁paoshu8`,
+		// 	Type:  `link`,
+		// 	WxTo:  `/pages/categories?drive=paoshu8&url=` + grab.EncodeURL(`http://www.paoshu8.com/`),
+		// 	Style: `arrow`,
+		// },
 
 		Link{
 			Title: `顶点小说280xs`,
@@ -881,14 +890,6 @@ func GetGuideExploreLinks() []Link {
 		// 	Style: `arrow`,
 		// },
 
-		Link{
-			Title: `编程学习资料`,
-			Icon:  ``,
-			Type:  `link`,
-			Image: ``,
-			WxTo:  `/pages/transfer?action=alllearnresources&drive=&url=`,
-			Style: `arrow`,
-		},
 
 		Link{
 			Title: `关于&声明`,
@@ -914,13 +915,13 @@ func GetGuideExploreJumpLinks() []Link {
 			Style: `arrow`,
 			Appid: `wxa94ddd94358b2d1d`,
 		},
-		Link{
-			Title: `纵横小说网`,
-			Type:  `jumpapp`,
-			WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
-			Style: `arrow`,
-			Appid: `wxa94ddd94358b2d1d`,
-		},
+		// Link{
+		// 	Title: `纵横小说网`,
+		// 	Type:  `jumpapp`,
+		// 	WxTo:  `/pages/categories?drive=zongheng&url=` + grab.EncodeURL(`http://book.zongheng.com`),
+		// 	Style: `arrow`,
+		// 	Appid: `wxa94ddd94358b2d1d`,
+		// },
 		Link{
 			Title: `17K文学`,
 			Type:  `jumpapp`,
