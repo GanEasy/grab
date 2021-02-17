@@ -193,7 +193,7 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	}
 
 	// 补丁，修正url地址
-	var bookid = FindString(`jx.la/booklist/(?P<bookid>(\d)+).html`, urlStr, "bookid")
+	var bookid = FindString(`https://m.jx.la/booklist/(?P<bookid>(\d)+).html`, urlStr, "bookid")
 	if bookid != `` {
 		urlStr = fmt.Sprintf(`https://jx.la/book/%v/`, bookid)
 	}
@@ -233,7 +233,7 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.jx.la/book/175443/9124417.html`, `https://m.jx.la/book/142095/7545899.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://jx.la/book/175443/9124417.html`, `https://jx.la/book/142095/7545899.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
