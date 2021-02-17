@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/yizenghui/chromedp"
+	"github.com/chromedp/chromedp"
 )
 
 //JxReader 笔趣阁qula (盗版小说网站)
@@ -29,15 +29,15 @@ func (r JxReader) GetCategories(urlStr string) (list Catalog, err error) {
 
 	list.Cards = []Card{
 		// Card{`-全部分类`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wapsort/0_1.html`), "", `link`, ``, nil, ``, ``},
-		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/lishixiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
-		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/nvshengxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/xuanhuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/xiuzhenxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/dushixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-历史军事`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/lishixiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-科幻灵异`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/kehuanxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-网游竞技`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/wangyouxiaoshuo/`), "", `link`, ``, nil, ``, ``},
+		Card{`-女生频道`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/nvshengxiaoshuo/`), "", `link`, ``, nil, ``, ``},
 
-		Card{`热门`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/paihangbang/`), "", `link`, ``, nil, ``, ``},
+		Card{`热门`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://jx.la/paihangbang/`), "", `link`, ``, nil, ``, ``},
 		// Card{`\玄幻奇幻`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month1.html`), "", `link`, ``, nil, ``, ``},
 		// Card{`\武侠仙侠`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month2.html`), "", `link`, ``, nil, ``, ``},
 		// Card{`\都市言情`, `/pages/list?action=book&drive=jx&url=` + EncodeURL(`https://m.jx.la/waptop/month3.html`), "", `link`, ``, nil, ``, ``},
@@ -87,7 +87,7 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.jx.la/book/175443/`, `https://m.jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://jx.la/book/175443/`, `https://jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -112,7 +112,7 @@ func (r JxReader) GetList(urlStr string) (list Catalog, err error) {
 // Search 搜索资源
 func (r JxReader) Search(keyword string) (list Catalog, err error) {
 
-	urlStr := `https://sou.xanbhx.com/search?q=` + keyword + `&s=&t=m&siteid=qula`
+	urlStr := `http://jx.la/ar.php?keyWord=` + keyword + `&s=&t=m&siteid=qula`
 
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
@@ -134,12 +134,12 @@ func (r JxReader) Search(keyword string) (list Catalog, err error) {
 		return
 	}
 
-	html, err = FindContentHTML(html, `.recommend`)
-	// html, err := GetHTML(urlStr, `.recommend`)
-	// html, err := GetHTML(urlStr, `#result-list`)
-	if err != nil {
-		return
-	}
+	// html, err = FindContentHTML(html, `.container`)
+	// // html, err := GetHTML(urlStr, `.recommend`)
+	// // html, err := GetHTML(urlStr, `#result-list`)
+	// if err != nil {
+	// 	return
+	// }
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
 
@@ -147,27 +147,28 @@ func (r JxReader) Search(keyword string) (list Catalog, err error) {
 		return list, e
 	}
 
-	list.Title = fmt.Sprintf(`%v - 搜索结果-qu.la`, keyword)
+	list.Title = fmt.Sprintf(`%v - 搜索结果-jx.la`, keyword)
 
 	link, _ := url.Parse(urlStr)
 
 	var links = GetLinks(g, link)
 
-	if len(links) == 0 {
+	// log.Println(links)
+	// if len(links) == 0 {
 
-		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+	// 	g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
 
-		if e2 != nil {
-			return list, e2
-		}
+	// 	if e2 != nil {
+	// 		return list, e2
+	// 	}
 
-		links = GetLinks(g2, link)
-	}
+	// 	links = GetLinks(g2, link)
+	// }
 
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.jx.la/book/175443/`, `https://m.jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://jx.la/book/175443/`, `http://jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			l.Title = strings.Replace(l.Title, " ", "", -1)
@@ -195,7 +196,13 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	// 补丁，修正url地址
 	var bookid = FindString(`https://m.jx.la/booklist/(?P<bookid>(\d)+).html`, urlStr, "bookid")
 	if bookid != `` {
-		urlStr = fmt.Sprintf(`https://m.jx.la/book/%v/`, bookid)
+		urlStr = fmt.Sprintf(`https://jx.la/book/%v/`, bookid)
+	}
+
+	// 补丁，兼容跳转
+	var bookid2 = FindString(`https://m.jx.la/book/(?P<bookid>(\d)+)/`, urlStr, "bookid")
+	if bookid2 != `` {
+		urlStr = fmt.Sprintf(`https://jx.la/book/%v/`, bookid)
 	}
 
 	html, err := GetHTML(urlStr, ``)
@@ -227,7 +234,7 @@ func (r JxReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://m.jx.la/book/175443/9124417.html`, `https://m.jx.la/book/142095/7545899.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://jx.la/book/175443/9124417.html`, `https://jx.la/book/142095/7545899.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}
@@ -256,6 +263,9 @@ func (r JxReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
+
+	urlStr = regexp.MustCompile(`https://m.jx.la/`).ReplaceAllString(urlStr, "https://jx.la/")
+
 	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return ret, err
