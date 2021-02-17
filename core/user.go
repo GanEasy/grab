@@ -63,6 +63,12 @@ func GetOpenID(code string) (OpenIDData, error) {
 	return OpenIDData{ret.ErrCode, ret.OpenID, ret.SessionKey}, err
 }
 
+// SubmitPage 提交页面数据
+type SubmitPage struct {
+	Path  string `json:"path"`  //
+	Query string `json:"query"` //
+}
+
 //WxAppSubmitPage 提交页面单个页面（望收录）
 func WxAppSubmitPage(wxto string) error {
 	type Data struct {
