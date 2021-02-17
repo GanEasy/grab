@@ -49,7 +49,7 @@ func Test_JxReaderGetChapters(t *testing.T) {
 
 func Test_JxReaderGetChapter(t *testing.T) {
 	urlStr := "https://m.uxiaoshuo.com/282/282134/1460954.html"
-	urlStr = "https://m.jx.la/book/39775/2494931.html"
+	urlStr = "https://m.jx.la/book/39775/10036243.html"
 	// urlStr = "https://m.jx.la/book/142095/7545899.html"
 	reader := JxReader{}
 	list, err := reader.GetInfo(urlStr)

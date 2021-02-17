@@ -134,12 +134,12 @@ func (r JxReader) Search(keyword string) (list Catalog, err error) {
 		return
 	}
 
-	html, err = FindContentHTML(html, `.recommend`)
-	// html, err := GetHTML(urlStr, `.recommend`)
-	// html, err := GetHTML(urlStr, `#result-list`)
-	if err != nil {
-		return
-	}
+	// html, err = FindContentHTML(html, `.container`)
+	// // html, err := GetHTML(urlStr, `.recommend`)
+	// // html, err := GetHTML(urlStr, `#result-list`)
+	// if err != nil {
+	// 	return
+	// }
 
 	g, e := goquery.NewDocumentFromReader(strings.NewReader(html))
 
@@ -153,21 +153,22 @@ func (r JxReader) Search(keyword string) (list Catalog, err error) {
 
 	var links = GetLinks(g, link)
 
-	if len(links) == 0 {
+	// log.Println(links)
+	// if len(links) == 0 {
 
-		g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
+	// 	g2, e2 := goquery.NewDocumentFromReader(strings.NewReader(html))
 
-		if e2 != nil {
-			return list, e2
-		}
+	// 	if e2 != nil {
+	// 		return list, e2
+	// 	}
 
-		links = GetLinks(g2, link)
-	}
+	// 	links = GetLinks(g2, link)
+	// }
 
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://jx.la/book/175443/`, `https://jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
+		l.URL, state = JaccardMateGetURL(l.URL, `http://jx.la/book/175443/`, `http://jx.la/book/142095/`, `https://m.jx.la/booklist/175443.html`)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			l.Title = strings.Replace(l.Title, " ", "", -1)
@@ -262,6 +263,9 @@ func (r JxReader) GetInfo(urlStr string) (ret Content, err error) {
 	if err != nil {
 		return
 	}
+
+	urlStr = regexp.MustCompile(`https://m.jx.la/`).ReplaceAllString(urlStr, "https://jx.la/")
+
 	html, err := GetHTML(urlStr, ``)
 	if err != nil {
 		return ret, err
