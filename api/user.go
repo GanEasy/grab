@@ -100,7 +100,13 @@ func GetToken(c echo.Context) error {
 			jumpappid = `` // 强制跳去 wx96830e80b331c267
 		}
 
-		if fans.LoginTotal < 3 || fans.Level > 2 {
+		if fans.LoginTotal < 3 {
+			jumpappid = ``
+			bookjumpappid = ``
+			articlejumpappid = ``
+		}
+
+		if fans.Level > 2 {
 			jumpappid = ``
 			bookjumpappid = ``
 			articlejumpappid = ``
