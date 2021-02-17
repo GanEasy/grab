@@ -10,6 +10,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"strconv"
 
@@ -60,6 +61,110 @@ func GetOpenID(code string) (OpenIDData, error) {
 	}
 
 	return OpenIDData{ret.ErrCode, ret.OpenID, ret.SessionKey}, err
+}
+
+//WxAppSubmitPage 提交页面单个页面（望收录）
+func WxAppSubmitPage(wxto string) error {
+	type Data struct {
+		Pages []SubmitPage `json:"pages"`
+	}
+	//
+	type Ret struct {
+		ErrCode int64  `json:"errcode"` //errCode
+		ErrMSG  string `json:"errmsg"`  //errMsg
+	}
+	var ret Ret
+
+	var data = Data{}
+
+	link, err3 := url.Parse(wxto)
+
+	if err3 != nil {
+		return err3
+	}
+	data.Pages = append(data.Pages,
+		SubmitPage{
+			Path:  link.Path,
+			Query: link.RawQuery,
+		})
+	token, err2 := TokenServe.Token()
+	if err2 != nil {
+		return err2
+	}
+	// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
+	url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/search/wxaapi_submitpages?access_token=%v`, token)
+
+	b, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	HTTPPostJSON(url, b, &ret)
+
+	// log.Println(`xx`, ret)
+	if ret.ErrCode != 0 {
+		// err = errors.New(string(ret.ErrMSG))
+		err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
+	}
+
+	return err
+}
+
+//WxAppSubmitPages 提交页面（望收录）
+func WxAppSubmitPages(list reader.Catalog) (err error) {
+	type Data struct {
+		Pages []SubmitPage `json:"pages"`
+	}
+	//
+	type Ret struct {
+		ErrCode int64  `json:"errcode"` //errCode
+		ErrMSG  string `json:"errmsg"`  //errMsg
+	}
+	var ret Ret
+
+	var data = Data{}
+
+	if len(list.Cards) > 0 {
+		var link *url.URL
+		for _, v := range list.Cards {
+
+			link, err = url.Parse(v.WxTo)
+
+			if err != nil {
+				return err
+			}
+			data.Pages = append(data.Pages,
+				SubmitPage{
+					Path:  link.Path,
+					Query: link.RawQuery,
+				})
+
+		}
+
+		token, err := TokenServe.Token()
+		if err != nil {
+			return err
+		}
+
+		// token = `27_EFpACLm1qpGcK8p_xEnZPnowJGKKEfWzy7500PLAR7Ek-8UaooSW-HTteSCfM2_r2f3zkKTcCgLFYvE094UNzXhZyv3KbZqAk_D8USQGFeYqklXrC6UVBIZfO0oAI2yB63nI0-cAsHjksNcAOPNjAEACDB`
+		url := fmt.Sprintf(`https://api.weixin.qq.com/wxa/search/wxaapi_submitpages?access_token=%v`, token)
+
+		b, err := json.Marshal(data)
+		if err != nil {
+			return err
+		}
+
+		HTTPPostJSON(url, b, &ret)
+
+		// log.Println(`xx`, ret)
+		if ret.ErrCode != 0 {
+			// err = errors.New(string(ret.ErrMSG))
+			err = errors.New(strconv.FormatInt(ret.ErrCode, 10))
+		}
+
+		return err
+	}
+	return nil
 }
 
 // //SendPostUpdateMSG 发送更新通知
