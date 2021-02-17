@@ -69,6 +69,7 @@ func GetToken(c echo.Context) error {
 		var bookjumpappid = `wx96830e80b331c267`
 		var articlejumpappid = `` //
 		var jumpwebpage = ``      //
+		var canCreate = 0
 
 		if version != `` && version == cf.Search.DevVersion {
 			jumpappid = ``
@@ -99,10 +100,11 @@ func GetToken(c echo.Context) error {
 			jumpappid = `` // 强制跳去 wx96830e80b331c267
 		}
 
-		if fans.LoginTotal < 3 {
+		if fans.LoginTotal < 3 || fans.Level > 2 {
 			jumpappid = ``
 			bookjumpappid = ``
 			articlejumpappid = ``
+			canCreate = 1
 		}
 
 		// 蜘蛛来的，给采集相关内容
@@ -150,7 +152,7 @@ func GetToken(c echo.Context) error {
 			"token":            t,
 			"uid":              fans.ID,
 			"level":            0,
-			"can_create":       0, // 允许创建内容
+			"can_create":       canCreate, // 允许创建内容
 			"ismini":           0,
 			"hiderec":          1,
 			"hidelog":          0,
