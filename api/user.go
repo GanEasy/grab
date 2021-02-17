@@ -98,9 +98,11 @@ func GetToken(c echo.Context) error {
 		} else if fans.LoginTotal > 20 { // 大于10次，强制跳转
 			jumpappid = `` // 强制跳去 wx96830e80b331c267
 		}
-		
-		if fans.LoginTotal < 5 {
+
+		if fans.LoginTotal < 3 {
 			jumpappid = ``
+			bookjumpappid = ``
+			articlejumpappid = ``
 		}
 
 		// 蜘蛛来的，给采集相关内容
