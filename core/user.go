@@ -144,7 +144,7 @@ func WxAppSubmitPages(list reader.Catalog) (err error) {
 					Path:  link.Path,
 					Query: link.RawQuery,
 				})
-
+			fmt.Println(link.RawQuery)
 		}
 
 		token, err := TokenServe.Token()
