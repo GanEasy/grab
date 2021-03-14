@@ -1129,12 +1129,12 @@ func GetAPIToken9(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        ``,
+		"jumpappid":        `wx96830e80b331c267`,
 		"bookjumpappid":    ``,
 		"articlejumpappid": ``,               // wxa94ddd94358b2d1d
 		"jumpwebpage":      ``,               // 强制跳转网站阅读
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"report_api":       `https://tongji.readfollow.com/api/report`,
+		// "report_api":       `https://tongji.readfollow.com/api/report`,
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
@@ -1379,9 +1379,9 @@ func GetAPIToken13(c echo.Context) error {
 		"jumpappid": ``, //
 		// "bookjumpappid":    `wx151b74959f898c5b`,
 		// "articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"report_api":       `https://tongji.readfollow.com/api/report`,
+		"jumpwebpage": ``,               // 强制跳转网站阅读
+		"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
+		// "report_api":       `https://tongji.readfollow.com/api/report`,
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
