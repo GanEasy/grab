@@ -1127,9 +1127,18 @@ func GetAPIToken9(c echo.Context) error {
 	} else if inum == 2 {
 		infoTipsBanner = ``
 	}
+	
+	var jumpappid = `wx96830e80b331c267` // sszs
+
+	// 蜘蛛来的，给采集相关内容
+	var req = c.Request()
+	if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+		jumpappid = `` // 蜘蛛给访问所有数据
+	}
+
 	return c.JSON(http.StatusOK, echo.Map{
 
-		"jumpappid":        `wx96830e80b331c267`,
+		"jumpappid":        jumpappid,
 		"bookjumpappid":    ``,
 		"articlejumpappid": ``,               // wxa94ddd94358b2d1d
 		"jumpwebpage":      ``,               // 强制跳转网站阅读
