@@ -1417,7 +1417,7 @@ func GetAPIToken13(c echo.Context) error {
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
+		"placeholder":       `书名`, // 小说名
 		"online_service":    true,
 		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   4,    // 详情页面视频轮循总数
