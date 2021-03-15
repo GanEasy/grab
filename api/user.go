@@ -1132,7 +1132,7 @@ func GetAPIToken9(c echo.Context) error {
 
 	// 蜘蛛来的，给采集相关内容
 	var req = c.Request()
-	if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
+	if strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
 		jumpappid = `` // 蜘蛛给访问所有数据
 	}
 
