@@ -1118,14 +1118,14 @@ func GetAPIToken9(c echo.Context) error {
 	cf := cpi.GetConf()
 
 	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
+	inum := rand.Intn(3) // 出现机率
 
 	var infoTipsBanner, infoTipsCustom string
 	infoTipsBanner = `adunit-c0d2320d02a94006`
 	if inum == 1 {
 		infoTipsBanner = `adunit-c0d2320d02a94006`
 	} else if inum == 2 {
-		infoTipsBanner = ``
+		// infoTipsBanner = ``
 	}
 	
 	var jumpappid = `` // sszs  wx96830e80b331c267
@@ -1153,19 +1153,20 @@ func GetAPIToken9(c echo.Context) error {
 		"can_create":       0, // 允许创建内容
 		"info_screen":      `adunit-6584f905ac888622`,
 		"info_banner":      `adunit-c0d2320d02a94006`,
-		"info_custom":      `adunit-c9618bd19a0ed146`,
+		// "info_custom":      `adunit-c9618bd19a0ed146`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
-		// "list_video": `adunit-cc2f19cdc09c7a48`,
-		// "cata_video": `adunit-cc2f19cdc09c7a48`,
+		"top_home_banner": `adunit-c0d2320d02a94006`,
+		"list_video": `adunit-cc2f19cdc09c7a48`,
+		"cata_video": `adunit-cc2f19cdc09c7a48`,
 		"info_video":      `adunit-a842a36d2700a76c`,
 		"info_reward":     `adunit-70cea938ef5025dc`,
-		"top_home_custom": `adunit-c9618bd19a0ed146`,
-		"list_custom":     `adunit-c9618bd19a0ed146`,
-		"cata_custom":     `adunit-c9618bd19a0ed146`,
+		// "top_home_custom": `adunit-c9618bd19a0ed146`,
+		// "list_custom":     `adunit-c9618bd19a0ed146`,
+		// "cata_custom":     `adunit-c9618bd19a0ed146`,
 		// "info_reward": `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
@@ -1174,16 +1175,16 @@ func GetAPIToken9(c echo.Context) error {
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
 		"online_service":    false,
 		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   1,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+		"info_video_adlt":   2,    //详情页面视频轮循总数
+		"info_video_adlm":   0,    //详情页面视频轮循开始余量
+		// "info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		// "info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  2,    //详情页面Banner轮循总数
+		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 
-		"advert_txt":`56元美团红包天天领`,
+		"advert_txt":`56元外卖红包天天领`,
 		"advert_type":`jumpapp`,
 		"advert_appid":`wxde8ac0a21135c07d`,
 		"advert_path":`/index/pages/h5/h5?weburl=https%3A%2F%2Frunion.meituan.com%2Furl%3Fkey%3D08068d0a1838a9e609a93d3928830434%26url%3Dhttps%253A%252F%252Fcube.meituan.com%252Fawp%252Fhfe%252Fblock%252Fa13b87919a9ace9cfab4%252F89400%252Findex.html%253Fappkey%253D08068d0a1838a9e609a93d3928830434%253Amtcp%26sid%3Dmtcp&lch=cps:waimai:5:08068d0a1838a9e609a93d3928830434:mtcp&f_token=1&f_userId=1`,
@@ -1433,7 +1434,7 @@ func GetAPIToken13(c echo.Context) error {
 		"info_banner_adlm":  3,    // 详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    // 详情页面插屏广告轮循总数
 		"info_screen_adlm":  4,    // 详情页面插屏广告轮循开始余量
-		"advert_txt":`56元美团红包天天领`,
+		"advert_txt":`56元外卖红包天天领`,
 		"advert_type":`jumpapp`,
 		"advert_appid":`wxde8ac0a21135c07d`,
 		"advert_path":`/index/pages/h5/h5?weburl=https%3A%2F%2Frunion.meituan.com%2Furl%3Fkey%3D08068d0a1838a9e609a93d3928830434%26url%3Dhttps%253A%252F%252Fcube.meituan.com%252Fawp%252Fhfe%252Fblock%252Fa13b87919a9ace9cfab4%252F89400%252Findex.html%253Fappkey%253D08068d0a1838a9e609a93d3928830434%253Amtcp%26sid%3Dmtcp&lch=cps:waimai:5:08068d0a1838a9e609a93d3928830434:mtcp&f_token=1&f_userId=1`,
