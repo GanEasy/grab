@@ -1158,11 +1158,11 @@ func GetAPIToken9(c echo.Context) error {
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		// "autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-cc2f19cdc09c7a48`, // 正常的video adid
+		// "top_home_video": `adunit-a842a36d2700a76c`, // 正常的video adid
 		"top_home_banner": `adunit-c0d2320d02a94006`,
-		"list_video": `adunit-cc2f19cdc09c7a48`, // 用banner的adid *3
-		"cata_video": `adunit-cc2f19cdc09c7a48`,
-		"info_video":      `adunit-cc2f19cdc09c7a48`,
+		"list_video": `adunit-a842a36d2700a76c`, // 用banner的adid *3
+		"cata_video": `adunit-a842a36d2700a76c`,
+		"info_video":      `adunit-a842a36d2700a76c`,
 		"info_reward":     `adunit-70cea938ef5025dc`,
 		// "top_home_custom": `adunit-c9618bd19a0ed146`,
 		// "list_custom":     `adunit-c9618bd19a0ed146`,
