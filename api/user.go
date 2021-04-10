@@ -1408,7 +1408,7 @@ func GetAPIToken13(c echo.Context) error {
 		"info_banner":      `adunit-6acc767c1798c960`,
 		// "info_custom":      `adunit-706fb35830b72891`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		// "info_tips_custom": infoTipsCustom, // 详细页格子广告
+		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		"top_home_banner": `adunit-6acc767c1798c960`,
