@@ -1159,14 +1159,14 @@ func GetAPIToken9(c echo.Context) error {
 		// "autoload_tips":    `观看视频开启自动加载无弹窗模式`,
 		"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_video": `adunit-a842a36d2700a76c`, // 正常的video adid
-		"top_home_banner": `adunit-c0d2320d02a94006`,
-		"list_video": `adunit-a842a36d2700a76c`, // 用banner的adid *3
-		"cata_video": `adunit-a842a36d2700a76c`,
+		// "top_home_banner": `adunit-c0d2320d02a94006`,
+		// "list_video": `adunit-a842a36d2700a76c`, // 用banner的adid *3
+		// "cata_video": `adunit-a842a36d2700a76c`,
 		"info_video":      `adunit-a842a36d2700a76c`,
 		"info_reward":     `adunit-70cea938ef5025dc`,
-		// "top_home_custom": `adunit-c9618bd19a0ed146`,
-		// "list_custom":     `adunit-c9618bd19a0ed146`,
-		// "cata_custom":     `adunit-c9618bd19a0ed146`,
+		"top_home_custom": `adunit-c9618bd19a0ed146`,
+		"list_custom":     `adunit-c9618bd19a0ed146`,
+		"cata_custom":     `adunit-c9618bd19a0ed146`,
 		// "info_reward": `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
@@ -1177,10 +1177,10 @@ func GetAPIToken9(c echo.Context) error {
 		"info_force_reward": true, // 强制广告
 		"info_video_adlt":   2,    //详情页面视频轮循总数
 		"info_video_adlm":   0,    //详情页面视频轮循开始余量
-		// "info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		// "info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  2,    //详情页面Banner轮循总数
-		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
+		"info_custom_adlt":  4,    //详情页面格子广告轮循总数
+		"info_custom_adlm":  1,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  4,    //详情页面Banner轮循总数
+		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 
