@@ -169,7 +169,7 @@ func GetToken(c echo.Context) error {
 			"info_tips_custom": infoTipsCustom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看激励广告无弹窗自动加载更多`,
+			"autoload_tips": `观看激励广告自动加载更多内容`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
 			"top_home_custom": `adunit-04fe1b3d519b9299`,
 			// "top_list_video": cf.Ad.HomeVideo,
