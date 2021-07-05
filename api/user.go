@@ -66,7 +66,7 @@ func GetToken(c echo.Context) error {
 		}
 
 		var jumpappid = `` // 强制跳
-		var bookjumpappid = `wx96830e80b331c267`
+		var bookjumpappid = `` //wx96830e80b331c267
 		var articlejumpappid = `` //
 		var jumpwebpage = ``      //
 		var canCreate = 0
@@ -82,10 +82,10 @@ func GetToken(c echo.Context) error {
 				var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 				if janum == 0 {
 					if juid > 0 { // 待post新版本后，隔离掉老用户
-						jumpappid = `wx96830e80b331c267` // 强制去 免版权图
+						jumpappid = `wx96830e80b331c267` // 强制去 
 					} 
 				} else {
-					jumpappid = `wx96830e80b331c267` // 强制去 驴友记  wx359657b0849ee636
+					jumpappid = `wx96830e80b331c267` // 强制去 
 				}
 			}
 
@@ -133,7 +133,8 @@ func GetToken(c echo.Context) error {
 				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 1 {
 				// info_tips_grid = cf.Ad.InfoGrid
-				infoTipsCustom = `` // adunit-9bb55eb7ddd541d4
+				// infoTipsCustom = `` // adunit-9bb55eb7ddd541d4
+				infoTipsBanner = cf.Ad.InfoBanner
 			} else if inum == 2 {
 				infoTipsBanner = cf.Ad.InfoBanner
 			}
@@ -153,7 +154,7 @@ func GetToken(c echo.Context) error {
 			"level":            0,
 			"can_create":       canCreate, // 允许创建内容
 			"ismini":           0,
-			"hiderec":          1,
+			"hiderec":          0,
 			"hidelog":          0,
 			// "home_screen_adid": cf.Ad.InfoScreen, // 给个首页插屏试试
 			"info_screen":      cf.Ad.InfoScreen, //插屏
@@ -162,7 +163,7 @@ func GetToken(c echo.Context) error {
 			"info_tips_custom": infoTipsCustom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `走波广告获得无弹窗自动加载功能`,
+			"autoload_tips": `观看视频广告自动加载下一章`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
 			"top_home_custom": `adunit-04fe1b3d519b9299`,
 			// "top_list_video": cf.Ad.HomeVideo,
@@ -177,7 +178,7 @@ func GetToken(c echo.Context) error {
 			// 定义首页分享图片
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
-			"online_service":    true,
+			"online_service":    false,
 			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   4,    //详情页面视频轮循总数
 			"info_video_adlm":   1,    //详情页面视频轮循开始余量
@@ -186,7 +187,7 @@ func GetToken(c echo.Context) error {
 			"info_banner_adlt":  4,    //详情页面Banner轮循总数
 			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
+			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 		})
 
 	}
