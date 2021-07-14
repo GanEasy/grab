@@ -583,7 +583,7 @@ func GetAPIToken9(c echo.Context) error {
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		// "autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		"autoload_tips": `自动加载内容并关闭弹窗`,
+		"autoload_tips": `观看视频广告自动加载下一章`,
 		// "top_home_video": `adunit-a842a36d2700a76c`, // 正常的video adid
 		// "top_home_banner": `adunit-c0d2320d02a94006`,
 		// "list_video": `adunit-a842a36d2700a76c`, // 用banner的adid *3
@@ -673,7 +673,7 @@ func GetAPIToken13(c echo.Context) error {
 		"info_custom":      `adunit-706fb35830b72891`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `自动加载内容并关闭弹窗`,
+		"autoload_tips":    `观看视频广告自动加载下一章`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
 		// "top_home_banner": `adunit-6acc767c1798c960`,
 		// // "top_home_video": `adunit-cc2f19cdc09c7a48`,
