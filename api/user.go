@@ -66,7 +66,7 @@ func GetToken(c echo.Context) error {
 		}
 
 		var jumpappid = `` // 强制跳
-		var bookjumpappid = `` //wx96830e80b331c267
+		var bookjumpappid = `wx359657b0849ee636` //wx359657b0849ee636 驴友记
 		var articlejumpappid = `` //
 		var jumpwebpage = ``      //
 		var canCreate = 0
@@ -93,18 +93,18 @@ func GetToken(c echo.Context) error {
 			jumpappid = `` // 强制跳去 wx96830e80b331c267
 		}
 
-		if fans.LoginTotal < 3 {
-			jumpappid = ``
-			bookjumpappid = ``
-			articlejumpappid = ``
-		}
+		// if fans.LoginTotal < 3 {
+		// 	jumpappid = ``
+		// 	bookjumpappid = ``
+		// 	articlejumpappid = ``
+		// }
 
-		if fans.Level > 2 {
-			jumpappid = ``
-			bookjumpappid = ``
-			articlejumpappid = ``
-			canCreate = 1
-		}
+		// if fans.Level > 2 {
+		// 	jumpappid = ``
+		// 	bookjumpappid = ``
+		// 	articlejumpappid = ``
+		// 	canCreate = 1
+		// }
 
 		// 蜘蛛来的，给采集相关内容
 		var req = c.Request()
