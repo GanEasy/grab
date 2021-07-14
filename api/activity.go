@@ -100,7 +100,7 @@ func GetActivities(c echo.Context) error {
 
 			var linkType = `link`
 			var appid = ``
-			if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { //sodu 去 新推荐阅读
+			if strings.Contains(req.Referer(), `wx359657b0849ee636`) { //sodu 去 新推荐阅读
 				// 不是新推荐阅读的，全部推荐跳新推荐阅读去
 				// linkType = `jumpapp`
 				// appid = `wx8ffa5a58c0bb3589`
