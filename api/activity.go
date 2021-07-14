@@ -55,7 +55,7 @@ func GetActivities(c echo.Context) error {
 						Link{
 							Title: v.Title,
 							Icon:  ``,        // cuIcon-new
-							Type:  `jumpapp`, // link
+							Type:  `link`, // link jumpapp
 							Image: ``,
 							WxTo:  v.WxTo,
 							Style: `arrow`,
