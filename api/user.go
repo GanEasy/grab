@@ -66,7 +66,7 @@ func GetToken(c echo.Context) error {
 		}
 
 		var jumpappid = `` // 强制跳
-		var bookjumpappid = `wx359657b0849ee636` //wx359657b0849ee636 驴友记
+		var bookjumpappid = `` //wx359657b0849ee636 驴友记
 		var articlejumpappid = `` //
 		var jumpwebpage = ``      //
 		var canCreate = 0
