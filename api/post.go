@@ -200,7 +200,7 @@ func SearchPosts(c echo.Context) error {
 		catelog.Cards = append(
 			catelog.Cards,
 			reader.Card{
-				Title:  `请不要问“在吗？”，因为我们答“在呢。”`,
+				Title:  `如果没有及时回复，则是客服正在忙，请将问题表述清楚后耐心等待，谢谢！`,
 				WxTo:   ``,
 				Intro:  ``,
 				Type:   `link`,

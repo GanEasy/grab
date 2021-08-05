@@ -691,6 +691,13 @@ func GetGuideExploreLinks() []Link {
 		// },
 
 		Link{
+			Title: `百度热搜榜`,
+			Type:  `link`,
+			WxTo:  `/pages/categories?drive=baidu&url=` + grab.EncodeURL(`https://www.baidu.com`),
+			Style: `arrow`,
+		},
+
+		Link{
 			Title: `起点小说网`,
 			Type:  `link`,
 			WxTo:  `/pages/categories?drive=qidian&url=` + grab.EncodeURL(`https://www.qidian.com`),

@@ -121,7 +121,7 @@ func (r Aimeizi5Reader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `https://5aimeizi.com/chapter/34820`, `https://5aimeizi.com/chapter/34846`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://5aimeizi.com/Chapter/34820`, `https://5aimeizi.com/Chapter/34846`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}

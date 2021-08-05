@@ -10,6 +10,7 @@ var GuideList = map[string]reader.Guide{
 	"zongheng":    &reader.ZonghengReader{},
 	"17k":         &reader.SeventeenKReader{},
 	"xxsy":        &reader.XxsyReader{},
+	"baidu":       &reader.BaiduReader{},
 	"hongxiu":     &reader.HongxiuReader{},
 	"luoqiu":      &reader.MLuoqiuReader{},
 	"booktxt":     &reader.BooktxtReader{},
