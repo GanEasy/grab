@@ -82,15 +82,15 @@ func GetToken(c echo.Context) error {
 				var janum = juid % 2 //不同用户控制不同 转 不同小程序 （分流）
 				if janum == 0 {
 					if juid > 0 { // 待post新版本后，隔离掉老用户
-						jumpappid = `wx96830e80b331c267` // 强制去 
+						jumpappid = `wx359657b0849ee636` // 强制去 
 					} 
 				} else {
-					jumpappid = `wx96830e80b331c267` // 强制去 
+					jumpappid = `wx359657b0849ee636` // 强制去 
 				}
 			}
 
-		} else if fans.LoginTotal > 20 { // 大于10次，强制跳转
-			jumpappid = `` // 强制跳去 wx96830e80b331c267
+		} else if fans.LoginTotal > 5 { // 大于10次，强制跳转
+			jumpappid = `` // 强制跳去 wx359657b0849ee636
 		}
 
 		// if fans.LoginTotal < 3 {
@@ -163,7 +163,7 @@ func GetToken(c echo.Context) error {
 			"info_tips_custom": infoTipsCustom, // 详细页格子广告
 			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
 			// "info_tips_custom": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看视频广告自动加载下一章`,
+			"autoload_tips": `观看广告加载下一章(并关闭弹窗)`,
 			// "top_home_video": cf.Ad.TopHomeVideo,
 			"top_home_custom": `adunit-04fe1b3d519b9299`,
 			// "top_list_video": cf.Ad.HomeVideo,
@@ -178,7 +178,7 @@ func GetToken(c echo.Context) error {
 			// 定义首页分享图片
 			"share_cover":       cf.ReaderMinApp.AppCover,
 			"placeholder":       cf.ReaderMinApp.AppSearch, // 小说名
-			"online_service":    false,
+			"online_service":    true,
 			"info_force_reward": true, // 强制广告
 			"info_video_adlt":   4,    //详情页面视频轮循总数
 			"info_video_adlm":   1,    //详情页面视频轮循开始余量
@@ -188,6 +188,11 @@ func GetToken(c echo.Context) error {
 			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
 			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
+
+			"advert_txt":`18元红包(每天重复领)`,
+			"advert_type":`jumpapp`,
+			"advert_appid":`wxde8ac0a21135c07d`,
+			"advert_path":`/index/pages/h5/h5?f_userId=1&f_token=1&s_cps=1&weburl=https%3A%2F%2Fdpurl.cn%2FwPpyUGtz`,
 		})
 
 	}
