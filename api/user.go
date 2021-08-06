@@ -50,33 +50,14 @@ func GetToken(c echo.Context) error {
 	if strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token  Pro
 		return GetAPIToken8(c)
 	}
-	if strings.Contains(req.Referer(), `wx8ffa5a58c0bb3589`) { // 获取通用 token  新推荐阅读
-		return GetAPIToken7(c)
-	}
-	if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token  xjjggt
-		return GetAPIToken6(c)
-	}
 	if strings.Contains(req.Referer(), `wx331f3c3e2761f080`) { // 获取 token plus版
 		return GetWebToken(c)
-	}
-	// if strings.Contains(req.Referer(), `wx151b74959f898c5b`) { // 获取通用 token mzt
-	// 	return GetAPIToken6(c)
-	// }
-	//
-	if strings.Contains(req.Referer(), `wxa94ddd94358b2d1d`) { // 获取通用 手气旺 1e37898802af518d4317d0b41a173eb2
-		return GetAPIToken11(c)
-	}
-	if strings.Contains(req.Referer(), `wxe70eee58e64c7ac7`) { // 获取通用 token 搜书大师
-		return GetAPIToken2(c)
 	}
 	if strings.Contains(req.Referer(), `wx96830e80b331c267`) { // 获取通用 token 搜书zs
 		return GetAPIToken13(c)
 	}
 	if strings.Contains(req.Referer(), `wx359657b0849ee636`) { // 获取通用 token 驴友记
 		return GetAPIToken9(c)
-	}
-	if strings.Contains(req.Referer(), cf.ReaderMinAppFour.AppID) { // 获取 token 笔趣阁在线 wx7c30b98c7f42f651
-		return GetAPIToken3(c)
 	}
 	if !strings.Contains(req.Referer(), cf.ReaderMinApp.AppID) { // 获取通用 token 非笔趣阁Pro
 		return GetOpenToken(c)
@@ -536,563 +517,8 @@ func GetAPIToken8(c echo.Context) error {
 	return echo.ErrUnauthorized
 }
 
-//GetAPIToken2 获取 jwt token 搜书大师
-func GetAPIToken2(c echo.Context) error {
-	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
-	code := c.QueryParam("code")
-	provider := c.QueryParam("provider")
-	cf := cpi.GetConf()
-	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppTwo.AppID, cf.ReaderMinAppTwo.AppSecret)
-	if code != "" && ret.OpenID != "" {
-		fans, err := cpi.GetFansByOpenID(ret.OpenID)
-		if fans.Provider == `` {
-			fans.Provider = provider
-		}
 
-		// 增加用户被邀请次数
-		if fromid > 0 && uint(fromid) != fans.ID {
-			fans.InvitationTotal++
-			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
-				fans.Level = 5
-			}
-		}
-		fans.LoginTotal++ // 增加一次访问登录次数
-		fans.Save()
-		claims := &JwtCustomClaims{
-			fans.ID,
-			ret.OpenID,
-			code,
-			ret.SessionKey,
-			jwt.StandardClaims{
-				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-			},
-		}
 
-		// Create token with claims
-		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-		// Generate encoded token and send it as response.
-		t, err := token.SignedString([]byte("secret"))
-		if err != nil {
-			return err
-		}
-
-		var jumpappid = `wx331f3c3e2761f080`
-		if fans.LoginTotal > 3 {
-			// jumpappid = `wx8ffa5a58c0bb3589`
-		}
-
-		var infoTipsBanner, infoTipsCustom string
-		// if fans.LoginTotal > 3 { // 大于3（老用户了，随机给广告点击）
-		day := time.Now().Day()
-		var uid = int(fans.ID)
-		var inum = (day + uid) % 3 //机率控制
-		if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-			infoTipsCustom = `adunit-c0a4c9c06c1bfb27`
-		} else if inum == 1 {
-			infoTipsBanner = `adunit-80ab5cf805e61964`
-		} else if inum == 2 {
-			infoTipsBanner = `adunit-80ab5cf805e61964`
-		}
-		// }
-
-		// 蜘蛛来的，给采集相关内容
-		version := c.QueryParam("version")
-		var req = c.Request()
-		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
-			jumpappid = `` // 蜘蛛给访问所有数据
-		}
-
-		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":        jumpappid, // 强制跳转其它小程序
-			"token":            t,
-			"jumpwebpage":      ``,               // 强制跳转网站阅读
-			"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-			"uid":              fans.ID,
-			"level":            0,
-			"ismini":           0,
-			"show_tips_next":   0,
-			"can_create":       1, // 允许创建内容
-			"info_screen":      `adunit-0118779b141995e4`,
-			"info_banner":      `adunit-80ab5cf805e61964`,
-			"info_custom":      `adunit-c0a4c9c06c1bfb27`,
-			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-			"info_tips_custom": infoTipsCustom, // 详细页格子广告
-			"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-			// "top_home_video": `adunit-6a6203ae9a1f4252`,
-			// "list_video": `adunit-4d779b9509cfa7a8`,
-			// "cata_video": `adunit-61660192b3436fe7`,
-			"info_video": `adunit-e21a2857faff7fba`,
-			// "info_reward": `adunit-37d73c4714563ea5`,
-			"top_home_custom": `adunit-6b3c3877de16d635`,
-			"list_custom":     `adunit-c0a4c9c06c1bfb27`,
-			"cata_custom":     `adunit-c0a4c9c06c1bfb27`,
-			"info_reward":     `adunit-790a8d650d5c71b2`,
-			// 定义首页分享标题
-			"share_title": cf.ReaderMinAppThree.AppTitle,
-			// 定义首页分享图片
-			"share_cover":       cf.ReaderMinAppThree.AppCover,
-			"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-			"online_service":    true,
-			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   4,    //详情页面视频轮循总数
-			"info_video_adlm":   1,    //详情页面视频轮循开始余量
-			"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-			"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-			"info_banner_adlt":  4,    //详情页面Banner轮循总数
-			"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-			"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-			"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
-		})
-	}
-
-	return echo.ErrUnauthorized
-}
-
-//GetAPIToken3 获取 jwt token 笔趣阁在线
-func GetAPIToken3(c echo.Context) error {
-	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
-	code := c.QueryParam("code")
-	provider := c.QueryParam("provider")
-	version := c.QueryParam("version")
-	cf := cpi.GetConf()
-	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppFour.AppSecret)
-	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
-	if code != "" && ret.OpenID != "" {
-		fans, err := cpi.GetFansByOpenID(ret.OpenID)
-		if fans.Provider == `` {
-			fans.Provider = provider
-		}
-
-		// 增加用户被邀请次数
-		if fromid > 0 && uint(fromid) != fans.ID {
-			fans.InvitationTotal++
-			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
-				fans.Level = 5
-			}
-		}
-		fans.LoginTotal++ // 增加一次访问登录次数
-		fans.Save()
-		claims := &JwtCustomClaims{
-			fans.ID,
-			ret.OpenID,
-			code,
-			ret.SessionKey,
-			jwt.StandardClaims{
-				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-			},
-		}
-
-		// Create token with claims
-		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-		// Generate encoded token and send it as response.
-		t, err := token.SignedString([]byte("secret"))
-		if err != nil {
-			return err
-		}
-		var canCreate = 1
-
-		var ismini = 0
-		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
-			if fans.LoginTotal < 10 {
-				canCreate = 0
-			}
-			ismini = 1
-		} else {
-			// .Header.Get("User-Agent")
-		}
-
-		var jumpappid = `wxa94ddd94358b2d1d` // wx90dee998347266dd 新推荐阅读
-		if fans.LoginTotal > 10 {            // 访问次数大于5去Pro
-			// ismini = 1
-			// jumpappid = `wx359657b0849ee636` //驴友网 wx359657b0849ee636  mzt wx151b74959f898c5b  强制跳转 搜书大师 wxe70eee58e64c7ac7
-		}
-
-		var infoTipsBanner, infoTipsGrid string
-
-		if fans.LoginTotal > 0 { // 大于3（老用户了，随机给广告点击）
-			day := time.Now().Day()
-			var uid = int(fans.ID)
-			var inum = (day + uid) % 3 //机率控制
-			if inum == 0 {             // 日期加uid求余 为0 给banner 为 1 给grid
-				infoTipsBanner = cf.Ad.InfoBanner
-			} else if inum == 1 {
-				// infoTipsGrid = cf.Ad.InfoGrid
-			} else if inum == 2 {
-				infoTipsBanner = cf.Ad.InfoBanner
-			}
-		}
-
-		// 蜘蛛来的，给采集相关内容
-		version := c.QueryParam("version")
-		var req = c.Request()
-		if version != cf.Search.DevVersion && strings.Contains(req.Header.Get("User-Agent"), `mpcrawler`) { // 获取通用 token  新推荐阅读
-			jumpappid = `` // 蜘蛛给访问所有数据
-		}
-
-		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":   jumpappid,        // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
-			"jumpwebpage": ``,               // 强制跳转网站阅读
-			"jumpwebtips": `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-			"token":       t,
-			"uid":         fans.ID,
-			"level":       fans.Level,
-			"ismini":      ismini,
-			"can_create":  canCreate, // 允许创建内容
-			// "list_screen": cf.Ad.ListScreen,
-			"info_screen": cf.Ad.InfoScreen,
-			// "cata_screen": cf.Ad.CataScreen,
-			// "screen":      cf.Ad.Screen,
-			// "reward":      cf.Ad.Reward,
-			// "pre_video":   cf.Ad.PreVideo,
-
-			// "top_home_banner": cf.Ad.TopHomeBanner,
-			// "top_list_banner": cf.Ad.HomeBanner,
-			// "home_banner":     cf.Ad.HomeBanner,
-			// "list_banner": cf.Ad.ListBanner,
-			// "cata_banner": cf.Ad.CataBanner,
-			"info_banner":      cf.Ad.InfoBanner,
-			"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-			"info_tips_grid":   infoTipsGrid,   // 详细页格子广告
-			// "info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看视频开启自动加载无弹窗模式`,
-			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-
-			"top_home_video": cf.Ad.TopHomeVideo,
-			// "top_list_video": cf.Ad.HomeVideo,
-			// "home_video":     cf.Ad.HomeVideo,
-			"list_video": cf.Ad.ListVideo,
-			"cata_video": cf.Ad.CataVideo,
-			"info_video": cf.Ad.InfoVideo,
-
-			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-			// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			// "home_pre_video": cf.Ad.PreVideo,
-			// "list_pre_video": cf.Ad.PreVideo,
-			// "info_pre_video": cf.Ad.PreVideo,
-
-			// "home_reward": cf.Ad.Reward,
-			// "list_reward": cf.Ad.Reward,
-			"info_reward": cf.Ad.Reward,
-
-			// 定义首页分享标题
-			"share_title": cf.ReaderMinAppFour.AppTitle,
-			// 定义首页分享图片
-			"share_cover":       cf.ReaderMinAppFour.AppCover,
-			"placeholder":       cf.ReaderMinAppFour.AppSearch, // 小说名
-			"online_service":    true,
-			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,    //详情页面视频轮循总数
-			"info_video_adlm":   0,    //详情页面视频轮循开始余量
-			// "info_grid_adlt":    4,    //详情页面格子广告轮循总数
-			// "info_grid_adlm":    3,    //详情页面格子广告轮循开始余量
-			"info_banner_adlt": 2, //详情页面Banner轮循总数
-			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
-			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
-			"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
-		})
-	}
-	return echo.ErrUnauthorized
-}
-
-//GetAPIToken4 获取 jwt token 笔趣阁plus 未接入的
-func GetAPIToken4(c echo.Context) error {
-	fromid, _ := strconv.Atoi(c.QueryParam("fromid"))
-	code := c.QueryParam("code")
-	provider := c.QueryParam("provider")
-	version := c.QueryParam("version")
-	cf := cpi.GetConf()
-	ret, _ := cpi.GetOpenIDForApp(code, cf.ReaderMinAppFour.AppID, cf.ReaderMinAppThree.AppSecret)
-	// fmt.Println(err, code, cf.ReaderMinAppThree.AppID, cf.ReaderMinAppThree.AppSecret)
-	if code != "" && ret.OpenID != "" {
-		fans, err := cpi.GetFansByOpenID(ret.OpenID)
-		if fans.Provider == `` {
-			fans.Provider = provider
-		}
-
-		// 增加用户被邀请次数
-		if fromid > 0 && uint(fromid) != fans.ID {
-			fans.InvitationTotal++
-			if cf.Search.InvitationNo > 0 && fromid == cf.Search.InvitationNo { //特邀人员(设置邀请暗号)
-				fans.Level = 5
-			}
-		}
-		fans.LoginTotal++ // 增加一次访问登录次数
-		fans.Save()
-		claims := &JwtCustomClaims{
-			fans.ID,
-			ret.OpenID,
-			code,
-			ret.SessionKey,
-			jwt.StandardClaims{
-				ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-			},
-		}
-
-		// Create token with claims
-		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-		// Generate encoded token and send it as response.
-		t, err := token.SignedString([]byte("secret"))
-		if err != nil {
-			return err
-		}
-		var canCreate = 0
-		if fans.LoginTotal > 5 {
-			canCreate = 1
-		}
-
-		var ismini = 0
-		if cf.Search.LimitLevel || version == cf.Search.DevVersion { // 开启严格检查
-			if fans.LoginTotal < 10 {
-				ismini = 1
-				canCreate = 0
-			}
-		}
-
-		var jumpappid = `wx8ffa5a58c0bb3589`
-		if fans.LoginTotal < 3 {
-			jumpappid = `wx8ffa5a58c0bb3589`
-		}
-
-		return c.JSON(http.StatusOK, echo.Map{
-			"jumpappid":  jumpappid, // cf.ReaderMinAppThree.JumpAppID, // 强制跳转其它小程序
-			"token":      t,
-			"uid":        fans.ID,
-			"level":      fans.Level,
-			"ismini":     ismini,
-			"can_create": canCreate, // 允许创建内容
-			// "list_screen": cf.Ad.ListScreen,
-			"info_screen": cf.Ad.InfoScreen,
-			// "cata_screen": cf.Ad.CataScreen,
-			// "screen":      cf.Ad.Screen,
-			// "reward":      cf.Ad.Reward,
-			// "pre_video":   cf.Ad.PreVideo,
-
-			// "top_home_banner": cf.Ad.TopHomeBanner,
-			// "top_list_banner": cf.Ad.HomeBanner,
-			// "home_banner":     cf.Ad.HomeBanner,
-			// "list_banner": cf.Ad.ListBanner,
-			// "cata_banner": cf.Ad.CataBanner,
-			"info_banner": cf.Ad.InfoBanner,
-			// "info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": infoTipsGrid, // 详细页格子广告
-			"info_tips_banner": cf.Ad.InfoBanner, // 点击广告开启自动加载更多功能
-			// "info_tips_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			"autoload_tips": `观看视频开启自动加载无弹窗模式`,
-			// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-
-			"top_home_video": cf.Ad.TopHomeVideo,
-			// "top_list_video": cf.Ad.HomeVideo,
-			// "home_video":     cf.Ad.HomeVideo,
-			"list_video": cf.Ad.ListVideo,
-			"cata_video": cf.Ad.CataVideo,
-			"info_video": cf.Ad.InfoVideo,
-
-			// "top_home_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "top_list_grid": cf.Ad.HomeGrid, // 首页格子广告
-			// "home_grid":     cf.Ad.HomeGrid, // 首页格子广告
-			// "list_grid": cf.Ad.ListGrid, // 列表页格子广告
-			// "cata_grid": cf.Ad.CataGrid, // 列表页格子广告
-			// "info_grid": cf.Ad.InfoGrid, // 详细页格子广告
-			// "home_pre_video": cf.Ad.PreVideo,
-			// "list_pre_video": cf.Ad.PreVideo,
-			// "info_pre_video": cf.Ad.PreVideo,
-
-			// "home_reward": cf.Ad.Reward,
-			// "list_reward": cf.Ad.Reward,
-			"info_reward": cf.Ad.Reward,
-
-			// 定义首页分享标题
-			"share_title": cf.ReaderMinAppThree.AppTitle,
-			// 定义首页分享图片
-			"share_cover":       cf.ReaderMinAppThree.AppCover,
-			"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-			"online_service":    true,
-			"info_force_reward": true, // 强制广告
-			"info_video_adlt":   2,    //详情页面视频轮循总数
-			"info_video_adlm":   0,    //详情页面视频轮循开始余量
-			// "info_grid_adlt":    2,    //详情页面格子广告轮循总数
-			// "info_grid_adlm":    1,    //详情页面格子广告轮循开始余量
-			"info_banner_adlt": 2, //详情页面Banner轮循总数
-			"info_banner_adlm": 1, //详情页面Banner轮循开始余量
-			"info_screen_adlt": 5, //详情页面插屏广告轮循总数
-			"info_screen_adlm": 3, //详情页面插屏广告轮循开始余量
-		})
-	}
-	return echo.ErrUnauthorized
-}
-
-//GetAPIToken6 获取 jwt token xjjggt，暂时做个中转试试
-func GetAPIToken6(c echo.Context) error {
-
-	claims := &JwtCustomClaims{
-		1,
-		`visitor.OpenID`,
-		``,
-		``,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-		},
-	}
-
-	// Create token with claims
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
-	if err != nil {
-		return err
-	}
-	cf := cpi.GetConf()
-
-	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
-
-	var infoTipsBanner, infoTipsCustom string
-	if true {
-		if inum == 1 {
-			infoTipsBanner = `adunit-f25496d0c79a21ec`
-		} else if inum == 2 {
-			infoTipsBanner = `adunit-f25496d0c79a21ec`
-		} else if inum == 3 {
-			infoTipsBanner = ``
-		}
-	}
-
-	return c.JSON(http.StatusOK, echo.Map{
-		// wx8ffa5a58c0bb3589 推荐阅读
-		"jumpappid":        ``, // xjj 转 sszs wx96830e80b331c267
-		"bookjumpappid":    `wx96830e80b331c267`,
-		"articlejumpappid": ``, //wx96830e80b331c267
-		"token":            t,
-		"uid":              -1,
-		"level":            0,
-		"ismini":           0,
-		"hiderec":          1,
-		"hidelog":          0,
-		"can_create":       0, // 允许创建内容
-		"home_screen_adid": ``,
-		"info_screen":      `adunit-ccabd13119f9c1ef`,
-		"info_banner":      `adunit-f25496d0c79a21ec`,
-		"info_custom":      `adunit-e3d1254655efb8c9`,
-		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-68628fd0d0c730c3`,
-		// "list_video": `adunit-68628fd0d0c730c3`,
-		// "cata_video": `adunit-68628fd0d0c730c3`,
-		"info_video":      `adunit-68628fd0d0c730c3`,
-		"top_home_custom": `adunit-940f8c6057d625d1`,
-		"list_custom":     `adunit-e3d1254655efb8c9`,
-		"cata_custom":     `adunit-e3d1254655efb8c9`,
-		"info_reward":     `adunit-06e16f75725ae20d`,
-		// 定义首页分享标题
-		"share_title": cf.ReaderMinAppThree.AppTitle,
-		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       `请输入书名搜索`, // 小说名
-		"online_service":    false,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   3,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  1,    //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
-
-	})
-
-}
-
-//GetAPIToken7 获取 jwt token 新推荐阅读
-func GetAPIToken7(c echo.Context) error {
-
-	claims := &JwtCustomClaims{
-		1,
-		`visitor.OpenID`,
-		``,
-		``,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-		},
-	}
-
-	// Create token with claims
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
-	if err != nil {
-		return err
-	}
-	cf := cpi.GetConf()
-
-	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
-
-	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = ``
-	if inum == 1 {
-		infoTipsBanner = `adunit-0d62bae54bcefd36`
-	} else if inum == 2 {
-		infoTipsCustom = `adunit-6b354d2130f204aa`
-	}
-
-	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid":        ``,               //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"token":            t,
-		"uid":              -1,
-		"level":            0,
-		"ismini":           0,
-		"can_create":       1, // 允许创建内容
-		"info_screen":      `adunit-f2f43997333bd86d`,
-		"info_banner":      `adunit-0d62bae54bcefd36`,
-		"info_custom":      `adunit-6b354d2130f204aa`,
-		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-997349cedbfe172f`,
-		// "list_video": `adunit-997349cedbfe172f`,
-		// "cata_video": `adunit-997349cedbfe172f`,
-		"info_video": `adunit-b528ceb7836c247f`,
-		// "info_reward": `adunit-37d73c4714563ea5`,
-		"top_home_custom": `adunit-7931b9985beaf4db`,
-		"list_custom":     `adunit-6b354d2130f204aa`,
-		"cata_custom":     `adunit-6b354d2130f204aa`,
-		"info_reward":     `adunit-756e936e72536645`,
-		// 定义首页分享标题
-		"share_title": cf.ReaderMinAppThree.AppTitle,
-		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-		"online_service":    false,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   1,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量（进去给就插屏）
-
-	})
-
-}
 
 //GetAPIToken9 获取 jwt token 驴友记
 func GetAPIToken9(c echo.Context) error {
@@ -1143,219 +569,58 @@ func GetAPIToken9(c echo.Context) error {
 		"articlejumpappid": ``,               // wxa94ddd94358b2d1d
 		"jumpwebpage":      ``,               // 强制跳转网站阅读
 		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		// "report_api":       `https://tongji.readfollow.com/api/report`,
+		"report_api":       `https://tongji.readfollow.com/api/report`,
 		"token":            t,
 		"uid":              -1,
 		"level":            0,
 		"ismini":           0,
-		"hiderec":          1,
+		"hiderec":          0,
 		"hidelog":          0,
 		"can_create":       0, // 允许创建内容
 		"info_screen":      `adunit-6584f905ac888622`,
 		"info_banner":      `adunit-c0d2320d02a94006`,
-		// "info_custom":      `adunit-c9618bd19a0ed146`,
+		"info_custom":      `adunit-c9618bd19a0ed146`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
 		// "autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		"autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
+		"autoload_tips": `观看广告加载下一章(并关闭提醒)`, //观看视频广告自动加载下一章
 		// "top_home_video": `adunit-a842a36d2700a76c`, // 正常的video adid
-		// "top_home_banner": `adunit-c0d2320d02a94006`,
+		"top_home_banner": `adunit-c0d2320d02a94006`,
 		// "list_video": `adunit-a842a36d2700a76c`, // 用banner的adid *3
 		// "cata_video": `adunit-a842a36d2700a76c`,
 		"info_video":      `adunit-a842a36d2700a76c`,
 		"info_reward":     `adunit-70cea938ef5025dc`,
-		"top_home_custom": `adunit-c9618bd19a0ed146`,
-		"list_custom":     `adunit-c9618bd19a0ed146`,
-		"cata_custom":     `adunit-c9618bd19a0ed146`,
+		// "top_home_custom": `adunit-c9618bd19a0ed146`,
+		"list_banner":     `adunit-c0d2320d02a94006`,
+		"cata_banner":     `adunit-c0d2320d02a94006`,
+		// "list_custom":     `adunit-c9618bd19a0ed146`,
+		// "cata_custom":     `adunit-c9618bd19a0ed146`,
 		// "info_reward": `adunit-756e936e72536645`,
 		// 定义首页分享标题
 		"share_title": cf.ReaderMinAppThree.AppTitle,
 		// 定义首页分享图片
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-		"online_service":    false,
+		"online_service":    true,
 		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   2,    //详情页面视频轮循总数
-		"info_video_adlm":   0,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  4,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  1,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
+		// "info_video_adlt":   2,    //详情页面视频轮循总数
+		// "info_video_adlm":   0,    //详情页面视频轮循开始余量
+		// "info_custom_adlt":  2,    //详情页面格子广告轮循总数
+		// "info_custom_adlm":  1,    //详情页面格子广告轮循开始余量
+		"info_banner_adlt":  1,    //详情页面Banner轮循总数
+		"info_banner_adlm":  0,    //详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
 		"info_screen_adlm":  3,    //详情页面插屏广告轮循开始余量
 
-		// "advert_txt":`56元外卖红包天天领`,
-		// "advert_type":`jumpapp`,
-		// "advert_appid":`wxde8ac0a21135c07d`,
-		// "advert_path":`/index/pages/h5/h5?weburl=https%3A%2F%2Frunion.meituan.com%2Furl%3Fkey%3D08068d0a1838a9e609a93d3928830434%26url%3Dhttps%253A%252F%252Fcube.meituan.com%252Fawp%252Fhfe%252Fblock%252Fa13b87919a9ace9cfab4%252F89400%252Findex.html%253Fappkey%253D08068d0a1838a9e609a93d3928830434%253Amtcp%26sid%3Dmtcp&lch=cps:waimai:5:08068d0a1838a9e609a93d3928830434:mtcp&f_token=1&f_userId=1`,
-
+		"advert_txt":`18元红包(每天重复领)`,
+		"advert_type":`jumpapp`,
+		"advert_appid":`wxde8ac0a21135c07d`,
+		"advert_path":`/index/pages/h5/h5?f_userId=1&f_token=1&s_cps=1&weburl=https%3A%2F%2Fdpurl.cn%2FwPpyUGtz`,
 	})
 
 }
 
-//GetAPIToken11  sqw
-func GetAPIToken11(c echo.Context) error {
 
-	claims := &JwtCustomClaims{
-		1,
-		`visitor.OpenID`,
-		``,
-		``,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-		},
-	}
-
-	// Create token with claims
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
-	if err != nil {
-		return err
-	}
-	cf := cpi.GetConf()
-
-	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
-
-	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = ``
-	if inum == 1 {
-		infoTipsBanner = `adunit-2270edc5e426c55f`
-	} else if inum == 2 {
-		infoTipsBanner = `adunit-2270edc5e426c55f`
-	}
-	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid": `wxe70eee58e64c7ac7`, //
-		// "bookjumpappid":    `wx151b74959f898c5b`,
-		// "articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"token":            t,
-		"uid":              -1,
-		"level":            0,
-		"ismini":           0,
-		"hiderec":          1,
-		"hidelog":          0,
-		"can_create":       0, // 允许创建内容
-		"info_screen":      `adunit-7e68b5d53011f37c`,
-		"info_banner":      `adunit-2270edc5e426c55f`,
-		// "info_custom":      `adunit-ab5acd5ba7b2db05`,
-		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
-		// "list_video": `adunit-cc2f19cdc09c7a48`,
-		// "cata_video": `adunit-cc2f19cdc09c7a48`,
-		"info_video":      `adunit-b043e39236e16e3d`,
-		"info_reward":     `adunit-4235083b4ad66a5b`,
-		"top_home_custom": `adunit-67f0197c87efa75b`,
-		"list_custom":     `adunit-67f0197c87efa75b`,
-		"cata_custom":     `adunit-67f0197c87efa75b`,
-		// "info_reward": `adunit-756e936e72536645`,
-		// 定义首页分享标题
-		"share_title": cf.ReaderMinAppThree.AppTitle,
-		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-		"online_service":    false,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    //详情页面视频轮循总数
-		"info_video_adlm":   1,    //详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    //详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    //详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    //详情页面Banner轮循总数
-		"info_banner_adlm":  3,    //详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    //详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    //详情页面插屏广告轮循开始余量
-
-	})
-
-}
-
-//GetAPIToken12  ggt
-func GetAPIToken12(c echo.Context) error {
-
-	claims := &JwtCustomClaims{
-		1,
-		`visitor.OpenID`,
-		``,
-		``,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 48).Unix(),
-		},
-	}
-
-	// Create token with claims
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
-	if err != nil {
-		return err
-	}
-	cf := cpi.GetConf()
-
-	rand.Seed(time.Now().UnixNano())
-	inum := rand.Intn(3) // 先搞低些广告出现机率
-
-	var infoTipsBanner, infoTipsCustom string
-	infoTipsBanner = ``
-	if inum == 1 {
-		infoTipsBanner = `adunit-2270edc5e426c55f`
-	} else if inum == 2 {
-		infoTipsBanner = `adunit-2270edc5e426c55f`
-	}
-	return c.JSON(http.StatusOK, echo.Map{
-		"jumpappid": ``, //
-		// "bookjumpappid":    `wx151b74959f898c5b`,
-		// "articlejumpappid": `wx151b74959f898c5b`, //
-		"jumpwebpage":      ``,               // 强制跳转网站阅读
-		"jumpwebtips":      `已复制网址，请使用浏览器访问`, // 强制跳转网站阅读
-		"token":            t,
-		"uid":              -1,
-		"level":            0,
-		"ismini":           0,
-		"hiderec":          1,
-		"hidelog":          0,
-		"can_create":       0, // 允许创建内容
-		"info_screen":      `adunit-7e68b5d53011f37c`,
-		"info_banner":      `adunit-2270edc5e426c55f`,
-		"info_custom":      `adunit-ab5acd5ba7b2db05`,
-		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
-		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
-		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_video": `adunit-cc2f19cdc09c7a48`,
-		// "list_video": `adunit-cc2f19cdc09c7a48`,
-		// "cata_video": `adunit-cc2f19cdc09c7a48`,
-		"info_video":      `adunit-b043e39236e16e3d`,
-		"info_reward":     `adunit-4235083b4ad66a5b`,
-		"top_home_custom": `adunit-67f0197c87efa75b`,
-		"list_custom":     `adunit-67f0197c87efa75b`,
-		"cata_custom":     `adunit-67f0197c87efa75b`,
-		// "info_reward": `adunit-756e936e72536645`,
-		// 定义首页分享标题
-		"share_title": cf.ReaderMinAppThree.AppTitle,
-		// 定义首页分享图片
-		"share_cover":       cf.ReaderMinAppThree.AppCover,
-		"placeholder":       cf.ReaderMinAppThree.AppSearch, // 小说名
-		"online_service":    false,
-		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    // 详情页面视频轮循总数
-		"info_video_adlm":   1,    // 详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    // 详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    // 详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    // 详情页面Banner轮循总数
-		"info_banner_adlm":  3,    // 详情页面Banner轮循开始余量
-		"info_screen_adlt":  5,    // 详情页面插屏广告轮循总数
-		"info_screen_adlm":  4,    // 详情页面插屏广告轮循开始余量
-
-	})
-
-}
 
 //GetAPIToken13  kszs
 func GetAPIToken13(c echo.Context) error {
@@ -1404,41 +669,43 @@ func GetAPIToken13(c echo.Context) error {
 		"hiderec":          1,
 		"hidelog":          0,
 		"can_create":       0, // 允许创建内容
-		"info_screen":      ``,
+		"info_screen":      `adunit-6052c583fcd3ced0`,
 		"info_banner":      `adunit-6acc767c1798c960`,
-		// "info_custom":      `adunit-706fb35830b72891`,
+		"info_custom":      `adunit-706fb35830b72891`,
 		"info_tips_banner": infoTipsBanner, // 点击广告开启自动加载更多功能
 		"info_tips_custom": infoTipsCustom, // 详细页格子广告
-		"autoload_tips":    `观看视频开启自动加载无弹窗模式`,
+		"autoload_tips":    `观看广告加载下一章(并关闭提醒)`,
 		// "autoload_tips": `体验广告6秒开启自动加载无弹窗模式`,
-		// "top_home_banner": `adunit-6acc767c1798c960`,
+		"top_home_banner": `adunit-6acc767c1798c960`,
 		// // "top_home_video": `adunit-cc2f19cdc09c7a48`,
 		// "list_video": `adunit-cc2f19cdc09c7a48`,
 		// "cata_video": `adunit-cc2f19cdc09c7a48`,
+		"list_banner": `adunit-6acc767c1798c960`,
+		"cata_banner": `adunit-6acc767c1798c960`,
 		"info_video":      `adunit-88c8cdc56dcd3ba2`,
 		"info_reward":     `adunit-3b053bf1aec30918`,
-		"top_home_custom": `adunit-ad9b552d39651ec8`,
-		"list_custom":     `adunit-ad9b552d39651ec8`,
-		"cata_custom":     `adunit-ad9b552d39651ec8`,
+		// "top_home_custom": `adunit-ad9b552d39651ec8`,
+		// "list_custom":     `adunit-ad9b552d39651ec8`,
+		// "cata_custom":     `adunit-ad9b552d39651ec8`,
 		// 定义首页分享标题
-		"share_title": `搜索全网免费小说阅读`,
+		"share_title": `搜索全网免费小说`,
 		// 定义首页分享图片
 		"share_cover":       cf.ReaderMinAppThree.AppCover,
 		"placeholder":       `输入书名搜索`, // 小说名
 		"online_service":    true,
 		"info_force_reward": true, // 强制广告
-		"info_video_adlt":   4,    // 详情页面视频轮循总数
-		"info_video_adlm":   1,    // 详情页面视频轮循开始余量
-		"info_custom_adlt":  2,    // 详情页面格子广告轮循总数
-		"info_custom_adlm":  0,    // 详情页面格子广告轮循开始余量
-		"info_banner_adlt":  4,    // 详情页面Banner轮循总数
-		"info_banner_adlm":  3,    // 详情页面Banner轮循开始余量
+		// "info_video_adlt":   4,    // 详情页面视频轮循总数
+		// "info_video_adlm":   1,    // 详情页面视频轮循开始余量
+		// "info_custom_adlt":  2,    // 详情页面格子广告轮循总数
+		// "info_custom_adlm":  0,    // 详情页面格子广告轮循开始余量
+		"info_banner_adlt":  1,    // 详情页面Banner轮循总数
+		"info_banner_adlm":  0,    // 详情页面Banner轮循开始余量
 		"info_screen_adlt":  5,    // 详情页面插屏广告轮循总数
 		"info_screen_adlm":  3,    // 详情页面插屏广告轮循开始余量
-		// "advert_txt":`56元外卖红包天天领`,
-		// "advert_type":`jumpapp`,
-		// "advert_appid":`wxde8ac0a21135c07d`,
-		// "advert_path":`/index/pages/h5/h5?weburl=https%3A%2F%2Frunion.meituan.com%2Furl%3Fkey%3D08068d0a1838a9e609a93d3928830434%26url%3Dhttps%253A%252F%252Fcube.meituan.com%252Fawp%252Fhfe%252Fblock%252Fa13b87919a9ace9cfab4%252F89400%252Findex.html%253Fappkey%253D08068d0a1838a9e609a93d3928830434%253Amtcp%26sid%3Dmtcp&lch=cps:waimai:5:08068d0a1838a9e609a93d3928830434:mtcp&f_token=1&f_userId=1`,
+		"advert_txt":`18元红包(每天重复领)`,
+		"advert_type":`jumpapp`,
+		"advert_appid":`wxde8ac0a21135c07d`,
+		"advert_path":`/index/pages/h5/h5?f_userId=1&f_token=1&s_cps=1&weburl=https%3A%2F%2Fdpurl.cn%2FwPpyUGtz`,
 
 	})
 
