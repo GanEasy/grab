@@ -17,8 +17,9 @@ func Test_Aimeizi5ReaderGetInfo(t *testing.T) {
 }
 
 func Test_Aimeizi5ReaderGetCatalog(t *testing.T) {
+	// https://www.feixuemh.com/chapter/54380
 	urlStr := `https://m.booktxt.net/wapbook/4891.html`
-	urlStr = `https://5aimeizi.com/book/664`
+	urlStr = `https://5aimeizi.com/Comic/3216`
 	reader := Aimeizi5Reader{}
 	list, err := reader.GetCatalog(urlStr)
 	if err != nil {
