@@ -684,7 +684,7 @@ func GetAPIToken13(c echo.Context) error {
 		"cata_banner": `adunit-6acc767c1798c960`,
 		"info_video":      `adunit-88c8cdc56dcd3ba2`,
 		"info_reward":     `adunit-3b053bf1aec30918`,
-		"top_home_custom": `adunit-ad9b552d39651ec8`,
+		// "top_home_custom": `adunit-ad9b552d39651ec8`,
 		// "list_custom":     `adunit-ad9b552d39651ec8`,
 		// "cata_custom":     `adunit-ad9b552d39651ec8`,
 		// 定义首页分享标题
