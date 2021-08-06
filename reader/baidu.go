@@ -24,14 +24,14 @@ func (r BaiduReader) GetCategories(urlStr string) (list Catalog, err error) {
 	list.Hash = GetCatalogHash(list)
 
 	list.Cards = []Card{
-		Card{`全部类型`,  `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`都市`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"都市"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`玄幻`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"玄幻"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`历史`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"历史"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`武侠`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"武侠"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`现代言情`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"现代言情"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`古代言情`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"古代言情"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
-		Card{`青春`, `/pages/transfer?action=baidu&url=`+EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"青春"}`)+`&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`全部类型`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`都市`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"都市"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`玄幻`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"玄幻"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`历史`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"历史"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`武侠`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"武侠"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`现代言情`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"现代言情"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`古代言情`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"古代言情"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
+		Card{`青春`, `/pages/transfer?action=list&url=` + EncodeURL(`https://top.baidu.com/board?platform=pc&tab=novel&tag={"category":"青春"}`) + `&drive=baidu`, "", `link`, ``, nil, ``, ``},
 	}
 	return list, nil
 }
@@ -63,10 +63,10 @@ func (r BaiduReader) GetList(urlStr string) (list Catalog, err error) {
 	pattern := "\\d+" //反斜杠要转义
 	for _, l := range links {
 		if l.Title != `查看更多>` {
-			match,_ := regexp.MatchString(pattern,l.Title)
+			match, _ := regexp.MatchString(pattern, l.Title)
 			if !match {
-				l.URL = fmt.Sprintf(`/pages/search?keyword=%v`, l.Title)
-				
+				l.URL = fmt.Sprintf(`/pages/search?name=%v`, l.Title)
+
 				needLinks = append(needLinks, l)
 			}
 		}
@@ -75,10 +75,8 @@ func (r BaiduReader) GetList(urlStr string) (list Catalog, err error) {
 	for _, link := range needLinks { //所有链接
 		list.Cards = append(list.Cards, Card{link.Title, link.URL, ``, `link`, ``, nil, link.URL, ``})
 	}
-	
 
 	list.SourceURL = urlStr
-
 
 	list.Hash = GetCatalogHash(list)
 

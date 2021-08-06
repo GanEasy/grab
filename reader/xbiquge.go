@@ -63,7 +63,7 @@ func (r XbiqugeReader) GetList(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.xbiquge.la/39/39551/`, `http://www.xbiquge.la/27/27807/`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.xbiquge.la/39/39551/`, `https://www.xbiquge.la/27/27807/`, ``)
 		if state {
 			l.Title = FindString(`(?P<title>(.)+)`, l.Title, "title")
 			needLinks = append(needLinks, l)
@@ -125,7 +125,7 @@ func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
 	var needLinks []Link
 	var state bool
 	for _, l := range links {
-		l.URL, state = JaccardMateGetURL(l.URL, `http://www.xbiquge.la/39/39551/18263995.html`, `http://www.xbiquge.la/7/7004/3246402.html`, ``)
+		l.URL, state = JaccardMateGetURL(l.URL, `https://www.xbiquge.la/39/39551/18263995.html`, `https://www.xbiquge.la/7/7004/3246402.html`, ``)
 		if state {
 			needLinks = append(needLinks, l)
 		}

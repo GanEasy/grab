@@ -5,12 +5,12 @@ import (
 	"fmt"
 	// "io/ioutil"
 	// "net/http"
-	"strings"
 	"net/url"
-	"testing"
 	"regexp"
-	"github.com/PuerkitoBio/goquery"
+	"strings"
+	"testing"
 
+	"github.com/PuerkitoBio/goquery"
 	// "golang.org/x/net/html/charset"
 )
 
@@ -55,10 +55,10 @@ func Test_BaiDuHotSearch(t *testing.T) {
 	pattern := "\\d+" //反斜杠要转义
 	for _, l := range links {
 		if l.Title != `查看更多>` {
-			match,_ := regexp.MatchString(pattern,l.Title)
+			match, _ := regexp.MatchString(pattern, l.Title)
 			if !match {
 				l.URL = fmt.Sprintf(`/pages/search?keyword=%v`, l.Title)
-				
+
 				needLinks = append(needLinks, l)
 			}
 		}
