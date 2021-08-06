@@ -93,6 +93,10 @@ func (r XbiqugeReader) Search(keyword string) (list Catalog, err error) {
 // GetCatalog 获取章节列表
 func (r XbiqugeReader) GetCatalog(urlStr string) (list Catalog, err error) {
 
+	reg := regexp.MustCompile(`http://`)
+
+	urlStr = reg.ReplaceAllString(urlStr, "https://")
+
 	err = CheckStrIsLink(urlStr)
 	if err != nil {
 		return
